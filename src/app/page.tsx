@@ -1,6 +1,7 @@
 import styles from './page.module.css';
 
 export default function Home() {
+  console.log('hi');
   return (
     <div className={styles.page}>
       <main className={styles.main}>
