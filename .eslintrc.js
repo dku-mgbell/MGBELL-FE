@@ -22,6 +22,12 @@ module.exports = {
     'react/jsx-filename-extension': ['warn', { extensions: ['.ts', '.tsx'] }],
     '@typescript-eslint/camelcase': 'off',
     'no-console': 'error',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
