@@ -22,6 +22,7 @@ module.exports = {
     'react/jsx-filename-extension': ['warn', { extensions: ['.ts', '.tsx'] }],
     '@typescript-eslint/camelcase': 'off',
     'import/prefer-default-export': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
     'no-console': 'error',
     'prettier/prettier': [
       'error',

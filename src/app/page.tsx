@@ -1,11 +1,17 @@
+import { MainPageView } from '@/types/pageView';
 import FilterIcon from './assets/svg/FilterIcon';
 import LocationMarkerIcon from './assets/svg/LocationMarkerIcon';
 import SearchIcon from './assets/svg/SearchIcon';
 import { styles } from './styles.css';
+import Content from './content';
 
-export default function Home() {
+export default function Home({
+  searchParams: { viewType },
+}: {
+  searchParams: { viewType: MainPageView };
+}) {
   return (
-    <section className={styles.container}>
+    <section className={(styles.container, styles.theme[viewType])}>
       <header className={styles.header}>
         <div className={styles.location}>
           <LocationMarkerIcon />
@@ -24,6 +30,9 @@ export default function Home() {
           </button>
         </div>
       </header>
+      <section className={styles.contentWrapper}>
+        <Content viewType={viewType} />
+      </section>
     </section>
   );
 }

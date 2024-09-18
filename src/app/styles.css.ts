@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
 import { borderRadius, colors, fontWeight, padding } from './styles/constant';
 
 export const styles = {
@@ -7,15 +7,25 @@ export const styles = {
   }),
 
   container: style({
-    padding: `${padding.layout}`,
-    backgroundColor: colors.primary,
     height: '100vh',
+    paddingTop: padding.safeAreaTop,
+    backgroundColor: colors.primary,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 7,
+  }),
+
+  theme: styleVariants({
+    undefined: { backgroundColor: colors.primary },
+    list: { backgroundColor: colors.primary },
+    map: { backgroundColor: colors.secondary },
   }),
 
   header: style({
     display: 'flex',
     flexDirection: 'column',
     gap: '14px',
+    padding: padding.layout,
     fontWeight: fontWeight.md,
   }),
 
@@ -43,7 +53,7 @@ export const styles = {
 
   searchInput: style({
     '::placeholder': {
-      color: colors.lightGray100,
+      color: colors.lightGray200,
       fontWeight: fontWeight.md,
     },
     width: '100%',
@@ -62,4 +72,39 @@ export const styles = {
     width: 42,
     height: 40,
   }),
+
+  contentWrapper: style({
+    flex: 1,
+    backgroundColor: colors.white,
+    borderRadius: `${borderRadius.lg} ${borderRadius.lg} 0 0`,
+    padding: `20px ${padding.layoutX}`,
+  }),
+
+  nav: style({
+    display: 'flex',
+    backgroundColor: colors.lightGray50,
+    flexWrap: 'wrap',
+    borderRadius: borderRadius.md,
+    overflow: 'hidden',
+  }),
+
+  viewButton: style({
+    flex: 1,
+    textAlign: 'center',
+    fontSize: 14,
+    padding: '10px 0',
+    cursor: 'pointer',
+    color: colors.darkGray100,
+    selectors: {
+      '&:has(input:checked)': {
+        color: colors.white,
+        backgroundColor: colors.primary,
+      },
+      '&:has(input[value=map]):has(input:checked)': {
+        backgroundColor: colors.secondary,
+      },
+    },
+  }),
 };
+
+globalStyle(`${styles.viewButton} input`, { display: 'none' });
