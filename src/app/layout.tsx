@@ -4,7 +4,7 @@ import './globals.css';
 import { styles } from './styles.css';
 
 const notoSans = localFont({
-  src: './fonts/NotoSansKRVF.woff2',
+  src: './assets/fonts/NotoSansKRVF.woff2',
   variable: '--font-noto-sans',
   weight: '100 900',
 });

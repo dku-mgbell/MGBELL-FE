@@ -35,6 +35,19 @@ a {
   text-decoration: none;
 }
 
+input {
+  border: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
