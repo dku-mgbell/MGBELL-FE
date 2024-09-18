@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { MainPageView } from '@/types/pageView';
 import { styles } from './styles.css';
+import StoreList from './StoreList';
 
 export default function Content({ viewType }: { viewType: MainPageView }) {
   const route = useRouter();
@@ -34,7 +35,8 @@ export default function Content({ viewType }: { viewType: MainPageView }) {
           지도
         </label>
       </nav>
-      <main> </main>
+      {viewType === 'list' && <StoreList />}
+      {viewType === 'map' && <>map</>}
     </>
   );
 }

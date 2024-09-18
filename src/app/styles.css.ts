@@ -59,7 +59,6 @@ export const styles = {
     width: '100%',
     height: '20px',
     fontWeight: fontWeight.md,
-    fontFamily: 'var(--font-noto-sans)',
     fontSize: 14,
   }),
 
@@ -86,6 +85,7 @@ export const styles = {
     flexWrap: 'wrap',
     borderRadius: borderRadius.md,
     overflow: 'hidden',
+    marginBottom: 20,
   }),
 
   viewButton: style({
@@ -108,3 +108,7 @@ export const styles = {
 };
 
 globalStyle(`${styles.viewButton} input`, { display: 'none' });
+globalStyle(`${styles.body} button, ${styles.body} input`, {
+  fontFamily: 'var(--font-noto-sans)',
+  fontWeight: fontWeight.md,
+});
