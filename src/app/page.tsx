@@ -1,4 +1,5 @@
 import styles from './page.module.css';
+import { container } from './styles.css';
 
 export default function Home() {
   return (
@@ -29,7 +30,7 @@ export default function Home() {
           </a>
         </div>
       </main>
-      <footer className={styles.footer}>
+      <footer className={container}>
         <a
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           target="_blank"

@@ -21,6 +21,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': ['warn', { extensions: ['.ts', '.tsx'] }],
     '@typescript-eslint/camelcase': 'off',
+    'import/prefer-default-export': 'off',
     'no-console': 'error',
     'prettier/prettier': [
       'error',
