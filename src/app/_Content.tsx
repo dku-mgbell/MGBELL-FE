@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { MainPageView } from '@/types/pageView';
 import { styles } from './styles.css';
-import StoreList from './StoreList';
+import StoreList from './_StoreList';
 
 export default function Content({ viewType }: { viewType: MainPageView }) {
   const route = useRouter();

@@ -3,7 +3,7 @@ import FilterIcon from '../assets/svg/FilterIcon';
 import LocationMarkerIcon from '../assets/svg/LocationMarkerIcon';
 import SearchIcon from '../assets/svg/SearchIcon';
 import { container, styles } from './styles.css';
-import Content from './content';
+import Content from './_Content';
 
 export default function Home({
   searchParams: { viewType },
