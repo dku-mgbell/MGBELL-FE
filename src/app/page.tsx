@@ -1,7 +1,7 @@
 import { MainPageView } from '@/types/pageView';
-import FilterIcon from './assets/svg/FilterIcon';
-import LocationMarkerIcon from './assets/svg/LocationMarkerIcon';
-import SearchIcon from './assets/svg/SearchIcon';
+import FilterIcon from '../assets/svg/FilterIcon';
+import LocationMarkerIcon from '../assets/svg/LocationMarkerIcon';
+import SearchIcon from '../assets/svg/SearchIcon';
 import { container, styles } from './styles.css';
 import Content from './content';
 
