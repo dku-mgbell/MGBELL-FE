@@ -1,6 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
-import { borderRadius, colors, fontWeight, padding } from './styles/constant';
+import { borderRadius, colors, fontWeight, padding } from '../styles/constant';
 
 export const container = recipe({
   base: {

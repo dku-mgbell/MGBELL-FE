@@ -1,5 +1,5 @@
 import ChevronDownIcon from '../assets/svg/ChevronDownIcon';
-import { styles } from './styles/storeListStyles.css';
+import { styles } from '../styles/storeListStyles.css';
 
 export default function StoreList() {
   return (
