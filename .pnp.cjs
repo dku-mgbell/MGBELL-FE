@@ -36,6 +36,7 @@ const RAW_RUNTIME_STATE =
           ["@typescript-eslint/parser", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:8.6.0"],\
           ["@vanilla-extract/css", "npm:1.15.5"],\
           ["@vanilla-extract/next-plugin", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:2.4.5"],\
+          ["@vanilla-extract/recipes", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:0.5.5"],\
           ["eslint", "npm:8.57.0"],\
           ["eslint-config-airbnb", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:19.0.4"],\
           ["eslint-config-airbnb-typescript", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:18.0.0"],\
@@ -4505,6 +4506,28 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@vanilla-extract/recipes", [\
+      ["npm:0.5.5", {\
+        "packageLocation": "../../AppData/Local/Yarn/Berry/cache/@vanilla-extract-recipes-npm-0.5.5-986bba519e-10c0.zip/node_modules/@vanilla-extract/recipes/",\
+        "packageDependencies": [\
+          ["@vanilla-extract/recipes", "npm:0.5.5"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:0.5.5", {\
+        "packageLocation": "./.yarn/__virtual__/@vanilla-extract-recipes-virtual-7bf0ee2d97/3/AppData/Local/Yarn/Berry/cache/@vanilla-extract-recipes-npm-0.5.5-986bba519e-10c0.zip/node_modules/@vanilla-extract/recipes/",\
+        "packageDependencies": [\
+          ["@vanilla-extract/recipes", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:0.5.5"],\
+          ["@types/vanilla-extract__css", null],\
+          ["@vanilla-extract/css", "npm:1.15.5"]\
+        ],\
+        "packagePeers": [\
+          "@types/vanilla-extract__css",\
+          "@vanilla-extract/css"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@vanilla-extract/webpack-plugin", [\
       ["npm:2.3.13", {\
         "packageLocation": "../../AppData/Local/Yarn/Berry/cache/@vanilla-extract-webpack-plugin-npm-2.3.13-0559e53145-10c0.zip/node_modules/@vanilla-extract/webpack-plugin/",\
@@ -8060,6 +8083,7 @@ const RAW_RUNTIME_STATE =
           ["@typescript-eslint/parser", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:8.6.0"],\
           ["@vanilla-extract/css", "npm:1.15.5"],\
           ["@vanilla-extract/next-plugin", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:2.4.5"],\
+          ["@vanilla-extract/recipes", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:0.5.5"],\
           ["eslint", "npm:8.57.0"],\
           ["eslint-config-airbnb", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:19.0.4"],\
           ["eslint-config-airbnb-typescript", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:18.0.0"],\

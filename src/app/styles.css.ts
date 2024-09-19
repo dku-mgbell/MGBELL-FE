@@ -1,24 +1,30 @@
-import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 import { borderRadius, colors, fontWeight, padding } from './styles/constant';
+
+export const container = recipe({
+  base: {
+    height: '100vh',
+    paddingTop: padding.safeAreaTop,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 7,
+  },
+  variants: {
+    color: {
+      undefined: { backgroundColor: colors.primary },
+      list: { backgroundColor: colors.primary },
+      map: { backgroundColor: colors.secondary },
+    },
+  },
+  defaultVariants: {
+    color: 'undefined',
+  },
+});
 
 export const styles = {
   body: style({
     fontFamily: 'var(--font-noto-sans)',
-  }),
-
-  container: style({
-    height: '100vh',
-    paddingTop: padding.safeAreaTop,
-    backgroundColor: colors.primary,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 7,
-  }),
-
-  theme: styleVariants({
-    undefined: { backgroundColor: colors.primary },
-    list: { backgroundColor: colors.primary },
-    map: { backgroundColor: colors.secondary },
   }),
 
   header: style({

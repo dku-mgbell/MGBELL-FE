@@ -1,1 +1,1 @@
-export type MainPageView = 'list' | 'map';
+export type MainPageView = 'undefined' | 'list' | 'map';
