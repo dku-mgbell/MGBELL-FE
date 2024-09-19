@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { MainPageView } from '@/types/pageView';
-import { styles } from './styles.css';
+import { styles, viewButton } from './styles.css';
 import StoreList from './_StoreList';
 
 export default function Content({ viewType }: { viewType: MainPageView }) {
@@ -10,32 +10,30 @@ export default function Content({ viewType }: { viewType: MainPageView }) {
   return (
     <>
       <nav className={styles.nav}>
-        <label className={styles.viewButton}>
-          <input
-            onClick={() => {
-              route.push('?viewType=list');
-            }}
-            type="radio"
-            name="viewType"
-            defaultChecked={viewType === 'list' || viewType === undefined}
-            value="list"
-          />
+        <button
+          type="button"
+          onClick={() => {
+            route.push('?viewType=list');
+          }}
+          className={viewButton({
+            color: (viewType === 'list' || !viewType) && 'list',
+          })}
+        >
           리스트
-        </label>
-        <label className={styles.viewButton}>
-          <input
-            onClick={() => {
-              route.push('?viewType=map');
-            }}
-            type="radio"
-            name="viewType"
-            defaultChecked={viewType === 'map'}
-            value="map"
-          />
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            route.push('?viewType=map');
+          }}
+          className={viewButton({
+            color: viewType === 'map' && 'map',
+          })}
+        >
           지도
-        </label>
+        </button>
       </nav>
-      {viewType === 'list' && <StoreList />}
+      {(viewType === 'list' || !viewType) && <StoreList />}
       {viewType === 'map' && <>map</>}
     </>
   );

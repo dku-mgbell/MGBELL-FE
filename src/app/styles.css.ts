@@ -22,6 +22,26 @@ export const container = recipe({
   },
 });
 
+export const viewButton = recipe({
+  base: {
+    flex: 1,
+    textAlign: 'center',
+    fontSize: 14,
+    padding: '10px 0',
+    cursor: 'pointer',
+  },
+  variants: {
+    color: {
+      false: { backgroundColor: colors.lightGray50, color: colors.darkGray100 },
+      list: { backgroundColor: colors.primary, color: colors.white },
+      map: { backgroundColor: colors.secondary, color: colors.white },
+    },
+  },
+  defaultVariants: {
+    color: false,
+  },
+});
+
 export const styles = {
   body: style({
     fontFamily: 'var(--font-noto-sans)',
@@ -93,27 +113,9 @@ export const styles = {
     overflow: 'hidden',
     marginBottom: 20,
   }),
-
-  viewButton: style({
-    flex: 1,
-    textAlign: 'center',
-    fontSize: 14,
-    padding: '10px 0',
-    cursor: 'pointer',
-    color: colors.darkGray100,
-    selectors: {
-      '&:has(input:checked)': {
-        color: colors.white,
-        backgroundColor: colors.primary,
-      },
-      '&:has(input[value=map]):has(input:checked)': {
-        backgroundColor: colors.secondary,
-      },
-    },
-  }),
 };
 
-globalStyle(`${styles.viewButton} input`, { display: 'none' });
+// globalStyle(`${viewButton({ color: '' })} input`, { display: 'none' });
 globalStyle(`${styles.body} button, ${styles.body} input`, {
   fontFamily: 'var(--font-noto-sans)',
   fontWeight: fontWeight.md,
