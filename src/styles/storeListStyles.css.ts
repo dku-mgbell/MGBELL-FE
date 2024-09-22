@@ -14,7 +14,10 @@ export const styles = {
     fontSize: 14,
     alignItems: 'center',
   }),
-  sortButton: style({}),
+  storeContainer: style({
+    display: 'flex',
+    flexDirection: 'column',
+  }),
 };
 
 globalStyle(`${styles.filterContainer} *`, { fontSize: 14 });
