@@ -23,6 +23,7 @@ export default function Page() {
             />
             <input
               className={styles.input}
+              type="password"
               placeholder="비밀번호를 입력하세요"
             />
             <button className={styles.loginButton} type="submit">
