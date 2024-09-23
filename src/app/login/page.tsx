@@ -11,7 +11,7 @@ export default function Page() {
       <section className={styles.contentWrapper}>
         <main>
           <div>
-            <h2 className={styles.welcomeMessage}>
+            <h2>
               안녕하세요 :) <br /> 마감벨입니다.
             </h2>
             <p>로그인을 통해 오늘의 마감벨을 울려보세요!</p>
