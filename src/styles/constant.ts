@@ -2,11 +2,14 @@ export const colors = {
   primary: '#FFB51F',
   secondary: '#4BB2FF',
   white: '#FFFFFF',
+  lightGray10: '#F6F6F6',
   lightGray50: '#EEEEEE',
   lightGray100: '#C7C6C6',
   lightGray150: '#AEAEAE',
   lightGray200: '#A9A9A9',
+  lightGray250: '#9C9C9C',
   darkGray100: '#7B7B7B',
+  darkGray200: '#626262',
 };
 
 export const padding = {

@@ -115,8 +115,6 @@ export const styles = {
   }),
 };
 
-// globalStyle(`${viewButton({ color: '' })} input`, { display: 'none' });
 globalStyle(`${styles.body} button, ${styles.body} input`, {
   fontFamily: 'var(--font-noto-sans)',
-  fontWeight: fontWeight.md,
 });
