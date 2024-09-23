@@ -10,6 +10,7 @@ export const colors = {
   lightGray250: '#9C9C9C',
   darkGray100: '#7B7B7B',
   darkGray200: '#626262',
+  black: '#000',
 };
 
 export const padding = {

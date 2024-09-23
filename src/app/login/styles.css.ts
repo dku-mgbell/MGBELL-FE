@@ -35,7 +35,7 @@ export const styles = {
     flex: 1,
     backgroundColor: colors.white,
     borderRadius: `${borderRadius.lg} ${borderRadius.lg} 0 0`,
-    padding: `40px 40px 80px`,
+    padding: `40px 2rem 80px`,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -73,6 +73,7 @@ export const styles = {
     color: colors.darkGray200,
     gap: 10,
     marginTop: 20,
+    fontSize: 13,
   }),
 
   footer: style({
@@ -93,12 +94,13 @@ export const styles = {
     width: 110,
     textAlign: 'center',
     color: colors.lightGray200,
+    fontSize: 12,
   }),
 
   hr: style({
     flex: 1,
-    borderWidth: 0.5,
-    color: colors.lightGray10,
+    borderWidth: 0.9,
+    borderColor: colors.lightGray10,
   }),
 
   buttonContainer: style({
@@ -113,11 +115,16 @@ globalStyle(`${styles.contentWrapper} h2`, {
   fontWeight: fontWeight.bold,
   marginBottom: 10,
   lineHeight: '35px',
+  color: colors.black,
 });
 
 globalStyle(`${styles.contentWrapper} p`, {
   fontSize: 15,
   color: colors.lightGray250,
+});
+
+globalStyle(`${styles.linkContainer} a`, {
+  fontSize: 13,
 });
 
 globalStyle(`${styles.linkContainer} span`, {
