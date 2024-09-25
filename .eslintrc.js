@@ -19,6 +19,7 @@ module.exports = {
   ],
   rules: {
     'react/react-in-jsx-scope': 'off',
+    'react/require-default-props': 'off',
     'react/jsx-filename-extension': ['warn', { extensions: ['.ts', '.tsx'] }],
     '@typescript-eslint/camelcase': 'off',
     'import/prefer-default-export': 'off',
