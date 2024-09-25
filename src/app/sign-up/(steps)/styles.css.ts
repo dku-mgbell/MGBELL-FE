@@ -1,4 +1,4 @@
-import { fontWeight, padding } from '@/styles/constant';
+import { colors, fontWeight, padding } from '@/styles/constant';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 export const styles = {
@@ -18,9 +18,13 @@ export const styles = {
     paddingTop: '3rem',
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'space-between',
   }),
-  footer: style({
-    height: '5rem',
+  message: style({
+    color: colors.error,
+    fontSize: 14,
+    marginTop: 8,
+    padding: '0 14px',
   }),
 };
 

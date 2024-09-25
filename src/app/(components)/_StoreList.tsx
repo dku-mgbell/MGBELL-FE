@@ -1,6 +1,6 @@
 import { storeList } from '@/mocks/storeList';
-import ChevronDownIcon from '../assets/svg/ChevronDownIcon';
-import { styles } from '../styles/storeListStyles.css';
+import ChevronDownIcon from '../../assets/svg/ChevronDownIcon';
+import { styles } from '../../styles/storeListStyles.css';
 
 export default function StoreList() {
   return (

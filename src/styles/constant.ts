@@ -1,6 +1,7 @@
 export const colors = {
   primary: '#FFB51F',
   secondary: '#4BB2FF',
+  error: '#FF4C4C',
   white: '#FFFFFF',
   lightGray10: '#F6F6F6',
   lightGray50: '#EEEEEE',
@@ -10,6 +11,7 @@ export const colors = {
   lightGray250: '#9C9C9C',
   darkGray100: '#7B7B7B',
   darkGray200: '#626262',
+  darkGray300: '#333333',
   black: '#000',
 };
 

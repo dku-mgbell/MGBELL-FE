@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation';
 import { MainPageView, MainPageViewKR } from '@/types/pageView';
-import { viewButton } from './styles.css';
+import { viewButton } from '../styles.css';
 
 export function ViewChangeButton({
   id,

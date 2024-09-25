@@ -1,7 +1,7 @@
 'use client';
 
 import { MainPageView } from '@/types/pageView';
-import { styles } from './styles.css';
+import { styles } from '../styles.css';
 import StoreList from './_StoreList';
 import { ViewChangeButton } from './_ViewChangeButton';
 
