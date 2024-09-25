@@ -50,17 +50,16 @@ export default function Page() {
               height={45}
             />
             <Image
-              src={Google.src}
+              src={Naver.src}
               alt="SNS Login Logo"
               width={45}
               height={45}
             />
             <Image
-              src={Naver.src}
+              src={Google.src}
               alt="SNS Login Logo"
               width={45}
               height={45}
-              style={{ borderRadius: '100%' }}
             />
           </div>
         </footer>
