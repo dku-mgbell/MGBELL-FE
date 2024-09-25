@@ -28,6 +28,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./",\
         "packageDependencies": [\
           ["@svgr/webpack", "npm:8.1.0"],\
+          ["@tanstack/react-query", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:5.56.2"],\
           ["@types/eslint-plugin-jsx-a11y", "npm:6.9.0"],\
           ["@types/node", "npm:20.16.5"],\
           ["@types/react", "npm:18.3.6"],\
@@ -3832,6 +3833,38 @@ const RAW_RUNTIME_STATE =
           ["@swc/helpers", "npm:0.5.5"],\
           ["@swc/counter", "npm:0.1.3"],\
           ["tslib", "npm:2.7.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@tanstack/query-core", [\
+      ["npm:5.56.2", {\
+        "packageLocation": "../../.yarn/berry/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-10c0.zip/node_modules/@tanstack/query-core/",\
+        "packageDependencies": [\
+          ["@tanstack/query-core", "npm:5.56.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@tanstack/react-query", [\
+      ["npm:5.56.2", {\
+        "packageLocation": "../../.yarn/berry/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-10c0.zip/node_modules/@tanstack/react-query/",\
+        "packageDependencies": [\
+          ["@tanstack/react-query", "npm:5.56.2"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:5.56.2", {\
+        "packageLocation": "./.yarn/__virtual__/@tanstack-react-query-virtual-ca356b5529/3/.yarn/berry/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-10c0.zip/node_modules/@tanstack/react-query/",\
+        "packageDependencies": [\
+          ["@tanstack/react-query", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:5.56.2"],\
+          ["@tanstack/query-core", "npm:5.56.2"],\
+          ["@types/react", "npm:18.3.6"],\
+          ["react", "npm:18.3.1"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
         ],\
         "linkType": "HARD"\
       }]\
@@ -8075,6 +8108,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["mgbell", "workspace:."],\
           ["@svgr/webpack", "npm:8.1.0"],\
+          ["@tanstack/react-query", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:5.56.2"],\
           ["@types/eslint-plugin-jsx-a11y", "npm:6.9.0"],\
           ["@types/node", "npm:20.16.5"],\
           ["@types/react", "npm:18.3.6"],\
