@@ -1,3 +1,4 @@
+import React from 'react';
 import { button } from './styles.css';
 
 export default function Button({
@@ -10,7 +11,7 @@ export default function Button({
   size?: 'full' | 'fit';
 }) {
   return (
-    <button className={button({ color: theme, size: size })} type="button">
+    <button className={button({ theme, size })} type="button">
       {value}
     </button>
   );

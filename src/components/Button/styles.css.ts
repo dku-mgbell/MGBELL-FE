@@ -1,5 +1,5 @@
-import { borderRadius, colors, fontWeight } from '@/styles/constant';
 import { recipe } from '@vanilla-extract/recipes';
+import { borderRadius, colors, fontWeight } from '../../styles/constant';
 
 export const button = recipe({
   base: {
@@ -9,7 +9,7 @@ export const button = recipe({
     color: colors.white,
   },
   variants: {
-    color: {
+    theme: {
       primary: { backgroundColor: colors.primary },
       secondary: { backgroundColor: colors.secondary },
     },
@@ -19,7 +19,7 @@ export const button = recipe({
     },
   },
   defaultVariants: {
-    color: 'primary',
+    theme: 'primary',
     size: 'full',
   },
 });

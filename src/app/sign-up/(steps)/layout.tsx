@@ -1,7 +1,7 @@
 import ChevronLeftIcon from '@/assets/svg/ChevronLeftIcon';
 import { ReactNode } from 'react';
 import { styles } from './styles.css';
-import Button from '@/components/button/button';
+import Button from '@/components/Button/button';
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (

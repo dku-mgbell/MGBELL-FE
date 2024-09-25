@@ -16,6 +16,8 @@ export const styles = {
   main: style({
     flex: 1,
     paddingTop: '3rem',
+    display: 'flex',
+    flexDirection: 'column',
   }),
   footer: style({
     height: '5rem',
