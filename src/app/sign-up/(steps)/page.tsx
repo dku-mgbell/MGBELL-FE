@@ -2,27 +2,29 @@
 
 import Image from 'next/image';
 import { ChangeEvent, useState } from 'react';
-import { UserType } from '@/types/user';
+import { UserRole } from '@/types/user';
 import { OwnerImage, UserImage } from '@/assets/images/sign-up/image';
 import { useRouter } from 'next/navigation';
+import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
 import SignUpLayout from '../(layout)/SignUpLayout';
 import { userStyles } from './styles.css';
 
 export default function Page() {
-  const [userType, setUserType] = useState<UserType | null>(null);
+  const [userRole, setUserRole] = useState<UserRole | null>(null);
+  const { signUpInfo, setSignUpInfo } = useSignUpInfoStore();
+  const route = useRouter();
 
   const handleButtonClick = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserType(e.target.value as UserType);
+    setUserRole(e.target.value as UserRole);
   };
-
-  const route = useRouter();
 
   return (
     <SignUpLayout
       title="어떤 목적으로 마감벨을 사용하시나요?"
-      isNextStepAllowed={!!userType}
+      isNextStepAllowed={!!userRole}
       onNextStep={() => {
         route.push('/sign-up/email');
+        setSignUpInfo({ ...signUpInfo, userRole });
       }}
     >
       <div className={userStyles.container}>

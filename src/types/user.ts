@@ -1,1 +1,1 @@
-export type UserType = 'ROLE_USER' | 'ROLE_OWNER';
+export type UserRole = 'ROLE_USER' | 'ROLE_OWNER';
