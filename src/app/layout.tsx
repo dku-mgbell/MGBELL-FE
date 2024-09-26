@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import '../styles/globals.css';
+import ReactQueryProviders from '@/hooks/query/useReactQuery';
 import { styles } from './styles.css';
 
 const notoSans = localFont({
@@ -21,7 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${notoSans.variable} ${styles.body}`}>{children}</body>
+      <body className={`${notoSans.variable} ${styles.body}`}>
+        <ReactQueryProviders>{children}</ReactQueryProviders>
+      </body>
     </html>
   );
 }
