@@ -8,7 +8,9 @@ export default function Layout({ children }: { children: ReactNode }) {
     <div className={styles.container}>
       <header className={styles.header}>
         <Link href="/login">
-          <ChevronLeftIcon />
+          <button type="button">
+            <ChevronLeftIcon />
+          </button>
         </Link>
         <strong>회원가입</strong>
       </header>
