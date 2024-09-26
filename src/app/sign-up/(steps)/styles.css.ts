@@ -72,6 +72,12 @@ globalStyle(`${styles.header} strong`, {
   fontWeight: fontWeight.bold,
 });
 
+globalStyle(`${styles.header} button`, {
+  width: 30,
+  display: 'flex',
+  justifyContent: 'start',
+});
+
 globalStyle(`${userStyles.button} strong`, {
   fontSize: 14,
 });
