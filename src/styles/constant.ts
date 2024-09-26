@@ -27,6 +27,7 @@ export const borderRadius = {
 };
 
 export const fontWeight = {
+  light: 400,
   md: 500,
   bold: 700,
 };
