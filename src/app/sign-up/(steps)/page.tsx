@@ -32,7 +32,7 @@ export default function Page() {
           <input
             type="radio"
             name="user-type"
-            value="ROLE_USER"
+            value="USER"
             onChange={handleButtonClick}
           />
           <Image
@@ -53,7 +53,7 @@ export default function Page() {
           <input
             type="radio"
             name="user-type"
-            value="ROLE_OWNER"
+            value="OWNER"
             onChange={handleButtonClick}
           />
           <Image
