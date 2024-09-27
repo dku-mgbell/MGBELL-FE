@@ -1,5 +1,6 @@
 import { borderRadius, colors, fontWeight, padding } from '@/styles/constant';
 import { globalStyle, style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 export const styles = {
   container: style({
@@ -26,11 +27,22 @@ export const styles = {
     marginLeft: 5,
     marginBottom: 10,
   }),
-  message: style({
-    color: colors.error,
-    fontSize: 14,
-    marginTop: 8,
-    padding: '0 14px',
+  message: recipe({
+    base: {
+      fontSize: 14,
+      marginTop: 8,
+      padding: '0 14px',
+      lineHeight: 1.4,
+    },
+    variants: {
+      theme: {
+        default: { color: colors.primary },
+        error: { color: colors.error },
+      },
+    },
+    defaultVariants: {
+      theme: 'default',
+    },
   }),
 };
 

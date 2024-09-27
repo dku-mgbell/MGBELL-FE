@@ -24,9 +24,10 @@ export default function Page() {
       title="Email"
       isNextStepAllowed={isValidEmail(email)}
       onNextStep={handleSubmitEmail}
+      buttonContent="인증코드 전송하기"
     >
       <Input
-        placeholder="이메일을 입력해주세요"
+        placeholder="이메일을 입력해주세요."
         value={email}
         theme={isInvalidMail(email) ? 'error' : 'default'}
         onChange={(e) => {
@@ -34,7 +35,9 @@ export default function Page() {
         }}
       />
       {isInvalidMail(email) && (
-        <p className={styles.message}>잘못된 이메일 형식입니다.</p>
+        <p className={styles.message({ theme: 'error' })}>
+          잘못된 이메일 형식입니다.
+        </p>
       )}
     </SignUpLayout>
   );

@@ -31,7 +31,7 @@ export default function Page() {
 
   useEffect(() => {
     if (verificationResponse && !verificationResponse?.valid) {
-      setMessage('인증 코드를 다시 확인해주세요');
+      setMessage('인증코드를 다시 확인해주세요');
     }
   }, [verificationResponse]);
 
@@ -43,13 +43,13 @@ export default function Page() {
       buttonContent="확인"
     >
       <Input
-        placeholder="메일로 보낸 인증코드를 입력해주세요"
+        placeholder="메일로 보낸 인증코드를 입력해주세요."
         value={code}
         onChange={(e) => {
           setCode(e.target.value);
         }}
       />
-      <p className={styles.message}>{message}</p>
+      <p className={styles.message({ theme: 'error' })}>{message}</p>
       <div className={verifyStyles.retryButtonContainer}>
         {isSentMailAgain ? (
           <p>전송 완료</p>
