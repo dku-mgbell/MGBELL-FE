@@ -88,6 +88,8 @@ globalStyle(`${styles.header} button`, {
   width: 30,
   display: 'flex',
   justifyContent: 'start',
+  position: 'absolute',
+  top: 16,
 });
 
 globalStyle(`${userStyles.button} strong`, {
