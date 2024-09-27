@@ -1,4 +1,7 @@
+'use client';
+
 import { MainPageView } from '@/types/pageView';
+import { useAuth } from '@/hooks/useAuth';
 import FilterIcon from '../assets/svg/FilterIcon';
 import LocationMarkerIcon from '../assets/svg/LocationMarkerIcon';
 import SearchIcon from '../assets/svg/SearchIcon';
@@ -10,6 +13,8 @@ export default function Home({
 }: {
   searchParams: { viewType: MainPageView };
 }) {
+  const { logout } = useAuth();
+
   return (
     <section className={container({ color: viewType })}>
       <header className={styles.header}>
@@ -30,6 +35,9 @@ export default function Home({
           </button>
         </div>
       </header>
+      <button type="button" onClick={logout}>
+        로그아웃
+      </button>
       <section className={styles.contentWrapper}>
         <Content viewType={viewType} />
       </section>
