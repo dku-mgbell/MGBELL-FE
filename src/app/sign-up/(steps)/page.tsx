@@ -1,10 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { UserRole } from '@/types/user';
 import { OwnerImage, UserImage } from '@/assets/images/sign-up/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
 import SignUpLayout from '../(layout)/SignUpLayout';
 import { userStyles } from './styles.css';
@@ -13,10 +13,15 @@ export default function Page() {
   const [userRole, setUserRole] = useState<UserRole | null>(null);
   const { signUpInfo, setSignUpInfo } = useSignUpInfoStore();
   const route = useRouter();
+  const searchParams = useSearchParams();
 
   const handleButtonClick = (e: ChangeEvent<HTMLInputElement>) => {
     setUserRole(e.target.value as UserRole);
   };
+
+  useEffect(() => {
+    localStorage.setItem('accessToken', searchParams.get('accessToken')!);
+  }, []);
 
   return (
     <SignUpLayout

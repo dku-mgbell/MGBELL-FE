@@ -7,8 +7,8 @@ export const styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    padding: `calc(env(safe-area-inset-top) + 10px) ${padding.layoutX} calc(env(safe-area-inset-bottom) + 20px) ${padding.layoutX}`,
     height: '100dvh',
-    padding: `16px ${padding.layoutX}`,
   }),
   header: style({
     display: 'flex',
@@ -89,7 +89,7 @@ globalStyle(`${styles.header} button`, {
   display: 'flex',
   justifyContent: 'start',
   position: 'absolute',
-  top: 16,
+  top: 'calc(env(safe-area-inset-top) + 10px)',
 });
 
 globalStyle(`${userStyles.button} strong`, {
