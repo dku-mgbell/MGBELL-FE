@@ -1,32 +1,8 @@
-import { borderRadius, colors, fontWeight, padding } from '@/styles/constant';
+import { borderRadius, colors, fontWeight } from '@/styles/constant';
 import { globalStyle, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 export const styles = {
-  container: style({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    padding: `calc(env(safe-area-inset-top) + 10px) ${padding.layoutX} calc(env(safe-area-inset-bottom) + 20px) ${padding.layoutX}`,
-    height: '100dvh',
-  }),
-  header: style({
-    display: 'flex',
-    alignItems: 'center',
-  }),
-  main: style({
-    flex: 1,
-    paddingTop: '3rem',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-  }),
-  title: style({
-    fontSize: 17,
-    fontWeight: fontWeight.bold,
-    marginLeft: 5,
-    marginBottom: 10,
-  }),
   message: recipe({
     base: {
       fontSize: 14,
@@ -75,22 +51,6 @@ export const userStyles = {
     marginBottom: 10,
   }),
 };
-
-globalStyle(`${styles.header} strong`, {
-  flex: 1,
-  display: 'flex',
-  justifyContent: 'center',
-  fontSize: 20,
-  fontWeight: fontWeight.bold,
-});
-
-globalStyle(`${styles.header} button`, {
-  width: 30,
-  display: 'flex',
-  justifyContent: 'start',
-  position: 'absolute',
-  top: 'calc(env(safe-area-inset-top) + 10px)',
-});
 
 globalStyle(`${userStyles.button} strong`, {
   fontSize: 14,
