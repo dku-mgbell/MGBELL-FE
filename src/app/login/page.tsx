@@ -1,9 +1,8 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { container, styles } from './styles.css';
 
-import { Google, Naver, Kakao } from '../../assets/images/SNS/SNS-Image';
 import LoginForm from './LoginForm';
+import SNSLogin from './SNSLogin';
 
 export default function Page() {
   return (
@@ -30,26 +29,7 @@ export default function Page() {
             <span className={styles.snsLoginTitle}>간편 로그인</span>
             <hr className={styles.hr} />
           </div>
-          <div className={styles.buttonContainer}>
-            <Image
-              src={Kakao.src}
-              alt="SNS Login Logo"
-              width={45}
-              height={45}
-            />
-            <Image
-              src={Naver.src}
-              alt="SNS Login Logo"
-              width={45}
-              height={45}
-            />
-            <Image
-              src={Google.src}
-              alt="SNS Login Logo"
-              width={45}
-              height={45}
-            />
-          </div>
+          <SNSLogin />
         </footer>
       </section>
     </section>

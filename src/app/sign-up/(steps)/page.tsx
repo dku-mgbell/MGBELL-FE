@@ -1,22 +1,27 @@
 'use client';
 
 import Image from 'next/image';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, Suspense, useEffect, useState } from 'react';
 import { UserRole } from '@/types/user';
 import { OwnerImage, UserImage } from '@/assets/images/sign-up/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
 import SignUpLayout from '../(layout)/SignUpLayout';
 import { userStyles } from './styles.css';
 
-export default function Page() {
+function SignUpPageContent() {
   const [userRole, setUserRole] = useState<UserRole | null>(null);
   const { signUpInfo, setSignUpInfo } = useSignUpInfoStore();
   const route = useRouter();
+  const searchParams = useSearchParams();
 
   const handleButtonClick = (e: ChangeEvent<HTMLInputElement>) => {
     setUserRole(e.target.value as UserRole);
   };
+
+  useEffect(() => {
+    localStorage.setItem('accessToken', searchParams.get('accessToken')!);
+  }, []);
 
   return (
     <SignUpLayout
@@ -32,7 +37,7 @@ export default function Page() {
           <input
             type="radio"
             name="user-type"
-            value="ROLE_USER"
+            value="USER"
             onChange={handleButtonClick}
           />
           <Image
@@ -53,7 +58,7 @@ export default function Page() {
           <input
             type="radio"
             name="user-type"
-            value="ROLE_OWNER"
+            value="OWNER"
             onChange={handleButtonClick}
           />
           <Image
@@ -72,5 +77,13 @@ export default function Page() {
         </label>
       </div>
     </SignUpLayout>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SignUpPageContent />
+    </Suspense>
   );
 }

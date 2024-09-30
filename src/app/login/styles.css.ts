@@ -9,7 +9,8 @@ import {
 
 export const container = recipe({
   base: {
-    height: '100vh',
+    height: '100dvh',
+    overflow: 'hidden',
     paddingTop: padding.safeAreaTop,
     display: 'flex',
     flexDirection: 'column',

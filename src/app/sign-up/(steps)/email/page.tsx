@@ -24,7 +24,7 @@ export default function Page() {
       title="Email"
       isNextStepAllowed={isValidEmail(email)}
       onNextStep={handleSubmitEmail}
-      buttonContent="인증코드 전송하기"
+      buttonContent="인증코드 전송"
     >
       <Input
         placeholder="이메일을 입력해주세요."

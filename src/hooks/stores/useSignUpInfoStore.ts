@@ -1,13 +1,5 @@
-import { UserRole } from '@/types/user';
+import { SignUpInfo } from '@/types/sign-up';
 import { create } from 'zustand';
-
-interface SignUpInfo {
-  name: string;
-  phoneNumber: string;
-  email?: string;
-  userRole: UserRole | null;
-  password: string;
-}
 
 type SignUpInfoState = {
   signUpInfo: SignUpInfo;
