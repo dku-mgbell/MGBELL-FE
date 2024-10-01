@@ -4,4 +4,7 @@ export const common = {
   pointer: style({
     cursor: 'pointer',
   }),
+  hidden: style({
+    display: 'none',
+  }),
 };

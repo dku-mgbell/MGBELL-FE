@@ -3,6 +3,7 @@ import HeaderLayout from '@/components/layout/header-layout';
 import QuestionContainer from '@/components/question-container/question-container';
 import AddressInput from '@/components/input/address/address-input';
 import { styles } from './styles.css';
+import StoreSelector from './(components)/store-selector';
 
 export default function Page() {
   return (
@@ -26,7 +27,7 @@ export default function Page() {
               <span className={styles.primaryText}>(택1)</span>
             </>
           }
-          content={<>매장 업종 선택</>}
+          content={<StoreSelector />}
         />
         <QuestionContainer
           title="매장 음식 사진"
