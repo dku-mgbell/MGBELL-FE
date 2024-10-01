@@ -5,8 +5,7 @@ import {
   signUpInfoDefaultValue,
   useSignUpInfoStore,
 } from '@/hooks/stores/useSignUpInfoStore';
-import { content } from './styles.css';
-import { styles } from '../(steps)/styles.css';
+import { layoutStyle } from './styles.css';
 
 export default function SignUpLayout({
   children,
@@ -32,8 +31,8 @@ export default function SignUpLayout({
 
   return (
     <>
-      <div className={content}>
-        <strong className={styles.title}>{title}</strong>
+      <div className={layoutStyle.contnet}>
+        <strong className={layoutStyle.title}>{title}</strong>
         {children}
       </div>
       {!isNextStepAllowed ? (
