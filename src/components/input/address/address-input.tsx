@@ -35,6 +35,7 @@ export default function AddressInput() {
       <Input
         placeholder="클릭하여 주소를 입력해주세요."
         onClick={handleInputClick}
+        onFocus={handleInputClick}
         className={common.pointer}
         value={address}
         onChange={(e) => setAddress(e.target.value)}

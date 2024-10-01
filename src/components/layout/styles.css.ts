@@ -1,4 +1,4 @@
-import { fontWeight, padding } from '@/styles/constant';
+import { colors, fontWeight, padding } from '@/styles/constant';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 export const styles = {
@@ -12,6 +12,12 @@ export const styles = {
   header: style({
     display: 'flex',
     alignItems: 'center',
+    position: 'fixed',
+    width: '100%',
+    backgroundColor: colors.white,
+    paddingBottom: 5,
+    top: 0,
+    left: 0,
   }),
   main: style({
     flex: 1,
@@ -41,5 +47,6 @@ globalStyle(`${styles.header} button`, {
   display: 'flex',
   justifyContent: 'start',
   position: 'absolute',
-  top: 'calc(env(safe-area-inset-top) + 10px)',
+  top: 0,
+  left: padding.layoutX,
 });
