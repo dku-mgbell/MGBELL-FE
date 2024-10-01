@@ -1,6 +1,7 @@
 import Input from '@/components/input/input';
 import HeaderLayout from '@/components/layout/header-layout';
 import QuestionContainer from '@/components/question-container/question-container';
+import AddressInput from '@/components/input/address/address-input';
 import { styles } from './styles.css';
 
 export default function Page() {
@@ -15,12 +16,7 @@ export default function Page() {
         <QuestionContainer
           title="매장 주소"
           desc="클릭하여 주소를 입력해주세요!"
-          content={
-            <>
-              <Input placeholder="클릭하여 주소를 입력해주세요." />
-              <Input placeholder="세부 주소 입력" />
-            </>
-          }
+          content={<AddressInput />}
         />
         <QuestionContainer
           title="매장 업종 선택"

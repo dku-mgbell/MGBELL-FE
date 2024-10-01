@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
-import '../styles/globals.css';
 import ReactQueryProviders from '@/hooks/query/useReactQuery';
+import ModalProvider from '@/components/modal/modal-provider';
 import { styles } from './styles.css';
+import '../styles/globals.css';
 
 const notoSans = localFont({
   src: '../assets/fonts/NotoSansKRVF.woff2',
@@ -29,7 +30,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${notoSans.variable} ${styles.body}`}>
-        <ReactQueryProviders>{children}</ReactQueryProviders>
+        <ReactQueryProviders>
+          <ModalProvider>{children}</ModalProvider>
+          <div id="modal-root" />
+        </ReactQueryProviders>
       </body>
     </html>
   );
