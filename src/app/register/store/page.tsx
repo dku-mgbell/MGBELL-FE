@@ -1,7 +1,7 @@
 'use client';
 
 import Input from '@/components/input/input';
-import HeaderLayout from '@/components/layout/header-layout';
+import HeaderLayout from '@/components/layout/header-layout/header-layout';
 import QuestionContainer from '@/components/question-container/question-container';
 import AddressInput from '@/components/input/address/address-input';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
