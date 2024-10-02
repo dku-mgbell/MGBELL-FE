@@ -5,7 +5,10 @@ export const useAuth = () => {
   const { setIsLoggedIn, setUserRole } = useAuthStore();
   const route = useRouter();
 
-  const isLoggedIn = !!localStorage.getItem('accessToken');
+  const isLoggedIn =
+    typeof window !== 'undefined'
+      ? !!localStorage.getItem('accessToken')
+      : null;
 
   const logout = () => {
     localStorage.removeItem('accessToken');
