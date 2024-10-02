@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { StoreName as Store } from '@/types/store';
 import { common } from '@/styles/common.css';
 import { styles } from './styles.css';
-import Thumbnail from '../../../../mocks/thumbnail.png';
+import Thumbnail from '../../../../../mocks/thumbnail.png';
 
 export default function StoreSelector() {
   return (

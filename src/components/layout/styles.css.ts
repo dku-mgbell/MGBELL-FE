@@ -21,7 +21,7 @@ export const styles = {
   }),
   main: style({
     flex: 1,
-    paddingTop: '3rem',
+    padding: '3rem 0 2rem 0',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
