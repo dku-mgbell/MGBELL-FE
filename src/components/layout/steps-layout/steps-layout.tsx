@@ -13,6 +13,8 @@ export default function StepsLayout({
   title,
   initialRoute,
   isValueEmpty,
+  theme,
+  isPadding,
 }: {
   children: ReactNode;
   isNextStepAllowed: boolean;
@@ -21,6 +23,8 @@ export default function StepsLayout({
   title?: string;
   initialRoute?: string;
   isValueEmpty?: boolean;
+  theme?: 'primary' | 'secondary';
+  isPadding?: boolean;
 }) {
   const router = useRouter();
 
@@ -31,7 +35,7 @@ export default function StepsLayout({
   }, []);
 
   return (
-    <>
+    <div className={styles.container({ isPadding })}>
       <div className={styles.content}>
         {title && <strong className={styles.title}>{title}</strong>}
         {children}
@@ -39,8 +43,12 @@ export default function StepsLayout({
       {!isNextStepAllowed ? (
         <Button value={buttonContent ?? '다음'} theme="inactive" />
       ) : (
-        <Button value={buttonContent ?? '다음'} onClick={onNextStep} />
+        <Button
+          value={buttonContent ?? '다음'}
+          onClick={onNextStep}
+          theme={theme ?? 'primary'}
+        />
       )}
-    </>
+    </div>
   );
 }
