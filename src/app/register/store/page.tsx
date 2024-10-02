@@ -1,23 +1,43 @@
 'use client';
 
 import Input from '@/components/input/input';
+import { ChangeEvent } from 'react';
+import { useStoreRegisterStore } from '@/hooks/stores/useStoreRegisterStore';
 import HeaderLayout from '@/components/layout/header-layout/header-layout';
 import QuestionContainer from '@/components/question-container/question-container';
 import AddressInput from '@/components/input/address/address-input';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
+import { useRegisterStore } from '@/hooks/query/store/useRegisterStore';
+import { StoreID } from '@/types/store';
 import StoreSelector from './(components)/store-selector/store-selector';
 import ImageUploader from './(components)/image-uploader/image-uploader';
 import { styles } from './styles.css';
 
 export default function Page() {
-  const handleNextButtonClick = () => {
-    return null;
+  const { storeState, setStoreState } = useStoreRegisterStore();
+  const { mutate } = useRegisterStore();
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setStoreState({ ...storeState, [e.target.name]: e.target.value });
   };
+
+  const handleNextButtonClick = () => {
+    mutate({
+      name: storeState.name,
+      address: storeState.address,
+      storeType: storeState.storeType as StoreID,
+    });
+  };
+
+  const isFormFilled =
+    !!storeState.address.length &&
+    !!storeState.name.length &&
+    !!storeState.storeType;
 
   return (
     <HeaderLayout title="매장 등록">
       <StepsLayout
-        isNextStepAllowed
+        isNextStepAllowed={isFormFilled}
         onNextStep={handleNextButtonClick}
         buttonContent="등록"
       >
@@ -25,12 +45,19 @@ export default function Page() {
           <QuestionContainer
             title="매장 이름"
             desc="체인점일 경우, 지점명까지 입력해주세요!"
-            content={<Input placeholder="ex) 나리네 상점 / 보정동점" />}
+            content={
+              <Input
+                name="name"
+                placeholder="ex) 나리네 상점 / 보정동점"
+                onChange={handleInputChange}
+                value={storeState.name}
+              />
+            }
           />
           <QuestionContainer
             title="매장 주소"
             desc="클릭하여 주소를 입력해주세요!"
-            content={<AddressInput />}
+            content={<AddressInput onChange={handleInputChange} />}
           />
           <QuestionContainer
             title="매장 업종 선택"
@@ -40,7 +67,12 @@ export default function Page() {
                 <span className={styles.primaryText}>(택1)</span>
               </>
             }
-            content={<StoreSelector />}
+            content={
+              <StoreSelector
+                checked={storeState.storeType}
+                onChange={handleInputChange}
+              />
+            }
           />
           <QuestionContainer
             title="매장 음식 사진"

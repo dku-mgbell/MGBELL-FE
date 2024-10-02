@@ -3,17 +3,24 @@ import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
 import { SignUpInfo } from '@/types/sign-up';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import { usePostLogin } from '../login/usePostLogin';
 
 export const usePostSignUp = () => {
   const route = useRouter();
   const {
-    signUpInfo: { userRole },
+    signUpInfo: { userRole, email, password },
   } = useSignUpInfoStore();
+  const { mutate } = usePostLogin();
 
   return useMutation({
     mutationFn: (data: SignUpInfo) => User.signUp(data),
     onSuccess: () => {
-      route.push(userRole === 'USER' ? '/sign-up/success' : '/register/store');
+      if (userRole === 'USER') {
+        route.push('/sign-up/success');
+      } else {
+        route.push('/register/store');
+        mutate({ email: email!, password });
+      }
     },
   });
 };

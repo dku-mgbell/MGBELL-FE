@@ -20,7 +20,9 @@ function SignUpPageContent() {
   };
 
   useEffect(() => {
-    localStorage.setItem('accessToken', searchParams.get('accessToken')!);
+    if (searchParams.get('accessToken')) {
+      localStorage.setItem('accessToken', searchParams.get('accessToken')!);
+    }
   }, []);
 
   return (
