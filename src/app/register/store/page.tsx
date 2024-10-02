@@ -1,13 +1,14 @@
 'use client';
 
 import Input from '@/components/input/input';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import { useStoreRegisterStore } from '@/hooks/stores/useStoreRegisterStore';
 import HeaderLayout from '@/components/layout/header-layout/header-layout';
 import QuestionContainer from '@/components/question-container/question-container';
 import AddressInput from '@/components/input/address/address-input';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import { useRegisterStore } from '@/hooks/query/store/useRegisterStore';
+import { useAuth } from '@/hooks/useAuth';
 import { StoreID } from '@/types/store';
 import StoreSelector from './(components)/store-selector/store-selector';
 import ImageUploader from './(components)/image-uploader/image-uploader';
@@ -16,6 +17,7 @@ import { styles } from './styles.css';
 export default function Page() {
   const { storeState, setStoreState } = useStoreRegisterStore();
   const { mutate } = useRegisterStore();
+  const { redirectLoginPage } = useAuth();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setStoreState({ ...storeState, [e.target.name]: e.target.value });
@@ -33,6 +35,10 @@ export default function Page() {
     !!storeState.address.length &&
     !!storeState.name.length &&
     !!storeState.storeType;
+
+  useEffect(() => {
+    redirectLoginPage();
+  }, []);
 
   return (
     <HeaderLayout title="매장 등록">

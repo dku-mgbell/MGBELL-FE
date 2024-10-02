@@ -5,6 +5,8 @@ export const useAuth = () => {
   const { setIsLoggedIn, setUserRole } = useAuthStore();
   const route = useRouter();
 
+  const isLoggedIn = !!localStorage.getItem('accessToken');
+
   const logout = () => {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
@@ -13,5 +15,10 @@ export const useAuth = () => {
     route.push('/login');
   };
 
-  return { logout };
+  const redirectLoginPage = () => {
+    // TODO 안내 매시지 토스트로 표시
+    if (!isLoggedIn) route.push('/login');
+  };
+
+  return { logout, redirectLoginPage, isLoggedIn };
 };
