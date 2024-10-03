@@ -22,10 +22,14 @@ export const common = {
         10: { gap: 10 },
         15: { gap: 15 },
         20: { gap: 20 },
+        45: { gap: 45 },
       },
       justify: {
         between: { justifyContent: 'space-between' },
         center: { justifyContent: 'center' },
+      },
+      align: {
+        center: { alignItems: 'center' },
       },
     },
     defaultVariants: {
