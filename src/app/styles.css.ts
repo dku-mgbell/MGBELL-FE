@@ -115,6 +115,9 @@ export const styles = {
   }),
 };
 
-globalStyle(`${styles.body} button, ${styles.body} input`, {
-  fontFamily: 'var(--font-noto-sans)',
-});
+globalStyle(
+  `${styles.body} button, ${styles.body} input, ${styles.body} textarea`,
+  {
+    fontFamily: 'var(--font-noto-sans)',
+  },
+);
