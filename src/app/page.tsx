@@ -6,6 +6,7 @@ import LocationMarkerIcon from '../assets/svg/LocationMarkerIcon';
 import SearchIcon from '../assets/svg/SearchIcon';
 import { container, styles } from './styles.css';
 import SortContainer from './(components)/sort-container/sort-container';
+import StoreList from './(components)/store-list/store-list';
 
 export default function Page({
   searchParams: { sort },
@@ -43,6 +44,7 @@ export default function Page({
       </button>
       <section className={styles.contentWrapper}>
         <SortContainer state={sort} />
+        <StoreList />
       </section>
     </section>
   );

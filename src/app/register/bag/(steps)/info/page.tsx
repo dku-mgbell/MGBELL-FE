@@ -14,7 +14,7 @@ import { styles } from '../styles.css';
 export default function Page() {
   const route = useRouter();
   const { bagInfoState, setBagInfoState } = useBagInfoStateStore();
-  const { title, description, salePrice, costPrice, amount } = bagInfoState;
+  const { bagName, description, salePrice, costPrice, amount } = bagInfoState;
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -28,7 +28,7 @@ export default function Page() {
   };
 
   const isFormFilled =
-    !!title && !!description && !!salePrice && !!costPrice && amount > 0;
+    !!bagName && !!description && !!salePrice && !!costPrice && amount > 0;
 
   return (
     <StepsLayout
@@ -42,7 +42,7 @@ export default function Page() {
           desc="마감백의 이름을 지어주세요!"
           content={
             <Input
-              name="title"
+              name="bagName"
               placeholder="ex) 베이커리 마감백"
               theme="outline-secondary"
               onChange={handleInputChange}

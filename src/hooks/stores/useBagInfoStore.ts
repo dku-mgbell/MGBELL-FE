@@ -6,7 +6,7 @@ type BagInfoState = {
 };
 
 type BagInfo = {
-  title: string | null;
+  bagName: string | null;
   description: string | null;
   costPrice: number | undefined;
   salePrice: number | undefined;
@@ -17,7 +17,7 @@ type BagInfo = {
 };
 
 export const defaultBagInfo = {
-  title: null,
+  bagName: null,
   description: null,
   costPrice: undefined,
   salePrice: undefined,
