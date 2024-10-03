@@ -1,22 +1,21 @@
 'use client';
 
-import { MainPageView } from '@/types/pageView';
 import { useAuth } from '@/hooks/useAuth';
 import FilterIcon from '../assets/svg/FilterIcon';
 import LocationMarkerIcon from '../assets/svg/LocationMarkerIcon';
 import SearchIcon from '../assets/svg/SearchIcon';
 import { container, styles } from './styles.css';
-import Content from './(components)/_Content';
+import SortContainer from './(components)/sort-container/sort-container';
 
-export default function Home({
-  searchParams: { viewType },
+export default function Page({
+  searchParams: { sort },
 }: {
-  searchParams: { viewType: MainPageView };
+  searchParams: { sort: string };
 }) {
   const { logout } = useAuth();
 
   return (
-    <section className={container({ color: viewType })}>
+    <section className={container()}>
       <header className={styles.header}>
         <div className={styles.location}>
           <LocationMarkerIcon />
@@ -27,7 +26,7 @@ export default function Home({
             <SearchIcon />
             <input
               className={styles.searchInput}
-              placeholder="당신의 맛집을 찾아보세요!"
+              placeholder="가게의 이름을 검색해보세요!"
             />
           </div>
           <button type="button" className={styles.filterButton}>
@@ -35,11 +34,15 @@ export default function Home({
           </button>
         </div>
       </header>
-      <button type="button" onClick={logout}>
+      <button
+        type="button"
+        onClick={logout}
+        style={{ position: 'absolute', right: 0 }}
+      >
         로그아웃
       </button>
       <section className={styles.contentWrapper}>
-        <Content viewType={viewType} />
+        <SortContainer state={sort} />
       </section>
     </section>
   );

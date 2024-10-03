@@ -18,7 +18,7 @@ export const colors = {
 export const padding = {
   safeAreaTop: 50,
   layout: '10px 28px',
-  layoutX: '28px',
+  layoutX: '20px',
 };
 
 export const borderRadius = {

@@ -16,6 +16,13 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  * {
+    color: #000000;
+  }
+}
+
+
 body {
   color: var(--foreground);
   background: var(--background);
@@ -48,6 +55,7 @@ button {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  color: #000,
 }
 
 li {

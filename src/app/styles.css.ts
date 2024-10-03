@@ -101,8 +101,7 @@ export const styles = {
   contentWrapper: style({
     flex: 1,
     backgroundColor: colors.white,
-    borderRadius: `${borderRadius.lg} ${borderRadius.lg} 0 0`,
-    padding: `20px ${padding.layoutX}`,
+    padding: `14px ${padding.layoutX}`,
   }),
 
   nav: style({
