@@ -9,9 +9,11 @@ type TabType = 'FOOD' | 'DESSERT';
 
 export default function PriceSection() {
   const [tabType, setTabType] = useState<TabType>('FOOD');
+
   const handleTabButtonClick = (e: ChangeEvent<HTMLInputElement>) => {
     setTabType(e.target.value as TabType);
   };
+
   return (
     <div>
       <div className={styles.tabContainer}>

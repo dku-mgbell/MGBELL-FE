@@ -11,7 +11,7 @@ export default function Button({
   ...props
 }: {
   value: string;
-  theme?: 'primary' | 'secondary' | 'inactive';
+  theme?: 'primary' | 'secondary' | 'inactive-primary' | 'inactive-secondary';
   size?: 'full' | 'fit';
 } & ButtonProps) {
   return (

@@ -38,7 +38,7 @@ export default function SignUpLayout({
       {!isNextStepAllowed ? (
         <Button
           value={buttonContent ?? '다음'}
-          theme="inactive"
+          theme="inactive-primary"
           onClick={() => {}}
         />
       ) : (

@@ -41,7 +41,10 @@ export default function StepsLayout({
         {children}
       </div>
       {!isNextStepAllowed ? (
-        <Button value={buttonContent ?? '다음'} theme="inactive" />
+        <Button
+          value={buttonContent ?? '다음'}
+          theme={theme ? `inactive-${theme}` : `inactive-primary`}
+        />
       ) : (
         <Button
           value={buttonContent ?? '다음'}

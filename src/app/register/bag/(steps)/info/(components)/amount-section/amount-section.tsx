@@ -1,12 +1,18 @@
-import { MouseEvent, useState } from 'react';
+import { MouseEvent } from 'react';
+import { useBagInfoStateStore } from '@/hooks/stores/useBagInfoStore';
 import { styles } from './styles.css';
 
 export default function AmountSection() {
-  const [number, setNumber] = useState(0);
+  const { bagInfoState, setBagInfoState } = useBagInfoStateStore();
+  const { amount } = bagInfoState;
+
   const handleButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     const { name } = e.target as HTMLButtonElement;
-    if (name === 'minus' && number === 0) return;
-    setNumber((prev) => (name === 'minus' ? prev - 1 : prev + 1));
+    if (name === 'minus' && amount === 0) return;
+    setBagInfoState({
+      ...bagInfoState,
+      amount: name === 'minus' ? amount - 1 : amount + 1,
+    });
   };
 
   return (
@@ -16,7 +22,7 @@ export default function AmountSection() {
         <button type="button" name="minus" onClick={handleButtonClick}>
           −
         </button>
-        <span>{number}</span>
+        <span>{amount}</span>
         <button type="button" name="plus" onClick={handleButtonClick}>
           +
         </button>
