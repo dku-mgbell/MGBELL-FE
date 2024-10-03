@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent } from 'react';
 import * as styles from './styles.css';
 import { generateTimes } from './(utils)/generateTimes';
 
-export default function TimeSelector() {
-  const [selectedTime, setSelectedTime] = useState('12:00');
+export default function TimeSelector({
+  onChange,
+  value,
+  name,
+}: {
+  onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+  value: string;
+  name: string;
+}) {
   const times = generateTimes();
-
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedTime(event.target.value);
-  };
 
   return (
     <div className={styles.wrapper}>
       <select
-        value={selectedTime}
-        onChange={handleChange}
+        name={name}
+        value={value}
+        onChange={onChange}
         className={styles.selector}
       >
         {times.map((time) => (

@@ -1,18 +1,28 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import QuestionContainer from '@/components/question-container/question-container';
 import { common } from '@/styles/common.css';
+import {
+  defaultBagInfo,
+  useBagInfoStateStore,
+} from '@/hooks/stores/useBagInfoStore';
 import OnSaleButton from './(components)/on-sale-button/on-sale-button';
 import SaleTimeSelector from './(components)/sale-time-selector/sale-time-selector';
 
 export default function Page() {
   const route = useRouter();
+  const { bagInfoState } = useBagInfoStateStore();
 
   const handleNextButtonClick = () => {
     route.push('/register/bag/success');
   };
+
+  useEffect(() => {
+    if (bagInfoState === defaultBagInfo) route.push('/register/bag/info');
+  }, []);
 
   return (
     <StepsLayout
