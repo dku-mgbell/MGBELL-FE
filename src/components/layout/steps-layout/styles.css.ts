@@ -38,4 +38,10 @@ export const styles = {
     marginLeft: 5,
     marginBottom: 10,
   }),
+
+  buttonContainer: style({
+    position: 'fixed',
+    bottom: '15px',
+    width: `calc(100% - ${padding.layoutX} * 2)`,
+  }),
 };

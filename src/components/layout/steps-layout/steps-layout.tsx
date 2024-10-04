@@ -40,7 +40,7 @@ export default function StepsLayout({
         {title && <strong className={styles.title}>{title}</strong>}
         {children}
       </div>
-      <div>
+      <div className={styles.buttonContainer}>
         {isNextStepAllowed === false ? (
           <Button
             value={buttonContent ?? '다음'}
