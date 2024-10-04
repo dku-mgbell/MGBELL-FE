@@ -5,7 +5,7 @@ import Input from '@/components/input/input';
 import { isValidPassword } from '@/utils/regex';
 import { useRouter } from 'next/navigation';
 import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
-import SignUpLayout from '../../(layout)/SignUpLayout';
+import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import { styles } from '../styles.css';
 
 export default function Page() {
@@ -25,7 +25,7 @@ export default function Page() {
     value.length > 0 && value !== password;
 
   return (
-    <SignUpLayout
+    <StepsLayout
       title="비밀번호"
       isNextStepAllowed={
         isValidPassword(password) && password === passwordCheck
@@ -62,6 +62,6 @@ export default function Page() {
         영문, 특수문자, 숫자를 조합하여
         <br /> 8~16자로 입력해주세요.
       </p>
-    </SignUpLayout>
+    </StepsLayout>
   );
 }

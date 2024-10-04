@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import Input from '@/components/input/input';
+import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import { isValidEmail } from '@/utils/regex';
 import { usePostMail } from '@/hooks/query/sign-up/usePostMail';
 import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
-import SignUpLayout from '../../(layout)/SignUpLayout';
 import { styles } from '../styles.css';
 
 export default function Page() {
@@ -19,8 +19,9 @@ export default function Page() {
     mutate(email);
     setSignUpInfo({ ...signUpInfo, email });
   };
+
   return (
-    <SignUpLayout
+    <StepsLayout
       title="Email"
       isNextStepAllowed={isValidEmail(email)}
       onNextStep={handleSubmitEmail}
@@ -39,6 +40,6 @@ export default function Page() {
           잘못된 이메일 형식입니다.
         </p>
       )}
-    </SignUpLayout>
+    </StepsLayout>
   );
 }

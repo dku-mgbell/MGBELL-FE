@@ -5,7 +5,7 @@ import Input from '@/components/input/input';
 import { useVerifyCode } from '@/hooks/query/sign-up/useVerifyCode';
 import { usePostMail } from '@/hooks/query/sign-up/usePostMail';
 import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
-import SignUpLayout from '../../(layout)/SignUpLayout';
+import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import { styles } from '../styles.css';
 import { verifyStyles } from './styles.css';
 
@@ -36,7 +36,7 @@ export default function Page() {
   }, [verificationResponse]);
 
   return (
-    <SignUpLayout
+    <StepsLayout
       title="인증코드"
       isNextStepAllowed={!isInvalidCode(code)}
       onNextStep={handleSubmitcode}
@@ -63,6 +63,6 @@ export default function Page() {
           </button>
         )}
       </div>
-    </SignUpLayout>
+    </StepsLayout>
   );
 }

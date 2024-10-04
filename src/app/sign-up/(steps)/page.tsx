@@ -6,7 +6,7 @@ import { UserRole } from '@/types/user';
 import { OwnerImage, UserImage } from '@/assets/images/sign-up/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
-import SignUpLayout from '../(layout)/SignUpLayout';
+import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import { userStyles } from './styles.css';
 
 function SignUpPageContent() {
@@ -26,7 +26,7 @@ function SignUpPageContent() {
   }, []);
 
   return (
-    <SignUpLayout
+    <StepsLayout
       title="어떤 목적으로 마감벨을 사용하시나요?"
       isNextStepAllowed={!!userRole}
       onNextStep={() => {
@@ -78,7 +78,7 @@ function SignUpPageContent() {
           </p>
         </label>
       </div>
-    </SignUpLayout>
+    </StepsLayout>
   );
 }
 

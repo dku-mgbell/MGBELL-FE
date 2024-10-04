@@ -5,7 +5,7 @@ import Input from '@/components/input/input';
 import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
 import { isValidPhoneNumber } from '@/utils/regex';
 import { usePostSignUp } from '@/hooks/query/sign-up/usePostSignUp';
-import SignUpLayout from '../../(layout)/SignUpLayout';
+import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import { styles } from '../styles.css';
 
 export default function Page() {
@@ -23,7 +23,7 @@ export default function Page() {
     value.length > 0 && !isValidPhoneNumber(value);
 
   return (
-    <SignUpLayout
+    <StepsLayout
       title="회원 정보"
       isNextStepAllowed={name.length > 0 && isValidPhoneNumber(phoneNumber)}
       onNextStep={handleNextButtonClick}
@@ -47,6 +47,6 @@ export default function Page() {
         style={{ marginTop: '14px' }}
       />
       <p className={styles.message()}>주문 관련 알림톡을 전송해드립니다.</p>
-    </SignUpLayout>
+    </StepsLayout>
   );
 }
