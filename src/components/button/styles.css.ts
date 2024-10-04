@@ -20,6 +20,13 @@ export const button = recipe({
         backgroundColor: colors.lightGray10,
         color: colors.secondary,
       },
+      'light-yellow': {
+        backgroundColor: '#FFF0D1',
+        border: `1.2px solid ${colors.primary}`,
+        color: '#5D5D5D',
+        fontSize: 14,
+        padding: '10px 0',
+      },
     },
     size: {
       full: { width: '100%' },

@@ -8,6 +8,7 @@ export const styles = {
     justifyContent: 'space-between',
     padding: `calc(env(safe-area-inset-top) + 10px) ${padding.layoutX} calc(env(safe-area-inset-bottom) + 20px) ${padding.layoutX}`,
     height: '100dvh',
+    boxSizing: 'border-box',
   }),
   header: style({
     display: 'flex',
@@ -20,11 +21,9 @@ export const styles = {
     left: 0,
   }),
   main: style({
-    flex: 1,
-    padding: '3rem 0 2rem 0',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+    paddingTop: '24px',
+    height: 'calc(100% - 24px)',
+    overflow: 'hidden',
   }),
   title: style({
     fontSize: 17,

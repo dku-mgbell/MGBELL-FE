@@ -4,14 +4,19 @@ import { recipe } from '@vanilla-extract/recipes';
 
 export const styles = {
   container: recipe({
+    base: {
+      height: '100%',
+      paddingTop: '1.5rem',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+    },
     variants: {
       isPadding: {
         true: {
-          padding: `calc(env(safe-area-inset-top) + 10px) ${padding.layoutX} calc(env(safe-area-inset-bottom) + 20px) ${padding.layoutX}`,
+          padding: `calc(env(safe-area-inset-top) + 10px + 1.5rem) ${padding.layoutX} calc(env(safe-area-inset-bottom) + 20px) ${padding.layoutX}`,
         },
-        false: {
-          padding: '0',
-        },
+        false: {},
       },
     },
     defaultVariants: {
@@ -23,8 +28,8 @@ export const styles = {
     display: 'flex',
     flexDirection: 'column',
     paddingBottom: '4rem',
-    minHeight: 'calc(100dvh - 80px)',
     boxSizing: 'border-box',
+    overflow: 'scroll',
   }),
 
   title: style({

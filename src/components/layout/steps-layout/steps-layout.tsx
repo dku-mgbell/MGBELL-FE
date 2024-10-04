@@ -17,7 +17,7 @@ export default function StepsLayout({
   isPadding,
 }: {
   children: ReactNode;
-  isNextStepAllowed: boolean;
+  isNextStepAllowed?: boolean;
   onNextStep: () => void;
   buttonContent?: string;
   title?: string;
@@ -40,18 +40,20 @@ export default function StepsLayout({
         {title && <strong className={styles.title}>{title}</strong>}
         {children}
       </div>
-      {!isNextStepAllowed ? (
-        <Button
-          value={buttonContent ?? '다음'}
-          theme={theme ? `inactive-${theme}` : `inactive-primary`}
-        />
-      ) : (
-        <Button
-          value={buttonContent ?? '다음'}
-          onClick={onNextStep}
-          theme={theme ?? 'primary'}
-        />
-      )}
+      <div>
+        {isNextStepAllowed === false ? (
+          <Button
+            value={buttonContent ?? '다음'}
+            theme={theme ? `inactive-${theme}` : `inactive-primary`}
+          />
+        ) : (
+          <Button
+            value={buttonContent ?? '다음'}
+            onClick={onNextStep}
+            theme={theme ?? 'primary'}
+          />
+        )}
+      </div>
     </div>
   );
 }

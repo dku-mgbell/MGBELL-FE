@@ -1,9 +1,10 @@
 'use client';
 
+import Link from 'next/link';
 import { useAuth } from '@/hooks/useAuth';
+import SearchInput from '@/components/input/search/search-input';
 import FilterIcon from '../assets/svg/FilterIcon';
 import LocationMarkerIcon from '../assets/svg/LocationMarkerIcon';
-import SearchIcon from '../assets/svg/SearchIcon';
 import { container, styles } from './styles.css';
 import SortContainer from './(components)/sort-container/sort-container';
 import StoreList from './(components)/store-list/store-list';
@@ -18,18 +19,12 @@ export default function Page({
   return (
     <section className={container()}>
       <header className={styles.header}>
-        <div className={styles.location}>
+        <Link href="location" className={styles.location}>
           <LocationMarkerIcon />
           위치를 설정해주세요!
-        </div>
+        </Link>
         <div className={styles.search}>
-          <div className={styles.searchInputContainer}>
-            <SearchIcon />
-            <input
-              className={styles.searchInput}
-              placeholder="가게의 이름을 검색해보세요!"
-            />
-          </div>
+          <SearchInput placeholder="가게의 이름을 검색해보세요!" />
           <button type="button" className={styles.filterButton}>
             <FilterIcon />
           </button>
