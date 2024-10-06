@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import QuestionContainer from '@/components/question-container/question-container';
+import { useRegisterBag } from '@/hooks/query/store/useRegisterBag';
 import { common } from '@/styles/common.css';
 import {
   defaultBagInfo,
@@ -15,9 +16,32 @@ import SaleTimeSelector from './(components)/sale-time-selector/sale-time-select
 export default function Page() {
   const route = useRouter();
   const { bagInfoState } = useBagInfoStateStore();
+  const { mutate } = useRegisterBag();
+  const {
+    bagName,
+    description,
+    costPrice,
+    salePrice,
+    amount,
+    onSale,
+    startAt,
+    endAt,
+  } = bagInfoState;
 
   const handleNextButtonClick = () => {
-    route.push('/register/bag/success');
+    const bagInfo = {
+      bagName,
+      description,
+      costPrice: Number(costPrice),
+      salePrice: Number(salePrice),
+      amount,
+      pickupTime: {
+        onSale,
+        startAt,
+        endAt,
+      },
+    };
+    mutate(bagInfo);
   };
 
   useEffect(() => {

@@ -45,6 +45,7 @@ export default function Page() {
               name="bagName"
               placeholder="ex) 베이커리 마감백"
               theme="outline-secondary"
+              value={bagName ?? ''}
               onChange={handleInputChange}
             />
           }
@@ -57,6 +58,7 @@ export default function Page() {
               name="description"
               placeholder="ex) 유기농으로 당일 생산된 쫄깃쫄깃한 빵이 담길 수 있어요!"
               theme="outline-secondary"
+              value={description ?? ''}
               onChange={handleInputChange}
             />
           }

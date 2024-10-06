@@ -40,6 +40,7 @@ export const userStyles = {
     borderRadius: borderRadius.md,
     padding: 14,
     border: `2px solid ${colors.white}`,
+    cursor: 'pointer',
     selectors: {
       '&:has(input:checked)': {
         border: `2px solid ${colors.primary}`,

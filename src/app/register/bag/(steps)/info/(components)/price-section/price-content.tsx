@@ -48,6 +48,7 @@ export default function PriceContent({
           theme="outline-gray"
           name="costPrice"
           onChange={handleInputChange}
+          value={bagInfoState.costPrice}
         />
         <Input
           type="number"

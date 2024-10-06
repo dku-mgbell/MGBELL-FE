@@ -29,7 +29,7 @@ export const styles = {
     flexDirection: 'column',
     paddingBottom: '4rem',
     boxSizing: 'border-box',
-    overflow: 'scroll',
+    overflow: 'auto',
   }),
 
   title: style({
