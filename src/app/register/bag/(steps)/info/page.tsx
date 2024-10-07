@@ -9,7 +9,7 @@ import Input from '@/components/input/input';
 import { useBagInfoStateStore } from '@/hooks/stores/useBagInfoStore';
 import PriceSection from './(components)/price-section/price-section';
 import AmountSection from './(components)/amount-section/amount-section';
-import { styles } from '../styles.css';
+import * as styles from '../styles.css';
 
 export default function Page() {
   const route = useRouter();
