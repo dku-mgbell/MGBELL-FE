@@ -15,6 +15,7 @@ export default function StepsLayout({
   isValueEmpty,
   theme,
   isPadding,
+  isFullHeightContent,
 }: {
   children: ReactNode;
   isNextStepAllowed?: boolean;
@@ -25,6 +26,7 @@ export default function StepsLayout({
   isValueEmpty?: boolean;
   theme?: 'primary' | 'secondary';
   isPadding?: boolean;
+  isFullHeightContent?: boolean;
 }) {
   const router = useRouter();
 
@@ -36,7 +38,10 @@ export default function StepsLayout({
 
   return (
     <div className={styles.container({ isPadding })}>
-      <div className={styles.content}>
+      <div
+        className={styles.content}
+        style={{ flex: isFullHeightContent ? 1 : 'none' }}
+      >
         {title && <strong className={styles.title}>{title}</strong>}
         {children}
       </div>

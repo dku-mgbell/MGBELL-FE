@@ -15,11 +15,11 @@ export const usePostSignUp = () => {
   return useMutation({
     mutationFn: (data: SignUpInfo) => User.signUp(data),
     onSuccess: () => {
+      mutate({ email: email!, password });
       if (userRole === 'USER') {
         route.push('/sign-up/success');
       } else {
         route.push('/register/store');
-        mutate({ email: email!, password });
       }
     },
   });
