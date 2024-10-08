@@ -4,11 +4,9 @@ export interface BagInfo {
   costPrice: number | undefined;
   salePrice: number | undefined;
   amount: number;
-  pickupTime: {
-    onSale: boolean;
-    startAt: string;
-    endAt: string;
-  };
+  onSale: boolean;
+  startAt: string;
+  endAt: string;
 }
 
 export interface BagInfoResponse extends BagInfo {
@@ -16,7 +14,4 @@ export interface BagInfoResponse extends BagInfo {
   storeName: string;
   remain: number;
   isLike: boolean;
-  onSale: boolean;
-  startAt: string;
-  endAt: string;
 }

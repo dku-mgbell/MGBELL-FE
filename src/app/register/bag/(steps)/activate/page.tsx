@@ -17,29 +17,13 @@ export default function Page() {
   const route = useRouter();
   const { bagInfoState } = useBagInfoStateStore();
   const { mutate } = useRegisterBag();
-  const {
-    bagName,
-    description,
-    costPrice,
-    salePrice,
-    amount,
-    onSale,
-    startAt,
-    endAt,
-  } = bagInfoState;
+  const { costPrice, salePrice } = bagInfoState;
 
   const handleNextButtonClick = () => {
     const bagInfo = {
-      bagName,
-      description,
+      ...bagInfoState,
       costPrice: Number(costPrice),
       salePrice: Number(salePrice),
-      amount,
-      pickupTime: {
-        onSale,
-        startAt,
-        endAt,
-      },
     };
     mutate(bagInfo);
   };
