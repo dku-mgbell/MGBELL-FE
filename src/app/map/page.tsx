@@ -2,10 +2,10 @@
 
 import React, { useEffect } from 'react';
 import { MapMarker } from '@/types/map';
+import marker from '@/assets/images/map/marker.png';
 import { data } from './data';
 
 const [DEFAULT_LAT, DEFAULT_LNG] = [37.3214151882177, 127.110106750383];
-
 export default function Map() {
   useEffect(() => {
     const loadMap = () => {
@@ -19,6 +19,7 @@ export default function Map() {
           position: new naver.maps.LatLng(lat, lng),
           map,
           title: name,
+          icon: marker.src,
         });
 
       data.forEach(({ name, lat, lng }) => {
