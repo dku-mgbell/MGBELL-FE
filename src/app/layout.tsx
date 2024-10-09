@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import Script from 'next/script';
 import localFont from 'next/font/local';
 import ReactQueryProviders from '@/hooks/query/useReactQuery';
 import ModalProvider from '@/components/modal/modal-provider';
@@ -30,6 +31,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${notoSans.variable} ${styles.body}`}>
+        <Script
+          strategy="afterInteractive"
+          src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}
+        />
         <ReactQueryProviders>
           <ModalProvider>{children}</ModalProvider>
           <div id="modal-root" />

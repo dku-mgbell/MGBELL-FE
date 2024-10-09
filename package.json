@@ -30,6 +30,7 @@
     "@svgr/webpack": "^8.1.0",
     "@tanstack/react-query-devtools": "^5.58.0",
     "@types/eslint-plugin-jsx-a11y": "^6",
+    "@types/navermaps": "^3.7.8",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

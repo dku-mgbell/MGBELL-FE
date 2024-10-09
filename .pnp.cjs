@@ -31,6 +31,7 @@ const RAW_RUNTIME_STATE =
           ["@tanstack/react-query", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:5.56.2"],\
           ["@tanstack/react-query-devtools", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:5.58.0"],\
           ["@types/eslint-plugin-jsx-a11y", "npm:6.9.0"],\
+          ["@types/navermaps", "npm:3.7.8"],\
           ["@types/node", "npm:20.16.5"],\
           ["@types/react", "npm:18.3.6"],\
           ["@types/react-dom", "npm:18.3.0"],\
@@ -3948,6 +3949,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/geojson", [\
+      ["npm:7946.0.14", {\
+        "packageLocation": "../../.yarn/berry/cache/@types-geojson-npm-7946.0.14-cb659a9fdf-10c0.zip/node_modules/@types/geojson/",\
+        "packageDependencies": [\
+          ["@types/geojson", "npm:7946.0.14"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/json-schema", [\
       ["npm:7.0.15", {\
         "packageLocation": "../../.yarn/berry/cache/@types-json-schema-npm-7.0.15-fd16381786-10c0.zip/node_modules/@types/json-schema/",\
@@ -3962,6 +3972,16 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/@types-json5-npm-0.0.29-f63a7916bd-10c0.zip/node_modules/@types/json5/",\
         "packageDependencies": [\
           ["@types/json5", "npm:0.0.29"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/navermaps", [\
+      ["npm:3.7.8", {\
+        "packageLocation": "../../.yarn/berry/cache/@types-navermaps-npm-3.7.8-4cf7b14fae-10c0.zip/node_modules/@types/navermaps/",\
+        "packageDependencies": [\
+          ["@types/navermaps", "npm:3.7.8"],\
+          ["@types/geojson", "npm:7946.0.14"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -8225,6 +8245,7 @@ const RAW_RUNTIME_STATE =
           ["@tanstack/react-query", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:5.56.2"],\
           ["@tanstack/react-query-devtools", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:5.58.0"],\
           ["@types/eslint-plugin-jsx-a11y", "npm:6.9.0"],\
+          ["@types/navermaps", "npm:3.7.8"],\
           ["@types/node", "npm:20.16.5"],\
           ["@types/react", "npm:18.3.6"],\
           ["@types/react-dom", "npm:18.3.0"],\
