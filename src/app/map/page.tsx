@@ -10,6 +10,7 @@ import StarIcon from '@/assets/svg/StarIcon';
 import Tag from '@/components/text/tag/tag';
 import { data } from './data';
 import * as styles from './styles.css';
+import LocationButton from './(components)/location-button';
 
 const [DEFAULT_LAT, DEFAULT_LNG] = [37.3214151882177, 127.110106750383];
 
@@ -70,6 +71,7 @@ export default function Map() {
       >
         button
       </button>
+      <LocationButton />
       <Sheet
         isOpen={isOpen}
         onClose={() => setOpen(false)}

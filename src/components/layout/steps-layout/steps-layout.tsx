@@ -2,7 +2,7 @@
 
 import { ReactNode, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Button from '@/components/button/button';
+import Button from '@/components/button/text-button/button';
 import { styles } from './styles.css';
 
 export default function StepsLayout({

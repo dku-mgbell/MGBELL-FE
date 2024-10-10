@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import Button from '@/components/button/button';
+import Button from '@/components/button/text-button/button';
 import SearchInput from '@/components/input/search/search-input';
 import HeaderLayout from '@/components/layout/header-layout/header-layout';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';

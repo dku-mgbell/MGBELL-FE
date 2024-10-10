@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import useModal from '@/hooks/useModal';
-import Button from '../button/button';
+import Button from '../button/text-button/button';
 import { styles } from './styles.css';
 
 export default function Modal({ content }: { content: ReactNode }) {
