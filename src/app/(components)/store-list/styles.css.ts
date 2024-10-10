@@ -95,25 +95,6 @@ export const thumbContainer = style({
   zIndex: 999,
 });
 
-export const tag = recipe({
-  base: {
-    padding: '6px 10px',
-    borderRadius: 20,
-    fontSize: 11,
-    color: colors.white,
-  },
-  variants: {
-    theme: {
-      default: { backgroundColor: colors.secondary },
-      white: { backgroundColor: colors.white, color: colors.black },
-      gray: { backgroundColor: '#5A5A5A' },
-    },
-  },
-  defaultVariants: {
-    theme: 'default',
-  },
-});
-
 export const infoContainer = style({
   display: 'flex',
   flexDirection: 'column',

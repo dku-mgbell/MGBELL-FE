@@ -1,8 +1,14 @@
-export default function TimeIcon() {
+export default function TimeIcon({
+  width,
+  height,
+}: {
+  width?: number;
+  height?: number;
+}) {
   return (
     <svg
-      width="16"
-      height="16"
+      width={width ?? 16}
+      height={height ?? 16}
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
