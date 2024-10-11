@@ -1,8 +1,14 @@
-export default function ChevronLeftIcon() {
+export default function ChevronLeftIcon({
+  width,
+  height,
+}: {
+  width?: number;
+  height?: number;
+}) {
   return (
     <svg
-      width="12"
-      height="20"
+      width={width ?? 12}
+      height={height ?? 20}
       viewBox="0 0 12 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

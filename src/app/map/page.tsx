@@ -8,6 +8,7 @@ import ProductInfoContainer from '@/components/product/info-container/ProductInf
 import TimeIcon from '@/assets/svg/TimeIcon';
 import StarIcon from '@/assets/svg/StarIcon';
 import Tag from '@/components/text/tag/tag';
+import BackButton from '@/components/button/back-button/back-button';
 import { data } from './data';
 import * as styles from './styles.css';
 import LocationButton from './(components)/location-button';
@@ -78,6 +79,7 @@ export default function Map() {
 
   return (
     <div id="map" className={styles.container}>
+      <BackButton />
       <LocationButton onClick={handleUserLocation} />
       <Sheet
         isOpen={isOpen}
