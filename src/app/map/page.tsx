@@ -12,14 +12,28 @@ import { data } from './data';
 import * as styles from './styles.css';
 import LocationButton from './(components)/location-button';
 
-const [DEFAULT_LAT, DEFAULT_LNG] = [37.3214151882177, 127.110106750383];
-
 export default function Map() {
   const [isOpen, setOpen] = useState(false);
   const [selectedStore, setSelectedStore] = useState<MapMarker>();
+  const [userLocation, setUserLocation] = useState([
+    37.3214151882177, 127.110106750383,
+  ]);
+
+  const handleUserLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setUserLocation([position.coords.latitude, position.coords.longitude]);
+      });
+    }
+  };
+
+  useEffect(() => {
+    handleUserLocation();
+  }, []);
+
   const loadMap = () => {
     const mapOptions = {
-      center: new naver.maps.LatLng(DEFAULT_LAT, DEFAULT_LNG),
+      center: new naver.maps.LatLng(userLocation[0], userLocation[1]),
       zoom: 17,
     };
     const map = new naver.maps.Map('map', mapOptions);
@@ -60,21 +74,16 @@ export default function Map() {
       mapScript.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`;
       document.head.appendChild(mapScript);
     }
-  }, []);
+  }, [userLocation]);
 
   return (
-    <div id="map" style={{ width: '100%', height: '100dvh' }}>
-      <button
-        type="button"
-        style={{ position: 'absolute', top: 0, left: 0, zIndex: 9999 }}
-        onClick={() => loadMap()}
-      >
-        button
-      </button>
-      <LocationButton />
+    <div id="map" className={styles.container}>
+      <LocationButton onClick={handleUserLocation} />
       <Sheet
         isOpen={isOpen}
-        onClose={() => setOpen(false)}
+        onClose={() => {
+          setOpen(false);
+        }}
         snapPoints={[200, 0]}
       >
         <Sheet.Backdrop

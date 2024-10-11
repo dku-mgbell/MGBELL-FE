@@ -1,5 +1,10 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
+export const container = style({
+  width: '100%',
+  height: '100dvh',
+});
+
 export const modalContainer = style({
   padding: '0 1.4rem',
   display: 'flex',
