@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { Sheet } from 'react-modal-sheet';
 import { MapMarker } from '@/types/map';
-import markerImg from '@/assets/images/map/marker1.png';
+import markerImg from '@/assets/images/map/marker.png';
+import pinImg from '@/assets/images/map/pin.png';
 import ProductInfoContainer from '@/components/product/info-container/ProductInfoContainer';
 import TimeIcon from '@/assets/svg/TimeIcon';
 import StarIcon from '@/assets/svg/StarIcon';
@@ -44,24 +45,41 @@ export default function Map() {
     //     markerSize = 10;
     //   }
     // });
-    const generateMarker = ({ lat, lng, name }: Omit<MapMarker, 'address'>) =>
+    const generateMarker = (
+      { lat, lng, name }: Omit<MapMarker, 'address'>,
+      { isUserLocation }: { isUserLocation: boolean },
+    ) =>
       new naver.maps.Marker({
         position: new naver.maps.LatLng(lat, lng),
         map,
         title: name,
         icon: {
-          url: markerImg.src,
+          url: isUserLocation ? pinImg.src : markerImg.src,
           size: new naver.maps.Size(markerSize, markerSize),
         },
       });
 
+    // 현위치 핀 표시
+    generateMarker(
+      {
+        name: 'user-location',
+        lat: userLocation[0],
+        lng: userLocation[1],
+      },
+      { isUserLocation: true },
+    );
+
+    // 가게 위치 마커 표시
     data.forEach(({ name, lat, lng, address }) => {
-      const marker = generateMarker({ name, lat, lng });
+      const marker = generateMarker(
+        { name, lat, lng },
+        { isUserLocation: false },
+      );
 
       naver.maps.Event.addListener(marker, 'click', () => {
         setSelectedStore({ name, lat, lng, address });
         setOpen(true);
-        map.morph(new naver.maps.LatLng(lat, lng), 17);
+        map.morph(new naver.maps.LatLng(lat, lng), 20);
       });
     });
   };
