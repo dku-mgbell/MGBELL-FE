@@ -11,7 +11,9 @@ export const useStoreRegisterStore = create<StoreState>((set) => ({
     name: '',
     address: '',
     storeType: null,
-    images: [],
+    latitude: '',
+    longitude: '',
+    // images: [],
   },
   setStoreState: (state: StoreRegistration) => set({ storeState: state }),
 }));
