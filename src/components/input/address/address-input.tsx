@@ -1,28 +1,40 @@
 import DaumPostcode from 'react-daum-postcode';
 import useModal from '@/hooks/useModal';
 import { common } from '@/styles/common.css';
-import { ChangeEvent, useEffect, useState } from 'react';
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 import { useTempDataStore } from '@/hooks/stores/useTempDataStore';
+import { useGetCoord } from '@/hooks/query/map/useGetCoord';
 import { Address } from '@/types/address';
+import { Coordinate } from '@/types/map';
 import Input from '../input';
 
 export default function AddressInput({
   onChange,
+  setCoordinateState,
 }: {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  setCoordinateState: Dispatch<SetStateAction<Coordinate | undefined>>;
 }) {
   const { open, close } = useModal();
   const [address, setAddress] = useState('');
   const [detailAddress, setDetailAddress] = useState('');
-  const { tempData, setTempData } = useTempDataStore();
+  const { tempData: addressTempData, setTempData: setAddressTempData } =
+    useTempDataStore();
   const [addressError, setAddressError] = useState(false);
+  const { data: coordinate } = useGetCoord(addressTempData ?? '');
 
   const handleInputClick = () => {
     open({
       content: (
         <DaumPostcode
           onComplete={(data: Address) => {
-            setTempData(data.address);
+            setAddressTempData(data.address);
             close();
           }}
         />
@@ -31,8 +43,15 @@ export default function AddressInput({
   };
 
   useEffect(() => {
-    if (tempData) setAddress(tempData);
-  }, [tempData]);
+    if (addressTempData) setAddress(addressTempData);
+  }, [addressTempData]);
+
+  useEffect(() => {
+    setCoordinateState({
+      latitude: coordinate?.addresses[0].y ?? '',
+      longitude: coordinate?.addresses[0].x ?? '',
+    });
+  }, [coordinate]);
 
   return (
     <>

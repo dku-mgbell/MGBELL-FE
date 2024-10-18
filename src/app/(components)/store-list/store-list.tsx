@@ -24,7 +24,7 @@ export default function StoreList() {
         list!.map(
           ({
             id,
-            remain,
+            amount,
             isLike,
             costPrice,
             salePrice,
@@ -58,7 +58,7 @@ export default function StoreList() {
                         content={onSale ? '예약 가능' : '예약 불가능'}
                         theme={onSale ? 'default' : 'gray'}
                       />
-                      <Tag content={`${remain ?? 0}개 남음`} theme="white" />
+                      <Tag content={`${amount ?? 0}개 남음`} theme="white" />
                     </div>
                     {isLike ? <LikeIcon /> : <LikeIcon off />}
                   </div>

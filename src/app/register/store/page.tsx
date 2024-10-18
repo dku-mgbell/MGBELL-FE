@@ -1,7 +1,7 @@
 'use client';
 
 import Input from '@/components/input/input';
-import { ChangeEvent, useEffect } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useStoreRegisterStore } from '@/hooks/stores/useStoreRegisterStore';
 import HeaderLayout from '@/components/layout/header-layout/header-layout';
 import QuestionContainer from '@/components/question-container/question-container';
@@ -10,6 +10,7 @@ import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import { useRegisterStore } from '@/hooks/query/store/useRegisterStore';
 import { useAuth } from '@/hooks/useAuth';
 import { StoreID } from '@/types/store';
+import { Coordinate } from '@/types/map';
 import StoreSelector from './(components)/store-selector/store-selector';
 import ImageUploader from './(components)/image-uploader/image-uploader';
 import { styles } from './styles.css';
@@ -18,6 +19,7 @@ export default function Page() {
   const { storeState, setStoreState } = useStoreRegisterStore();
   const { mutate } = useRegisterStore();
   const { redirectLoginPage } = useAuth();
+  const [storeCoordinate, setStoreCoordinate] = useState<Coordinate>();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setStoreState({ ...storeState, [e.target.name]: e.target.value });
@@ -28,6 +30,8 @@ export default function Page() {
       name: storeState.name,
       address: storeState.address,
       storeType: storeState.storeType as StoreID,
+      latitude: storeCoordinate?.latitude as string,
+      longitude: storeCoordinate?.longitude as string,
     });
   };
 
@@ -63,7 +67,12 @@ export default function Page() {
           <QuestionContainer
             title="매장 주소"
             desc="클릭하여 주소를 입력해주세요!"
-            content={<AddressInput onChange={handleInputChange} />}
+            content={
+              <AddressInput
+                onChange={handleInputChange}
+                setCoordinateState={setStoreCoordinate}
+              />
+            }
           />
           <QuestionContainer
             title="매장 업종 선택"

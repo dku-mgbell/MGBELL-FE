@@ -1,3 +1,5 @@
+import { Coordinate } from './map';
+
 export type StoreID = 'FOOD' | 'BAKERY' | 'CAFE' | 'DESERT' | 'ETC';
 
 export const StoreName = {
@@ -8,7 +10,7 @@ export const StoreName = {
   ETC: '기타',
 } as const;
 
-export interface StoreRegistration {
+export interface StoreRegistration extends Coordinate {
   name: string;
   address: string;
   storeType: StoreID | null;
