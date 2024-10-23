@@ -8,6 +8,7 @@ export default function ProductInfoContainer({
   firstRow,
   secondRow,
   rowGap,
+  noPadding,
 }: {
   costPrice: number;
   salePrice: number;
@@ -22,9 +23,13 @@ export default function ProductInfoContainer({
     color?: 'black';
   };
   rowGap?: number;
+  noPadding?: boolean;
 }) {
   return (
-    <div className={styles.infoContainer} style={{ gap: rowGap }}>
+    <div
+      className={styles.infoContainer}
+      style={{ gap: rowGap, padding: noPadding ? 0 : 8 }}
+    >
       <div className={styles.flexRowBetween}>
         <p className={styles.text({ color: firstRow.color ?? 'gray' })}>
           {firstRow.icon}

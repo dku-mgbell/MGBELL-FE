@@ -1,3 +1,5 @@
+import { Coordinate } from './map';
+
 export interface BagInfo {
   bagName: string | null;
   description: string | null;
@@ -9,9 +11,10 @@ export interface BagInfo {
   endAt: string;
 }
 
-export interface BagInfoResponse extends BagInfo {
+export interface BagInfoResponse extends BagInfo, Coordinate {
   id: number;
   storeName: string;
   remain: number;
   isLike: boolean;
+  address: string;
 }

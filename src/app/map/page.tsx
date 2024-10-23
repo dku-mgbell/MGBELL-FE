@@ -13,6 +13,7 @@ import BackButton from '@/components/button/back-button/back-button';
 import { data } from './data';
 import * as styles from './styles.css';
 import LocationButton from './(components)/location-button';
+import ListBottomSheet from './(components)/list-bottom-sheet/list-bottom-sheet';
 
 export default function Map() {
   const [isOpen, setOpen] = useState(false);
@@ -99,6 +100,7 @@ export default function Map() {
     <div id="map" className={styles.container}>
       <BackButton />
       <LocationButton onClick={handleUserLocation} />
+      <ListBottomSheet />
       <Sheet
         isOpen={isOpen}
         onClose={() => {
