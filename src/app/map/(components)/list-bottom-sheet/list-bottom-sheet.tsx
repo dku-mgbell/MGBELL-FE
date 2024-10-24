@@ -1,16 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import StarIcon from '@/assets/svg/StarIcon';
-import TimeIcon from '@/assets/svg/TimeIcon';
 import BottomSheet from '@/components/bottom-sheet/bottom-sheet';
-import ProductInfoContainer from '@/components/product/info-container/ProductInfoContainer';
-import Tag from '@/components/text/tag/tag';
 import { Intersection } from '@/components/intersection/intersection';
 import Thumbnail from '@/mocks/thumbnail.png';
 import { useGetBagInfiniteList } from '@/hooks/query/store/useGetBagInfiniteList';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import * as styles from './styles.css';
+import MapProductInfoContainer from '../map-product-info-container/map-product-info-container';
+import TagContainer from '../tag-container/tag-container';
 
 export default function ListBottomSheet() {
   const [isOpen, setOpen] = useState(true);
@@ -27,44 +25,43 @@ export default function ListBottomSheet() {
             {isLoading ? (
               <>Loading ...</>
             ) : (
-              list.map((item) => (
-                <li key={item.id} className={styles.listItem}>
-                  <div key={item.id} className={styles.contentContainer}>
-                    <div className={styles.bagInfoContainer}>
-                      <div className={styles.tagContainer}>
-                        <Tag
-                          content={item.onSale ? '영업 중' : '영업 종료'}
-                          theme={item.onSale ? 'primary' : 'gray'}
-                        />
-                        <Tag
-                          content={
-                            item.amount ? `${item.amount}개 남음` : '재고 없음'
-                          }
-                          theme={item.amount ? 'default' : 'gray'}
-                        />
+              list.map(
+                ({
+                  id,
+                  storeName,
+                  address,
+                  onSale,
+                  amount,
+                  salePrice,
+                  costPrice,
+                  startAt,
+                  endAt,
+                }) => (
+                  <li key={id} className={styles.listItem}>
+                    <div key={id} className={styles.contentContainer}>
+                      <div className={styles.bagInfoContainer}>
+                        <TagContainer info={{ onSale, amount }} />
+                        <strong>{storeName}</strong>
+                        <p className={styles.address}>{address}</p>
                       </div>
-                      <strong>{item.bagName}</strong>
-                      <p className={styles.address}>{item?.address}</p>
+                      <div
+                        className={styles.imageWrapper}
+                        style={{
+                          backgroundImage: `url('${Thumbnail.src}')`,
+                        }}
+                      />
                     </div>
-                    <div
-                      className={styles.imageWrapper}
-                      style={{
-                        backgroundImage: `url('${Thumbnail.src}')`,
+                    <MapProductInfoContainer
+                      info={{
+                        salePrice,
+                        costPrice,
+                        startAt,
+                        endAt,
                       }}
                     />
-                  </div>
-                  <ProductInfoContainer
-                    salePrice={item.salePrice!}
-                    costPrice={item.costPrice!}
-                    firstRow={{
-                      icon: <TimeIcon width={20} height={19.2} />,
-                      text: `픽업 시간: ${item.startAt}~${item.endAt}`,
-                    }}
-                    secondRow={{ icon: <StarIcon theme="red" />, text: '4.9' }}
-                    noPadding
-                  />
-                </li>
-              ))
+                  </li>
+                ),
+              )
             )}
             <Intersection ref={intersection} />
           </div>

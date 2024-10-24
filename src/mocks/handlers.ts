@@ -9,7 +9,7 @@ export const handlers = [
       content: [
         {
           id: 1,
-          storeName: '',
+          storeName: '달콤한 베이커리',
           bagName: '마감벨 마감백',
           onSale: false,
           startAt: '18:00',
@@ -23,7 +23,7 @@ export const handlers = [
         },
         {
           id: 1,
-          storeName: '',
+          storeName: '달콤한 베이커리',
           bagName: '마감벨 마감백',
           onSale: true,
           startAt: '18:00',
@@ -37,7 +37,7 @@ export const handlers = [
         },
         {
           id: 1,
-          storeName: '',
+          storeName: '달콤한 베이커리',
           bagName: '마감벨 마감백',
           onSale: true,
           startAt: '18:00',
@@ -51,7 +51,7 @@ export const handlers = [
         },
         {
           id: 1,
-          storeName: '',
+          storeName: '달콤한 베이커리',
           bagName: '마감벨 마감백',
           onSale: true,
           startAt: '18:00',
@@ -65,7 +65,7 @@ export const handlers = [
         },
         {
           id: 1,
-          storeName: '',
+          storeName: '달콤한 베이커리',
           bagName: '마감벨 마감백',
           onSale: true,
           startAt: '18:00',
