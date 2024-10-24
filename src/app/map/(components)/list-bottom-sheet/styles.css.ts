@@ -2,6 +2,14 @@ import { style } from '@vanilla-extract/css';
 
 export const modal = style({
   padding: '0 23px',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 15,
+});
+
+export const listItem = style({
+  borderBottom: '0.5px solid #D9D9D9',
+  paddingBottom: 15,
 });
 
 export const contentContainer = style({
@@ -14,6 +22,7 @@ export const contentContainer = style({
 export const tagContainer = style({
   display: 'flex',
   gap: 4,
+  marginLeft: -5,
 });
 
 export const bagInfoContainer = style({

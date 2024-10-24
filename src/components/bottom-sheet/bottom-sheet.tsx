@@ -5,10 +5,12 @@ export default function BottomSheet({
   isOpen,
   setOpen,
   content,
+  height,
 }: {
   isOpen: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   content: ReactNode;
+  height?: number;
 }) {
   return (
     <Sheet
@@ -16,7 +18,7 @@ export default function BottomSheet({
       onClose={() => {
         setOpen(false);
       }}
-      snapPoints={[200, 0]}
+      snapPoints={[height ?? 200, 0]}
     >
       <Sheet.Backdrop
         onTap={() => {
@@ -26,7 +28,9 @@ export default function BottomSheet({
       />
       <Sheet.Container>
         <Sheet.Header />
-        <Sheet.Content>{content}</Sheet.Content>
+        <Sheet.Content>
+          <div style={{ height: '100%', overflow: 'auto' }}>{content}</div>
+        </Sheet.Content>
       </Sheet.Container>
     </Sheet>
   );
