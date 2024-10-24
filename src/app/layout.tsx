@@ -5,6 +5,7 @@ import ReactQueryProviders from '@/hooks/query/useReactQuery';
 import ModalProvider from '@/components/modal/modal-provider';
 import { styles } from './styles.css';
 import '../styles/globals.css';
+import MSWProvider from './(components)/MSWProvider';
 
 const notoSans = localFont({
   src: '../assets/fonts/NotoSansKRVF.woff2',
@@ -36,7 +37,10 @@ export default function RootLayout({
           src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}
         />
         <ReactQueryProviders>
-          <ModalProvider>{children}</ModalProvider>
+          <ModalProvider>
+            <MSWProvider />
+            {children}
+          </ModalProvider>
           <div id="modal-root" />
         </ReactQueryProviders>
       </body>

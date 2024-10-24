@@ -1,0 +1,44 @@
+import { API_BASE_URL } from '@/constant';
+import { http, HttpResponse } from 'msw';
+
+export const handlers = [
+  http.get(`${API_BASE_URL}post/list`, ({ params }) => {
+    const { page, size } = params;
+
+    return HttpResponse.json({
+      content: [
+        {
+          id: 1,
+          storeName: '',
+          bagName: '마감벨 마감백',
+          onSale: true,
+          startAt: '18:00',
+          endAt: '20:30',
+          address: '경기 용인시 기흥구 죽전로15번길 7-18 1층',
+          longitude: '127.1091074',
+          latitude: '37.3213682',
+          costPrice: 12000,
+          salePrice: 5900,
+          amount: 1,
+        },
+      ],
+      pageable: {
+        pageNumber: page,
+        pageSize: size,
+        sort: { empty: true, sorted: false, unsorted: true },
+        offset: 0,
+        paged: true,
+        unpaged: false,
+      },
+      totalElements: 1,
+      totalPages: 1,
+      last: true,
+      size: 5,
+      number: 0,
+      sort: { empty: true, sorted: false, unsorted: true },
+      numberOfElements: 1,
+      first: true,
+      empty: false,
+    });
+  }),
+];
