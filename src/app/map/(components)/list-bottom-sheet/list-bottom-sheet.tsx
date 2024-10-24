@@ -8,13 +8,13 @@ import ProductInfoContainer from '@/components/product/info-container/ProductInf
 import Tag from '@/components/text/tag/tag';
 import { Intersection } from '@/components/intersection/intersection';
 import Thumbnail from '@/mocks/thumbnail.png';
-import { useGetBagList } from '@/hooks/query/store/useGetBagList';
+import { useGetBagInfiniteList } from '@/hooks/query/store/useGetBagInfiniteList';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import * as styles from './styles.css';
 
 export default function ListBottomSheet() {
   const [isOpen, setOpen] = useState(true);
-  const bagListState = useGetBagList({ size: 5 });
+  const bagListState = useGetBagInfiniteList({ size: 5 });
   const { list, isLoading, intersection } = useInfiniteScroll(bagListState);
   return (
     list && (

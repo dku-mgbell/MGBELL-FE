@@ -4,7 +4,7 @@ import ShoppingIcon from '@/assets/svg/ShoppingIcon';
 import TimeIcon from '@/assets/svg/TimeIcon';
 import { colors } from '@/styles/constant';
 import LikeIcon from '@/assets/svg/LikeIcon';
-import { useGetBagList } from '@/hooks/query/store/useGetBagList';
+import { useGetBagInfiniteList } from '@/hooks/query/store/useGetBagInfiniteList';
 import { BagInfoResponse } from '@/types/bag';
 import { Intersection } from '@/components/intersection/intersection';
 import Tag from '@/components/text/tag/tag';
@@ -14,7 +14,7 @@ import Thumbnail from '../../../mocks/thumbnail.png';
 import * as styles from './styles.css';
 
 export default function StoreList() {
-  const bagListState = useGetBagList({ size: 5 });
+  const bagListState = useGetBagInfiniteList({ size: 5 });
   const { list, intersection, isFetching } =
     useInfiniteScroll<BagInfoResponse>(bagListState);
 
