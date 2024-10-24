@@ -4,7 +4,7 @@ import { useState } from 'react';
 import BottomSheet from '@/components/bottom-sheet/bottom-sheet';
 import { Intersection } from '@/components/intersection/intersection';
 import Thumbnail from '@/mocks/thumbnail.png';
-import { useGetBagInfiniteList } from '@/hooks/query/store/useGetBagInfiniteList';
+import { useGetBagInfiniteList } from '@/hooks/query/bag/useGetBagInfiniteList';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import * as styles from './styles.css';
 import MapProductInfoContainer from '../map-product-info-container/map-product-info-container';

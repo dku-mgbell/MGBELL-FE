@@ -4,7 +4,7 @@ import ShoppingIcon from '@/assets/svg/ShoppingIcon';
 import TimeIcon from '@/assets/svg/TimeIcon';
 import { colors } from '@/styles/constant';
 import LikeIcon from '@/assets/svg/LikeIcon';
-import { useGetBagInfiniteList } from '@/hooks/query/store/useGetBagInfiniteList';
+import { useGetBagInfiniteList } from '@/hooks/query/bag/useGetBagInfiniteList';
 import { BagInfoResponse } from '@/types/bag';
 import { Intersection } from '@/components/intersection/intersection';
 import Tag from '@/components/text/tag/tag';
