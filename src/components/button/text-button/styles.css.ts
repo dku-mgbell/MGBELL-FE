@@ -5,7 +5,7 @@ export const button = recipe({
   base: {
     fontWeight: fontWeight.bold,
     padding: '16px 0',
-    borderRadius: borderRadius.md,
+
     color: colors.white,
   },
   variants: {
@@ -32,9 +32,22 @@ export const button = recipe({
       full: { width: '100%' },
       fit: { width: 'fit' },
     },
+    rounded: {
+      md: {
+        borderRadius: borderRadius.md,
+      },
+      lg: { borderRadius: 50 },
+    },
+    shadow: {
+      true: {
+        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)',
+      },
+    },
   },
   defaultVariants: {
     theme: 'primary',
     size: 'full',
+    rounded: 'md',
+    shadow: undefined,
   },
 });
