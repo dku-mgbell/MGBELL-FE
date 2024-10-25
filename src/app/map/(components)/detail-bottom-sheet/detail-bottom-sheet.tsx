@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import BottomSheet from '@/components/bottom-sheet/bottom-sheet';
 import { BagInfoResponse } from '@/types/bag';
 import MapProductInfoContainer from '../map-product-info-container/map-product-info-container';
@@ -16,11 +15,13 @@ export default function DetailBottomSheet({
     onSale,
     amount,
   },
+  isOpen,
+  setOpen,
 }: {
   info: BagInfoResponse;
+  isOpen: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const [isOpen, setOpen] = useState(false);
-
   return (
     <BottomSheet
       isOpen={isOpen}

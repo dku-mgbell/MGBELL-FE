@@ -5,25 +5,26 @@ import { MapMarker } from '@/types/map';
 import markerImg from '@/assets/images/map/marker.png';
 import pinImg from '@/assets/images/map/pin.png';
 import BackButton from '@/components/button/back-button/back-button';
-import { BagInfoResponse as StoreListResponse } from '@/types/bag';
+import { BagInfoResponse as StoreInfoResponse } from '@/types/bag';
 import { useGetBagList as useGetStoreList } from '@/hooks/query/bag/useGetBagList';
 import LocationButton from './(components)/location-button';
 import ListBottomSheet from './(components)/list-bottom-sheet/list-bottom-sheet';
 import DetailBottomSheet from './(components)/detail-bottom-sheet/detail-bottom-sheet';
 import * as styles from './styles.css';
 
+const DEFAULT_COORD = [37.3214151882177, 127.110106750383];
+
 export default function Map() {
-  // const [isOpen, setOpen] = useState(false);
-  const [selectedStore] = useState<StoreListResponse>();
-  const [userLocation, setUserLocation] = useState([
-    37.3214151882177, 127.110106750383,
-  ]);
+  const [isOpen, setOpen] = useState(false);
+  const [selectedStore, setSelectedStore] = useState<StoreInfoResponse>();
+  const [userLocation, setUserLocation] = useState(DEFAULT_COORD);
   const { data: storeList, isFetched: storeListFetched } = useGetStoreList({
     page: 0,
     size: 100,
   });
-  const [storeListOnMap, setStoreListOnMap] = useState<StoreListResponse[]>();
+  const [storeListOnMap, setStoreListOnMap] = useState<StoreInfoResponse[]>();
 
+  // 사용자 현위치 조회
   const handleUserLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -31,11 +32,11 @@ export default function Map() {
       });
     }
   };
-
   useEffect(() => {
     handleUserLocation();
   }, []);
 
+  // 매장 리스트 조회
   useEffect(() => {
     if (storeListFetched) {
       setStoreListOnMap(storeList!.pages[0]);
@@ -49,11 +50,6 @@ export default function Map() {
     };
     const map = new naver.maps.Map('map', mapOptions);
     const markerSize = 60;
-    // naver.maps.Event.addListener(map, 'zoom_changed', function (zoom) {
-    //   if (zoom < 17) {
-    //     markerSize = 10;
-    //   }
-    // });
     const generateMarker = (
       { lat, lng, name }: MapMarker,
       { isUserLocation }: { isUserLocation: boolean },
@@ -81,15 +77,20 @@ export default function Map() {
 
     // 매장 위치 마커 표시
     if (storeListOnMap) {
-      storeListOnMap.forEach(({ storeName, latitude, longitude, address }) => {
-        const [lat, lng] = [Number(latitude), Number(longitude)];
+      storeListOnMap.forEach((store: StoreInfoResponse) => {
+        const [name, lat, lng, address] = [
+          store.storeName,
+          Number(store.latitude),
+          Number(store.longitude),
+          store.address,
+        ];
         const marker = generateMarker(
-          { name: storeName, lat, lng, address },
+          { name, lat, lng, address },
           { isUserLocation: false },
         );
         naver.maps.Event.addListener(marker, 'click', () => {
-          // setSelectedStore({ name, lat, lng, address });
-          // setOpen(true);
+          setSelectedStore(store);
+          setOpen(true);
           map.morph(new naver.maps.LatLng(lat, lng));
         });
       });
@@ -112,7 +113,13 @@ export default function Map() {
       <BackButton />
       <LocationButton onClick={handleUserLocation} />
       <ListBottomSheet />
-      {selectedStore && <DetailBottomSheet info={selectedStore} />}
+      {selectedStore && (
+        <DetailBottomSheet
+          info={selectedStore}
+          isOpen={isOpen}
+          setOpen={setOpen}
+        />
+      )}
     </div>
   );
 }
