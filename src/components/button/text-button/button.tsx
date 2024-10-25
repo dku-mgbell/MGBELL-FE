@@ -14,7 +14,7 @@ export default function Button({
   ...props
 }: {
   value: string | ReactNode;
-  className: string;
+  className?: string;
   theme?:
     | 'primary'
     | 'secondary'

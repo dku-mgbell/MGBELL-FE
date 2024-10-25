@@ -23,6 +23,7 @@ export default function Map() {
     size: 100,
   });
   const [storeListOnMap, setStoreListOnMap] = useState<StoreInfoResponse[]>();
+  const [storeMap, setStoreMap] = useState<naver.maps.Map>();
 
   // 사용자 현위치 조회
   const handleUserLocation = () => {
@@ -45,11 +46,14 @@ export default function Map() {
 
   const loadMap = () => {
     const mapOptions = {
-      center: new naver.maps.LatLng(userLocation[0], userLocation[1]),
+      center: new naver.maps.LatLng(userLocation[0] - 0.001, userLocation[1]),
       zoom: 17,
     };
     const map = new naver.maps.Map('map', mapOptions);
     const markerSize = 60;
+
+    setStoreMap(map);
+
     const generateMarker = (
       { lat, lng, name }: MapMarker,
       { isUserLocation }: { isUserLocation: boolean },
@@ -90,7 +94,6 @@ export default function Map() {
         );
         naver.maps.Event.addListener(marker, 'click', () => {
           setSelectedStore(store);
-          setOpen(true);
           map.morph(new naver.maps.LatLng(lat, lng));
         });
       });
@@ -108,11 +111,15 @@ export default function Map() {
     }
   }, [userLocation, storeListOnMap]);
 
+  useEffect(() => {
+    setOpen(true);
+  }, [selectedStore]);
+
   return (
     <div id="map" className={styles.container}>
       <BackButton />
       <LocationButton onClick={handleUserLocation} />
-      <ListBottomSheet />
+      <ListBottomSheet map={storeMap!} setSelectedStore={setSelectedStore} />
       {selectedStore && (
         <DetailBottomSheet
           info={selectedStore}
