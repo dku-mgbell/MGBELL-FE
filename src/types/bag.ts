@@ -18,3 +18,8 @@ export interface BagInfoResponse extends BagInfo, Coordinate {
   isLike: boolean;
   address: string;
 }
+
+export interface BagInfoPageResponse {
+  pageParams: number[];
+  pages: BagInfoResponse[][];
+}
