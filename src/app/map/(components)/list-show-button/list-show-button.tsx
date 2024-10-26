@@ -7,6 +7,7 @@ export default function ListShowButton({ onClick }: { onClick: () => void }) {
     <Button
       className={styles.listShowButton}
       onClick={onClick}
+      padding={false}
       value={
         <div className={styles.buttonContainer}>
           <ListIcon />

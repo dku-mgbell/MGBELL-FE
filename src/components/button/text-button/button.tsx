@@ -11,6 +11,7 @@ export default function Button({
   className,
   rounded,
   shadow,
+  padding,
   ...props
 }: {
   value: string | ReactNode;
@@ -24,10 +25,11 @@ export default function Button({
   size?: 'full' | 'fit';
   rounded?: 'md' | 'lg';
   shadow?: boolean;
+  padding?: boolean;
 } & ButtonProps) {
   return (
     <button
-      className={`${button({ theme, size, rounded, shadow })} ${className}`}
+      className={`${button({ theme, size, rounded, shadow, padding })} ${className}`}
       type="button"
       {...props}
     >
