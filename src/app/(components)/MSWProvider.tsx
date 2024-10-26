@@ -1,6 +1,6 @@
 'use client';
 
-export default async function MSWComponent() {
+export default async function MSWProvider() {
   if (typeof window !== 'undefined') {
     if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
       const { worker } = await import('@/mocks/browser');
