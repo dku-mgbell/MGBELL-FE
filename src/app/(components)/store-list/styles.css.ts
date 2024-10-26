@@ -7,6 +7,8 @@ export const main = style({
   flexDirection: 'column',
   gap: 15,
   marginTop: 15,
+  overflow: 'auto',
+  height: 'calc(100% - 100px)',
 });
 
 export const thumbWrapper = style({
@@ -92,7 +94,6 @@ export const thumbContainer = style({
   flexDirection: 'column',
   justifyContent: 'space-between',
   position: 'relative',
-  zIndex: 999,
 });
 
 export const infoContainer = style({

@@ -2,24 +2,12 @@ import { globalStyle, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { borderRadius, colors, fontWeight, padding } from '../styles/constant';
 
-export const container = recipe({
-  base: {
-    height: '100vh',
-    paddingTop: padding.safeAreaTop,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 7,
-  },
-  variants: {
-    color: {
-      undefined: { backgroundColor: colors.primary },
-      list: { backgroundColor: colors.primary },
-      map: { backgroundColor: colors.secondary },
-    },
-  },
-  defaultVariants: {
-    color: 'undefined',
-  },
+export const container = style({
+  height: '100dvh',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 7,
+  overflow: 'hidden',
 });
 
 export const viewButton = recipe({
@@ -45,6 +33,7 @@ export const viewButton = recipe({
 export const styles = {
   body: style({
     fontFamily: 'var(--font-noto-sans)',
+    overflow: 'hidden',
   }),
 
   header: style({
@@ -52,7 +41,13 @@ export const styles = {
     flexDirection: 'column',
     gap: '14px',
     padding: padding.layout,
+    paddingTop: 20,
     fontWeight: fontWeight.md,
+    backgroundColor: colors.primary,
+    position: 'fixed',
+    top: 0,
+    width: '100vw',
+    zIndex: 9999,
   }),
 
   location: style({
@@ -99,9 +94,13 @@ export const styles = {
   }),
 
   contentWrapper: style({
-    flex: 1,
     backgroundColor: colors.white,
     padding: `14px ${padding.layoutX}`,
+    position: 'absolute',
+    top: 100,
+    width: '100vw',
+    height: 'calc(100% - 100px)',
+    overflow: 'hidden',
   }),
 
   nav: style({

@@ -17,7 +17,7 @@ export default function Page({
   const { logout } = useAuth();
 
   return (
-    <section className={container()}>
+    <section className={container}>
       <header className={styles.header}>
         <Link href="location" className={styles.location}>
           <LocationMarkerIcon />
