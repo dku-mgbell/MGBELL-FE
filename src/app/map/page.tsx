@@ -115,6 +115,10 @@ export default function Map() {
     setOpen(true);
   }, [selectedStore]);
 
+  useEffect(() => {
+    if (!isOpen) setSelectedStore(undefined);
+  }, [isOpen]);
+
   return (
     <div id="map" className={styles.container}>
       <BackButton />
