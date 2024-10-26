@@ -1,4 +1,6 @@
-export default function StarIcon() {
+import { colors } from '@/styles/constant';
+
+export default function StarIcon({ theme }: { theme?: 'primary' | 'red' }) {
   return (
     <svg
       width="21"
@@ -12,7 +14,7 @@ export default function StarIcon() {
         cy="10.3251"
         rx="9.60661"
         ry="9.60638"
-        fill="#FFB51F"
+        fill={colors[theme ?? 'primary']}
       />
       <path
         d="M8.12789 15.4598C7.89019 15.5898 7.62047 15.3619 7.6685 15.071L8.17962 11.9642L6.01013 9.75987C5.80753 9.55363 5.91284 9.17661 6.18441 9.13589L9.20063 8.67874L10.5455 5.83665C10.6669 5.58049 10.9951 5.58049 11.1164 5.83665L12.4613 8.67874L15.4775 9.13589C15.7491 9.17661 15.8544 9.55363 15.6512 9.75987L13.4823 11.9642L13.9934 15.071C14.0415 15.3619 13.7718 15.5898 13.5341 15.4598L10.83 13.978L8.12789 15.4598Z"

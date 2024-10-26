@@ -1,26 +1,31 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Sheet } from 'react-modal-sheet';
 import { MapMarker } from '@/types/map';
 import markerImg from '@/assets/images/map/marker.png';
 import pinImg from '@/assets/images/map/pin.png';
-import ProductInfoContainer from '@/components/product/info-container/ProductInfoContainer';
-import TimeIcon from '@/assets/svg/TimeIcon';
-import StarIcon from '@/assets/svg/StarIcon';
-import Tag from '@/components/text/tag/tag';
 import BackButton from '@/components/button/back-button/back-button';
-import { data } from './data';
-import * as styles from './styles.css';
+import { BagInfoResponse as StoreInfoResponse } from '@/types/bag';
+import { useGetBagList as useGetStoreList } from '@/hooks/query/bag/useGetBagList';
 import LocationButton from './(components)/location-button';
+import ListBottomSheet from './(components)/list-bottom-sheet/list-bottom-sheet';
+import DetailBottomSheet from './(components)/detail-bottom-sheet/detail-bottom-sheet';
+import * as styles from './styles.css';
+
+const DEFAULT_COORD = [37.3214151882177, 127.110106750383];
 
 export default function Map() {
   const [isOpen, setOpen] = useState(false);
-  const [selectedStore, setSelectedStore] = useState<MapMarker>();
-  const [userLocation, setUserLocation] = useState([
-    37.3214151882177, 127.110106750383,
-  ]);
+  const [selectedStore, setSelectedStore] = useState<StoreInfoResponse>();
+  const [userLocation, setUserLocation] = useState(DEFAULT_COORD);
+  const { data: storeList, isFetched: storeListFetched } = useGetStoreList({
+    page: 0,
+    size: 100,
+  });
+  const [storeListOnMap, setStoreListOnMap] = useState<StoreInfoResponse[]>();
+  const [storeMap, setStoreMap] = useState<naver.maps.Map>();
 
+  // 사용자 현위치 조회
   const handleUserLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -28,25 +33,29 @@ export default function Map() {
       });
     }
   };
-
   useEffect(() => {
     handleUserLocation();
   }, []);
 
+  // 매장 리스트 조회
+  useEffect(() => {
+    if (storeListFetched) {
+      setStoreListOnMap(storeList!.pages[0]);
+    }
+  }, [storeList]);
+
   const loadMap = () => {
     const mapOptions = {
-      center: new naver.maps.LatLng(userLocation[0], userLocation[1]),
+      center: new naver.maps.LatLng(userLocation[0] - 0.001, userLocation[1]),
       zoom: 17,
     };
     const map = new naver.maps.Map('map', mapOptions);
     const markerSize = 60;
-    // naver.maps.Event.addListener(map, 'zoom_changed', function (zoom) {
-    //   if (zoom < 17) {
-    //     markerSize = 10;
-    //   }
-    // });
+
+    setStoreMap(map);
+
     const generateMarker = (
-      { lat, lng, name }: Omit<MapMarker, 'address'>,
+      { lat, lng, name }: MapMarker,
       { isUserLocation }: { isUserLocation: boolean },
     ) =>
       new naver.maps.Marker({
@@ -65,23 +74,30 @@ export default function Map() {
         name: 'user-location',
         lat: userLocation[0],
         lng: userLocation[1],
+        address: '',
       },
       { isUserLocation: true },
     );
 
-    // 가게 위치 마커 표시
-    data.forEach(({ name, lat, lng, address }) => {
-      const marker = generateMarker(
-        { name, lat, lng },
-        { isUserLocation: false },
-      );
-
-      naver.maps.Event.addListener(marker, 'click', () => {
-        setSelectedStore({ name, lat, lng, address });
-        setOpen(true);
-        map.morph(new naver.maps.LatLng(lat, lng), 20);
+    // 매장 위치 마커 표시
+    if (storeListOnMap) {
+      storeListOnMap.forEach((store: StoreInfoResponse) => {
+        const [name, lat, lng, address] = [
+          store.storeName,
+          Number(store.latitude),
+          Number(store.longitude),
+          store.address,
+        ];
+        const marker = generateMarker(
+          { name, lat, lng, address },
+          { isUserLocation: false },
+        );
+        naver.maps.Event.addListener(marker, 'click', () => {
+          setSelectedStore(store);
+          map.morph(new naver.maps.LatLng(lat, lng));
+        });
       });
-    });
+    }
   };
 
   useEffect(() => {
@@ -93,51 +109,28 @@ export default function Map() {
       mapScript.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`;
       document.head.appendChild(mapScript);
     }
-  }, [userLocation]);
+  }, [userLocation, storeListOnMap]);
+
+  useEffect(() => {
+    setOpen(true);
+  }, [selectedStore]);
+
+  useEffect(() => {
+    if (!isOpen) setSelectedStore(undefined);
+  }, [isOpen]);
 
   return (
     <div id="map" className={styles.container}>
       <BackButton />
       <LocationButton onClick={handleUserLocation} />
-      <Sheet
-        isOpen={isOpen}
-        onClose={() => {
-          setOpen(false);
-        }}
-        snapPoints={[200, 0]}
-      >
-        <Sheet.Backdrop
-          onTap={() => {
-            setOpen(false);
-          }}
-          style={{ backgroundColor: 'transparent' }}
+      <ListBottomSheet map={storeMap!} setSelectedStore={setSelectedStore} />
+      {selectedStore && (
+        <DetailBottomSheet
+          info={selectedStore}
+          isOpen={isOpen}
+          setOpen={setOpen}
         />
-        <Sheet.Container>
-          <Sheet.Header />
-          <Sheet.Content>
-            <div className={styles.modalContainer}>
-              <header className={styles.modalHeader}>
-                <strong>{selectedStore?.name}</strong>
-                <div className={styles.tagContainer}>
-                  <Tag content="영업 중" theme="primary" />
-                  <Tag content="4개 남음" />
-                </div>
-              </header>
-              <p className={styles.address}>{selectedStore?.address}</p>
-              <ProductInfoContainer
-                salePrice={100}
-                costPrice={100}
-                firstRow={{
-                  icon: <TimeIcon width={20} height={19.2} />,
-                  text: '17:00 ~ 19:00',
-                }}
-                secondRow={{ icon: <StarIcon />, text: '4.9' }}
-                rowGap={2}
-              />
-            </div>
-          </Sheet.Content>
-        </Sheet.Container>
-      </Sheet>
+      )}
     </div>
   );
 }

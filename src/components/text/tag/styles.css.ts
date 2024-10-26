@@ -12,7 +12,7 @@ export const tag = recipe({
     theme: {
       default: { backgroundColor: colors.secondary },
       white: { backgroundColor: colors.white, color: colors.black },
-      gray: { backgroundColor: '#5A5A5A' },
+      gray: { backgroundColor: '#929292' },
       primary: { backgroundColor: colors.primary },
     },
   },

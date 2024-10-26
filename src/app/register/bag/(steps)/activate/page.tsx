@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import QuestionContainer from '@/components/question-container/question-container';
-import { useRegisterBag } from '@/hooks/query/store/useRegisterBag';
+import { useRegisterBag } from '@/hooks/query/bag/useRegisterBag';
 import { common } from '@/styles/common.css';
 import {
   defaultBagInfo,

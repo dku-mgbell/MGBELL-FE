@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes, ReactNode } from 'react';
 
 import { button } from './styles.css';
 
@@ -8,9 +8,14 @@ export default function Button({
   value,
   theme,
   size,
+  className,
+  rounded,
+  shadow,
+  padding,
   ...props
 }: {
-  value: string;
+  value: string | ReactNode;
+  className?: string;
   theme?:
     | 'primary'
     | 'secondary'
@@ -18,9 +23,16 @@ export default function Button({
     | 'inactive-secondary'
     | 'light-yellow';
   size?: 'full' | 'fit';
+  rounded?: 'md' | 'lg';
+  shadow?: boolean;
+  padding?: boolean;
 } & ButtonProps) {
   return (
-    <button className={button({ theme, size })} type="button" {...props}>
+    <button
+      className={`${button({ theme, size, rounded, shadow, padding })} ${className}`}
+      type="button"
+      {...props}
+    >
       {value}
     </button>
   );
