@@ -25,7 +25,7 @@ export default function StoreList() {
           ({
             id,
             amount,
-            isLike,
+            favorite,
             costPrice,
             salePrice,
             storeName,
@@ -60,7 +60,7 @@ export default function StoreList() {
                       />
                       <Tag content={`${amount ?? 0}개 남음`} theme="white" />
                     </div>
-                    {isLike ? <LikeIcon /> : <LikeIcon off />}
+                    {favorite ? <LikeIcon /> : <LikeIcon off />}
                   </div>
                   <p className={styles.storeName}>{storeName}</p>
                 </div>

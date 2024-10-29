@@ -1,5 +1,10 @@
 import { PageParams } from '@/types/api';
-import { BagInfo, BagInfoPageResponse, BagInfoResponse } from '@/types/bag';
+import {
+  BagInfo,
+  BagDetail,
+  BagInfoPageResponse,
+  BagInfoResponse,
+} from '@/types/bag';
 import { API } from '.';
 
 export const Bag = {
@@ -17,6 +22,10 @@ export const Bag = {
   },
   async getList({ page, size }: PageParams): Promise<BagInfoPageResponse> {
     const response = await API.get(`/post/list?page=${page}&size=${size}`);
+    return response.data;
+  },
+  async getDetail(id: number): Promise<BagDetail> {
+    const response = await API.get(`/post/${id}`);
     return response.data;
   },
 };

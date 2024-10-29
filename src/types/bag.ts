@@ -14,9 +14,15 @@ export interface BagInfo {
 export interface BagInfoResponse extends BagInfo, Coordinate {
   id: number;
   storeName: string;
-  remain: number;
-  isLike: boolean;
+  favorite: boolean;
   address: string;
+  images: string[];
+  reviewCnt: number;
+}
+
+export interface BagDetail extends BagInfoResponse {
+  storeId: number;
+  description: string;
 }
 
 export interface BagInfoPageResponse {
