@@ -6,7 +6,7 @@ import ModalProvider from '@/components/modal/modal-provider';
 import Navigation from '@/components/navigation/navigation';
 import { styles } from './styles.css';
 import '../styles/globals.css';
-import MSWProvider from './(components)/MSWProvider';
+import MSWProvider from './(components)/msw-provider/msw-provider';
 
 const notoSans = localFont({
   src: '../assets/fonts/NotoSansKRVF.woff2',

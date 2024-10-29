@@ -7,6 +7,8 @@ type AuthState = {
   setIsLoggedIn: (state: boolean) => void;
   userRole: UserRole | null;
   setUserRole: (state: UserRole | null) => void;
+  isOAuth: boolean;
+  setIsOAuth: (state: boolean) => void;
 };
 
 export const useAuthStore = create(
@@ -15,6 +17,10 @@ export const useAuthStore = create(
       isLoggedIn: false,
       setIsLoggedIn: (state: boolean) => {
         set({ isLoggedIn: state });
+      },
+      isOAuth: false,
+      setIsOAuth: (state: boolean) => {
+        set({ isOAuth: state });
       },
       userRole: null,
       setUserRole: (state: UserRole | null) => {

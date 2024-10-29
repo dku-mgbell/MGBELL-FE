@@ -12,11 +12,11 @@ export default function Page() {
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const { signUpInfo, setSignUpInfo } = useSignUpInfoStore();
-  const { mutate } = usePostSignUp();
+  const { mutate: postSignUpInfo } = usePostSignUp();
 
   const handleNextButtonClick = () => {
     setSignUpInfo({ ...signUpInfo, name, phoneNumber });
-    mutate({ ...signUpInfo, name, phoneNumber });
+    postSignUpInfo({ ...signUpInfo, name, phoneNumber });
   };
 
   const isInvalidPhoneNumber = (value: string) =>
