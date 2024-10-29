@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import BackButton from '@/components/button/back-button/back-button';
 import Button from '@/components/button/text-button/button';
 import BagIcon from '@/assets/svg/BagIcon';
+import ProductInfoContainer from '@/components/product/product-info-container/product-info-container';
 
 import * as styles from './styles.css';
 
@@ -16,7 +17,18 @@ export default function Page() {
 
   if (isLoading) return <> </>;
 
-  const { storeName, bagName, description } = data!;
+  const {
+    storeName,
+    bagName,
+    description,
+    onSale,
+    amount,
+    address,
+    salePrice,
+    costPrice,
+    startAt,
+    endAt,
+  } = data!;
 
   return (
     <div className={styles.container}>
@@ -26,19 +38,28 @@ export default function Page() {
       </header>
       <div className={styles.carousel}>carousel</div>
       <div className={styles.sheet}>
-        <div>
-          [{storeName}] {bagName}
-        </div>
+        <ProductInfoContainer
+          info={{
+            storeName,
+            onSale,
+            amount,
+            address,
+            salePrice,
+            costPrice,
+            startAt,
+            endAt,
+          }}
+        />
         <div className={styles.descriptionSection}>
           <h2 className={styles.descriptionHeader}>
-            <BagIcon />[{storeName}] 마감백 설명
+            <BagIcon />
+            {bagName}
           </h2>
           <p className={styles.description}>{description}</p>
-          <br />
+          <p className={styles.description}>
+            *위 정보를 바탕으로 주문하기를 누르면 예약이 진행됩니다.
+          </p>
         </div>
-        <p className={styles.description}>
-          *위 정보를 바탕으로 주문하기를 누르면 예약이 진행됩니다.
-        </p>
 
         <footer className={styles.footer}>
           <div>수량 선택</div>

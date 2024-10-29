@@ -25,6 +25,21 @@ export interface BagDetail extends BagInfoResponse {
   description: string;
 }
 
+export interface ProductInfoContainerProps
+  extends Omit<
+    BagInfoResponse,
+    | 'bagName'
+    | 'description'
+    | 'latitude'
+    | 'longitude'
+    | 'favorite'
+    | 'id'
+    | 'reviewCnt'
+    | 'images'
+  > {
+  reviewCnt?: number;
+}
+
 export interface BagInfoPageResponse {
   pageParams: number[];
   pages: BagInfoResponse[][];

@@ -8,7 +8,7 @@ import { useGetBagInfiniteList } from '@/hooks/query/bag/useGetBagInfiniteList';
 import { BagInfoResponse } from '@/types/bag';
 import { Intersection } from '@/components/intersection/intersection';
 import Tag from '@/components/text/tag/tag';
-import ProductInfoContainer from '@/components/product/info-container/ProductInfoContainer';
+import ProductInfoFooter from '@/components/product/product-info-footer/product-info-footer';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import Thumbnail from '../../../mocks/thumbnail.png';
 import * as styles from './styles.css';
@@ -65,7 +65,7 @@ export default function StoreList() {
                   <p className={styles.storeName}>{storeName}</p>
                 </div>
               </div>
-              <ProductInfoContainer
+              <ProductInfoFooter
                 costPrice={costPrice!}
                 salePrice={salePrice!}
                 firstRow={{

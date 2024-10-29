@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { commaizeNumber } from '@/utils/commaizeNumber';
 import * as styles from './styles.css';
 
-export default function ProductInfoContainer({
+export default function ProductInfoFooter({
   costPrice,
   salePrice,
   firstRow,

@@ -1,9 +1,7 @@
 import BottomSheet from '@/components/bottom-sheet/bottom-sheet';
 import { BagInfoResponse } from '@/types/bag';
 import Link from 'next/link';
-import MapProductInfoContainer from '../map-product-info-container/map-product-info-container';
-import TagContainer from '../tag-container/tag-container';
-import * as styles from './styles.css';
+import ProductInfoContainer from '@/components/product/product-info-container/product-info-container';
 
 export default function DetailBottomSheet({
   info: {
@@ -29,19 +27,19 @@ export default function DetailBottomSheet({
       isOpen={isOpen}
       setOpen={setOpen}
       content={
-        <Link href={`/bag/${id}`} className={styles.modalContainer}>
-          <header className={styles.modalHeader}>
-            <strong>{storeName}</strong>
-            <TagContainer info={{ onSale, amount }} />
-          </header>
-          <p className={styles.address}>{address}</p>
-          <MapProductInfoContainer
+        <Link href={`/bag/${id}`}>
+          <ProductInfoContainer
             info={{
+              storeName,
+              onSale,
+              amount,
+              address,
               salePrice,
               costPrice,
               startAt,
               endAt,
             }}
+            isPadding
           />
         </Link>
       }
