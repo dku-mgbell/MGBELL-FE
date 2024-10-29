@@ -74,6 +74,22 @@ textarea{
   }
 }
 
+* {
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 0px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #eee;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
