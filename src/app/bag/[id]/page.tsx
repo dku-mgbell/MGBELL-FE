@@ -32,6 +32,7 @@ export default function Page() {
     endAt,
     images,
     favorite,
+    reviewCnt,
   } = data!;
 
   return (
@@ -55,6 +56,7 @@ export default function Page() {
             startAt,
             endAt,
           }}
+          reviewButton={{ bagId, reviewCnt }}
         />
         <div className={styles.descriptionSection}>
           <h2 className={styles.descriptionHeader}>
@@ -72,7 +74,7 @@ export default function Page() {
           <Button
             value="주문하기"
             onClick={() => {
-              route.push(`order/${bagId}`);
+              route.push(`order?id=${bagId}`);
             }}
             className={styles.orderButton}
           />

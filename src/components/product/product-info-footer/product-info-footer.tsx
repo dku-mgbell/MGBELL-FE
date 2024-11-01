@@ -14,12 +14,12 @@ export default function ProductInfoFooter({
   salePrice: number;
   firstRow: {
     icon: ReactNode;
-    text: string;
+    text: string | ReactNode;
     color?: 'black';
   };
   secondRow: {
     icon: ReactNode;
-    text: string;
+    text: string | ReactNode;
     color?: 'black';
   };
   rowGap?: number;

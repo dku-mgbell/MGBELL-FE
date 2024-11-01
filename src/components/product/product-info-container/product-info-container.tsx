@@ -15,9 +15,11 @@ export default function ProductInfoContainer({
     endAt,
   },
   isPadding,
+  reviewButton,
 }: {
   info: ProductInfoContainerProps;
   isPadding?: boolean;
+  reviewButton?: { bagId: number; reviewCnt: number };
 }) {
   return (
     <div className={styles.container({ isPadding })}>
@@ -33,6 +35,7 @@ export default function ProductInfoContainer({
           startAt,
           endAt,
         }}
+        reviewButton={reviewButton}
       />
     </div>
   );
