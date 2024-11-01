@@ -62,4 +62,14 @@ export const footer = style({
   width: '100vw',
   padding: '10px 1.2rem',
   backgroundColor: colors.white,
+  gap: 10,
+});
+
+export const numberInput = style({
+  width: 'calc(50% - 10px)',
+  maxWidth: 180,
+});
+
+export const orderButton = style({
+  flex: 1,
 });

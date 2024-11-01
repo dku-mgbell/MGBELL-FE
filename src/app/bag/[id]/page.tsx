@@ -7,9 +7,9 @@ import Button from '@/components/button/text-button/button';
 import BagIcon from '@/assets/svg/BagIcon';
 import ProductInfoContainer from '@/components/product/product-info-container/product-info-container';
 import Carousel from '@/components/carousel/carousel';
-
-import * as styles from './styles.css';
+import NumberInput from '@/components/input/number/number-input';
 import FavoriteButton from './(componets)/favorite-button/favorite-button';
+import * as styles from './styles.css';
 
 export default function Page() {
   const params = useParams();
@@ -68,12 +68,13 @@ export default function Page() {
         </div>
 
         <footer className={styles.footer}>
-          <div>수량 선택</div>
+          <NumberInput className={styles.numberInput} />
           <Button
             value="주문하기"
             onClick={() => {
               route.push(`order/${bagId}`);
             }}
+            className={styles.orderButton}
           />
         </footer>
       </div>
