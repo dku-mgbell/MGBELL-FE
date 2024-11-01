@@ -6,6 +6,7 @@ import { UserRole } from '@/types/user';
 import { OwnerImage, UserImage } from '@/assets/images/sign-up/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
+import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import { userStyles } from './styles.css';
 
@@ -14,23 +15,24 @@ function SignUpPageContent() {
   const { signUpInfo, setSignUpInfo } = useSignUpInfoStore();
   const route = useRouter();
   const searchParams = useSearchParams();
+  const { isOAuth, setIsOAuth } = useAuthStore();
 
   const handleButtonClick = (e: ChangeEvent<HTMLInputElement>) => {
     setUserRole(e.target.value as UserRole);
   };
 
   useEffect(() => {
-    if (searchParams.get('accessToken')) {
-      localStorage.setItem('accessToken', searchParams.get('accessToken')!);
+    if (searchParams.get('oAuth')) {
+      setIsOAuth(true);
     }
-  }, []);
+  }, [searchParams]);
 
   return (
     <StepsLayout
       title="어떤 목적으로 마감벨을 사용하시나요?"
       isNextStepAllowed={!!userRole}
       onNextStep={() => {
-        route.push('/sign-up/email');
+        route.push(isOAuth ? '/sign-up/info' : '/sign-up/email');
         setSignUpInfo({ ...signUpInfo, userRole });
       }}
     >

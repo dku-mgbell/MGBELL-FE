@@ -2,7 +2,7 @@ import { useRouter } from 'next/navigation';
 import { useAuthStore } from './stores/useAuthStore';
 
 export const useAuth = () => {
-  const { setIsLoggedIn, setUserRole } = useAuthStore();
+  const { setIsLoggedIn, setUserRole, setIsOAuth } = useAuthStore();
   const route = useRouter();
 
   const isLoggedIn =
@@ -15,7 +15,20 @@ export const useAuth = () => {
     localStorage.removeItem('refreshToken');
     setIsLoggedIn(false);
     setUserRole(null);
+    setIsOAuth(false);
     route.push('/login');
+  };
+
+  const setToken = ({ accessToken }: { accessToken: string }) => {
+    localStorage.setItem('accessToken', accessToken);
+  };
+
+  const oAuthLogin = ({ accessToken }: { accessToken?: string }) => {
+    if (accessToken) setToken({ accessToken });
+    setIsLoggedIn(true);
+    route.push('/');
+    // localStorage.setItem('refreshToken', refreshToken);
+    // setUserRole(role);
   };
 
   const redirectLoginPage = () => {
@@ -23,5 +36,5 @@ export const useAuth = () => {
     if (!isLoggedIn) route.push('/login');
   };
 
-  return { logout, redirectLoginPage, isLoggedIn };
+  return { logout, oAuthLogin, redirectLoginPage, isLoggedIn, setToken };
 };

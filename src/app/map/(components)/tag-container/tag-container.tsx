@@ -10,7 +10,7 @@ export default function TagContainer({
   return (
     <div className={styles.tagContainer}>
       <Tag
-        content={onSale ? '영업 중' : '영업 종료'}
+        content={onSale ? '예약가능' : '예약불가'}
         theme={onSale ? 'primary' : 'gray'}
       />
       <Tag

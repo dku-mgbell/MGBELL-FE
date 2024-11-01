@@ -11,4 +11,8 @@ export const User = {
     const response = await API.post('/user/signup', data);
     return response.data;
   },
+  async oAuthSignUp(data: Omit<SignUpInfo, 'email'>) {
+    const response = await API.patch('/oauth/signup', data);
+    return response.data;
+  },
 };

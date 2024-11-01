@@ -8,7 +8,7 @@ export default function BackButton() {
     <IconButton
       style={{
         position: 'absolute',
-        left: 25,
+        left: 15,
         top: 10,
         zIndex: 999,
         width: 39,

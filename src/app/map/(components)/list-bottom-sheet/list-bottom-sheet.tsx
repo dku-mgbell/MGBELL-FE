@@ -6,9 +6,9 @@ import { Intersection } from '@/components/intersection/intersection';
 import Thumbnail from '@/mocks/thumbnail.png';
 import { BagInfoResponse as StoreInfoResponse } from '@/types/bag';
 import { useGetBagInfiniteList } from '@/hooks/query/bag/useGetBagInfiniteList';
+import ProductInfoFooter from '@/components/product/product-info-container/(components)/footer';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import * as styles from './styles.css';
-import MapProductInfoContainer from '../map-product-info-container/map-product-info-container';
 import TagContainer from '../tag-container/tag-container';
 import ListShowButton from '../list-show-button/list-show-button';
 
@@ -82,7 +82,7 @@ export default function ListBottomSheet({
                           }}
                         />
                       </div>
-                      <MapProductInfoContainer
+                      <ProductInfoFooter
                         info={{
                           salePrice,
                           costPrice,

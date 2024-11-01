@@ -1,4 +1,5 @@
 import { API_BASE_URL } from '@/constant';
+import Image from '@/mocks/thumbnail.png';
 import { http, HttpResponse } from 'msw';
 
 export const handlers = [
@@ -95,6 +96,27 @@ export const handlers = [
       numberOfElements: 1,
       first: true,
       empty: false,
+    });
+  }),
+  http.get(`${API_BASE_URL}post/1`, () => {
+    return HttpResponse.json({
+      storeId: 1,
+      storeName: '달콤한 디저트',
+      bagName: '김씨네 맛좋은 랜덤빵',
+      description:
+        '소금빵, 타르트, 마들렌 등이 담길 가능성이 있는 랜덤이츠 박스입니다. 랜덤이츠박스에는 어떤 빵이 들어갈지 모릅니다!  천연 발효된 재료로 따끈따끈한 빵을 맛보세요! ',
+      favorite: true,
+      reviewCnt: 0,
+      address: '경기 용인시 기흥구 죽전로15번길 7-18 1층',
+      longitude: '127.1091074',
+      latitude: '37.3213682',
+      onSale: true,
+      amount: 5,
+      startAt: '18:00',
+      endAt: '20:00',
+      costPrice: 12900,
+      salePrice: 6900,
+      images: [Image.src, Image.src],
     });
   }),
 ];
