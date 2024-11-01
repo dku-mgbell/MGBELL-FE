@@ -27,4 +27,5 @@ globalStyle(`${buttonContainer} span`, {
 globalStyle(`${buttonContainer} button`, {
   color: '#7F7F7F',
   fontSize: 20,
+  width: '30%',
 });
