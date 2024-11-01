@@ -9,6 +9,7 @@ import ProductInfoContainer from '@/components/product/product-info-container/pr
 import Carousel from '@/components/carousel/carousel';
 
 import * as styles from './styles.css';
+import FavoriteButton from './(componets)/favorite-button/favorite-button';
 
 export default function Page() {
   const params = useParams();
@@ -30,13 +31,14 @@ export default function Page() {
     startAt,
     endAt,
     images,
+    favorite,
   } = data!;
 
   return (
     <div className={styles.container}>
       <header className={styles.header}>
         <BackButton />
-        <button type="button">favorite</button>
+        <FavoriteButton isActive={favorite} />
       </header>
       <div className={styles.carousel}>
         <Carousel images={images} />

@@ -105,7 +105,7 @@ export const handlers = [
       bagName: '김씨네 맛좋은 랜덤빵',
       description:
         '소금빵, 타르트, 마들렌 등이 담길 가능성이 있는 랜덤이츠 박스입니다. 랜덤이츠박스에는 어떤 빵이 들어갈지 모릅니다!  천연 발효된 재료로 따끈따끈한 빵을 맛보세요! ',
-      favorite: false,
+      favorite: true,
       reviewCnt: 0,
       address: '경기 용인시 기흥구 죽전로15번길 7-18 1층',
       longitude: '127.1091074',
