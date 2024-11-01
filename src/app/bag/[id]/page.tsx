@@ -6,6 +6,7 @@ import BackButton from '@/components/button/back-button/back-button';
 import Button from '@/components/button/text-button/button';
 import BagIcon from '@/assets/svg/BagIcon';
 import ProductInfoContainer from '@/components/product/product-info-container/product-info-container';
+import Carousel from '@/components/carousel/carousel';
 
 import * as styles from './styles.css';
 
@@ -28,6 +29,7 @@ export default function Page() {
     costPrice,
     startAt,
     endAt,
+    images,
   } = data!;
 
   return (
@@ -36,7 +38,9 @@ export default function Page() {
         <BackButton />
         <button type="button">favorite</button>
       </header>
-      <div className={styles.carousel}>carousel</div>
+      <div className={styles.carousel}>
+        <Carousel images={images} />
+      </div>
       <div className={styles.sheet}>
         <ProductInfoContainer
           info={{

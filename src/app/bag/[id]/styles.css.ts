@@ -15,6 +15,7 @@ export const header = style({
   justifyContent: 'end',
   width: '100vw',
   padding: '10px 25px 0 0',
+  zIndex: 999,
 });
 
 export const carousel = style({

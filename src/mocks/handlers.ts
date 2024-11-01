@@ -1,4 +1,5 @@
 import { API_BASE_URL } from '@/constant';
+import Image from '@/mocks/thumbnail.png';
 import { http, HttpResponse } from 'msw';
 
 export const handlers = [
@@ -115,7 +116,7 @@ export const handlers = [
       endAt: '20:00',
       costPrice: 12900,
       salePrice: 6900,
-      images: [],
+      images: [Image.src, Image.src],
     });
   }),
 ];
