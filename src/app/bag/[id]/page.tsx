@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useGetBagDetail } from '@/hooks/query/bag/useGetBagDetail';
 import { useParams, useRouter } from 'next/navigation';
 import BackButton from '@/components/button/back-button/back-button';
@@ -7,7 +8,9 @@ import Button from '@/components/button/text-button/button';
 import BagIcon from '@/assets/svg/BagIcon';
 import ProductInfoContainer from '@/components/product/product-info-container/product-info-container';
 import Carousel from '@/components/carousel/carousel';
+import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
 import NumberInput from '@/components/input/number/number-input';
+import { useNumberInputStore } from '@/hooks/stores/useNumberInputStore';
 import FavoriteButton from './(componets)/favorite-button/favorite-button';
 import * as styles from './styles.css';
 
@@ -16,6 +19,12 @@ export default function Page() {
   const route = useRouter();
   const bagId = Number(params.id);
   const { data, isLoading } = useGetBagDetail(bagId);
+  const { number: numberInputData } = useNumberInputStore();
+  const { bagAmount, setBagAmount } = useBagOrderState();
+
+  useEffect(() => {
+    setBagAmount(numberInputData);
+  }, [numberInputData]);
 
   if (isLoading) return <> </>;
 
@@ -70,11 +79,11 @@ export default function Page() {
         </div>
 
         <footer className={styles.footer}>
-          <NumberInput className={styles.numberInput} />
+          <NumberInput className={styles.numberInput} maxSize={amount} />
           <Button
             value="주문하기"
             onClick={() => {
-              route.push(`order/${bagId}`);
+              if (bagAmount > 0) route.push(`order/${bagId}`);
             }}
             className={styles.orderButton}
           />
