@@ -14,7 +14,7 @@ import * as styles from './styles.css';
 export default function Page() {
   const params = useParams();
   const route = useRouter();
-  const bagId = Number(params.id);
+  const bagId = Number(params.id) ?? 0;
   const { data, isLoading } = useGetBagDetail(bagId);
 
   if (isLoading) return <> </>;

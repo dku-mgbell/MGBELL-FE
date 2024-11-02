@@ -2,7 +2,7 @@ import ChevronLeftIcon from '@/assets/svg/ChevronLeftIcon';
 import { useRouter } from 'next/navigation';
 import IconButton from '../icon-button/button';
 
-export default function BackButton() {
+export default function BackButton({ link }: { link?: string }) {
   const route = useRouter();
   return (
     <IconButton
@@ -15,7 +15,11 @@ export default function BackButton() {
         height: 39,
       }}
       onClick={() => {
-        route.back();
+        if (link) {
+          route.push(link);
+        } else {
+          route.back();
+        }
       }}
       icon={<ChevronLeftIcon width={18} height={17} />}
     />
