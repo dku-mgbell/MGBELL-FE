@@ -7,13 +7,13 @@ import * as styles from './styles.css';
 
 export default function Page() {
   const route = useRouter();
-  const { id } = useParams();
+  const params = useParams();
 
   return (
     <StepsLayout
       buttonContent="확인"
       onNextStep={() => {
-        route.push(`/bag/order/info?id=${id}`);
+        route.push(`/bag/order/info/${params.id}`);
       }}
     >
       <div className={styles.sheet}>

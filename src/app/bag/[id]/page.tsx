@@ -14,7 +14,7 @@ import * as styles from './styles.css';
 export default function Page() {
   const params = useParams();
   const route = useRouter();
-  const bagId = Number(params.id) ?? 0;
+  const bagId = Number(params.id);
   const { data, isLoading } = useGetBagDetail(bagId);
 
   if (isLoading) return <> </>;
@@ -74,7 +74,7 @@ export default function Page() {
           <Button
             value="주문하기"
             onClick={() => {
-              route.push(`order?id=${bagId}`);
+              route.push(`order/${bagId}`);
             }}
             className={styles.orderButton}
           />
