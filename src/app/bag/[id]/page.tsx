@@ -44,13 +44,14 @@ export default function Page() {
     images,
     favorite,
     reviewCnt,
+    storeId,
   } = data!;
 
   return (
     <div className={styles.container}>
       <header className={styles.header}>
         <BackButton />
-        <FavoriteButton isActive={favorite} />
+        <FavoriteButton isActive={favorite} storeId={storeId} />
       </header>
       <div className={styles.carousel}>
         <Carousel images={images} />
