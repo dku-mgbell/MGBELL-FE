@@ -1,9 +1,20 @@
-import { OrderInfo } from '@/types/order';
+import { OrderInfo, UserOrderDetail } from '@/types/order';
+import { PageParams } from '@/types/api';
 import { API } from '.';
 
 export const Order = {
   async register(data: OrderInfo) {
     const response = await API.post('/order/user', data);
     return response.data;
+  },
+  async getInfiniteList({
+    page,
+    size,
+  }: PageParams): Promise<UserOrderDetail[]> {
+    const response = await API.get(
+      `/order/user/list?page=${page}&size=${size}`,
+    );
+    const list = (await response.data.content) as UserOrderDetail[];
+    return list;
   },
 };

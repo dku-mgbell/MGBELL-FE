@@ -21,7 +21,8 @@ export default function Button({
     | 'secondary'
     | 'inactive-primary'
     | 'inactive-secondary'
-    | 'light-yellow';
+    | 'light-yellow'
+    | 'outline-secondary';
   size?: 'full' | 'fit';
   rounded?: 'md' | 'lg';
   shadow?: boolean;

@@ -4,7 +4,9 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/useAuth';
+import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import SearchInput from '@/components/input/search/search-input';
+import { UserRole } from '@/types/user';
 import FilterIcon from '../assets/svg/FilterIcon';
 import LocationMarkerIcon from '../assets/svg/LocationMarkerIcon';
 import { container, styles } from './styles.css';
@@ -12,12 +14,22 @@ import SortContainer from './(components)/sort-container/sort-container';
 import StoreList from './(components)/store-list/store-list';
 
 export default function Page({
-  searchParams: { sort, accessToken, isNewUser },
+  searchParams: { sort, accessToken, isNewUser, userRole },
 }: {
-  searchParams: { sort: string; accessToken: string; isNewUser: string };
+  searchParams: {
+    sort: string;
+    accessToken: string;
+    isNewUser: string;
+    userRole: UserRole;
+  };
 }) {
+  const { setUserRole } = useAuthStore();
   const { setToken, oAuthLogin, logout } = useAuth();
   const route = useRouter();
+
+  useEffect(() => {
+    if (userRole) setUserRole(userRole);
+  }, [userRole]);
 
   useEffect(() => {
     if (isNewUser === 'true') {

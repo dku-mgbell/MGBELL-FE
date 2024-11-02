@@ -26,6 +26,11 @@ export const button = recipe({
         fontSize: 14,
         padding: '10px 0',
       },
+      'outline-secondary': {
+        border: `1px solid ${colors.secondary}`,
+        color: colors.secondary,
+        fontSize: 13,
+      },
     },
     size: {
       full: { width: '100%' },
