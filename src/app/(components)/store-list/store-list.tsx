@@ -58,7 +58,10 @@ export default function StoreList() {
                         content={onSale ? '예약 가능' : '예약 불가능'}
                         theme={onSale ? 'default' : 'gray'}
                       />
-                      <Tag content={`${amount ?? 0}개 남음`} theme="white" />
+                      <Tag
+                        content={amount > 0 ? `${amount}개 남음` : '재고 없음'}
+                        theme={amount > 0 ? 'white' : 'gray'}
+                      />
                     </div>
                     {favorite ? <LikeIcon /> : <LikeIcon off />}
                   </div>

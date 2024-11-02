@@ -23,4 +23,8 @@ export const styles = {
     overflow: 'hidden',
     padding: 10,
   }),
+  content: style({
+    padding: '1rem',
+    fontSize: 17,
+  }),
 };

@@ -10,6 +10,7 @@ import ProductInfoContainer from '@/components/product/product-info-container/pr
 import Carousel from '@/components/carousel/carousel';
 import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
 import NumberInput from '@/components/input/number/number-input';
+import useModal from '@/hooks/useModal';
 import { useNumberInputStore } from '@/hooks/stores/useNumberInputStore';
 import FavoriteButton from './(componets)/favorite-button/favorite-button';
 import * as styles from './styles.css';
@@ -21,6 +22,7 @@ export default function Page() {
   const { data, isLoading } = useGetBagDetail(bagId);
   const { number: numberInputData } = useNumberInputStore();
   const { bagAmount, setBagAmount } = useBagOrderState();
+  const { open } = useModal();
 
   useEffect(() => {
     setBagAmount(numberInputData);
@@ -83,7 +85,11 @@ export default function Page() {
           <Button
             value="주문하기"
             onClick={() => {
-              if (bagAmount > 0) route.push(`order/${bagId}`);
+              if (data!.amount > 0 && bagAmount > 0) {
+                route.push(`order/${bagId}`);
+              } else {
+                open({ content: '수량을 선택해주세요' });
+              }
             }}
             className={styles.orderButton}
           />

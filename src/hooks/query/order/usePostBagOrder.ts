@@ -8,7 +8,7 @@ export const usePostBagOrder = () => {
   return useMutation({
     mutationFn: (data: OrderInfo) => Order.register(data),
     onSuccess: () => {
-      route.push('/order/success');
+      route.push('/bag/order/success');
     },
   });
 };
