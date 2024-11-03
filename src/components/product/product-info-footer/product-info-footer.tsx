@@ -9,21 +9,23 @@ export default function ProductInfoFooter({
   secondRow,
   rowGap,
   noPadding,
+  priceStyle,
 }: {
-  costPrice: number;
+  costPrice?: number;
   salePrice: number;
   firstRow: {
-    icon: ReactNode;
+    icon?: ReactNode;
     text: string | ReactNode;
     color?: 'black';
   };
   secondRow: {
-    icon: ReactNode;
+    icon?: ReactNode;
     text: string | ReactNode;
     color?: 'black';
   };
   rowGap?: number;
   noPadding?: boolean;
+  priceStyle?: React.CSSProperties;
 }) {
   return (
     <div
@@ -36,7 +38,7 @@ export default function ProductInfoFooter({
           {firstRow.text}
         </p>
         <s className={styles.text({ color: 'gray' })}>
-          ₩ {commaizeNumber(costPrice!)}원
+          {costPrice && `₩ ${commaizeNumber(costPrice!)}원`}
         </s>
       </div>
       <div className={styles.flexRowBetween}>
@@ -44,7 +46,7 @@ export default function ProductInfoFooter({
           {secondRow.icon}
           {secondRow.text}
         </p>
-        <p className={styles.text({ color: 'red' })}>
+        <p className={styles.text({ color: 'red' })} style={priceStyle}>
           ₩ {commaizeNumber(salePrice!)}원
         </p>
       </div>

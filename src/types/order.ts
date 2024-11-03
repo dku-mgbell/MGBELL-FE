@@ -6,7 +6,7 @@ export interface OrderInfo {
   payment: 'SPOT';
 }
 
-export interface UserOrderDetail {
+export interface UserOrderDetailPreview {
   orderId: number;
   postId: number;
   orderDateTime: string;
@@ -16,6 +16,15 @@ export interface UserOrderDetail {
   amount: number;
   subTotal: number;
   images: string;
+}
+
+export interface UserOrderDetail extends UserOrderDetailPreview {
+  storeId: number;
+  address: string;
+  payment: string;
+  pickupTime: string;
+  request: string;
+  cancelReason: string;
 }
 
 export type OrderState =

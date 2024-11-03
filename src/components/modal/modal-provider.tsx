@@ -9,7 +9,7 @@ import { styles } from './styles.css';
 export default function ModalProvider({ children }: { children: ReactNode }) {
   const [portalElement, setPortalElement] = useState<HTMLElement | null>(null);
   const {
-    modalState: { visible, content },
+    modalState: { visible, content, confirmEvent },
   } = useModalStateStore();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function ModalProvider({ children }: { children: ReactNode }) {
     ? createPortal(
         <>
           <div className={styles.wrapper}>
-            <Modal content={content} />
+            <Modal content={content} confirmEvent={confirmEvent} />
           </div>
           {children}
         </>,

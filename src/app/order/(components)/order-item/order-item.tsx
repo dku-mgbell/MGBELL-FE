@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { OrderStateName, UserOrderDetail } from '@/types/order';
+import { OrderStateName, UserOrderDetailPreview } from '@/types/order';
 import { formatDate } from '@/utils/formatDate';
 import { commaizeNumber } from '@/utils/commaizeNumber';
 import Button from '@/components/button/text-button/button';
@@ -7,7 +7,6 @@ import ChevronRightIcon from '@/assets/svg/ChevronRightIcon';
 import * as styles from './styles.css';
 
 export default function OrderItem({
-  /* TODO API 이미지, 마감백 아이디 */
   data: {
     orderId,
     postId,
@@ -20,7 +19,7 @@ export default function OrderItem({
     images,
   },
 }: {
-  data: UserOrderDetail;
+  data: UserOrderDetailPreview;
 }) {
   return (
     <div className={styles.container}>

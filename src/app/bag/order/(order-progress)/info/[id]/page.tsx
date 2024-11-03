@@ -11,8 +11,9 @@ import Textarea from '@/components/input/textarea/textarea';
 import MessageIcon from '@/assets/svg/MessageIcon';
 import CardIcon from '@/assets/svg/CardIcon';
 import BagIcon from '@/assets/svg/BagIcon';
-import * as styles from './(components)/input-section/styles.css';
-import InputSection from './(components)/input-section/input-section';
+import * as styles from '@/components/input-section/styles.css';
+import InputSection from '@/components/input-section/input-section';
+import OrderDetailTable from '@/components/order-detail-table/order-detail-table';
 
 export default function Page() {
   const params = useParams();
@@ -82,14 +83,7 @@ export default function Page() {
         />
       </InputSection>
       <InputSection title="주문상세" icon={<BagIcon color="black" />} border>
-        <div className={styles.orderTable}>
-          {Object.entries(orderData).map(([key, value]) => (
-            <div key={key} className={styles.tableRow}>
-              <p className={styles.tableKey}>{key}</p>
-              <p className={styles.tableValue}>{value}</p>
-            </div>
-          ))}
-        </div>
+        <OrderDetailTable orderData={orderData} />
       </InputSection>
       <p className={styles.message}>
         주문 내역은 마이페이지에서 확인 가능합니다.

@@ -22,7 +22,8 @@ export default function Button({
     | 'inactive-primary'
     | 'inactive-secondary'
     | 'light-yellow'
-    | 'outline-secondary';
+    | 'outline-secondary'
+    | 'outline-gray';
   size?: 'full' | 'fit';
   rounded?: 'md' | 'lg';
   shadow?: boolean;

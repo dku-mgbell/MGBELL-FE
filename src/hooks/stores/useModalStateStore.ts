@@ -9,12 +9,14 @@ type ModalState = {
 type Modal = {
   visible: boolean;
   content: ReactNode;
+  confirmEvent?: () => void;
 };
 
 export const useModalStateStore = create<ModalState>((set) => ({
   modalState: {
     visible: false,
     content: null,
+    confirmEvent: undefined,
   },
   setModalState: (state: Modal) => set({ modalState: state }),
 }));

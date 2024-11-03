@@ -1,5 +1,6 @@
 import { borderRadius } from '@/styles/constant';
-import { style } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
+import { buttonContainer } from '../input/number/styles.css';
 
 export const styles = {
   wrapper: style({
@@ -14,6 +15,10 @@ export const styles = {
     alignItems: 'center',
     zIndex: 999,
   }),
+  buttonContainer: style({
+    display: 'flex',
+    gap: 15,
+  }),
   container: style({
     maxWidth: 390,
     width: '90vw',
@@ -21,10 +26,18 @@ export const styles = {
     backgroundColor: 'white',
     borderRadius: borderRadius.md,
     overflow: 'hidden',
-    padding: 10,
+    padding: 15,
   }),
   content: style({
     padding: '1rem',
     fontSize: 17,
+    minHeight: '4rem',
+    display: 'flex',
+    alignItems: 'center',
+    color: '#222',
   }),
 };
+
+globalStyle(`${buttonContainer} button`, {
+  flex: 1,
+});

@@ -4,8 +4,19 @@ import useModal from '@/hooks/useModal';
 import Button from '../button/text-button/button';
 import { styles } from './styles.css';
 
-export default function Modal({ content }: { content: ReactNode }) {
+export default function Modal({
+  content,
+  confirmEvent,
+}: {
+  content: ReactNode;
+  confirmEvent?: () => void;
+}) {
   const { close } = useModal();
+
+  const handleConfirmButtonClick = () => {
+    if (confirmEvent) confirmEvent();
+    close();
+  };
 
   return (
     <motion.div
@@ -33,7 +44,16 @@ export default function Modal({ content }: { content: ReactNode }) {
     >
       <div>
         <div className={styles.content}>{content}</div>
-        <Button value="닫기" onClick={close} />
+        <div className={styles.buttonContainer}>
+          <Button
+            value="닫기"
+            onClick={close}
+            theme={confirmEvent ? 'inactive-primary' : 'primary'}
+          />
+          {confirmEvent && (
+            <Button value="확인" onClick={handleConfirmButtonClick} />
+          )}
+        </div>
       </div>
     </motion.div>
   );

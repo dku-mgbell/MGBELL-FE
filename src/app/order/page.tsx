@@ -4,14 +4,14 @@ import { Intersection } from '@/components/intersection/intersection';
 import HeaderLayout from '@/components/layout/header-layout/header-layout';
 import { useGetUserOrderList } from '@/hooks/query/order/useGetUserOrderList';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
-import { UserOrderDetail } from '@/types/order';
+import { UserOrderDetailPreview } from '@/types/order';
 import OrderItem from './(components)/order-item/order-item';
 import * as styles from './styles.css';
 
 export default function Page() {
   const bagListState = useGetUserOrderList({ size: 3 });
   const { list, intersection, isFetching } =
-    useInfiniteScroll<UserOrderDetail>(bagListState);
+    useInfiniteScroll<UserOrderDetailPreview>(bagListState);
 
   if (isFetching) return <> </>;
   return (

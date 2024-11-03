@@ -4,12 +4,18 @@ import { useModalStateStore } from './stores/useModalStateStore';
 export default function useModal() {
   const { setModalState } = useModalStateStore();
 
-  const open = ({ content }: { content: ReactNode }) => {
-    setModalState({ visible: true, content });
+  const open = ({
+    content,
+    confirmEvent,
+  }: {
+    content: ReactNode;
+    confirmEvent?: () => void;
+  }) => {
+    setModalState({ visible: true, content, confirmEvent });
   };
 
   const close = () => {
-    setModalState({ visible: false, content: null });
+    setModalState({ visible: false, content: null, confirmEvent: () => {} });
   };
 
   return { open, close };
