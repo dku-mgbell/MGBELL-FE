@@ -20,4 +20,5 @@ export const tableKey = style({
 export const tableValue = style({
   color: '#5A5A5A',
   flex: 1,
+  lineBreak: 'anywhere',
 });

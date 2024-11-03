@@ -15,75 +15,71 @@ import * as styles from './styles.css';
 
 export default function StoreList() {
   const bagListState = useGetBagInfiniteList({ size: 5 });
-  const { list, intersection, isFetching } =
+  const { list, intersection, isLoading } =
     useInfiniteScroll<BagInfoResponse>(bagListState);
+
+  if (isLoading) return <> </>;
 
   return (
     <main className={styles.main}>
-      {!isFetching &&
-        list!.map(
-          ({
-            id,
-            amount,
-            favorite,
-            costPrice,
-            salePrice,
-            storeName,
-            bagName,
-            onSale,
-            startAt,
-            endAt,
-          }) => (
-            <Link href={`/bag/${id}`} key={id}>
-              <div className={styles.thumbWrapper}>
-                <div className={styles.thumbGrid}>
-                  <img src={Thumbnail.src} className={styles.imageLeft} />
-                  <img src={Thumbnail.src} className={styles.imageTopRight} />
-                  <img
-                    src={Thumbnail.src}
-                    className={styles.imageBottomRight}
-                  />
-                </div>
-                <div className={styles.thumbContainer}>
-                  <div
-                    className={common.flexBox({
-                      direction: 'row',
-                      justify: 'between',
-                    })}
-                  >
-                    <div
-                      className={common.flexBox({ direction: 'row', gap: 5 })}
-                    >
-                      <Tag
-                        content={onSale ? '예약 가능' : '예약 불가능'}
-                        theme={onSale ? 'default' : 'gray'}
-                      />
-                      <Tag
-                        content={amount > 0 ? `${amount}개 남음` : '재고 없음'}
-                        theme={amount > 0 ? 'white' : 'gray'}
-                      />
-                    </div>
-                    {favorite ? <LikeIcon /> : <LikeIcon off />}
-                  </div>
-                  <p className={styles.storeName}>{storeName}</p>
-                </div>
+      {list!.map(
+        ({
+          id,
+          amount,
+          favorite,
+          costPrice,
+          salePrice,
+          storeName,
+          bagName,
+          onSale,
+          startAt,
+          endAt,
+        }) => (
+          <Link href={`/bag/${id}`} key={id}>
+            <div className={styles.thumbWrapper}>
+              <div className={styles.thumbGrid}>
+                <img src={Thumbnail.src} className={styles.imageLeft} />
+                <img src={Thumbnail.src} className={styles.imageTopRight} />
+                <img src={Thumbnail.src} className={styles.imageBottomRight} />
               </div>
-              <ProductInfoFooter
-                costPrice={costPrice!}
-                salePrice={salePrice!}
-                firstRow={{
-                  icon: <ShoppingIcon color={colors.black} />,
-                  text: bagName ?? '',
-                  color: 'black',
-                }}
-                secondRow={{
-                  icon: <TimeIcon />,
-                  text: `${startAt} ~ ${endAt}`,
-                }}
-              />
-            </Link>
-          ),
-        )}
+              <div className={styles.thumbContainer}>
+                <div
+                  className={common.flexBox({
+                    direction: 'row',
+                    justify: 'between',
+                  })}
+                >
+                  <div className={common.flexBox({ direction: 'row', gap: 5 })}>
+                    <Tag
+                      content={onSale ? '예약 가능' : '예약 불가능'}
+                      theme={onSale ? 'default' : 'gray'}
+                    />
+                    <Tag
+                      content={amount > 0 ? `${amount}개 남음` : '재고 없음'}
+                      theme={amount > 0 ? 'white' : 'gray'}
+                    />
+                  </div>
+                  {favorite ? <LikeIcon /> : <LikeIcon off />}
+                </div>
+                <p className={styles.storeName}>{storeName}</p>
+              </div>
+            </div>
+            <ProductInfoFooter
+              costPrice={costPrice!}
+              salePrice={salePrice!}
+              firstRow={{
+                icon: <ShoppingIcon color={colors.black} />,
+                text: bagName ?? '',
+                color: 'black',
+              }}
+              secondRow={{
+                icon: <TimeIcon />,
+                text: `${startAt} ~ ${endAt}`,
+              }}
+            />
+          </Link>
+        ),
+      )}
       <Intersection ref={intersection} />
     </main>
   );

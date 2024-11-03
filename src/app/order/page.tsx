@@ -9,11 +9,12 @@ import OrderItem from './(components)/order-item/order-item';
 import * as styles from './styles.css';
 
 export default function Page() {
-  const bagListState = useGetUserOrderList({ size: 3 });
-  const { list, intersection, isFetching } =
+  const bagListState = useGetUserOrderList({ size: 5 });
+  const { list, intersection, isLoading } =
     useInfiniteScroll<UserOrderDetailPreview>(bagListState);
 
-  if (isFetching) return <> </>;
+  if (isLoading) return <> </>;
+
   return (
     <HeaderLayout title="주문내역">
       <div className={styles.container}>

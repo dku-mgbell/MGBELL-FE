@@ -20,7 +20,7 @@ export const Order = {
     size,
   }: PageParams): Promise<UserOrderDetailPreview[]> {
     const response = await API.get(
-      `/order/user/list?page=${page}&size=${size}`,
+      `/order/user/list?page=${page}&size=${size}&sort=createdAt,desc`,
     );
     const list = (await response.data.content) as UserOrderDetailPreview[];
     return list;
