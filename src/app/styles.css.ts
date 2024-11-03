@@ -40,7 +40,7 @@ export const styles = {
     display: 'flex',
     flexDirection: 'column',
     gap: '14px',
-    padding: padding.layout,
+    padding: `10px ${padding.layoutX}`,
     paddingTop: 20,
     fontWeight: fontWeight.md,
     backgroundColor: colors.primary,

@@ -29,4 +29,5 @@ export const address = style({
   color: '#A9A9A9',
   fontSize: 16,
   marginBottom: '0.5rem',
+  textAlign: 'left',
 });

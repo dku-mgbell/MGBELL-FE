@@ -9,7 +9,7 @@ import { Pagination } from 'swiper/modules';
 
 export default function Carousel({ images }: { images: string[] }) {
   return (
-    <Swiper pagination modules={[Pagination]} className="mySwiper">
+    <Swiper pagination modules={[Pagination]} className="carousel">
       {images.map((item) => (
         <SwiperSlide key={item}>
           <div
