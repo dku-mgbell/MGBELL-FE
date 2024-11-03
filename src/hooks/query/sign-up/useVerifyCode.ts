@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 
 export const useVerifyCode = () => {
   const route = useRouter();
-  const { signUpInfo } = useSignUpInfoStore();
+  const { signUpInfo, setToken } = useSignUpInfoStore();
 
   return useMutation({
     mutationFn: (code: string) =>
@@ -14,8 +14,11 @@ export const useVerifyCode = () => {
         email: signUpInfo.email!,
         token: code,
       }),
-    onSuccess: ({ valid }: CodeVerificationResponse) => {
-      if (valid) route.push('/sign-up/password');
+    onSuccess: ({ valid, signupToken }: CodeVerificationResponse) => {
+      if (valid) {
+        route.push('/sign-up/password');
+        setToken(signupToken);
+      }
     },
   });
 };

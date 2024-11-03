@@ -14,6 +14,7 @@ import BagIcon from '@/assets/svg/BagIcon';
 import * as styles from '@/components/input-section/styles.css';
 import InputSection from '@/components/input-section/input-section';
 import OrderDetailTable from '@/components/order-detail-table/order-detail-table';
+import useModal from '@/hooks/useModal';
 
 export default function Page() {
   const params = useParams();
@@ -23,6 +24,7 @@ export default function Page() {
   const [timeError, setTimeError] = useState(false);
   const { mutate: postOrder } = usePostBagOrder();
   const [requestMessage, setRequestMessage] = useState('');
+  const { open } = useModal();
 
   if (isLoading) return <> </>;
 
@@ -36,12 +38,16 @@ export default function Page() {
 
   const handleOrderButtonClick = () => {
     if (time) {
-      postOrder({
-        storeId: data!.storeId,
-        pickupTime: time,
-        request: requestMessage,
-        amount: bagAmount,
-        payment: 'SPOT',
+      open({
+        content: '주문하시겠습니까?',
+        confirmEvent: () =>
+          postOrder({
+            storeId: data!.storeId,
+            pickupTime: time,
+            request: requestMessage,
+            amount: bagAmount,
+            payment: 'SPOT',
+          }),
       });
     } else {
       setTimeError(true);

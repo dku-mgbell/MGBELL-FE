@@ -16,7 +16,9 @@ export const Bag = {
     page,
     size,
   }: PageParams): Promise<BagInfoResponse[]> {
-    const response = await API.get(`/post/list?page=${page}&size=${size}`);
+    const response = await API.get(
+      `/post/list?page=${page}&size=${size}&sort=createdAt,desc`,
+    );
     const list = (await response.data.content) as BagInfoResponse[];
     return list;
   },

@@ -2,6 +2,7 @@ import { UserRole } from './user';
 
 export interface CodeVerificationResponse {
   valid: boolean;
+  signupToken: string;
 }
 
 export interface SignUpInfo {

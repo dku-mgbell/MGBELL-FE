@@ -10,7 +10,6 @@ import { Intersection } from '@/components/intersection/intersection';
 import Tag from '@/components/text/tag/tag';
 import ProductInfoFooter from '@/components/product/product-info-footer/product-info-footer';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
-import Thumbnail from '../../../mocks/thumbnail.png';
 import * as styles from './styles.css';
 
 export default function StoreList() {
@@ -34,13 +33,20 @@ export default function StoreList() {
           onSale,
           startAt,
           endAt,
+          images,
         }) => (
           <Link href={`/bag/${id}`} key={id}>
             <div className={styles.thumbWrapper}>
               <div className={styles.thumbGrid}>
-                <img src={Thumbnail.src} className={styles.imageLeft} />
-                <img src={Thumbnail.src} className={styles.imageTopRight} />
-                <img src={Thumbnail.src} className={styles.imageBottomRight} />
+                <img src={images[0]} className={styles.imageLeft} />
+                <img
+                  src={images[1] ?? images[0]}
+                  className={styles.imageTopRight}
+                />
+                <img
+                  src={images[2] ?? images[0]}
+                  className={styles.imageBottomRight}
+                />
               </div>
               <div className={styles.thumbContainer}>
                 <div

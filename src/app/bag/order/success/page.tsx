@@ -12,7 +12,7 @@ export default function Page() {
   useEffect(() => {
     setTimeout(() => {
       setTransition(true);
-    }, 1500);
+    }, 3000);
   }, []);
 
   return (

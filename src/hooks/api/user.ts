@@ -7,8 +7,8 @@ export const User = {
     const response = await API.post('/user/login', data);
     return response.data;
   },
-  async signUp(data: SignUpInfo) {
-    const response = await API.post('/user/signup', data);
+  async signUp(data: SignUpInfo, token: string) {
+    const response = await API.post(`/user/signup/${token}`, data);
     return response.data;
   },
   async oAuthSignUp(data: Omit<SignUpInfo, 'email'>) {

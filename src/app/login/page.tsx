@@ -20,7 +20,7 @@ export default function Page() {
           <div className={styles.linkContainer}>
             <Link href="/find/password">비밀번호 찾기</Link>
             <span> | </span>
-            <Link href="/sign-up">회원가입</Link>
+            <Link href="/sign-up">이메일 회원가입</Link>
           </div>
         </main>
         <footer className={styles.footer}>
