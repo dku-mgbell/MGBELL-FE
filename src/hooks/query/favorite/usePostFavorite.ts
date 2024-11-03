@@ -13,6 +13,9 @@ export const usePostFavorite = () => {
       await queryClient.invalidateQueries({
         queryKey: ['bag-list'],
       });
+      await queryClient.invalidateQueries({
+        queryKey: ['user-favorite-list'],
+      });
     },
   });
 };

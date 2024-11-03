@@ -14,6 +14,8 @@ export default function ProductInfoThumbContainer({
     costPrice,
     startAt,
     endAt,
+    reviewCnt,
+    id,
   },
   onClick,
 }: {
@@ -48,6 +50,7 @@ export default function ProductInfoThumbContainer({
           startAt,
           endAt,
         }}
+        reviewButton={{ reviewCnt, bagId: id }}
       />
     </div>
   );

@@ -14,6 +14,7 @@ export default function DetailBottomSheet({
     onSale,
     amount,
     id,
+    reviewCnt,
   },
   isOpen,
   setOpen,
@@ -40,6 +41,7 @@ export default function DetailBottomSheet({
               endAt,
             }}
             isPadding
+            reviewButton={{ reviewCnt, bagId: id }}
           />
         </Link>
       }

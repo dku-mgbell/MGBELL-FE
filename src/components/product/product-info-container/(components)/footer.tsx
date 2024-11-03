@@ -9,7 +9,7 @@ export default function ProductInfoFooter({
   reviewButton,
 }: {
   info: Pick<BagInfo, 'salePrice' | 'costPrice' | 'startAt' | 'endAt'>;
-  reviewButton?: { bagId: number; reviewCnt: number };
+  reviewButton: { bagId: number; reviewCnt: number };
 }) {
   return (
     <ProductInfoContainer
@@ -22,17 +22,12 @@ export default function ProductInfoFooter({
       secondRow={{
         icon: <StarIcon theme="red" />,
         text: (
-          <>
-            4.9 &nbsp;
-            {reviewButton && (
-              <ReviewButton
-                bagId={reviewButton.bagId}
-                reviewCnt={reviewButton.reviewCnt}
-              />
-            )}
-          </>
+          <ReviewButton
+            bagId={reviewButton.bagId}
+            reviewCnt={reviewButton.reviewCnt}
+          />
         ),
-      }} // TODO: 평점 제거 & 리뷰 개수 연동
+      }}
       noPadding
     />
   );

@@ -12,6 +12,7 @@ import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
 import NumberInput from '@/components/input/number/number-input';
 import useModal from '@/hooks/useModal';
 import { useNumberInputStore } from '@/hooks/stores/useNumberInputStore';
+import { useBagHistoryStore } from '@/hooks/stores/useBagHistoryStore';
 import FavoriteButton from './(componets)/favorite-button/favorite-button';
 import * as styles from './styles.css';
 
@@ -23,10 +24,20 @@ export default function Page() {
   const { number: numberInputData } = useNumberInputStore();
   const { bagAmount, setBagAmount } = useBagOrderState();
   const { open } = useModal();
+  const { bagHistory, setBagHistory } = useBagHistoryStore();
 
   useEffect(() => {
     setBagAmount(numberInputData);
   }, [numberInputData]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      setBagHistory([
+        data!,
+        ...bagHistory.filter((history) => history.storeId !== data!.storeId),
+      ]);
+    }
+  }, [isLoading]);
 
   if (isLoading) return <> </>;
 

@@ -12,18 +12,15 @@ export default function ReviewButton({
   const route = useRouter();
 
   return (
-    <>
-      |
-      <button
-        type="button"
-        className={styles.reviewButton}
-        onClick={() => {
-          route.push(`/bag/review?id=${bagId}`);
-        }}
-      >
-        리뷰 {reviewCnt}개
-        <ChevronRightIcon />
-      </button>
-    </>
+    <button
+      type="button"
+      className={styles.reviewButton}
+      onClick={() => {
+        route.push(`/bag/review?id=${bagId}`);
+      }}
+    >
+      리뷰 {reviewCnt}개
+      <ChevronRightIcon />
+    </button>
   );
 }

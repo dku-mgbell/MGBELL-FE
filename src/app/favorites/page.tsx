@@ -7,6 +7,7 @@ import { Pagination } from 'swiper/modules';
 import HeaderLayout from '@/components/layout/header-layout/header-layout';
 import { useGetUserFavoriteList } from '@/hooks/query/favorite/useGetUserFavoriteList';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
+import { useBagHistoryStore } from '@/hooks/stores/useBagHistoryStore';
 import { BagInfoResponse } from '@/types/bag';
 import { Intersection } from '@/components/intersection/intersection';
 import ProductInfoThumbContainer from '@/components/product/product-info-thumb-container/product-info-thumb-container';
@@ -23,6 +24,7 @@ export default function Page() {
     intersection,
     isLoading,
   } = useInfiniteScroll<BagInfoResponse>(bagListState);
+  const { bagHistory } = useBagHistoryStore();
 
   if (isLoading) return <> </>;
   return (
@@ -36,6 +38,9 @@ export default function Page() {
       >
         <SwiperSlide>
           <div className={styles.container}>
+            {!favoriteList!.length && (
+              <p className={styles.emptyMessage}>찜한 매장이 없어요!</p>
+            )}
             {favoriteList?.map((data) => (
               <div className={styles.listItem} key={`favorite-${data.id}`}>
                 <ProductInfoThumbContainer
@@ -47,7 +52,21 @@ export default function Page() {
           </div>
           <Intersection ref={intersection} />
         </SwiperSlide>
-        <SwiperSlide>최근</SwiperSlide>
+        <SwiperSlide>
+          <div className={styles.container}>
+            {!bagHistory.length && (
+              <p className={styles.emptyMessage}>최근 본 매장이 없어요!</p>
+            )}
+            {bagHistory?.map((data) => (
+              <div className={styles.listItem} key={`bag-history-${data.id}`}>
+                <ProductInfoThumbContainer
+                  info={data}
+                  onClick={() => route.push(`/bag/${data.id}`)}
+                />
+              </div>
+            ))}
+          </div>
+        </SwiperSlide>
       </Swiper>
     </HeaderLayout>
   );
