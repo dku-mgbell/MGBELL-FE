@@ -11,10 +11,11 @@ import Textarea from '@/components/input/textarea/textarea';
 import MessageIcon from '@/assets/svg/MessageIcon';
 import CardIcon from '@/assets/svg/CardIcon';
 import BagIcon from '@/assets/svg/BagIcon';
-import * as styles from '@/components/input-section/styles.css';
 import InputSection from '@/components/input-section/input-section';
 import OrderDetailTable from '@/components/order-detail-table/order-detail-table';
 import useModal from '@/hooks/useModal';
+import Input from '@/components/input/input';
+import * as styles from './styles.css';
 
 export default function Page() {
   const params = useParams();
@@ -66,13 +67,18 @@ export default function Page() {
         <p className={styles.pickupMessage}>
           픽업가능시간: {data?.startAt} ~ {data?.endAt}
         </p>
-        <input
-          type="time"
-          className={styles.input({ error: timeError })}
-          placeholder="픽업"
-          value={time}
-          onChange={(e) => setTime(e.target.value)}
-        />
+        <label className={styles.timeInputContainer}>
+          {time.length === 0 && (
+            <p className={styles.timeInputMessage}>시간을 선택해주세요.</p>
+          )}
+          <input
+            type="time"
+            className={styles.input({ error: timeError })}
+            placeholder="픽업"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+          />
+        </label>
       </InputSection>
       <InputSection title="요청사항" icon={<MessageIcon />}>
         <Textarea
@@ -82,11 +88,7 @@ export default function Page() {
         />
       </InputSection>
       <InputSection title="결제방법" icon={<CardIcon />}>
-        <input
-          className={styles.input()}
-          disabled
-          placeholder="현장 결제로 진행해주시면 됩니다."
-        />
+        <Input disabled placeholder="현장 결제로 진행해주시면 됩니다." />
       </InputSection>
       <InputSection title="주문상세" icon={<BagIcon color="black" />} border>
         <OrderDetailTable orderData={orderData} />

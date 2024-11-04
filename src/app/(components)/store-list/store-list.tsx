@@ -57,7 +57,7 @@ export default function StoreList() {
                 >
                   <div className={common.flexBox({ direction: 'row', gap: 5 })}>
                     <Tag
-                      content={onSale ? '예약 가능' : '예약 불가능'}
+                      content={onSale ? '예약가능' : '예약불가'}
                       theme={onSale ? 'default' : 'gray'}
                     />
                     <Tag

@@ -9,6 +9,9 @@ export const useCancelOrderByUser = () => {
       await queryClient.invalidateQueries({
         queryKey: ['user-order-detail'],
       });
+      await queryClient.invalidateQueries({
+        queryKey: ['user-order-list'],
+      });
     },
   });
 };

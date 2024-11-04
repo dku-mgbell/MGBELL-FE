@@ -10,7 +10,7 @@ export const container = style({
 });
 
 export const listItem = style({
-  marginTop: 20,
+  marginTop: 15,
 });
 
 export const emptyMessage = style({

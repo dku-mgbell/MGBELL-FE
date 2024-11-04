@@ -23,9 +23,13 @@ export default function Page({
     userRole: UserRole;
   };
 }) {
-  const { setUserRole } = useAuthStore();
+  const { setUserRole, isLoggedIn } = useAuthStore();
   const { setToken, oAuthLogin, logout } = useAuth();
   const route = useRouter();
+
+  useEffect(() => {
+    if (!isLoggedIn) route.push('/login');
+  }, [isLoggedIn]);
 
   useEffect(() => {
     if (userRole) setUserRole(userRole);
@@ -35,7 +39,7 @@ export default function Page({
     if (isNewUser === 'true') {
       route.push('/sign-up?oAuth=true');
       setToken({ accessToken });
-    } else {
+    } else if (isNewUser === 'false') {
       oAuthLogin({ accessToken });
     }
   }, [isNewUser]);

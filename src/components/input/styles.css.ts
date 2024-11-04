@@ -14,6 +14,9 @@ export const input = recipe({
     '::placeholder': {
       color: colors.lightGray150,
     },
+    ':disabled': {
+      opacity: '100%',
+    },
   },
   variants: {
     theme: {

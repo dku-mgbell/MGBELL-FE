@@ -5,7 +5,7 @@ export const sheet = style({
   position: 'absolute',
   width: '100vw',
   left: 0,
-  top: '50vh',
+  bottom: 0,
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
