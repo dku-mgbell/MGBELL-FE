@@ -18,6 +18,7 @@ export interface BagInfoResponse extends BagInfo, Coordinate {
   address: string;
   images: string[];
   reviewCnt: number;
+  image?: string;
 }
 
 export interface BagDetail extends BagInfoResponse {

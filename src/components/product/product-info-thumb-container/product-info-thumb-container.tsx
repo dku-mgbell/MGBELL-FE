@@ -16,12 +16,14 @@ export default function ProductInfoThumbContainer({
     endAt,
     reviewCnt,
     storeId,
+    image,
   },
   onClick,
 }: {
   info: BagInfoResponse & { storeId?: number };
   onClick?: () => void;
 }) {
+  const thumbnail = images ? images[0] : image;
   return (
     <div
       role="button"
@@ -39,7 +41,7 @@ export default function ProductInfoThumbContainer({
         <div
           className={styles.imageWrapper}
           style={{
-            backgroundImage: `url('${images && images[0]}')`,
+            backgroundImage: `url('${thumbnail}')`,
           }}
         />
       </div>

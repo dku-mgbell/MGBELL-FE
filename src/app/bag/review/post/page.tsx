@@ -52,7 +52,12 @@ export default function Page() {
               }
             />
             <QuestionContainer
-              title="어떤 점이 만족스러웠나요?(최대 3개)"
+              title={
+                <>
+                  어떤 점이 만족스러웠나요?
+                  <span className={styles.primaryText}>(최대 3개)</span>
+                </>
+              }
               content={
                 <SatisfiedReasonSelector
                   checkedList={reviewUpload.satisfiedReasons}

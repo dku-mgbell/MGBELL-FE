@@ -6,7 +6,7 @@ export default function QuestionContainer({
   desc,
   content,
 }: {
-  title: string;
+  title: string | ReactNode;
   desc?: string | ReactNode;
   content: ReactNode;
 }) {
