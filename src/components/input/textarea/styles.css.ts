@@ -39,4 +39,5 @@ export const count = style({
   fontSize: 14,
   display: 'flex',
   justifyContent: 'end',
+  color: '#AEAEAE',
 });

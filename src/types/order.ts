@@ -16,6 +16,8 @@ export interface UserOrderDetailPreview {
   amount: number;
   subTotal: number;
   images: string;
+  storeId: number;
+  reviewed: boolean;
 }
 
 export interface UserOrderDetail extends UserOrderDetailPreview {

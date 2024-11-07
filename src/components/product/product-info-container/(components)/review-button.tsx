@@ -3,10 +3,10 @@ import { useRouter } from 'next/navigation';
 import * as styles from './styles.css';
 
 export default function ReviewButton({
-  bagId,
+  storeId,
   reviewCnt,
 }: {
-  bagId: number;
+  storeId?: number;
   reviewCnt: number;
 }) {
   const route = useRouter();
@@ -16,11 +16,10 @@ export default function ReviewButton({
       type="button"
       className={styles.reviewButton}
       onClick={() => {
-        route.push(`/bag/review?id=${bagId}`);
+        if (storeId) route.push(`/bag/review/${storeId}`);
       }}
     >
-      리뷰 {reviewCnt}개
-      <ChevronRightIcon />
+      리뷰 {reviewCnt}개{storeId && <ChevronRightIcon />}
     </button>
   );
 }

@@ -79,7 +79,7 @@ export default function Page() {
             startAt,
             endAt,
           }}
-          reviewButton={{ bagId, reviewCnt }}
+          reviewButton={{ storeId, reviewCnt }}
         />
         <div className={styles.descriptionSection}>
           <h2 className={styles.descriptionHeader}>
@@ -98,7 +98,7 @@ export default function Page() {
             value="주문하기"
             onClick={() => {
               if (data!.amount > 0 && bagAmount > 0) {
-                route.push(`order/${bagId}`);
+                route.push(`order/${storeId}`);
               } else {
                 open({ content: '수량을 선택해주세요' });
               }

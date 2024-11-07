@@ -70,10 +70,10 @@ export default function Page({ params }: { params: { id: number } }) {
         )}
         {data?.orderState === 'COMPLETED' && (
           <Button
-            value="리뷰쓰기"
+            value="리뷰 작성"
             theme="outline-secondary"
             onClick={() => {
-              route.push(`/post/review?storeId=${data!.storeId}`);
+              route.push(`/bag/review/post?orderId=${data!.orderId}`);
             }}
           />
         )}

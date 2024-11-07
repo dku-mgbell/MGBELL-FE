@@ -15,12 +15,16 @@ export default function Textarea({
   className,
   maxLength,
   getContent,
+  onChange,
+  value,
   ...props
 }: {
   theme?: 'default' | 'error' | 'outline-secondary';
   className?: string;
   maxLength?: number;
   getContent?: Dispatch<SetStateAction<string>>;
+  onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
+  value?: string;
 } & InputProps) {
   const [content, setContent] = useState<string>('');
 
@@ -34,11 +38,14 @@ export default function Textarea({
         className={`${styles.textarea({ theme: theme ?? 'default' })} ${className}`}
         value={content}
         onChange={(e) => {
-          if (content.length < 50) {
-            setContent(e.target.value);
-          } else {
-            setContent(e.target.value.slice(0, content.length));
+          if (maxLength) {
+            if (content.length < maxLength) {
+              setContent(e.target.value);
+            } else {
+              setContent(e.target.value.slice(0, maxLength));
+            }
           }
+          if (onChange) onChange(e);
         }}
         {...props}
       />

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { OrderStateName, UserOrderDetailPreview } from '@/types/order';
 import { formatDate } from '@/utils/formatDate';
 import { commaizeNumber } from '@/utils/commaizeNumber';
@@ -17,10 +18,13 @@ export default function OrderItem({
     amount,
     subTotal,
     images,
+    reviewed,
   },
 }: {
   data: UserOrderDetailPreview;
 }) {
+  const route = useRouter();
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -49,11 +53,14 @@ export default function OrderItem({
           <p className={styles.bagInfo}>{commaizeNumber(subTotal)}원</p>
         </div>
       </div>
-      {orderState === 'COMPLETED' && (
+      {!reviewed && orderState === 'COMPLETED' && (
         <Button
-          value="리뷰쓰기"
+          value="리뷰 작성"
           theme="outline-secondary"
           style={{ margin: '15px 0 5px 0' }}
+          onClick={() => {
+            route.push(`/bag/review/post?orderId=${orderId}`);
+          }}
         />
       )}
     </div>

@@ -9,7 +9,7 @@ export default function ProductInfoFooter({
   reviewButton,
 }: {
   info: Pick<BagInfo, 'salePrice' | 'costPrice' | 'startAt' | 'endAt'>;
-  reviewButton: { bagId: number; reviewCnt: number };
+  reviewButton: { storeId?: number; reviewCnt: number };
 }) {
   return (
     <ProductInfoContainer
@@ -23,7 +23,7 @@ export default function ProductInfoFooter({
         icon: <StarIcon theme="red" />,
         text: (
           <ReviewButton
-            bagId={reviewButton.bagId}
+            storeId={reviewButton.storeId}
             reviewCnt={reviewButton.reviewCnt}
           />
         ),

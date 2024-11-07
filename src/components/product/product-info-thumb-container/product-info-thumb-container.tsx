@@ -15,11 +15,11 @@ export default function ProductInfoThumbContainer({
     startAt,
     endAt,
     reviewCnt,
-    id,
+    storeId,
   },
   onClick,
 }: {
-  info: BagInfoResponse;
+  info: BagInfoResponse & { storeId?: number };
   onClick?: () => void;
 }) {
   return (
@@ -50,7 +50,7 @@ export default function ProductInfoThumbContainer({
           startAt,
           endAt,
         }}
-        reviewButton={{ reviewCnt, bagId: id }}
+        reviewButton={{ reviewCnt, storeId }}
       />
     </div>
   );

@@ -24,11 +24,13 @@ export default function Page({
   };
 }) {
   const { setUserRole, isLoggedIn } = useAuthStore();
-  const { setToken, oAuthLogin, logout } = useAuth();
+  const { setToken, oAuthLogin } = useAuth();
   const route = useRouter();
 
   useEffect(() => {
-    if (!isLoggedIn) route.push('/login');
+    if (isLoggedIn === false) {
+      route.push('/login');
+    }
   }, [isLoggedIn]);
 
   useEffect(() => {
@@ -59,13 +61,6 @@ export default function Page({
             </button>
           </div>
         </header>
-        <button
-          type="button"
-          onClick={logout}
-          style={{ position: 'absolute', right: 0, zIndex: 99999 }}
-        >
-          로그아웃
-        </button>
         <section className={styles.contentWrapper}>
           <SortContainer state={sort} />
           <StoreList />

@@ -41,7 +41,7 @@ export default function DetailBottomSheet({
               endAt,
             }}
             isPadding
-            reviewButton={{ reviewCnt, bagId: id }}
+            reviewButton={{ reviewCnt }}
           />
         </Link>
       }

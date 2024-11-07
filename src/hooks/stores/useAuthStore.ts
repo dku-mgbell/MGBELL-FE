@@ -3,8 +3,8 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 type AuthState = {
-  isLoggedIn: boolean;
-  setIsLoggedIn: (state: boolean) => void;
+  isLoggedIn: boolean | undefined;
+  setIsLoggedIn: (state: boolean | undefined) => void;
   userRole: UserRole | null;
   setUserRole: (state: UserRole | null) => void;
   isOAuth: boolean;
@@ -14,8 +14,8 @@ type AuthState = {
 export const useAuthStore = create(
   persist<AuthState>(
     (set) => ({
-      isLoggedIn: false,
-      setIsLoggedIn: (state: boolean) => {
+      isLoggedIn: undefined,
+      setIsLoggedIn: (state: boolean | undefined) => {
         set({ isLoggedIn: state });
       },
       isOAuth: false,
