@@ -67,13 +67,13 @@ export default function Page() {
         <p className={styles.pickupMessage}>
           픽업가능시간: {data?.startAt} ~ {data?.endAt}
         </p>
-        <label className={styles.timeInputContainer}>
+        <label className={styles.timeInputContainer({ error: timeError })}>
           {time.length === 0 && (
             <p className={styles.timeInputMessage}>시간을 선택해주세요.</p>
           )}
           <input
             type="time"
-            className={styles.input({ error: timeError })}
+            className={styles.input}
             placeholder="픽업"
             value={time}
             onChange={(e) => setTime(e.target.value)}

@@ -1,6 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
+import BagImage from '@/assets/images/store/bag.png';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import CheckIcon from '@/assets/svg/CheckIcon';
 import * as styles from './styles.css';
@@ -16,8 +18,15 @@ export default function Page() {
         route.push(`/bag/order/info/${params.id}`);
       }}
     >
+      <div className={styles.imageWrapper}>
+        <Image
+          src={BagImage.src}
+          width={BagImage.width}
+          height={BagImage.height}
+          alt="bag illustration"
+        />
+      </div>
       <div className={styles.sheet}>
-        {/* TODO 일러스트 추가 */}
         <header className={styles.header}>
           <CheckIcon theme="secondary" size={24} />
           안내 사항

@@ -2,16 +2,25 @@ import { borderRadius, colors } from '@/styles/constant';
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-export const input = recipe({
-  base: {
-    width: '100%',
-    backgroundColor: colors.lightGray10,
-    borderRadius: 10,
-    selectors: {
-      '&::placeholder': {
-        color: '#AEAEAE',
-      },
+export const input = style({
+  width: '100%',
+  backgroundColor: colors.lightGray10,
+  borderRadius: 10,
+  selectors: {
+    '&::placeholder': {
+      color: '#AEAEAE',
     },
+  },
+});
+
+export const timeInputContainer = recipe({
+  base: {
+    backgroundColor: colors.lightGray10,
+    color: colors.darkGray300,
+    borderRadius: borderRadius.md,
+    display: 'flex',
+    height: 50,
+    padding: '0 14px',
   },
   variants: {
     error: {
@@ -20,15 +29,6 @@ export const input = recipe({
       },
     },
   },
-});
-
-export const timeInputContainer = style({
-  backgroundColor: colors.lightGray10,
-  color: colors.darkGray300,
-  borderRadius: borderRadius.md,
-  display: 'flex',
-  height: 50,
-  padding: '0 14px',
 });
 export const timeInputMessage = style({
   color: colors.lightGray150,

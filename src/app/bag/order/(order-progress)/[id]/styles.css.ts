@@ -11,9 +11,17 @@ export const sheet = style({
   justifyContent: 'space-between',
   marginTop: -10,
   borderRadius: '10px 10px 0 0',
-  padding: '3rem 1.5rem 80px 1.5rem',
+  padding: '2.5rem 1.6rem 170px 1.6rem',
   boxShadow: '0px -4px 10px 2px rgba(0, 0, 0, 0.05)',
   color: '#5F5F5F ',
+});
+
+export const imageWrapper = style({
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
+  height: '50vh',
+  alignItems: 'center',
 });
 
 export const header = style({
