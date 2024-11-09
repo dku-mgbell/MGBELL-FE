@@ -31,6 +31,7 @@ export default function Page() {
         isValidPassword(password) && password === passwordCheck
       }
       onNextStep={handleNextButtonClick}
+      buttonContent="적용"
     >
       <Input
         type="password"

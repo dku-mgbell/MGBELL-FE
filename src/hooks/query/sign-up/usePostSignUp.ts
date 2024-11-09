@@ -14,13 +14,13 @@ export const usePostSignUp = () => {
     token,
   } = useSignUpInfoStore();
   const { mutate } = usePostLogin();
-  const { isOAuth } = useAuthStore();
+  const { OAuthState } = useAuthStore();
   const { oAuthLogin } = useAuth();
   return useMutation({
     mutationFn: (data: SignUpInfo) =>
-      isOAuth ? User.oAuthSignUp(data) : User.signUp(data, token!),
+      OAuthState.isOAuth ? User.oAuthSignUp(data) : User.signUp(data, token!),
     onSuccess: () => {
-      if (isOAuth) {
+      if (OAuthState.isOAuth) {
         oAuthLogin({});
       } else {
         mutate({ email: email!, password });

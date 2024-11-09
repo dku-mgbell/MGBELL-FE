@@ -1,22 +1,17 @@
 import { recipe } from '@vanilla-extract/recipes';
+import { style } from '@vanilla-extract/css';
 import { borderRadius, colors, fontWeight } from '../../styles/constant';
 
-export const input = recipe({
+export const inputContainer = recipe({
   base: {
     height: 50,
     fontSize: 16,
-    color: colors.darkGray300,
     padding: '0 14px',
     boxSizing: 'content-box',
-    fontWeight: fontWeight.md,
     borderRadius: borderRadius.md,
     backgroundColor: colors.lightGray10,
-    '::placeholder': {
-      color: colors.lightGray150,
-    },
-    ':disabled': {
-      opacity: '100%',
-    },
+    display: 'flex',
+    alignItems: 'center',
   },
   variants: {
     theme: {
@@ -27,8 +22,26 @@ export const input = recipe({
       'outline-gray': { border: `1px solid #D9D9D9` },
       'outline-undefined': { border: `1px solid ${colors.white}` },
     },
+    onClick: {
+      true: { cursor: 'pointer' },
+    },
   },
   defaultVariants: {
     theme: 'default',
+  },
+});
+
+export const input = style({
+  flex: 1,
+  fontSize: 16,
+  color: colors.darkGray300,
+  boxSizing: 'content-box',
+  backgroundColor: 'transparent',
+  fontWeight: fontWeight.md,
+  '::placeholder': {
+    color: colors.lightGray150,
+  },
+  ':disabled': {
+    opacity: '100%',
   },
 });

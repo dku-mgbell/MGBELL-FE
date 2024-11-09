@@ -23,7 +23,7 @@ export default function Page({
     userRole: UserRole;
   };
 }) {
-  const { setUserRole, isLoggedIn } = useAuthStore();
+  const { setUserRole, isLoggedIn, setOAuthState } = useAuthStore();
   const { setToken, oAuthLogin } = useAuth();
   const route = useRouter();
 
@@ -40,9 +40,17 @@ export default function Page({
   useEffect(() => {
     if (isNewUser === 'true') {
       route.push('/sign-up?oAuth=true');
+      setOAuthState({
+        isOAuth: true,
+        isNewUser: true,
+      });
       setToken({ accessToken });
     } else if (isNewUser === 'false') {
       oAuthLogin({ accessToken });
+      setOAuthState({
+        isOAuth: true,
+        isNewUser: false,
+      });
     }
   }, [isNewUser]);
 

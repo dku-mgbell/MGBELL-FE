@@ -5,7 +5,7 @@ export const styles = {
   inputWrapper: style({
     display: 'flex',
     justifyContent: 'center',
-    margin: '20px 0 10px 0',
+    margin: '10px 0',
   }),
   inputContainer: style({
     display: 'flex',

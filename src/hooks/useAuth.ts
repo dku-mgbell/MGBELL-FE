@@ -2,7 +2,7 @@ import { useRouter } from 'next/navigation';
 import { useAuthStore } from './stores/useAuthStore';
 
 export const useAuth = () => {
-  const { setIsLoggedIn, setUserRole, setIsOAuth } = useAuthStore();
+  const { setIsLoggedIn, setUserRole, setOAuthState } = useAuthStore();
   const route = useRouter();
 
   const isLoggedIn =
@@ -15,7 +15,10 @@ export const useAuth = () => {
     localStorage.removeItem('refreshToken');
     setIsLoggedIn(false);
     setUserRole(null);
-    setIsOAuth(false);
+    setOAuthState({
+      isOAuth: false,
+      isNewUser: false,
+    });
     route.push('/login');
   };
 

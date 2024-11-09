@@ -13,7 +13,6 @@ export const styles = {
   desc: style({
     fontSize: 15,
     color: colors.lightGray150,
-    marginBottom: 6,
     lineHeight: 1.4,
   }),
 };

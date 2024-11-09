@@ -15,7 +15,7 @@ function SignUpPageContent() {
   const { signUpInfo, setSignUpInfo } = useSignUpInfoStore();
   const route = useRouter();
   const searchParams = useSearchParams();
-  const { isOAuth, setIsOAuth } = useAuthStore();
+  const { OAuthState, setOAuthState } = useAuthStore();
 
   const handleButtonClick = (e: ChangeEvent<HTMLInputElement>) => {
     setUserRole(e.target.value as UserRole);
@@ -23,7 +23,7 @@ function SignUpPageContent() {
 
   useEffect(() => {
     if (searchParams.get('oAuth')) {
-      setIsOAuth(true);
+      setOAuthState({ ...OAuthState, isOAuth: true });
     }
   }, [searchParams]);
 
@@ -32,7 +32,7 @@ function SignUpPageContent() {
       title="어떤 목적으로 마감벨을 사용하시나요?"
       isNextStepAllowed={!!userRole}
       onNextStep={() => {
-        route.push(isOAuth ? '/sign-up/info' : '/sign-up/email');
+        route.push(OAuthState.isOAuth ? '/sign-up/info' : '/sign-up/email');
         setSignUpInfo({ ...signUpInfo, userRole });
       }}
     >

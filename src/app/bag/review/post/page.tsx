@@ -68,19 +68,17 @@ export default function Page() {
             <QuestionContainer
               title="따뜻한 구매 후기를 알려주세요."
               content={
-                <div style={{ marginTop: 15 }}>
-                  <Textarea
-                    maxLength={100}
-                    placeholder="구매 후기를 작성해주세요."
-                    value={reviewUpload.content}
-                    onChange={(e) => {
-                      setReviewUpload({
-                        ...reviewUpload,
-                        content: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
+                <Textarea
+                  maxLength={100}
+                  placeholder="구매 후기를 작성해주세요."
+                  value={reviewUpload.content}
+                  onChange={(e) => {
+                    setReviewUpload({
+                      ...reviewUpload,
+                      content: e.target.value,
+                    });
+                  }}
+                />
               }
             />
             <PhotoUpload updateImageFiles={setImageFiles} />
