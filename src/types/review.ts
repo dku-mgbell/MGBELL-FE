@@ -3,7 +3,7 @@ export type ReviewScore = 'BEST' | 'GOOD' | 'NOTBAD' | 'NOTGOOD';
 export const ReviewScoreName = {
   NOTGOOD: '아쉬워요',
   NOTBAD: '적당했어요',
-  GOOD: '좋아요',
+  GOOD: '좋았어요',
   BEST: '최고였어요',
 };
 
@@ -27,3 +27,14 @@ export interface UserReviewUpload {
   satisfiedReasons?: SatisfiedReason[];
   file?: File[];
 }
+
+export type ReviewStatistic = {
+  mostReviewScore: ReviewScore;
+  reviewCount: number;
+  reviewScore: ReviewScoreStatistic;
+};
+
+export type ReviewScoreStatistic = {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  [key in ReviewScore]: number;
+};

@@ -119,4 +119,16 @@ export const handlers = [
       images: [Image.src, Image.src],
     });
   }),
+  http.get(`${API_BASE_URL}review/Preview/1`, () => {
+    return HttpResponse.json({
+      mostReviewScore: 'BEST',
+      reviewCount: 3,
+      reviewScore: {
+        BEST: 2,
+        GOOD: 1,
+        NOTGOOD: 0,
+        NOTBAD: 0,
+      },
+    });
+  }),
 ];

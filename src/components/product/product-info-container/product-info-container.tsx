@@ -19,7 +19,7 @@ export default function ProductInfoContainer({
 }: {
   info: ProductInfoContainerProps;
   isPadding?: boolean;
-  reviewButton: { storeId?: number; reviewCnt: number };
+  reviewButton: { bagId?: number; storeId?: number; reviewCnt: number };
 }) {
   return (
     <div className={styles.container({ isPadding })}>

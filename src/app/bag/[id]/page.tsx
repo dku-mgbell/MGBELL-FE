@@ -79,7 +79,7 @@ export default function Page() {
             startAt,
             endAt,
           }}
-          reviewButton={{ storeId, reviewCnt }}
+          reviewButton={{ bagId, storeId, reviewCnt }}
         />
         <div className={styles.descriptionSection}>
           <h2 className={styles.descriptionHeader}>

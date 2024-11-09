@@ -1,4 +1,4 @@
-import { UserReviewUpload } from '@/types/review';
+import { ReviewStatistic, UserReviewUpload } from '@/types/review';
 import { API } from '.';
 
 export const Review = {
@@ -27,6 +27,14 @@ export const Review = {
         },
       },
     );
+    return response.data;
+  },
+  async getStatistic({
+    storeId,
+  }: {
+    storeId: number;
+  }): Promise<ReviewStatistic> {
+    const response = await API.get(`/review/Preview/${storeId}`);
     return response.data;
   },
 };
