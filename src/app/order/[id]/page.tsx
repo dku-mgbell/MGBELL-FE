@@ -68,7 +68,7 @@ export default function Page({ params }: { params: { id: number } }) {
             onClick={() => window.open('https://pf.kakao.com/_ZDJzn')}
           />
         )}
-        {data?.orderState === 'COMPLETED' && (
+        {data?.orderState === 'COMPLETED' && !data?.reviewed && (
           <Button
             value="리뷰 작성"
             theme="outline-secondary"

@@ -4,17 +4,23 @@ import { SatisfiedReason, SatisfiedReasonName } from '@/types/review';
 import { styles } from './styles.css';
 
 export default function SatisfiedReasonSelector({
-  checkedList,
   updateValue,
 }: {
-  checkedList?: SatisfiedReason[];
   updateValue: Dispatch<SetStateAction<SatisfiedReason[] | undefined>>;
 }) {
-  const [value, setValue] = useState<SatisfiedReason[] | undefined>();
+  const [checked, setChecked] = useState({
+    KIND_OWNER: false,
+    LOW_PRICE: false,
+    ZERO_WASTE: false,
+    VARIOUS_KINDS: false,
+  });
+  const checkedList = Object.entries(checked)
+    .filter((item) => item[1])
+    .map(([id]) => id) as SatisfiedReason[];
 
   useEffect(() => {
-    updateValue(value);
-  }, [value]);
+    updateValue(checkedList);
+  }, [checked]);
 
   return (
     <div className={styles.inputWrapper}>
@@ -25,14 +31,14 @@ export default function SatisfiedReasonSelector({
               type="checkBox"
               name="satisfied-reason"
               value={id}
-              checked={checkedList?.includes(id as SatisfiedReason)}
+              checked={checked ? checked[id as SatisfiedReason] : false}
               className={common.hidden}
               onChange={(e) => {
-                setValue(
-                  e.target.checked
-                    ? [...(value ?? []), e.target.value as SatisfiedReason]
-                    : value?.filter((prev) => prev !== e.target.value),
-                );
+                if (e.target.checked && checkedList.length === 3) return;
+                setChecked({
+                  ...checked,
+                  [e.target.value]: !checked[e.target.value as SatisfiedReason],
+                });
               }}
             />
             <p className={styles.inputName}>{name}</p>

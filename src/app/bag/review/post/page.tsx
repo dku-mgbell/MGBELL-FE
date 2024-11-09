@@ -10,8 +10,8 @@ import { ReviewScore, SatisfiedReason, UserReviewUpload } from '@/types/review';
 import { usePostReviewByUser } from '@/hooks/query/review/usePostReviewByUser';
 import ReviewScoreSelector from './(components)/review-score-selector/review-score-selector';
 import SatisfiedReasonSelector from './(components)/satisfied-reason-selector/satisfied-reason-selector';
-import * as styles from './styles.css';
 import PhotoUpload from './(components)/photo-upload/photo-upload';
+import * as styles from './styles.css';
 
 export default function Page() {
   const params = useSearchParams();
@@ -59,10 +59,7 @@ export default function Page() {
                 </>
               }
               content={
-                <SatisfiedReasonSelector
-                  checkedList={reviewUpload.satisfiedReasons}
-                  updateValue={setSatisfiedReansons}
-                />
+                <SatisfiedReasonSelector updateValue={setSatisfiedReansons} />
               }
             />
             <QuestionContainer

@@ -38,3 +38,13 @@ export type ReviewScoreStatistic = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   [key in ReviewScore]: number;
 };
+
+export type ReviewResponse = {
+  userName: string;
+  createdAt: string;
+  reviewScore: ReviewScore;
+  content: string;
+  reasons: SatisfiedReason[];
+  images: string[];
+  ownercomment: string;
+};

@@ -7,14 +7,23 @@ export default function HeaderLayout({
   children,
   title,
   previousPageLink,
+  previousButtonClickEvent,
+  paddingBottom,
 }: {
   children: ReactNode;
   title: string;
   previousPageLink?: string;
+  previousButtonClickEvent?: () => void;
+  paddingBottom?: boolean;
 }) {
   return (
-    <div className={styles.container}>
+    <div className={styles.container({ paddingBottom })}>
       <header className={styles.header}>
+        {previousButtonClickEvent && (
+          <button type="button" onClick={previousButtonClickEvent}>
+            <ChevronLeftIcon />
+          </button>
+        )}
         {previousPageLink && (
           <Link href={previousPageLink}>
             <button type="button">

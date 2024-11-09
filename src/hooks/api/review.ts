@@ -1,4 +1,9 @@
-import { ReviewStatistic, UserReviewUpload } from '@/types/review';
+import {
+  ReviewResponse,
+  ReviewStatistic,
+  UserReviewUpload,
+} from '@/types/review';
+import { PageParams } from '@/types/api';
 import { API } from '.';
 
 export const Review = {
@@ -9,24 +14,27 @@ export const Review = {
     satisfiedReasons,
     file,
   }: UserReviewUpload) {
-    const response = await API.post(
-      '/review/user',
-      {
-        request: JSON.stringify({
-          orderId,
-          reviewScore,
-          content,
-          satisfiedReasons,
-        }),
-        file,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-          'Content-Type': 'multipart/form-data',
-        },
-      },
+    const formData = new FormData();
+    formData.append(
+      'request',
+      JSON.stringify({
+        orderId,
+        reviewScore,
+        content,
+        satisfiedReasons,
+      }),
     );
+    if (file) {
+      file.forEach((f) => {
+        formData.append('file', f);
+      });
+    }
+    const response = await API.post('/review/user', formData, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return response.data;
   },
   async getStatistic({
@@ -36,5 +44,15 @@ export const Review = {
   }): Promise<ReviewStatistic> {
     const response = await API.get(`/review/Preview/${storeId}`);
     return response.data;
+  },
+  async getInfiniteList(
+    storeId: number,
+    { page, size }: PageParams,
+  ): Promise<ReviewResponse[]> {
+    const response = await API.get(
+      `/review/list/${storeId}?page=${page}&size=${size}&sort=createdAt,desc`,
+    );
+    const list = (await response.data.content) as ReviewResponse[];
+    return list;
   },
 };

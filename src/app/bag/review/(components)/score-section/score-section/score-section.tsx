@@ -7,11 +7,11 @@ import * as styles from './styles.css';
 export default function ScoreSection({ storeId }: { storeId: number }) {
   const reviewStatistic: ReviewStatistic = {
     mostReviewScore: 'BEST',
-    reviewCount: storeId,
+    reviewCount: 3 + storeId,
     reviewScore: {
       BEST: 2,
       GOOD: 1,
-      NOTGOOD: 0,
+      NOTGOOD: storeId,
       NOTBAD: 0,
     },
   };

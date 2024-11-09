@@ -6,4 +6,8 @@ export const Store = {
     const response = await API.post('/store/register', data);
     return response.data;
   },
+  async getInfo(id: number): Promise<StoreRegistration> {
+    const response = await API.get(`/store/${id}`);
+    return response.data;
+  },
 };

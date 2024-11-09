@@ -2,12 +2,6 @@ import { colors } from '@/styles/constant';
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-export const container = style({
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '20px 0',
-});
-
 export const scoreContainer = style({
   display: 'flex',
   alignItems: 'center',

@@ -15,6 +15,9 @@ export const usePostReviewByUser = () => {
       await queryClient.invalidateQueries({
         queryKey: ['bag-detail'],
       });
+      await queryClient.invalidateQueries({
+        queryKey: ['user-order-list'],
+      });
       route.push('/order');
     },
   });

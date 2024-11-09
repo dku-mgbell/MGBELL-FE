@@ -1,14 +1,22 @@
 import { colors, fontWeight, padding } from '@/styles/constant';
 import { globalStyle, style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 export const styles = {
-  container: style({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    padding: `calc(env(safe-area-inset-top) + 10px) ${padding.layoutX} calc(env(safe-area-inset-bottom) + 20px) ${padding.layoutX}`,
-    height: '100dvh',
-    boxSizing: 'border-box',
+  container: recipe({
+    base: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      padding: `calc(env(safe-area-inset-top) + 10px) ${padding.layoutX} calc(env(safe-area-inset-bottom) + 20px) ${padding.layoutX}`,
+      height: '100dvh',
+      boxSizing: 'border-box',
+    },
+    variants: {
+      paddingBottom: {
+        false: { paddingBottom: 0 },
+      },
+    },
   }),
   header: style({
     display: 'flex',

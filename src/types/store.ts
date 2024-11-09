@@ -10,6 +10,7 @@ export const StoreName = {
 
 export interface StoreRegistration extends Coordinate {
   name: string;
+  storeName?: string;
   address: string;
   storeType: StoreID | null;
   // images: File[];
