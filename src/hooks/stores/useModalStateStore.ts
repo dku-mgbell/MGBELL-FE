@@ -10,6 +10,7 @@ type Modal = {
   visible: boolean;
   content: ReactNode;
   confirmEvent?: () => void;
+  noPadding?: boolean;
 };
 
 export const useModalStateStore = create<ModalState>((set) => ({
@@ -17,6 +18,7 @@ export const useModalStateStore = create<ModalState>((set) => ({
     visible: false,
     content: null,
     confirmEvent: undefined,
+    noPadding: undefined,
   },
   setModalState: (state: Modal) => set({ modalState: state }),
 }));

@@ -35,3 +35,9 @@ export interface Address {
   hname: string;
   query: string;
 }
+
+export interface UserAddressState {
+  address?: string;
+  latitude?: string;
+  longitude?: string;
+}

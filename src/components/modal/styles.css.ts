@@ -1,5 +1,6 @@
 import { borderRadius } from '@/styles/constant';
 import { globalStyle, style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 import { buttonContainer } from '../input/number/styles.css';
 
 export const styles = {
@@ -19,22 +20,34 @@ export const styles = {
     display: 'flex',
     gap: 15,
   }),
-  container: style({
-    maxWidth: 390,
-    width: '90vw',
-    maxHeight: 500,
-    backgroundColor: 'white',
-    borderRadius: borderRadius.md,
-    overflow: 'hidden',
-    padding: 15,
+  container: recipe({
+    base: {
+      maxWidth: 390,
+      width: '90vw',
+      maxHeight: '80vh',
+      backgroundColor: 'white',
+      borderRadius: borderRadius.md,
+      overflow: 'hidden',
+      padding: 15,
+    },
+    variants: {
+      noPadding: { true: { padding: 10 } },
+    },
   }),
-  content: style({
-    padding: '1rem',
-    fontSize: 17,
-    minHeight: '4rem',
-    display: 'flex',
-    alignItems: 'center',
-    color: '#222',
+  content: recipe({
+    base: {
+      padding: '1rem',
+      fontSize: 17,
+      minHeight: '4rem',
+      display: 'flex',
+      alignItems: 'center',
+      color: '#222',
+    },
+    variants: {
+      noPadding: {
+        true: { padding: 0 },
+      },
+    },
   }),
 };
 

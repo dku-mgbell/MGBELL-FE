@@ -55,6 +55,7 @@ export const styles = {
     color: colors.white,
     alignItems: 'center',
     gap: '8px',
+    width: 'fit-content',
   }),
 
   search: style({

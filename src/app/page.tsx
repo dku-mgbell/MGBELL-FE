@@ -7,6 +7,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import SearchInput from '@/components/input/search/search-input';
 import { UserRole } from '@/types/user';
+import { useAddressStateStore } from '@/hooks/stores/useAddressStore';
 import FilterIcon from '../assets/svg/FilterIcon';
 import LocationMarkerIcon from '../assets/svg/LocationMarkerIcon';
 import { container, styles } from './styles.css';
@@ -25,6 +26,7 @@ export default function Page({
 }) {
   const { setUserRole, isLoggedIn, setOAuthState } = useAuthStore();
   const { setToken, oAuthLogin } = useAuth();
+  const { addressState } = useAddressStateStore();
   const route = useRouter();
 
   useEffect(() => {
@@ -60,7 +62,9 @@ export default function Page({
         <header className={styles.header}>
           <Link href="location" className={styles.location}>
             <LocationMarkerIcon />
-            위치를 설정해주세요!
+            {addressState.address
+              ? addressState.address
+              : '위치를 설정해주세요!'}
           </Link>
           <div className={styles.search}>
             <SearchInput placeholder="가게의 이름을 검색해보세요!" />

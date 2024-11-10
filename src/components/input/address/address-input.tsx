@@ -1,40 +1,31 @@
 import DaumPostcode from 'react-daum-postcode';
 import useModal from '@/hooks/useModal';
 import { common } from '@/styles/common.css';
-import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react';
-import { useTempDataStore } from '@/hooks/stores/useTempDataStore';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import Input from '@/components/input/input';
 import { useGetCoord } from '@/hooks/query/map/useGetCoord';
-import { Address } from '@/types/address';
-import { Coordinate } from '@/types/map';
-import Input from '../input';
+import { Address, UserAddressState } from '@/types/address';
+import { useAddressStateStore } from '@/hooks/stores/useAddressStore';
 
 export default function AddressInput({
-  onChange,
-  setCoordinateState,
+  updateAddress,
 }: {
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  setCoordinateState: Dispatch<SetStateAction<Coordinate | undefined>>;
+  updateAddress: Dispatch<SetStateAction<UserAddressState | undefined>>;
 }) {
   const { open, close } = useModal();
   const [address, setAddress] = useState('');
-  const [detailAddress, setDetailAddress] = useState('');
-  const { tempData: addressTempData, setTempData: setAddressTempData } =
-    useTempDataStore();
-  const [addressError, setAddressError] = useState(false);
-  const { data: coordinate } = useGetCoord(addressTempData ?? '');
+  // const [detailAddress, setDetailAddress] = useState('');
+  const [addressError] = useState(false);
+  const { addressState } = useAddressStateStore();
+  const { data } = useGetCoord(address);
 
   const handleInputClick = () => {
     open({
+      noPadding: true,
       content: (
         <DaumPostcode
-          onComplete={(data: Address) => {
-            setAddressTempData(data.address);
+          onComplete={(res: Address) => {
+            setAddress(res.address);
             close();
           }}
         />
@@ -43,15 +34,14 @@ export default function AddressInput({
   };
 
   useEffect(() => {
-    if (addressTempData) setAddress(addressTempData);
-  }, [addressTempData]);
-
-  useEffect(() => {
-    setCoordinateState({
-      latitude: coordinate?.addresses[0].y ?? '',
-      longitude: coordinate?.addresses[0].x ?? '',
-    });
-  }, [coordinate]);
+    if (address.length > 0) {
+      updateAddress({
+        address: data?.addresses[0].roadAddress,
+        longitude: data?.addresses[0].x,
+        latitude: data?.addresses[0].y,
+      });
+    }
+  }, [data]);
 
   return (
     <>
@@ -60,31 +50,33 @@ export default function AddressInput({
         onClick={handleInputClick}
         onFocus={handleInputClick}
         className={common.pointer}
-        value={address}
+        value={address.length > 0 ? address : addressState.address}
         theme={addressError ? 'error' : 'default'}
-        onChange={(e) => setAddress(e.target.value)}
+        readOnly
       />
-      <Input
-        name="address"
-        placeholder="세부 주소 입력"
-        onChange={(e) => {
-          if (address.length > 0) {
-            setAddressError(false);
-            setDetailAddress(e.target.value);
-            onChange({
-              ...e,
-              target: {
-                ...e.target,
-                name: 'address',
-                value: `${address} ${e.target.value}`,
-              },
-            });
-          } else {
-            setAddressError(true);
-          }
-        }}
-        value={detailAddress}
-      />
+      {/* {hiddenDetailAddress || (
+        <Input
+          name="address"
+          placeholder="세부 주소 입력"
+          onChange={(e) => {
+            if (address.length > 0) {
+              setAddressError(false);
+              setDetailAddress(e.target.value);
+              onChange({
+                ...e,
+                target: {
+                  ...e.target,
+                  name: 'address',
+                  value: `${address} ${e.target.value}`,
+                },
+              });
+            } else {
+              setAddressError(true);
+            }
+          }}
+          value={detailAddress}
+        />
+      )} */}
     </>
   );
 }

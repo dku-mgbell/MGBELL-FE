@@ -7,9 +7,11 @@ import { styles } from './styles.css';
 export default function Modal({
   content,
   confirmEvent,
+  noPadding,
 }: {
   content: ReactNode;
   confirmEvent?: () => void;
+  noPadding?: boolean;
 }) {
   const { close } = useModal();
 
@@ -40,20 +42,18 @@ export default function Modal({
           duration: 0.15,
         },
       }}
-      className={styles.container}
+      className={styles.container({ noPadding })}
     >
-      <div>
-        <div className={styles.content}>{content}</div>
-        <div className={styles.buttonContainer}>
-          <Button
-            value="닫기"
-            onClick={close}
-            theme={confirmEvent ? 'inactive-primary' : 'primary'}
-          />
-          {confirmEvent && (
-            <Button value="확인" onClick={handleConfirmButtonClick} />
-          )}
-        </div>
+      <div className={styles.content({ noPadding })}>{content}</div>
+      <div className={styles.buttonContainer}>
+        <Button
+          value="닫기"
+          onClick={close}
+          theme={confirmEvent ? 'inactive-primary' : 'primary'}
+        />
+        {confirmEvent && (
+          <Button value="확인" onClick={handleConfirmButtonClick} />
+        )}
       </div>
     </motion.div>
   );

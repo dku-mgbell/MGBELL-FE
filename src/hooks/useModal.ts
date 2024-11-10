@@ -7,15 +7,22 @@ export default function useModal() {
   const open = ({
     content,
     confirmEvent,
+    noPadding,
   }: {
     content: ReactNode;
     confirmEvent?: () => void;
+    noPadding?: boolean;
   }) => {
-    setModalState({ visible: true, content, confirmEvent });
+    setModalState({ visible: true, content, confirmEvent, noPadding });
   };
 
   const close = () => {
-    setModalState({ visible: false, content: null, confirmEvent: () => {} });
+    setModalState({
+      visible: false,
+      content: null,
+      confirmEvent: () => {},
+      noPadding: undefined,
+    });
   };
 
   return { open, close };
