@@ -39,7 +39,7 @@ export default function Page() {
   const buttonData = {
     review: {
       event: () => {
-        route.push('review');
+        route.push('/mypage/review');
       },
       name: '리뷰관리',
       icon: ReviewIcon,

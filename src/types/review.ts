@@ -46,5 +46,13 @@ export type ReviewResponse = {
   content: string;
   reasons: SatisfiedReason[];
   images: string[];
-  ownercomment: string;
+  ownercomment: string; // TODO 오타 수정 요청
 };
+
+export type MyReviewResponse = {
+  storeId?: number;
+  storeName?: string;
+  reviewId?: number;
+  ownerComment?: string;
+  satisfiedReasons?: SatisfiedReason[];
+} & ReviewResponse;

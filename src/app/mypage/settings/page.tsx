@@ -8,6 +8,7 @@ import LogoutIcon from '@/assets/svg/LogoutIcon';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
 import { useDeleteAccount } from '@/hooks/query/user/useDeleteAccount';
+import { colors } from '@/styles/constant';
 import * as styles from './styles.css';
 import MenuButton from '../(components)/menu-button/menu-button';
 
@@ -24,6 +25,7 @@ export default function Page() {
         route.push('/mypage/settings/account');
       },
       icon: ReviewIcon,
+      color: colors.primary,
     },
     deleteAccount: {
       name: '회원탈퇴',
@@ -36,6 +38,7 @@ export default function Page() {
         });
       },
       icon: FileWithdrawalIcon,
+      color: '',
     },
     logout: {
       name: '로그아웃',
@@ -48,6 +51,7 @@ export default function Page() {
         });
       },
       icon: LogoutIcon,
+      color: '',
     },
   };
 
@@ -60,6 +64,7 @@ export default function Page() {
             event={button.event}
             name={button.name}
             icon={button.icon}
+            iconColor={button.color}
           />
         ))}
       </div>

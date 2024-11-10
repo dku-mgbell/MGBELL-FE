@@ -1,4 +1,4 @@
-import { borderRadius, colors, fontWeight } from '@/styles/constant';
+import { colors, fontWeight } from '@/styles/constant';
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
@@ -51,75 +51,9 @@ export const button = recipe({
     },
   },
 });
+
 export const reviewSection = style({
   display: 'flex',
   flexDirection: 'column',
   gap: 36,
-});
-export const reviewContainer = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 8,
-  alignItems: 'start',
-});
-export const reviewHeader = style({
-  display: 'flex',
-  gap: 5,
-  alignItems: 'end',
-});
-export const userName = style({
-  fontWeight: fontWeight.bold,
-});
-export const date = style({
-  color: '#AEAEAE',
-  fontSize: 13,
-});
-export const content = style({
-  color: '#6D6D6D',
-  fontSize: 15,
-  lineHeight: 1.3,
-});
-export const reasonContainer = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 5,
-});
-export const reasonTag = style({
-  fontSize: 13,
-  color: '#6d6d6d',
-  border: '1.2px solid #B9B9B9',
-  width: 'fit-content',
-  borderRadius: 40,
-  padding: '5px 12px',
-  display: 'flex',
-  gap: 3,
-});
-export const swiper = style({
-  maxWidth: 500,
-  margin: 0,
-});
-export const image = style({
-  width: 168,
-  height: 168,
-  backgroundSize: 'cover',
-  borderRadius: borderRadius.md,
-  backgroundPosition: 'center',
-});
-export const comment = style({
-  display: 'flex',
-  backgroundColor: '#F3F5F7',
-  borderRadius: borderRadius.md,
-  width: '100%',
-  flexDirection: 'column',
-  padding: 15,
-  gap: 8,
-  marginTop: 8,
-});
-export const commentWriter = style({
-  fontWeight: fontWeight.bold,
-});
-export const commentContent = style({
-  fontSize: 14,
-  lineHeight: 1.3,
-  color: '#6D6D6D',
 });

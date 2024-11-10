@@ -5,10 +5,12 @@ export default function MenuButton({
   event,
   name,
   icon: Icon,
+  iconColor,
 }: {
   event: () => void;
   name: string;
-  icon: React.ComponentType;
+  icon: React.ComponentType<{ color?: string }>;
+  iconColor?: string;
 }) {
   return (
     <button
@@ -19,7 +21,7 @@ export default function MenuButton({
       }}
     >
       <span className={styles.menuButtonIconText}>
-        <Icon />
+        <Icon color={iconColor} />
         {name}
       </span>
       <ChevronRightIcon />

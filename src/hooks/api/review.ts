@@ -1,4 +1,5 @@
 import {
+  MyReviewResponse,
   ReviewResponse,
   ReviewStatistic,
   UserReviewUpload,
@@ -53,6 +54,13 @@ export const Review = {
       `/review/list/${storeId}?page=${page}&size=${size}&sort=createdAt,desc`,
     );
     const list = (await response.data.content) as ReviewResponse[];
+    return list;
+  },
+  async getMyList({ page, size }: PageParams): Promise<MyReviewResponse[]> {
+    const response = await API.get(
+      `/review/user/list?page=${page}&size=${size}&sort=createdAt,desc`,
+    );
+    const list = (await response.data.content) as MyReviewResponse[];
     return list;
   },
 };
