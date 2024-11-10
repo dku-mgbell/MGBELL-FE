@@ -1,5 +1,6 @@
 import {
   OrderInfo,
+  OwnerOrderDetail,
   UserOrderDetail,
   UserOrderDetailPreview,
 } from '@/types/order';
@@ -28,5 +29,31 @@ export const Order = {
   async getDetailByUser(id: number): Promise<UserOrderDetail> {
     const response = await API.get(`/order/user/${id}`);
     return response.data;
+  },
+  Owner: {
+    async getInfiniteList({
+      page,
+      size,
+    }: PageParams): Promise<OwnerOrderDetail[]> {
+      const response = await API.get(
+        `/order/owner/list?page=${page}&size=${size}&sort=createdAt,desc`,
+      );
+      const list = (await response.data.content) as OwnerOrderDetail[];
+      return list;
+    },
+    async refuse(id: number, refusalReason: string) {
+      const response = await API.post(`/order/owner/refuse/${id}`, {
+        cancleReason: refusalReason,
+      });
+      return response.data;
+    },
+    async accept(id: number) {
+      const response = await API.post(`/order/owner/accept/${id}`);
+      return response.data;
+    },
+    async complete(id: number) {
+      const response = await API.post(`/order/owner/complete/${id}`);
+      return response.data;
+    },
   },
 };

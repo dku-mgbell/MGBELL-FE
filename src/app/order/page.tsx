@@ -9,9 +9,9 @@ import OrderItem from './(components)/order-item/order-item';
 import * as styles from './styles.css';
 
 export default function Page() {
-  const bagListState = useGetUserOrderList({ size: 5 });
+  const orderListState = useGetUserOrderList({ size: 5 });
   const { list, intersection, isLoading } =
-    useInfiniteScroll<UserOrderDetailPreview>(bagListState);
+    useInfiniteScroll<UserOrderDetailPreview>(orderListState);
 
   if (isLoading) return <> </>;
 

@@ -19,6 +19,7 @@ export default function Button({
   theme?:
     | 'primary'
     | 'secondary'
+    | 'red'
     | 'inactive-primary'
     | 'inactive-secondary'
     | 'light-yellow'

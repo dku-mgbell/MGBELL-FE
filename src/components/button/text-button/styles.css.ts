@@ -11,6 +11,7 @@ export const button = recipe({
     theme: {
       primary: { backgroundColor: colors.primary },
       secondary: { backgroundColor: colors.secondary },
+      red: { backgroundColor: colors.red },
       'inactive-primary': {
         backgroundColor: colors.lightGray10,
         color: colors.primary,
