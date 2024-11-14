@@ -11,27 +11,29 @@ import MoneyPocketIcon from '@/assets/svg/MoneyPocketIcon';
 import ReviewIcon from '@/assets/svg/ReviewIcon';
 import HeadphoneIcon from '@/assets/svg/HeadphoneIcon';
 import SettingsIcon from '@/assets/svg/SettingsIcon';
+import { commaizeNumber } from '@/utils/commaizeNumber';
+import { useGetUserActivity } from '@/hooks/query/user/useGetUserActivity';
 import MenuButton from './(components)/menu-button/menu-button';
 import * as styles from './styles.css';
 
 export default function Page() {
-  // TODO API 연결
   const route = useRouter();
+  const { data, isLoading } = useGetUserActivity();
 
   const activityDetails = {
     usage: {
       name: '마감벨 이용 횟수',
-      value: '3회',
+      value: `${isLoading ? '0' : data?.orderCount}회`,
       icon: BellIcon,
     },
     environment: {
       name: '탄소 절감',
-      value: '3회',
+      value: `${isLoading ? '0' : data?.carbonReduction}kg`,
       icon: CO2Icon,
     },
     money: {
       name: '절감한 금액',
-      value: '3,200원',
+      value: `${commaizeNumber(data?.totalDiscount ?? 0)}원`,
       icon: MoneyPocketIcon,
     },
   };
@@ -65,7 +67,7 @@ export default function Page() {
           <div className={styles.profile}>
             <Image src={BellImage.src} width={108} height={108} alt="profile" />
           </div>
-          <p className={styles.nickName}>이름</p>
+          <p className={styles.nickName}>{data?.name}</p>
         </div>
         <div className={styles.activityContainer}>
           {Object.entries(activityDetails).map(([key, activity], index) => (
@@ -88,19 +90,26 @@ export default function Page() {
           </Link>
         </header>
         <div className={styles.orderContainer}>
-          <Link
-            href="/order/1"
-            className={styles.pickUpButton}
-            style={{
-              backgroundImage:
-                "url('https://mgbell-bucket.s3.ap-northeast-2.amazonaws.com/%EB%8B%AC%EC%BD%A4%EB%B2%A0%EC%9D%B4%EC%BB%A4%EB%A6%AC%2Fb1.png')",
-            }}
-          >
-            <div className={styles.pickUpButtonContent}>
-              <strong className={styles.pickUpStore}>하고메</strong>
-              <p className={styles.pickUpTime}>19:00까지 픽업하시면 됩니다.</p>
-            </div>
-          </Link>
+          {data?.currentOrders.map((order) => (
+            <Link
+              key={order.id}
+              href={`/order/${order.id}`}
+              className={styles.pickUpButton}
+              style={{
+                backgroundImage:
+                  "url('https://mgbell-bucket.s3.ap-northeast-2.amazonaws.com/%EB%8B%AC%EC%BD%A4%EB%B2%A0%EC%9D%B4%EC%BB%A4%EB%A6%AC%2Fb1.png')",
+              }}
+            >
+              <div className={styles.pickUpButtonContent}>
+                <strong className={styles.pickUpStore}>
+                  {order.storeName}
+                </strong>
+                <p className={styles.pickUpTime}>
+                  {order.pickupTime}까지 픽업하시면 됩니다.
+                </p>
+              </div>
+            </Link>
+          ))}
         </div>
         <div className={styles.menuButtonContainer}>
           {Object.entries(buttonData).map(([key, button]) => (

@@ -1,6 +1,6 @@
 import { LoginInfo } from '@/types/login';
 import { SignUpInfo } from '@/types/sign-up';
-import { PasswordChange, UserInfoResponse } from '@/types/user';
+import { PasswordChange, UserActivity, UserInfoResponse } from '@/types/user';
 import { API } from '.';
 
 export const User = {
@@ -26,6 +26,10 @@ export const User = {
   },
   async changePassword(data: PasswordChange) {
     const response = await API.patch('/user/password', data);
+    return response.data;
+  },
+  async getActivity(): Promise<UserActivity> {
+    const response = await API.get('/user/myPage');
     return response.data;
   },
 };

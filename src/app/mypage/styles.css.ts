@@ -27,6 +27,8 @@ export const backgroundContent = style({
 export const nickName = style({
   fontWeight: fontWeight.bold,
   textAlign: 'center',
+  minWidth: 100,
+  minHeight: 19,
 });
 
 export const profile = style({
@@ -72,6 +74,9 @@ export const activityValue = style({
   fontSize: 11,
   lineHeight: '16px',
   padding: '0 12px',
+  minHeight: 11,
+  minWidth: 76,
+  textAlign: 'center',
 });
 
 export const sheet = style({
