@@ -43,7 +43,7 @@ export const Review = {
   }: {
     storeId: number;
   }): Promise<ReviewStatistic> {
-    const response = await API.get(`/review/Preview/${storeId}`);
+    const response = await API.get(`/review/preview/${storeId}`);
     return response.data;
   },
   async getInfiniteList(

@@ -30,8 +30,8 @@ export interface UserReviewUpload {
 
 export type ReviewStatistic = {
   mostReviewScore: ReviewScore;
-  reviewCount: number;
-  reviewScore: ReviewScoreStatistic;
+  totalReviewCount: number;
+  reviewCounts: ReviewScoreStatistic;
 };
 
 export type ReviewScoreStatistic = {
@@ -46,7 +46,7 @@ export type ReviewResponse = {
   content: string;
   reasons: SatisfiedReason[];
   images: string[];
-  ownercomment: string; // TODO 오타 수정 요청
+  ownerComment: string;
 };
 
 export type MyReviewResponse = {

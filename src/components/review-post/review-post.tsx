@@ -92,12 +92,6 @@ export default function ReviewPost({
             </p>
           ))}
       </div>
-      {review.ownercomment && (
-        <div className={styles.comment}>
-          <p className={styles.commentWriter}>사장님</p>
-          <p className={styles.commentContent}>{review.ownercomment}</p>
-        </div>
-      )}
       {review.ownerComment && (
         <div className={styles.comment}>
           <p className={styles.commentWriter}>사장님</p>

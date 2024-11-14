@@ -1,25 +1,26 @@
 import Image from 'next/image';
 import { ReviewScoreImage } from '@/assets/images/review/bell';
-import { ReviewScore, ReviewScoreName, ReviewStatistic } from '@/types/review';
+import { ReviewScore, ReviewScoreName } from '@/types/review';
+import { useGetReviewStatistic } from '@/hooks/query/review/useGetReviewStatistic';
 // import { useGetReviewStatistic } from '@/hooks/query/review/useGetReviewStatistic';
 import * as styles from './styles.css';
 
 export default function ScoreSection({ storeId }: { storeId: number }) {
-  const reviewStatistic: ReviewStatistic = {
-    mostReviewScore: 'BEST',
-    reviewCount: 3 + storeId,
-    reviewScore: {
-      BEST: 2,
-      GOOD: 1,
-      NOTGOOD: storeId,
-      NOTBAD: 0,
-    },
-  };
-  // const { data: reviewStatistic, isLoading } = useGetReviewStatistic({
-  //   storeId,
-  // });
+  // const reviewStatistic: ReviewStatistic = {
+  //   mostReviewScore: 'BEST',
+  //   reviewCount: 3 + storeId,
+  //   reviewScore: {
+  //     BEST: 2,
+  //     GOOD: 1,
+  //     NOTGOOD: storeId,
+  //     NOTBAD: 0,
+  //   },
+  // };
+  const { data: reviewStatistic, isLoading } = useGetReviewStatistic({
+    storeId,
+  });
 
-  // if (isLoading) return <> </>;
+  if (isLoading) return <> </>;
 
   return (
     <div className={styles.scoreContainer}>
@@ -52,9 +53,9 @@ export default function ScoreSection({ storeId }: { storeId: number }) {
                   className={styles.scoreGraphFilled}
                   style={{
                     width:
-                      reviewStatistic!.reviewCount === 0
+                      reviewStatistic!.totalReviewCount === 0
                         ? 0
-                        : `${(100 / reviewStatistic!.reviewCount) * reviewStatistic!.reviewScore[id as ReviewScore]}%`,
+                        : `${(100 / reviewStatistic!.totalReviewCount) * reviewStatistic!.reviewCounts[id as ReviewScore]}%`,
                   }}
                 />
               </div>
@@ -63,7 +64,7 @@ export default function ScoreSection({ storeId }: { storeId: number }) {
                   active: reviewStatistic!.mostReviewScore === id,
                 })}
               >
-                {reviewStatistic!.reviewScore[id as ReviewScore] ?? 0}
+                {reviewStatistic!.reviewCounts[id as ReviewScore] ?? 0}
               </p>
             </div>
           ))}
