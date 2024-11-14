@@ -133,8 +133,17 @@ export const comment = style({
   gap: 8,
   marginTop: 8,
 });
+export const commentHeader = style({
+  display: 'flex',
+  gap: 5,
+  alignItems: 'end',
+});
 export const commentWriter = style({
   fontWeight: fontWeight.bold,
+});
+export const commentDate = style({
+  fontSize: 13,
+  color: '#8F8F8F',
 });
 export const commentContent = style({
   fontSize: 14,

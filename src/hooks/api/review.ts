@@ -63,4 +63,8 @@ export const Review = {
     const list = (await response.data.content) as MyReviewResponse[];
     return list;
   },
+  async deletePost(reviewId: number) {
+    const response = await API.delete(`/review/user/${reviewId}`);
+    return response.data;
+  },
 };

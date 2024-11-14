@@ -44,15 +44,15 @@ export type ReviewResponse = {
   createdAt: string;
   reviewScore: ReviewScore;
   content: string;
-  reasons: SatisfiedReason[];
+  satisfiedReasons: SatisfiedReason[];
   images: string[];
-  ownerComment: string;
+  ownerComment?: string;
+  ownerCommentDate?: string;
 };
 
 export type MyReviewResponse = {
+  id?: number;
   storeId?: number;
   storeName?: string;
   reviewId?: number;
-  ownerComment?: string;
-  satisfiedReasons?: SatisfiedReason[];
 } & ReviewResponse;

@@ -11,6 +11,7 @@ import { useRefuseOrderByOwner } from '@/hooks/query/order/owner/useRefuseOrderB
 import Input from '@/components/input/input';
 import { useAcceptOrderByOwner } from '@/hooks/query/order/owner/useAcceptOrderByOwner';
 import { useCompleteOrderByOwner } from '@/hooks/query/order/owner/useCompleteOrderByOwner';
+import { formatDateTime } from '@/utils/formatDateTime';
 import Aside from './(components)/aside/aside';
 import * as styles from './styles.css';
 
@@ -88,7 +89,9 @@ export default function Page({
             </div>
             <div className={styles.orderContentSection}>
               <div className={styles.orderContentHeader}>
-                <p className={styles.tag}>{order.orderedTime} 주문</p>
+                <p className={styles.tag}>
+                  {formatDateTime(order.orderedTime)} 주문
+                </p>
                 <p className={styles.tag}>{PaymentName[order.payment]}</p>
               </div>
               <p>

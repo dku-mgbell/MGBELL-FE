@@ -1,11 +1,13 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
+import Link from 'next/link';
 import formatTimeDifference from '@/utils/formatTimeDifference';
 import { MyReviewResponse, SatisfiedReasonName } from '@/types/review';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ThumbsUpIcon from '@/assets/svg/ThumbsUpIcon';
 import ChevronRightIcon from '@/assets/svg/ChevronRightIcon';
-import Link from 'next/link';
+import useModal from '@/hooks/useModal';
+import { useDeleteReview } from '@/hooks/query/review/useDeleteReview';
 import * as styles from './styles.css';
 
 export default function ReviewPost({
@@ -15,14 +17,23 @@ export default function ReviewPost({
   isMine?: boolean;
   review: MyReviewResponse;
 }) {
-  // TODO line 24 storeId -> id 로 수정 예정
+  const { open } = useModal();
+  const { mutate: deleteReview } = useDeleteReview();
+  const handleDeleteButtonClick = (id: number) => {
+    open({
+      content: '리뷰를 삭제하시겠습니까?',
+      confirmEvent: () => {
+        deleteReview(id);
+      },
+    });
+  };
 
   return (
     <div className={styles.reviewContainer}>
       <div className={styles.reviewHeader({ align: 'center' })}>
         {isMine ? (
           <div>
-            <Link href={`/bag/${review.storeId}`} className={styles.storeName}>
+            <Link href={`/bag/${review.id}`} className={styles.storeName}>
               {review.storeName} <ChevronRightIcon color="black" />
             </Link>
             <span className={styles.date({ theme: 'primary' })}>
@@ -38,7 +49,13 @@ export default function ReviewPost({
           </div>
         )}
         {isMine && (
-          <button type="button" className={styles.deleteButton}>
+          <button
+            type="button"
+            className={styles.deleteButton}
+            onClick={() => {
+              handleDeleteButtonClick(review.reviewId!);
+            }}
+          >
             삭제
           </button>
         )}
@@ -77,13 +94,6 @@ export default function ReviewPost({
         ))}
       </Swiper>
       <div className={styles.reasonContainer}>
-        {review.reasons &&
-          review.reasons.map((reason) => (
-            <p key={reason} className={styles.reasonTag}>
-              {SatisfiedReasonName[reason]}
-              <ThumbsUpIcon />
-            </p>
-          ))}
         {review.satisfiedReasons &&
           review.satisfiedReasons.map((reason) => (
             <p key={reason} className={styles.reasonTag}>
@@ -94,7 +104,12 @@ export default function ReviewPost({
       </div>
       {review.ownerComment && (
         <div className={styles.comment}>
-          <p className={styles.commentWriter}>사장님</p>
+          <div className={styles.commentHeader}>
+            <p className={styles.commentWriter}>사장님</p>
+            <p className={styles.commentDate}>
+              {formatTimeDifference(review.ownerCommentDate!)}
+            </p>
+          </div>
           <p className={styles.commentContent}>{review.ownerComment}</p>
         </div>
       )}
