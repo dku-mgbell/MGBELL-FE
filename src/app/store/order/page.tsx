@@ -97,7 +97,7 @@ export default function Page({
               <p>
                 [마감백 {order.amount}개] {commaizeNumber(order.subTotal)}원
               </p>
-              <p>연락처: 010-1234-5678</p>
+              <p>연락처: {order.phoneNumber}</p>
               {order.request && <p>요청사항: {order.request}</p>}
             </div>
             <div className={styles.buttonContainer}>

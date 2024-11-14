@@ -47,7 +47,10 @@ export default function Page() {
     input.newPassword.value === input.newPasswordCheck.value;
 
   const handleNextButtonClick = () => {
-    postPasswordChange({ newPassword: input.newPassword.value });
+    postPasswordChange({
+      oldPassword: input.password.value,
+      newPassword: input.newPassword.value,
+    });
   };
 
   return (

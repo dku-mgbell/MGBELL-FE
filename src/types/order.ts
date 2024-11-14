@@ -29,6 +29,7 @@ export interface OwnerOrderDetail {
   amount: number;
   subTotal: number;
   payment: Payment;
+  phoneNumber: string;
 }
 
 export type Payment = 'SPOT';

@@ -15,7 +15,9 @@ export default function LoginForm() {
   };
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    mutate(loginInfo!);
+    if (loginInfo && loginInfo.email && loginInfo.password) {
+      mutate(loginInfo!);
+    }
   };
 
   return (

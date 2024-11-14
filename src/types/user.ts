@@ -9,6 +9,7 @@ export interface UserInfoResponse {
 }
 
 export interface PasswordChange {
+  oldPassword: string;
   newPassword: string;
 }
 
