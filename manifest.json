@@ -1,8 +1,25 @@
 {
   "name": "마감벨",
+  "icons" : [
+  {
+    "src": "/assets/logo/logo192.png",
+    "type": "image/png",
+    "sizes": "192x192"
+  },
+  {
+    "src": "/assets/logo/logo512.png",
+    "type": "image/png",
+    "sizes": "512x512"
+  }],
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
   "short_name": "마감벨",
   "id": "mgbell",
-  "description": "단국대 인근, 보정동 카페거리 마감할인 상품을 한눈에! 🔔 #zerofoodwaste에 동참하세요🌎"
+  "description": "단국대 인근, 보정동 카페거리 마감할인 상품을 한눈에! 🔔 #zerofoodwaste에 동참하세요🌎",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "lang": "ko-KR",
+  "orientation": "portrait",
+  "display_override": ["window-controls-overlay"]
 }
