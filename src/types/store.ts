@@ -15,3 +15,29 @@ export interface StoreRegistration extends Coordinate {
   storeType: StoreID | null;
   // images: File[];
 }
+
+export interface MyStoreInfo {
+  id: 0;
+  storeName: string;
+  businessRegiNum: string;
+  address: string;
+  longitude: string;
+  latitude: string;
+  storeType: StoreID;
+  status: 'ACTIVE' | 'INACTIVE';
+  onSale: boolean;
+  originalFileDir: string[];
+}
+
+export interface StorePatch {
+  request: {
+    storeName: string;
+    ownerName: string;
+    contact: string;
+    address: string;
+    longitude: string;
+    latitude: string;
+    storeType: StoreID;
+  };
+  images: string[];
+}

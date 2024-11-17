@@ -1,13 +1,33 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useAuthStore } from '@/hooks/stores/useAuthStore';
+import useModal from '@/hooks/useModal';
 import { mapButtonInfo, navigationTabList } from './navigation-tab-list';
 import * as styles from './styles.css';
 
 export default function Navigation() {
   const pathname = usePathname();
   const currentRoute = pathname.split('?')[0];
+  const { isLoggedIn } = useAuthStore();
+  const { open } = useModal();
+  const router = useRouter();
+  const handleNavigationLink = ({
+    loggedIn,
+    tabInfo,
+  }: {
+    loggedIn?: boolean;
+    tabInfo: (typeof navigationTabList)[0];
+  }) => {
+    if (loggedIn) {
+      return tabInfo.route;
+    }
+    if (tabInfo.forGuest) {
+      return tabInfo.route;
+    }
+    return '';
+  };
 
   return (
     navigationTabList.map(({ route }) => route).includes(currentRoute) && (
@@ -18,7 +38,16 @@ export default function Navigation() {
             return (
               <Link
                 key={tabInfo.id}
-                href={tabInfo.route}
+                href={handleNavigationLink({ loggedIn: isLoggedIn, tabInfo })}
+                onClick={() => {
+                  if (!isLoggedIn && !tabInfo.forGuest)
+                    open({
+                      content: '로그인 이후 이용 가능합니다.',
+                      confirmEvent: () => {
+                        router.push('/login');
+                      },
+                    });
+                }}
                 style={tabInfo.margin}
               >
                 <div>{tabInfo.icon(active)}</div>

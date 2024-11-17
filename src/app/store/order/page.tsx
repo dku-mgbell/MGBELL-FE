@@ -1,14 +1,20 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Button from '@/components/button/text-button/button';
 import { useGetOrderListByOwner } from '@/hooks/query/order/owner/useGetOrderListByOwner';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
-import { OrderState, OwnerOrderDetail, PaymentName } from '@/types/order';
+import {
+  CancelReason,
+  OrderState,
+  OrderStateNameByOwner,
+  OwnerOrderDetail,
+  PaymentName,
+} from '@/types/order';
 import { Intersection } from '@/components/intersection/intersection';
 import { commaizeNumber } from '@/utils/commaizeNumber';
 import useModal from '@/hooks/useModal';
 import { useRefuseOrderByOwner } from '@/hooks/query/order/owner/useRefuseOrderByOwner';
-import Input from '@/components/input/input';
 import { useAcceptOrderByOwner } from '@/hooks/query/order/owner/useAcceptOrderByOwner';
 import { useCompleteOrderByOwner } from '@/hooks/query/order/owner/useCompleteOrderByOwner';
 import { formatDateTime } from '@/utils/formatDateTime';
@@ -18,29 +24,41 @@ import * as styles from './styles.css';
 export default function Page({
   searchParams: { state },
 }: {
-  searchParams: { state: OrderState };
+  searchParams: { state?: OrderState | '' };
 }) {
-  const orderListState = useGetOrderListByOwner({ size: 5 });
+  const orderListState = useGetOrderListByOwner({ size: 5, state });
   const { list, intersection, isLoading } =
     useInfiniteScroll<OwnerOrderDetail>(orderListState);
+  const [orderList, setOrderList] = useState<OwnerOrderDetail[]>();
   const { mutate: postRefuseOrder } = useRefuseOrderByOwner();
   const { mutate: postAcceptOrder } = useAcceptOrderByOwner();
   const { mutate: postCompleteOrder } = useCompleteOrderByOwner();
   const { open } = useModal();
 
+  useEffect(() => {
+    setOrderList(list);
+  }, [list, state]);
+
   const handleRefuseButtonClick = (orderId: number) => {
     open({
       content: (
         <div className={styles.refuseModal}>
-          <p>거절 이유를 입력해주세요.</p>
-          <Input id="modalInput" placeholder="ex.재고 소진" />
+          <p>거절 이유를 선택해주세요.</p>
+          {Object.entries(CancelReason).map(([id, value]) => (
+            <label key={id}>
+              <input value={id} type="radio" name="cancel-reason" />
+              <span style={{ marginLeft: 10 }}>{value}</span>
+            </label>
+          ))}
         </div>
       ),
       confirmEvent: () => {
-        const modalInput = document.getElementById(
-          'modalInput',
+        const checkedInput = document.querySelector(
+          'input[type=radio][name=cancel-reason]:checked',
         ) as HTMLInputElement;
-        postRefuseOrder({ orderId, refusalReason: modalInput.value });
+        if (checkedInput) {
+          postRefuseOrder({ orderId, refusalReason: checkedInput.value });
+        }
       },
     });
   };
@@ -75,13 +93,13 @@ export default function Page({
     },
   };
 
-  if (isLoading) return <> </>;
+  if (isLoading || !orderList) return <> </>;
 
   return (
-    <div className={styles.container}>
+    <>
       <Aside state={state} />
       <div className={styles.content}>
-        {list!.map((order) => (
+        {orderList!.map((order) => (
           <div key={order.orderId} className={styles.orderItem}>
             <div className={styles.orderNumberSection}>
               <p className={styles.orderNumber}>{order.orderId}</p>
@@ -89,6 +107,9 @@ export default function Page({
             </div>
             <div className={styles.orderContentSection}>
               <div className={styles.orderContentHeader}>
+                <p className={styles.tag}>
+                  {OrderStateNameByOwner[order.orderState]}
+                </p>
                 <p className={styles.tag}>
                   {formatDateTime(order.orderedTime)} 주문
                 </p>
@@ -140,6 +161,6 @@ export default function Page({
         ))}
         <Intersection ref={intersection} />
       </div>
-    </div>
+    </>
   );
 }

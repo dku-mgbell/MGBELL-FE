@@ -32,6 +32,10 @@ export default function Textarea({
     if (getContent) getContent(content);
   }, [content]);
 
+  useEffect(() => {
+    if (value) setContent(value);
+  }, [value]);
+
   return (
     <div className={styles.container}>
       <textarea

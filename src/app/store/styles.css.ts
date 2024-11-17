@@ -26,3 +26,11 @@ export const main = style({
   flex: 1,
   backgroundColor: '#f6f6f6',
 });
+
+export const mainContent = style({
+  display: 'flex',
+  position: 'absolute',
+  top: 100,
+  height: 'calc(100dvh - 100px)',
+  width: '100%',
+});

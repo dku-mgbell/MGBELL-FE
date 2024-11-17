@@ -4,6 +4,7 @@ import {
   BagDetail,
   BagInfoPageResponse,
   BagInfoResponse,
+  MyBagInfoResponse,
 } from '@/types/bag';
 import { API } from '.';
 
@@ -12,12 +13,12 @@ export const Bag = {
     const response = await API.post('/post', data);
     return response.data;
   },
-  async getInfiniteList({
-    page,
-    size,
-  }: PageParams): Promise<BagInfoResponse[]> {
+  async getInfiniteList(
+    { isLoggedIn }: { isLoggedIn?: boolean },
+    { page, size }: PageParams,
+  ): Promise<BagInfoResponse[]> {
     const response = await API.get(
-      `/post/list?page=${page}&size=${size}&sort=createdAt,desc`,
+      `/post/${isLoggedIn ? 'list' : 'guest'}?page=${page}&size=${size}&sort=createdAt,desc`,
     );
     const list = (await response.data.content) as BagInfoResponse[];
     return list;
@@ -26,8 +27,30 @@ export const Bag = {
     const response = await API.get(`/post/list?page=${page}&size=${size}`);
     return response.data;
   },
-  async getDetail(id: number): Promise<BagDetail> {
-    const response = await API.get(`/post/${id}`);
+  async getDetail({
+    id,
+    isLoggedIn,
+  }: {
+    id: number;
+    isLoggedIn?: boolean;
+  }): Promise<BagDetail> {
+    const response = await API.get(`/post/${isLoggedIn ? '' : 'guest/'}${id}`);
+    return response.data;
+  },
+  async patch(data: BagInfo) {
+    const response = await API.patch('/post', data);
+    return response.data;
+  },
+
+  async patchOnSale(onSale: boolean) {
+    const response = await API.post('/post/onSale', {
+      onSale,
+    });
+    return response.data;
+  },
+
+  async getInfoByOwner(): Promise<MyBagInfoResponse> {
+    const response = await API.get('/post');
     return response.data;
   },
 };

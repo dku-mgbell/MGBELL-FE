@@ -52,10 +52,24 @@ export const styles = {
 
   location: style({
     display: 'flex',
-    color: colors.white,
     alignItems: 'center',
     gap: '8px',
     width: 'fit-content',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    lineClamp: '1',
+    maxWidth: '100%',
+  }),
+
+  locationText: style({
+    width: 'fit-content',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    lineClamp: '1',
+    color: colors.white,
+    flex: 1,
   }),
 
   search: style({

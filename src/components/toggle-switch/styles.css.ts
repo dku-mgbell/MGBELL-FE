@@ -34,6 +34,7 @@ export const slider = style({
     transition: '0.4s',
     borderRadius: '50%',
     border: `1px solid #ccc`,
+    left: 0,
   },
 });
 

@@ -10,10 +10,15 @@ import { Intersection } from '@/components/intersection/intersection';
 import Tag from '@/components/text/tag/tag';
 import ProductInfoFooter from '@/components/product/product-info-footer/product-info-footer';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
+import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import * as styles from './styles.css';
 
 export default function StoreList() {
-  const bagListState = useGetBagInfiniteList({ size: 5 });
+  const { isLoggedIn } = useAuthStore();
+  const bagListState = useGetBagInfiniteList({
+    isLoggedIn: isLoggedIn ?? false,
+    size: 5,
+  });
   const { list, intersection, isLoading } =
     useInfiniteScroll<BagInfoResponse>(bagListState);
 

@@ -14,7 +14,6 @@ export default function Page() {
     useInfiniteScroll<UserOrderDetailPreview>(orderListState);
 
   if (isLoading) return <> </>;
-
   return (
     <HeaderLayout title="주문내역">
       <div className={styles.container}>

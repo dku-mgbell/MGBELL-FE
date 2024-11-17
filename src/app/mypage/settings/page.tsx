@@ -9,8 +9,8 @@ import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
 import { useDeleteAccount } from '@/hooks/query/user/useDeleteAccount';
 import { colors } from '@/styles/constant';
+import MenuButton from '@/components/button/menu-button/menu-button';
 import * as styles from './styles.css';
-import MenuButton from '../(components)/menu-button/menu-button';
 
 export default function Page() {
   const route = useRouter();

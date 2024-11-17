@@ -20,6 +20,7 @@ export default function Button({
     | 'primary'
     | 'secondary'
     | 'red'
+    | 'gray'
     | 'inactive-primary'
     | 'inactive-secondary'
     | 'light-yellow'

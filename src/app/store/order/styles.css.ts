@@ -1,13 +1,6 @@
 import { borderRadius, colors } from '@/styles/constant';
 import { style } from '@vanilla-extract/css';
 
-export const container = style({
-  display: 'flex',
-  position: 'absolute',
-  top: 100,
-  height: 'calc(100dvh - 100px)',
-  width: '100%',
-});
 export const content = style({
   display: 'flex',
   flexDirection: 'column',

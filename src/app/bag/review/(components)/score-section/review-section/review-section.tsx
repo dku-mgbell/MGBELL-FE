@@ -9,7 +9,13 @@ import { Intersection } from '@/components/intersection/intersection';
 import ReviewPost from '@/components/review-post/review-post';
 import * as styles from './styles.css';
 
-export default function ReviewSection({ storeId }: { storeId: number }) {
+export default function ReviewSection({
+  storeId,
+  reviewCount,
+}: {
+  storeId: number;
+  reviewCount: number;
+}) {
   const reviewListState = useGetReviewList({ storeId, size: 5 });
   const { list, intersection, isLoading } =
     useInfiniteScroll<ReviewResponse>(reviewListState);
@@ -20,8 +26,12 @@ export default function ReviewSection({ storeId }: { storeId: number }) {
     <div className={styles.container}>
       <header className={styles.header}>
         <div>
-          <h1 className={styles.reviewCommentTitle}>최근 리뷰 9개</h1>
-          <p className={styles.ownerCommentTitle}>사장님 댓글 9개</p>
+          <h1 className={styles.reviewCommentTitle}>
+            최근 리뷰 {reviewCount}개
+          </h1>
+          <p className={styles.ownerCommentTitle}>
+            사장님 댓글 {reviewCount}개
+          </p>
         </div>
         <div className={styles.buttonContainer}>
           <button type="button" className={styles.button({ theme: 'primary' })}>

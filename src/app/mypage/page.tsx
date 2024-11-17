@@ -12,8 +12,8 @@ import ReviewIcon from '@/assets/svg/ReviewIcon';
 import HeadphoneIcon from '@/assets/svg/HeadphoneIcon';
 import SettingsIcon from '@/assets/svg/SettingsIcon';
 import { commaizeNumber } from '@/utils/commaizeNumber';
+import MenuButton from '@/components/button/menu-button/menu-button';
 import { useGetUserActivity } from '@/hooks/query/user/useGetUserActivity';
-import MenuButton from './(components)/menu-button/menu-button';
 import * as styles from './styles.css';
 
 export default function Page() {
@@ -28,7 +28,7 @@ export default function Page() {
     },
     environment: {
       name: '탄소 절감',
-      value: `${isLoading ? '0' : data?.carbonReduction}kg`,
+      value: `${isLoading ? '0' : data?.carbonReduction}kgCO2`,
       icon: CO2Icon,
     },
     money: {

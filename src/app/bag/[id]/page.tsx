@@ -12,6 +12,7 @@ import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
 import NumberInput from '@/components/input/number/number-input';
 import useModal from '@/hooks/useModal';
 import { useNumberInputStore } from '@/hooks/stores/useNumberInputStore';
+import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import { useBagHistoryStore } from '@/hooks/stores/useBagHistoryStore';
 import FavoriteButton from './(componets)/favorite-button/favorite-button';
 import * as styles from './styles.css';
@@ -20,7 +21,8 @@ export default function Page() {
   const params = useParams();
   const route = useRouter();
   const bagId = Number(params.id);
-  const { data, isLoading } = useGetBagDetail(bagId);
+  const { isLoggedIn } = useAuthStore();
+  const { data, isLoading } = useGetBagDetail({ id: bagId, isLoggedIn });
   const { number: numberInputData } = useNumberInputStore();
   const { bagAmount, setBagAmount } = useBagOrderState();
   const { open } = useModal();
@@ -62,7 +64,7 @@ export default function Page() {
     <div className={styles.container}>
       <header className={styles.header}>
         <BackButton />
-        <FavoriteButton isActive={favorite} storeId={storeId} />
+        {isLoggedIn && <FavoriteButton isActive={favorite} storeId={storeId} />}
       </header>
       <div className={styles.carousel}>
         <Carousel images={images} />
@@ -97,6 +99,10 @@ export default function Page() {
           <Button
             value="주문하기"
             onClick={() => {
+              if (!isLoggedIn) {
+                open({ content: '로그인 후 이용 가능합니다.' });
+                return;
+              }
               if (data!.amount > 0 && bagAmount > 0) {
                 route.push(`order/${storeId}`);
               } else {

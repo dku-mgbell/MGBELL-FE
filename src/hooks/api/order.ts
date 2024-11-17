@@ -1,5 +1,6 @@
 import {
   OrderInfo,
+  OrderState,
   OwnerOrderDetail,
   UserOrderDetail,
   UserOrderDetailPreview,
@@ -31,12 +32,12 @@ export const Order = {
     return response.data;
   },
   Owner: {
-    async getInfiniteList({
-      page,
-      size,
-    }: PageParams): Promise<OwnerOrderDetail[]> {
+    async getInfiniteList(
+      { state }: { state?: OrderState | '' },
+      { page, size }: PageParams,
+    ): Promise<OwnerOrderDetail[]> {
       const response = await API.get(
-        `/order/owner/list?page=${page}&size=${size}&sort=createdAt,desc`,
+        `/order/owner/list?page=${page}&size=${size}&sort=createdAt,desc${state ? `&state=${state}` : ''}`,
       );
       const list = (await response.data.content) as OwnerOrderDetail[];
       return list;

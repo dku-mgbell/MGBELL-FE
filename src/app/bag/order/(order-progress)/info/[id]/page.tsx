@@ -19,7 +19,10 @@ import * as styles from './styles.css';
 
 export default function Page() {
   const params = useParams();
-  const { data, isLoading } = useGetBagDetail(Number(params.id));
+  const { data, isLoading } = useGetBagDetail({
+    isLoggedIn: true,
+    id: Number(params.id),
+  });
   const { bagAmount } = useBagOrderState();
   const [time, setTime] = useState('');
   const [timeError, setTimeError] = useState(false);

@@ -24,20 +24,22 @@ export default function Page({
     userRole: UserRole;
   };
 }) {
-  const { setUserRole, isLoggedIn, setOAuthState } = useAuthStore();
+  const {
+    setUserRole,
+    setOAuthState,
+    userRole: savedUserRole,
+  } = useAuthStore();
   const { setToken, oAuthLogin } = useAuth();
   const { addressState } = useAddressStateStore();
   const route = useRouter();
 
   useEffect(() => {
-    if (isLoggedIn === false) {
-      route.push('/login');
-    }
-  }, [isLoggedIn]);
-
-  useEffect(() => {
     if (userRole) setUserRole(userRole);
   }, [userRole]);
+
+  useEffect(() => {
+    if (savedUserRole === 'OWNER') route.push('/store/order');
+  }, [savedUserRole]);
 
   useEffect(() => {
     if (isNewUser === 'true') {
@@ -62,9 +64,11 @@ export default function Page({
         <header className={styles.header}>
           <Link href="location" className={styles.location}>
             <LocationMarkerIcon />
-            {addressState.address
-              ? addressState.address
-              : '위치를 설정해주세요!'}
+            <span className={styles.locationText}>
+              {addressState.address
+                ? addressState.address
+                : '위치를 설정해주세요!'}
+            </span>
           </Link>
           <div className={styles.search}>
             <SearchInput placeholder="가게의 이름을 검색해보세요!" />

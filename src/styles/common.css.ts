@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
-import { colors } from './constant';
+import { borderRadius, colors } from './constant';
 
 export const common = {
   pointer: style({
@@ -47,5 +47,15 @@ export const common = {
         primary: { color: colors.primary },
       },
     },
+  }),
+  box: style({
+    display: 'flex',
+    width: '100%',
+    flexDirection: 'column',
+    padding: 20,
+    gap: 8,
+    boxShadow: ' rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;',
+    backgroundColor: colors.white,
+    borderRadius: borderRadius.md,
   }),
 };

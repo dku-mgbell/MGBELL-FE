@@ -45,3 +45,21 @@ export interface BagInfoPageResponse {
   pageParams: number[];
   pages: BagInfoResponse[][];
 }
+
+export interface MyBagInfoResponse {
+  id: number;
+  storeName: string;
+  bagName: string;
+  description: string;
+  reviewCnt: number;
+  address: string;
+  longitude: string;
+  latitude: string;
+  onSale: true;
+  amount: number;
+  startAt: string;
+  endAt: string;
+  costPrice: number;
+  salePrice: number;
+  images: string[];
+}

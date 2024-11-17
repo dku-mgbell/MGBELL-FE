@@ -60,3 +60,18 @@ export const OrderStateName = {
   USER_CANCELED: '본인취소',
   OWNER_REFUSED: '매장취소',
 } as const;
+
+export const OrderStateNameByOwner = {
+  REQUESTED: '주문요청',
+  ACCEPTED: '진행중',
+  COMPLETED: '완료',
+  USER_CANCELED: '고객취소',
+  OWNER_REFUSED: '매장취소',
+} as const;
+
+export const CancelReason = {
+  SOLDOUT: '재고 소진',
+  ETC: '가게 사정',
+};
+
+export type CancelReasonCode = keyof typeof CancelReason;

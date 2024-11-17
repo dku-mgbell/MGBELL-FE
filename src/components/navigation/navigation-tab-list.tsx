@@ -7,6 +7,7 @@ import PinIcon from '@/assets/svg/PinIcon';
 export const navigationTabList = [
   {
     id: 'main',
+    forGuest: true,
     name: '메인',
     route: '/',
     icon: (active: boolean) => <HomeIcon active={active} />,
@@ -14,6 +15,7 @@ export const navigationTabList = [
   },
   {
     id: 'favorites',
+    forGuest: false,
     name: '즐겨찾기',
     route: '/favorites',
     icon: (active: boolean) => <HeartIcon active={active} />,
@@ -22,6 +24,7 @@ export const navigationTabList = [
 
   {
     id: 'order',
+    forGuest: false,
     name: '주문내역',
     route: '/order',
     icon: (active: boolean) => <PaperIcon active={active} />,
@@ -29,6 +32,7 @@ export const navigationTabList = [
   },
   {
     id: 'mypage',
+    forGuest: false,
     name: '마이페이지',
     route: '/mypage',
     icon: (active: boolean) => <PersonIcon active={active} />,

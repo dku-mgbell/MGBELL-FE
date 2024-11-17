@@ -19,6 +19,7 @@ export const textarea = recipe({
     fontWeight: fontWeight.md,
     borderRadius: borderRadius.md,
     backgroundColor: colors.lightGray10,
+    lineHeight: 1.4,
     '::placeholder': {
       color: colors.lightGray150,
     },

@@ -1,3 +1,4 @@
+import { CSSProperties, ReactNode } from 'react';
 import ChevronRightIcon from '@/assets/svg/ChevronRightIcon';
 import * as styles from './styles.css';
 
@@ -6,25 +7,32 @@ export default function MenuButton({
   name,
   icon: Icon,
   iconColor,
+  style,
+  shadow,
+  button,
 }: {
-  event: () => void;
+  event?: () => void;
   name: string;
-  icon: React.ComponentType<{ color?: string }>;
+  icon?: React.ComponentType<{ color?: string }>;
   iconColor?: string;
+  style?: CSSProperties;
+  shadow?: boolean;
+  button?: ReactNode;
 }) {
   return (
     <button
-      className={styles.menuButton}
+      className={styles.menuButton({ shadow, event: !!event })}
       type="button"
       onClick={() => {
-        event();
+        if (event) event();
       }}
+      style={style}
     >
       <span className={styles.menuButtonIconText}>
-        <Icon color={iconColor} />
+        {Icon && <Icon color={iconColor} />}
         {name}
       </span>
-      <ChevronRightIcon />
+      {button || <ChevronRightIcon />}
     </button>
   );
 }

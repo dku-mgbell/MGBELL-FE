@@ -1,11 +1,18 @@
 import { Order } from '@/hooks/api/order';
+import { OrderState } from '@/types/order';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-export const useGetOrderListByOwner = ({ size }: { size: number }) =>
+export const useGetOrderListByOwner = ({
+  size,
+  state,
+}: {
+  size: number;
+  state?: OrderState | '';
+}) =>
   useInfiniteQuery({
-    queryKey: ['owner-order-list'],
+    queryKey: ['owner-order-list', state],
     queryFn: ({ pageParam: pageNum }) =>
-      Order.Owner.getInfiniteList({ page: pageNum, size }),
+      Order.Owner.getInfiniteList({ state }, { page: pageNum, size }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) =>
       lastPage.length ? allPages.length : undefined,

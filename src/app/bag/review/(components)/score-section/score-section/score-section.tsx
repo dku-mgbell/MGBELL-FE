@@ -1,27 +1,13 @@
 import Image from 'next/image';
 import { ReviewScoreImage } from '@/assets/images/review/bell';
-import { ReviewScore, ReviewScoreName } from '@/types/review';
-import { useGetReviewStatistic } from '@/hooks/query/review/useGetReviewStatistic';
-// import { useGetReviewStatistic } from '@/hooks/query/review/useGetReviewStatistic';
+import { ReviewScore, ReviewScoreName, ReviewStatistic } from '@/types/review';
 import * as styles from './styles.css';
 
-export default function ScoreSection({ storeId }: { storeId: number }) {
-  // const reviewStatistic: ReviewStatistic = {
-  //   mostReviewScore: 'BEST',
-  //   reviewCount: 3 + storeId,
-  //   reviewScore: {
-  //     BEST: 2,
-  //     GOOD: 1,
-  //     NOTGOOD: storeId,
-  //     NOTBAD: 0,
-  //   },
-  // };
-  const { data: reviewStatistic, isLoading } = useGetReviewStatistic({
-    storeId,
-  });
-
-  if (isLoading) return <> </>;
-
+export default function ScoreSection({
+  reviewStatistic,
+}: {
+  reviewStatistic: ReviewStatistic;
+}) {
   return (
     <div className={styles.scoreContainer}>
       <div className={styles.scoreImageContainer}>
