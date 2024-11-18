@@ -26,4 +26,5 @@ export interface CurrentOrder {
   storeName: string;
   pickupTime: string;
   orderState: OrderState;
+  image: string;
 }

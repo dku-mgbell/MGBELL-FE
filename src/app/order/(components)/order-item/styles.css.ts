@@ -76,7 +76,7 @@ export const orderInfoSection = style({
 });
 
 export const storeName = style({
-  fontSize: 17,
+  fontSize: 15,
   fontWeight: fontWeight.bold,
   display: 'flex',
   gap: 5,
@@ -84,5 +84,6 @@ export const storeName = style({
 });
 
 export const bagInfo = style({
+  fontSize: 15,
   color: '#6D6D6D',
 });

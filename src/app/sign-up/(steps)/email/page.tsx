@@ -27,7 +27,7 @@ export default function Page() {
       mutate(email);
       setSignUpInfo({ ...signUpInfo, email });
     }
-  }, []);
+  }, [isDuplicateUser]);
 
   return (
     <StepsLayout

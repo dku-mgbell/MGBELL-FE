@@ -96,8 +96,7 @@ export default function Page() {
               href={`/order/${order.id}`}
               className={styles.pickUpButton}
               style={{
-                backgroundImage:
-                  "url('https://mgbell-bucket.s3.ap-northeast-2.amazonaws.com/%EB%8B%AC%EC%BD%A4%EB%B2%A0%EC%9D%B4%EC%BB%A4%EB%A6%AC%2Fb1.png')",
+                backgroundImage: `url('${order.image}')`,
               }}
             >
               <div className={styles.pickUpButtonContent}>
