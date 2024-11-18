@@ -37,4 +37,29 @@ export const User = {
     const response = await API.get('/user/myPage');
     return response.data;
   },
+  async sendFindPasswordCode(email: string) {
+    const response = await API.post('/email/sendCode/password', { email });
+    return response.data;
+  },
+  async verifyFindPasswordCode({
+    email,
+    code,
+  }: {
+    email: string;
+    code: string;
+  }) {
+    const response = await API.post('/email/verifyCode/password', {
+      email,
+      token: code,
+    });
+    return response.data;
+  },
+  async resetPassword(data: {
+    email: string;
+    token: string;
+    newPassword: string;
+  }) {
+    const response = await API.patch('/user/password/reset', data);
+    return response.data;
+  },
 };
