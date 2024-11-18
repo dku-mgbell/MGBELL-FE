@@ -5,7 +5,7 @@ export const container = style({
   flexDirection: 'column',
   gap: 15,
   overflow: 'auto',
-  height: 'calc(100dvh - 40px)',
+  height: 'calc(100vh - 40px)',
 });
 
 export const title = style({

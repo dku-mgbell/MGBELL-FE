@@ -8,7 +8,7 @@ import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import SearchInput from '@/components/input/search/search-input';
 import { UserRole } from '@/types/user';
 import { useAddressStateStore } from '@/hooks/stores/useAddressStore';
-import FilterIcon from '../assets/svg/FilterIcon';
+// import FilterIcon from '../assets/svg/FilterIcon';
 import LocationMarkerIcon from '../assets/svg/LocationMarkerIcon';
 import { container, styles } from './styles.css';
 import SortContainer from './(components)/sort-container/sort-container';
@@ -67,14 +67,14 @@ export default function Page({
             <span className={styles.locationText}>
               {addressState.address
                 ? addressState.address
-                : '위치를 설정해주세요!'}
+                : '위치를 입력해주세요'}
             </span>
           </Link>
           <div className={styles.search}>
-            <SearchInput placeholder="가게의 이름을 검색해보세요!" />
-            <button type="button" className={styles.filterButton}>
+            <SearchInput placeholder="마감벨 입점 매장을 검색해보세요!" />
+            {/* <button type="button" className={styles.filterButton}>
               <FilterIcon />
-            </button>
+            </button> */}
           </div>
         </header>
         <section className={styles.contentWrapper}>

@@ -23,7 +23,6 @@ html {
   }
 }
 
-
 body {
   color: var(--foreground);
   background: var(--background);
@@ -56,7 +55,7 @@ button {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  color: #000,
+  color: #000;
 }
 
 li {
@@ -64,14 +63,14 @@ li {
 }
 
 strong {
-  font-weight: 700
+  font-weight: 700;
 }
 
-textarea{
+textarea {
   border: none;
   resize: none;
   &:focus {
-  outline: none;
+    outline: none;
   }
 }
 

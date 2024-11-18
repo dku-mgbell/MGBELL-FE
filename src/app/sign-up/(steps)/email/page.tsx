@@ -1,30 +1,39 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Input from '@/components/input/input';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import { isValidEmail } from '@/utils/regex';
 import { usePostMail } from '@/hooks/query/sign-up/usePostMail';
+import { useCheckDuplicate } from '@/hooks/query/sign-up/useCheckDuplicate';
 import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
 import { styles } from '../styles.css';
 
 export default function Page() {
   const [email, setEmail] = useState('');
+  const [isDuplicateUser, setIsDuplicateUser] = useState<boolean>(true);
   const isInvalidMail = (value: string) =>
     value.length > 0 && !isValidEmail(value);
   const { mutate } = usePostMail();
   const { signUpInfo, setSignUpInfo } = useSignUpInfoStore();
+  const { mutate: checkDuplicateUser } = useCheckDuplicate(setIsDuplicateUser);
 
-  const handleSubmitEmail = () => {
-    mutate(email);
-    setSignUpInfo({ ...signUpInfo, email });
+  const handleSubmitButtonClick = () => {
+    checkDuplicateUser(email);
   };
+
+  useEffect(() => {
+    if (!isDuplicateUser) {
+      mutate(email);
+      setSignUpInfo({ ...signUpInfo, email });
+    }
+  }, []);
 
   return (
     <StepsLayout
       title="Email"
       isNextStepAllowed={isValidEmail(email)}
-      onNextStep={handleSubmitEmail}
+      onNextStep={handleSubmitButtonClick}
       buttonContent="인증코드 전송"
     >
       <Input

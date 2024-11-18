@@ -8,6 +8,7 @@ export default function Button({
   value,
   theme,
   size,
+  height,
   className,
   rounded,
   shadow,
@@ -27,13 +28,14 @@ export default function Button({
     | 'outline-secondary'
     | 'outline-gray';
   size?: 'full' | 'fit';
+  height?: 'small';
   rounded?: 'md' | 'lg';
   shadow?: boolean;
   padding?: boolean;
 } & ButtonProps) {
   return (
     <button
-      className={`${button({ theme, size, rounded, shadow, padding })} ${className}`}
+      className={`${button({ theme, size, rounded, shadow, padding, height })} ${className}`}
       type="button"
       {...props}
     >

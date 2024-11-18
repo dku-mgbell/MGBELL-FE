@@ -23,6 +23,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: 'cover',
   width: 'device-width',
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
@@ -33,6 +35,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <link rel="manifest" href="/manifest.json" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent"
+      />
       <body className={`${notoSans.variable} ${styles.body}`}>
         <Script
           strategy="afterInteractive"
@@ -41,10 +48,10 @@ export default function RootLayout({
         <ReactQueryProviders>
           <ModalProvider>
             <MSWProvider />
+            <div id="modal-root" />
             {children}
             <Navigation />
           </ModalProvider>
-          <div id="modal-root" />
         </ReactQueryProviders>
       </body>
     </html>

@@ -15,6 +15,12 @@ export const tag = recipe({
       gray: { backgroundColor: '#929292' },
       primary: { backgroundColor: colors.primary },
     },
+    shadow: {
+      true: {
+        boxShadow:
+          'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px',
+      },
+    },
   },
   defaultVariants: {
     theme: 'default',

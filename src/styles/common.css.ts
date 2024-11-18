@@ -54,7 +54,7 @@ export const common = {
     flexDirection: 'column',
     padding: 20,
     gap: 8,
-    boxShadow: ' rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;',
+    boxShadow: '#63636319 0px 2px 8px 0px;',
     backgroundColor: colors.white,
     borderRadius: borderRadius.md,
   }),

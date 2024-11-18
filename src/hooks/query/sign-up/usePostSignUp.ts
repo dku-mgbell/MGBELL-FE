@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import { useAuth } from '@/hooks/useAuth';
-import { usePostLogin } from '../login/usePostLogin';
+import { usePostLogin } from '../user/usePostLogin';
 
 export const usePostSignUp = () => {
   const route = useRouter();

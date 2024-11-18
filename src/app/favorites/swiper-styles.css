@@ -1,9 +1,9 @@
 .screen-swiper.swiper {
   width: 100%;
-  height: calc(100dvh - 150px);
+  height: calc(100vh - 150px);
 }
 .screen-swiper .swiper-wrapper {
-  height: calc(100dvh - 150px);
+  height: calc(100vh - 150px);
 }
 
 .screen-swiper .swiper-slide {

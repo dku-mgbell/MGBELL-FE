@@ -1,7 +1,7 @@
 'use client';
 
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { usePostLogin } from '@/hooks/query/login/usePostLogin';
+import { usePostLogin } from '@/hooks/query/user/usePostLogin';
 import { LoginInfo } from '@/types/login';
 import { styles } from './styles.css';
 

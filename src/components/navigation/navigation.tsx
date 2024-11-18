@@ -1,9 +1,10 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import useModal from '@/hooks/useModal';
+import { useAuth } from '@/hooks/useAuth';
 import { mapButtonInfo, navigationTabList } from './navigation-tab-list';
 import * as styles from './styles.css';
 
@@ -11,8 +12,8 @@ export default function Navigation() {
   const pathname = usePathname();
   const currentRoute = pathname.split('?')[0];
   const { isLoggedIn } = useAuthStore();
+  const { logout } = useAuth();
   const { open } = useModal();
-  const router = useRouter();
   const handleNavigationLink = ({
     loggedIn,
     tabInfo,
@@ -44,7 +45,7 @@ export default function Navigation() {
                     open({
                       content: '로그인 이후 이용 가능합니다.',
                       confirmEvent: () => {
-                        router.push('/login');
+                        logout();
                       },
                     });
                 }}

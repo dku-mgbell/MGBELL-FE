@@ -19,7 +19,10 @@ type AuthState = {
 export const useAuthStore = create(
   persist<AuthState>(
     (set) => ({
-      isLoggedIn: undefined,
+      isLoggedIn:
+        typeof window !== 'undefined'
+          ? !!localStorage.getItem('accessToken')
+          : undefined,
       setIsLoggedIn: (state: boolean | undefined) => {
         set({ isLoggedIn: state });
       },

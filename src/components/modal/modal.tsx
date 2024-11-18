@@ -50,9 +50,14 @@ export default function Modal({
           value="닫기"
           onClick={close}
           theme={confirmEvent ? 'inactive-primary' : 'primary'}
+          height="small"
         />
         {confirmEvent && (
-          <Button value="확인" onClick={handleConfirmButtonClick} />
+          <Button
+            value="확인"
+            onClick={handleConfirmButtonClick}
+            height="small"
+          />
         )}
       </div>
     </motion.div>

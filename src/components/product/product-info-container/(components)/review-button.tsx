@@ -14,7 +14,7 @@ export default function ReviewButton({
   reviewCnt: number;
 }) {
   const route = useRouter();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, logout } = useAuth();
   const { open } = useModal();
 
   return (
@@ -25,7 +25,12 @@ export default function ReviewButton({
         if (storeId && isLoggedIn)
           route.push(`/bag/review?storeId=${storeId}&bagId=${bagId}`);
         if (!isLoggedIn) {
-          open({ content: '로그인 이후 이용 가능합니다.' });
+          open({
+            content: '로그인 이후 이용 가능합니다.',
+            confirmEvent: () => {
+              logout();
+            },
+          });
         }
       }}
     >

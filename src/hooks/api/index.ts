@@ -1,5 +1,7 @@
-import { API_BASE_URL } from '@/constant';
 import axios from 'axios';
+import { API_BASE_URL } from '@/constant';
+// eslint-disable-next-line import/no-cycle
+import { User } from '@/hooks/api/user';
 
 export const API = axios.create({
   baseURL: API_BASE_URL,
@@ -12,3 +14,32 @@ API.interceptors.request.use((config) => {
   config.headers.Authorization = accessToken ? `Bearer ${accessToken}` : null;
   return config;
 });
+
+API.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function async(error) {
+    const refreshToken = localStorage.getItem('refreshToken');
+    if (error.status === 401) {
+      if (refreshToken) {
+        localStorage.removeItem('accessToken');
+        User.reissueToken(refreshToken)
+          .then(
+            ({
+              accessToken: accessTokenResponse,
+              refreshToken: refreshTokenResponse,
+            }) => {
+              localStorage.setItem('accessToken', accessTokenResponse);
+              localStorage.setItem('refreshToken', refreshTokenResponse);
+            },
+          )
+          .catch(() => {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            window.location.href = '/login';
+          });
+      }
+    }
+  },
+);

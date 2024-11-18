@@ -10,16 +10,20 @@ export const useAuth = () => {
       ? !!localStorage.getItem('accessToken')
       : null;
 
-  const logout = () => {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    setIsLoggedIn(false);
-    setUserRole(null);
-    setOAuthState({
-      isOAuth: false,
-      isNewUser: false,
-    });
-    route.push('/login');
+  const logout = (option?: { withoutRedirect?: boolean }) => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      setIsLoggedIn(false);
+      setUserRole(null);
+      setOAuthState({
+        isOAuth: false,
+        isNewUser: false,
+      });
+      if (!option?.withoutRedirect) {
+        route.push('/login');
+      }
+    }
   };
 
   const setToken = ({ accessToken }: { accessToken: string }) => {

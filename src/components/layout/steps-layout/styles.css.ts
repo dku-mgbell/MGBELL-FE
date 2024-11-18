@@ -42,7 +42,7 @@ export const styles = {
 
   buttonContainer: style({
     position: 'fixed',
-    bottom: '15px',
+    bottom: 'calc(15px + env(safe-area-inset-bottom) * 0.8)',
     width: `calc(100% - ${padding.layoutX} * 2)`,
   }),
 };

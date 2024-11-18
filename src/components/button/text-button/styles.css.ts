@@ -57,6 +57,12 @@ export const button = recipe({
     padding: {
       false: { padding: 0 },
     },
+    height: {
+      small: {
+        fontSize: 14,
+        padding: '12px 0',
+      },
+    },
   },
   defaultVariants: {
     theme: 'primary',

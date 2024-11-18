@@ -63,7 +63,8 @@ function SignUpPageContent() {
             type="radio"
             name="user-type"
             value="OWNER"
-            onChange={handleButtonClick}
+            // onChange={handleButtonClick}
+            disabled
           />
           <Image
             className={userStyles.image}

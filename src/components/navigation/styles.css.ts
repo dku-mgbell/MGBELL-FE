@@ -4,7 +4,7 @@ import { recipe } from '@vanilla-extract/recipes';
 
 export const wrapper = style({
   backgroundColor: colors.white,
-  zIndex: 9999,
+  zIndex: 999,
   position: 'fixed',
   width: '100%',
   bottom: 0,
@@ -17,15 +17,16 @@ export const container = style({
   display: 'flex',
   width: '100%',
   maxWidth: 500,
-  height: '70px',
+  height: 'calc(70px + env(safe-area-inset-bottom) * 0.9)',
   backgroundColor: colors.white,
   justifyContent: 'space-between',
-  alignItems: 'center',
+  alignItems: 'top',
 });
 
 globalStyle(`${container} a`, {
   textAlign: 'center',
   width: '25%',
+  paddingTop: 20,
 });
 
 export const tabName = recipe({
@@ -46,7 +47,7 @@ export const mapButton = style({
   left: '50%',
   transform: 'translateX(-50%)',
   //   marginLeft: -5,
-  bottom: 20,
+  bottom: 'calc(20px + env(safe-area-inset-bottom) * 0.9)',
   zIndex: 999999,
   borderRadius: '100%',
   width: 54,

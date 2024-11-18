@@ -18,7 +18,7 @@ export const sheet = style({
   padding: '2rem 1.6rem 2.5rem 1.6rem',
   boxShadow: '0px -4px 10px 2px rgba(0, 0, 0, 0.05)',
   color: '#5F5F5F ',
-  height: 'calc(100dvh - 400px)',
+  height: 'calc(100vh - 400px)',
 });
 
 export const imageWrapper = style({

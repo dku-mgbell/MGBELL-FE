@@ -4,7 +4,7 @@ import { style } from '@vanilla-extract/css';
 export const container = style({
   display: 'flex',
   flexDirection: 'column',
-  height: '100dvh',
+  height: '100vh',
   overflow: 'auto',
 });
 
@@ -14,7 +14,7 @@ export const header = style({
   top: 0,
   justifyContent: 'end',
   width: '100vw',
-  padding: '10px 25px 0 0',
+  padding: 'calc(5px + env(safe-area-inset-top)) 25px 0 0',
   zIndex: 999,
 });
 

@@ -9,7 +9,7 @@ export const styles = {
       flexDirection: 'column',
       justifyContent: 'space-between',
       padding: `calc(env(safe-area-inset-top) + 10px) ${padding.layoutX} calc(env(safe-area-inset-bottom) + 20px) ${padding.layoutX}`,
-      height: '100dvh',
+      height: '100vh',
       boxSizing: 'border-box',
     },
     variants: {
@@ -25,7 +25,7 @@ export const styles = {
     width: '100%',
     backgroundColor: colors.white,
     paddingBottom: 5,
-    top: 0,
+    top: 'env(safe-area-inset-top)',
     left: 0,
   }),
   main: style({

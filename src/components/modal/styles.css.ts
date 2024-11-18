@@ -6,7 +6,7 @@ import { buttonContainer } from '../input/number/styles.css';
 export const styles = {
   wrapper: style({
     width: '100%',
-    height: '100dvh',
+    height: '100vh',
     position: 'absolute',
     backgroundColor: 'rgba(0,0,0,0.2)',
     top: 0,
@@ -14,7 +14,7 @@ export const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    zIndex: 999,
+    zIndex: 99999,
   }),
   buttonContainer: style({
     display: 'flex',
@@ -37,11 +37,11 @@ export const styles = {
   content: recipe({
     base: {
       padding: '1rem',
-      fontSize: 17,
+      fontSize: 16,
       minHeight: '4rem',
       display: 'flex',
       alignItems: 'center',
-      color: '#222',
+      color: '#484747',
     },
     variants: {
       noPadding: {

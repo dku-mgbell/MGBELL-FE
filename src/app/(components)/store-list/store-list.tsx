@@ -64,10 +64,12 @@ export default function StoreList() {
                     <Tag
                       content={onSale ? '예약가능' : '예약불가'}
                       theme={onSale ? 'default' : 'gray'}
+                      shadow
                     />
                     <Tag
                       content={amount > 0 ? `${amount}개 남음` : '재고 없음'}
                       theme={amount > 0 ? 'white' : 'gray'}
+                      shadow
                     />
                   </div>
                   {favorite ? <LikeIcon /> : <LikeIcon off />}

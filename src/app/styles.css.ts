@@ -3,10 +3,9 @@ import { recipe } from '@vanilla-extract/recipes';
 import { borderRadius, colors, fontWeight, padding } from '../styles/constant';
 
 export const container = style({
-  height: '100dvh',
+  height: '100vh',
   display: 'flex',
   flexDirection: 'column',
-  gap: 7,
   overflow: 'hidden',
 });
 
@@ -40,8 +39,7 @@ export const styles = {
     display: 'flex',
     flexDirection: 'column',
     gap: '14px',
-    padding: `10px ${padding.layoutX}`,
-    paddingTop: 20,
+    padding: `calc(10px + env(safe-area-inset-top)) ${padding.layoutX} 10px ${padding.layoutX}`,
     fontWeight: fontWeight.md,
     backgroundColor: colors.primary,
     position: 'fixed',
@@ -110,11 +108,11 @@ export const styles = {
 
   contentWrapper: style({
     backgroundColor: colors.white,
-    padding: `14px ${padding.layoutX}`,
+    padding: `calc(env(safe-area-inset-top) * 0.9 + 14px) ${padding.layoutX} 14px ${padding.layoutX}`,
     position: 'absolute',
-    top: 100,
+    top: 93,
     width: '100vw',
-    height: 'calc(100% - 100px)',
+    height: 'calc(100% - 93px)',
     overflow: 'hidden',
   }),
 

@@ -13,6 +13,7 @@ import NumberInput from '@/components/input/number/number-input';
 import useModal from '@/hooks/useModal';
 import { useNumberInputStore } from '@/hooks/stores/useNumberInputStore';
 import { useAuthStore } from '@/hooks/stores/useAuthStore';
+import { useAuth } from '@/hooks/useAuth';
 import { useBagHistoryStore } from '@/hooks/stores/useBagHistoryStore';
 import FavoriteButton from './(componets)/favorite-button/favorite-button';
 import * as styles from './styles.css';
@@ -22,6 +23,7 @@ export default function Page() {
   const route = useRouter();
   const bagId = Number(params.id);
   const { isLoggedIn } = useAuthStore();
+  const { logout } = useAuth();
   const { data, isLoading } = useGetBagDetail({ id: bagId, isLoggedIn });
   const { number: numberInputData } = useNumberInputStore();
   const { bagAmount, setBagAmount } = useBagOrderState();
@@ -100,7 +102,12 @@ export default function Page() {
             value="주문하기"
             onClick={() => {
               if (!isLoggedIn) {
-                open({ content: '로그인 후 이용 가능합니다.' });
+                open({
+                  content: '로그인 이후 이용 가능합니다.',
+                  confirmEvent: () => {
+                    logout();
+                  },
+                });
                 return;
               }
               if (data!.amount > 0 && bagAmount > 0) {

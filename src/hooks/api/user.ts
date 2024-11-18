@@ -1,12 +1,17 @@
-import { LoginInfo } from '@/types/login';
+import { LoginInfo, LoginResponse } from '@/types/login';
 import { SignUpInfo } from '@/types/sign-up';
 import { PasswordChange, UserActivity, UserInfoResponse } from '@/types/user';
+// eslint-disable-next-line import/no-cycle
 import { API } from '.';
 
 export const User = {
   async login(data: LoginInfo) {
     const response = await API.post('/user/login', data);
     return response.data;
+  },
+  async reissueToken(token: string) {
+    const response = await API.post('/user/reissue', { refreshToken: token });
+    return response.data as Omit<LoginResponse, 'role'>;
   },
   async signUp(data: SignUpInfo, token: string) {
     const response = await API.post(`/user/signup/${token}`, data);

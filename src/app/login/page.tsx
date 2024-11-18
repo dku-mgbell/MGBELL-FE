@@ -1,10 +1,17 @@
-import Link from 'next/link';
-import { container, styles } from './styles.css';
+'use client';
 
+import { useEffect } from 'react';
+import Link from 'next/link';
+import { useAuth } from '@/hooks/useAuth';
 import LoginForm from './LoginForm';
 import SNSLogin from './SNSLogin';
+import { container, styles } from './styles.css';
 
 export default function Page() {
+  const { logout } = useAuth();
+  useEffect(() => {
+    logout({ withoutRedirect: true });
+  }, []);
   return (
     <section className={container()}>
       <header className={styles.header} />

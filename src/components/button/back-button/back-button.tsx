@@ -9,7 +9,7 @@ export default function BackButton({ link }: { link?: string }) {
       style={{
         position: 'absolute',
         left: 15,
-        top: 10,
+        top: 'calc(5px + env(safe-area-inset-top))',
         zIndex: 999,
         width: 39,
         height: 39,

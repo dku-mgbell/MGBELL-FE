@@ -4,7 +4,7 @@ import { style } from '@vanilla-extract/css';
 export const container = style({
   display: 'flex',
   flexDirection: 'column',
-  height: '100dvh',
+  height: '100vh',
 });
 
 export const header = style({
@@ -31,6 +31,6 @@ export const mainContent = style({
   display: 'flex',
   position: 'absolute',
   top: 100,
-  height: 'calc(100dvh - 100px)',
+  height: 'calc(100vh - 100px)',
   width: '100%',
 });

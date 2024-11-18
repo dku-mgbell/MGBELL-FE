@@ -3,7 +3,7 @@ import { style } from '@vanilla-extract/css';
 
 export const container = style({
   backgroundColor: '#F6F6F6',
-  height: '100dvh',
+  height: '100vh',
   display: 'flex',
   flexDirection: 'column',
   gap: 25,
