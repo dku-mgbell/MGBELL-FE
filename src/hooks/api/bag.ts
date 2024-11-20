@@ -14,11 +14,15 @@ export const Bag = {
     return response.data;
   },
   async getInfiniteList(
-    { isLoggedIn }: { isLoggedIn?: boolean },
+    {
+      isLoggedIn,
+      sortedBy,
+      searchKeyword,
+    }: { isLoggedIn?: boolean; sortedBy?: string; searchKeyword?: string },
     { page, size }: PageParams,
   ): Promise<BagInfoResponse[]> {
     const response = await API.get(
-      `/post/${isLoggedIn ? 'list' : 'guest'}?page=${page}&size=${size}&sort=createdAt,desc`,
+      `/post/${isLoggedIn ? 'list' : 'guest'}?page=${page}&size=${size}&sort=${sortedBy === 'onSale' ? '&onSale=true' : sortedBy || 'createdAt,desc'}${searchKeyword && `&storeName=${searchKeyword}`}`,
     );
     const list = (await response.data.content) as BagInfoResponse[];
     return list;

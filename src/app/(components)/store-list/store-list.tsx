@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useEffect } from 'react';
 import { common } from '@/styles/common.css';
 import ShoppingIcon from '@/assets/svg/ShoppingIcon';
 import TimeIcon from '@/assets/svg/TimeIcon';
@@ -11,17 +12,29 @@ import Tag from '@/components/text/tag/tag';
 import ProductInfoFooter from '@/components/product/product-info-footer/product-info-footer';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import { useAuthStore } from '@/hooks/stores/useAuthStore';
+import { useSearchParams } from 'next/navigation';
+import { useQueryClient } from '@tanstack/react-query';
 import * as styles from './styles.css';
 
 export default function StoreList() {
   const { isLoggedIn } = useAuthStore();
+  const searchParams = useSearchParams();
+  const sortedBy = searchParams.get('sort') ?? '';
+  const searchKeyword = searchParams.get('search') ?? '';
+
+  const queryClient = useQueryClient();
   const bagListState = useGetBagInfiniteList({
     isLoggedIn: isLoggedIn ?? false,
     size: 5,
+    sortedBy,
+    searchKeyword,
   });
   const { list, intersection, isLoading } =
     useInfiniteScroll<BagInfoResponse>(bagListState);
 
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: ['bag-list'] });
+  }, [searchParams]);
   if (isLoading) return <> </>;
 
   return (
