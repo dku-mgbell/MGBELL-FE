@@ -15,7 +15,7 @@ export default function SearchInput({
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      route.push(`?search=${keyword}`);
+      if (keyword) route.push(`?search=${keyword}`);
     }, 500);
     return () => clearTimeout(handler);
   }, [keyword]);

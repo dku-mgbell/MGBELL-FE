@@ -65,6 +65,7 @@ export default function StoreList() {
                   src={images[2] ?? images[0]}
                   className={styles.imageBottomRight}
                 />
+                <div className={styles.gradientyOverlay} />
               </div>
               <div className={styles.thumbContainer}>
                 <div

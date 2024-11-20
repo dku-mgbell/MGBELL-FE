@@ -49,6 +49,8 @@ export const imageLeft = style({
   width: '100%',
   height: '180px',
   objectFit: 'cover',
+  borderRight: '1px solid white',
+  borderRadius: '0 5px 5px 0',
   //   '@media': {
   //     'screen and (min-width: 600px)': {
   //       gridColumn: '1 / 2',
@@ -62,7 +64,11 @@ export const imageTopRight = style({
   gridRow: '1 / 2',
   width: '100%',
   height: '90px',
+  borderLeft: '1px solid white',
+  borderBottom: '1px solid white',
+  borderRadius: '5px 0 0 5px',
   objectFit: 'cover',
+
   //   '@media': {
   //     'screen and (min-width: 600px)': {
   //       gridColumn: '2 / 3',
@@ -76,6 +82,9 @@ export const imageBottomRight = style({
   gridRow: '2 / 2',
   width: '100%',
   height: '90px',
+  borderLeft: '1px solid white',
+  borderTop: '1px solid white',
+  borderRadius: '5px 0 0 5px',
   objectFit: 'cover',
   //   '@media': {
   //     'screen and (min-width: 600px)': {
@@ -94,6 +103,17 @@ export const thumbContainer = style({
   flexDirection: 'column',
   justifyContent: 'space-between',
   position: 'relative',
+});
+
+export const gradientyOverlay = style({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  background:
+    'linear-gradient(rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.4))',
+  pointerEvents: 'none',
 });
 
 export const infoContainer = style({
