@@ -99,8 +99,12 @@ export default function Page() {
         <footer className={styles.footer}>
           <NumberInput className={styles.numberInput} maxSize={amount} />
           <Button
-            value="주문하기"
+            value={amount === 0 || !onSale ? '주문불가' : '주문하기'}
+            theme={amount === 0 || !onSale ? 'inactive-primary' : 'primary'}
             onClick={() => {
+              if (amount === 0 || !onSale) {
+                return;
+              }
               if (!isLoggedIn) {
                 open({
                   content: '로그인 이후 이용 가능합니다.',
@@ -110,7 +114,7 @@ export default function Page() {
                 });
                 return;
               }
-              if (data!.amount > 0 && bagAmount > 0) {
+              if (bagAmount > 0) {
                 route.push(`order/${storeId}`);
               } else {
                 open({ content: '수량을 선택해주세요' });
