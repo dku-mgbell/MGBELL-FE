@@ -18,7 +18,7 @@ export const usePostReviewByUser = () => {
       await queryClient.invalidateQueries({
         queryKey: ['user-order-list'],
       });
-      route.push('/order');
+      route.push('/mypage/review');
     },
   });
 };

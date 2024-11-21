@@ -3,11 +3,12 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { usePostLogin } from '@/hooks/query/user/usePostLogin';
 import { LoginInfo } from '@/types/login';
+import Loader from '@/components/loader/loader';
 import { styles } from './styles.css';
 
 export default function LoginForm() {
   const [loginInfo, setLoginInfo] = useState<LoginInfo>();
-  const { mutate } = usePostLogin();
+  const { mutate, isPending, isSuccess } = usePostLogin();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
@@ -19,6 +20,8 @@ export default function LoginForm() {
       mutate(loginInfo!);
     }
   };
+
+  if (isPending || isSuccess) return <Loader />;
 
   return (
     <form className={styles.form} onSubmit={handleFormSubmit}>

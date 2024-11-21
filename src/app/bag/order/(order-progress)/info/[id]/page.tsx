@@ -15,6 +15,7 @@ import InputSection from '@/components/input-section/input-section';
 import OrderDetailTable from '@/components/order-detail-table/order-detail-table';
 import useModal from '@/hooks/useModal';
 import Input from '@/components/input/input';
+import Loader from '@/components/loader/loader';
 import * as styles from './styles.css';
 
 export default function Page() {
@@ -26,11 +27,15 @@ export default function Page() {
   const { bagAmount } = useBagOrderState();
   const [time, setTime] = useState('');
   const [timeError, setTimeError] = useState(false);
-  const { mutate: postOrder } = usePostBagOrder();
   const [requestMessage, setRequestMessage] = useState('');
+  const {
+    mutate: postOrder,
+    isPending,
+    isSuccess,
+  } = usePostBagOrder(isLoading ? 0 : (data!.salePrice! * bagAmount ?? 100));
   const { open } = useModal();
 
-  if (isLoading) return <> </>;
+  if (isLoading || isPending || isSuccess) return <Loader />;
 
   const orderData = {
     매장: data!.storeName,

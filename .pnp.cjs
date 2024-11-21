@@ -63,6 +63,7 @@ const RAW_RUNTIME_STATE =
           ["react-daum-postcode", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:3.1.3"],\
           ["react-dom", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:18.3.1"],\
           ["react-modal-sheet", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:3.1.0"],\
+          ["react-spinners", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:0.14.1"],\
           ["swiper", "npm:11.1.14"],\
           ["typescript", "patch:typescript@npm%3A5.2.2#optional!builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
           ["zustand", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:5.0.0-rc.2"]\
@@ -11473,6 +11474,7 @@ const RAW_RUNTIME_STATE =
           ["react-daum-postcode", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:3.1.3"],\
           ["react-dom", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:18.3.1"],\
           ["react-modal-sheet", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:3.1.0"],\
+          ["react-spinners", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:0.14.1"],\
           ["swiper", "npm:11.1.14"],\
           ["typescript", "patch:typescript@npm%3A5.2.2#optional!builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
           ["zustand", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:5.0.0-rc.2"]\
@@ -12706,6 +12708,32 @@ const RAW_RUNTIME_STATE =
           "@types/framer-motion",\
           "@types/react",\
           "framer-motion",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["react-spinners", [\
+      ["npm:0.14.1", {\
+        "packageLocation": "../../.yarn/berry/cache/react-spinners-npm-0.14.1-545ddaba3f-10c0.zip/node_modules/react-spinners/",\
+        "packageDependencies": [\
+          ["react-spinners", "npm:0.14.1"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:0.14.1", {\
+        "packageLocation": "./.yarn/__virtual__/react-spinners-virtual-b1834a8fc9/3/.yarn/berry/cache/react-spinners-npm-0.14.1-545ddaba3f-10c0.zip/node_modules/react-spinners/",\
+        "packageDependencies": [\
+          ["react-spinners", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:0.14.1"],\
+          ["@types/react", "npm:18.3.6"],\
+          ["@types/react-dom", "npm:18.3.0"],\
+          ["react", "npm:18.3.1"],\
+          ["react-dom", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:18.3.1"]\
+        ],\
+        "packagePeers": [\
+          "@types/react-dom",\
+          "@types/react",\
+          "react-dom",\
           "react"\
         ],\
         "linkType": "HARD"\

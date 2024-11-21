@@ -8,6 +8,8 @@ import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import QuestionContainer from '@/components/question-container/question-container';
 import { ReviewScore, SatisfiedReason, UserReviewUpload } from '@/types/review';
 import { usePostReviewByUser } from '@/hooks/query/review/usePostReviewByUser';
+import Loader from '@/components/loader/loader';
+import useModal from '@/hooks/useModal';
 import ReviewScoreSelector from './(components)/review-score-selector/review-score-selector';
 import SatisfiedReasonSelector from './(components)/satisfied-reason-selector/satisfied-reason-selector';
 import PhotoUpload from './(components)/photo-upload/photo-upload';
@@ -22,10 +24,23 @@ export default function Page() {
   });
   const [satisfiedReasons, setSatisfiedReansons] =
     useState<SatisfiedReason[]>();
-  const { mutate: postReview } = usePostReviewByUser();
+  const { mutate: postReview, isPending, isSuccess } = usePostReviewByUser();
+  const { open } = useModal();
+
   const handleReviewUpload = () => {
-    postReview({ ...reviewUpload, satisfiedReasons, file: imageFiles });
+    open({
+      content: '리뷰를 등록하시겠습니까?',
+      confirmEvent: () => {
+        postReview({
+          ...reviewUpload,
+          satisfiedReasons,
+          file: imageFiles,
+        });
+      },
+    });
   };
+
+  if (isPending || isSuccess) return <Loader />;
 
   return (
     <Suspense>

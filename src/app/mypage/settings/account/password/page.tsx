@@ -61,6 +61,7 @@ export default function Page() {
       <StepsLayout
         onNextStep={handleNextButtonClick}
         isNextStepAllowed={isNextStepAllowed}
+        buttonContent="변경하기"
       >
         <form className={styles.container}>
           <QuestionContainer

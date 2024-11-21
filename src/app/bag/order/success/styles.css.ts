@@ -19,7 +19,9 @@ export const container = style({
 export const content = style({
   display: 'flex',
   gap: 15,
+  alignItems: 'center',
   flexDirection: 'column',
+  justifyContent: 'center',
 });
 
 globalStyle(`${container} strong`, {

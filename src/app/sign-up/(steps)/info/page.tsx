@@ -6,13 +6,14 @@ import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
 import { isValidPhoneNumber } from '@/utils/regex';
 import { usePostSignUp } from '@/hooks/query/sign-up/usePostSignUp';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
+import Loader from '@/components/loader/loader';
 import { styles } from '../styles.css';
 
 export default function Page() {
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const { signUpInfo, setSignUpInfo } = useSignUpInfoStore();
-  const { mutate: postSignUpInfo } = usePostSignUp();
+  const { mutate: postSignUpInfo, isPending, isSuccess } = usePostSignUp();
 
   const handleNextButtonClick = () => {
     setSignUpInfo({ ...signUpInfo, name, phoneNumber });
@@ -21,6 +22,8 @@ export default function Page() {
 
   const isInvalidPhoneNumber = (value: string) =>
     value.length > 0 && !isValidPhoneNumber(value);
+
+  if (isPending || isSuccess) return <Loader />;
 
   return (
     <StepsLayout

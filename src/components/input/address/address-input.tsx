@@ -6,6 +6,7 @@ import Input from '@/components/input/input';
 import { useGetCoord } from '@/hooks/query/map/useGetCoord';
 import { Address, UserAddressState } from '@/types/address';
 import { useAddressStateStore } from '@/hooks/stores/useAddressStore';
+import Loader from '@/components/loader/loader';
 
 export default function AddressInput({
   updateAddress,
@@ -17,7 +18,7 @@ export default function AddressInput({
   // const [detailAddress, setDetailAddress] = useState('');
   const [addressError] = useState(false);
   const { addressState } = useAddressStateStore();
-  const { data } = useGetCoord(address);
+  const { data, isLoading } = useGetCoord(address);
 
   const handleInputClick = () => {
     open({
@@ -42,6 +43,8 @@ export default function AddressInput({
       });
     }
   }, [data]);
+
+  if (isLoading) return <Loader />;
 
   return (
     <>

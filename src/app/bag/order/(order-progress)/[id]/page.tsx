@@ -22,8 +22,8 @@ export default function Page() {
         <div className={styles.imageWrapper}>
           <Image
             src={BagImage.src}
-            width={BagImage.width}
-            height={BagImage.height}
+            width={306}
+            height={316}
             alt="bag illustration"
           />
         </div>

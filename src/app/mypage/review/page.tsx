@@ -25,7 +25,7 @@ export default function Page() {
     <HeaderLayout
       title="리뷰관리"
       previousButtonClickEvent={() => {
-        route.back();
+        route.push('/mypage');
       }}
       paddingBottom={false}
     >

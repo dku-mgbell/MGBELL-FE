@@ -8,6 +8,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
 import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
+import Loader from '@/components/loader/loader';
 import { userStyles } from './styles.css';
 
 function SignUpPageContent() {
@@ -87,7 +88,7 @@ function SignUpPageContent() {
 
 export default function Page() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loader />}>
       <SignUpPageContent />
     </Suspense>
   );
