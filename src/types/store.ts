@@ -9,11 +9,13 @@ export const StoreName = {
 } as const;
 
 export interface StoreRegistration extends Coordinate {
-  name: string;
-  storeName?: string;
+  ownerName: string;
+  storeName: string;
+  contact: string;
+  businessRegiNum: string;
   address: string;
   storeType: StoreID | null;
-  // images: File[];
+  images: File[];
 }
 
 export interface MyStoreInfo {

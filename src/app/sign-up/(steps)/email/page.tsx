@@ -7,6 +7,7 @@ import { isValidEmail } from '@/utils/regex';
 import { usePostMail } from '@/hooks/query/sign-up/usePostMail';
 import { useCheckDuplicate } from '@/hooks/query/sign-up/useCheckDuplicate';
 import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
+import Loader from '@/components/loader/loader';
 import { styles } from '../styles.css';
 
 export default function Page() {
@@ -14,9 +15,10 @@ export default function Page() {
   const [isDuplicateUser, setIsDuplicateUser] = useState<boolean>(true);
   const isInvalidMail = (value: string) =>
     value.length > 0 && !isValidEmail(value);
-  const { mutate } = usePostMail();
+  const { mutate, isPending, isSuccess } = usePostMail();
   const { signUpInfo, setSignUpInfo } = useSignUpInfoStore();
-  const { mutate: checkDuplicateUser } = useCheckDuplicate(setIsDuplicateUser);
+  const { mutate: checkDuplicateUser, isPending: checkingDuplicateUser } =
+    useCheckDuplicate(setIsDuplicateUser);
 
   const handleSubmitButtonClick = () => {
     checkDuplicateUser(email);
@@ -28,6 +30,8 @@ export default function Page() {
       setSignUpInfo({ ...signUpInfo, email });
     }
   }, [isDuplicateUser]);
+
+  if (isPending || isSuccess || checkingDuplicateUser) return <Loader />;
 
   return (
     <StepsLayout

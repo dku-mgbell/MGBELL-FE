@@ -11,6 +11,7 @@ export const button = style({
   justifySelf: 'center',
   alignItems: 'center',
   cursor: 'pointer',
+  marginBottom: 15,
 });
 
 export const buttonContent = style({

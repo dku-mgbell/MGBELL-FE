@@ -61,6 +61,7 @@ export const reviewContainer = style({
   flexDirection: 'column',
   gap: 8,
   alignItems: 'start',
+  zIndex: -1,
 });
 export const reviewHeader = recipe({
   base: {

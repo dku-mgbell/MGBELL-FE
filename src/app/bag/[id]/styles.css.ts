@@ -57,7 +57,7 @@ export const description = style({
 export const footer = style({
   display: 'flex',
   position: 'fixed',
-  bottom: 0,
+  bottom: 'env(safe-area-inset-bottom)',
   left: 0,
   width: '100vw',
   padding: '10px 1.2rem',

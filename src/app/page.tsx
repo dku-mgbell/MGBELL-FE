@@ -60,7 +60,7 @@ export default function Page({
 
   return (
     !isNewUser && (
-      <section className={container}>
+      <section className={`${container} pwa-layout`}>
         <header className={styles.header}>
           <Link href="location" className={styles.location}>
             <LocationMarkerIcon />

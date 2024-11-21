@@ -10,13 +10,15 @@ import {
   defaultBagInfo,
   useBagInfoStateStore,
 } from '@/hooks/stores/useBagInfoStore';
+import Loader from '@/components/loader/loader';
 import OnSaleButton from './(components)/on-sale-button/on-sale-button';
 import SaleTimeSelector from './(components)/sale-time-selector/sale-time-selector';
+import AmountSection from './(components)/amount-section/amount-section';
 
 export default function Page() {
   const route = useRouter();
   const { bagInfoState } = useBagInfoStateStore();
-  const { mutate } = useRegisterBag();
+  const { mutate, isPending, isSuccess } = useRegisterBag();
   const { costPrice, salePrice } = bagInfoState;
 
   const handleNextButtonClick = () => {
@@ -32,6 +34,8 @@ export default function Page() {
     if (bagInfoState === defaultBagInfo) route.push('/register/bag/info');
   }, []);
 
+  if (isPending || isSuccess) return <Loader />;
+
   return (
     <StepsLayout
       isNextStepAllowed
@@ -44,6 +48,11 @@ export default function Page() {
           title="판매 여부"
           desc="당일 마감백 판매 여부를 선택해주세요."
           content={<OnSaleButton />}
+        />
+        <QuestionContainer
+          title="마감백 판매 갯수"
+          desc="하루에 몇 개의 마감백을 판매할건가요?"
+          content={<AmountSection />}
         />
         <QuestionContainer
           title="판매 시간"

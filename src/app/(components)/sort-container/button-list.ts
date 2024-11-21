@@ -8,12 +8,12 @@ export const buttonList = [
     sortValue: 'salePrice,asc',
   },
   {
-    name: '가까운 거리순',
-    sortValue: 'distance,desc',
+    name: '리뷰 많은순',
+    sortValue: 'review',
   },
   {
-    name: '리뷰 많은순',
-    sortValue: 'reviewCnt,desc',
+    name: '찜 많은순',
+    sortValue: 'store.favorited,desc',
   },
   {
     name: '예약 가능',

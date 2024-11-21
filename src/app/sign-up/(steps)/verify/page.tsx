@@ -6,6 +6,7 @@ import { useVerifyCode } from '@/hooks/query/sign-up/useVerifyCode';
 import { usePostMail } from '@/hooks/query/sign-up/usePostMail';
 import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
+import Loader from '@/components/loader/loader';
 import { styles } from '../styles.css';
 import { verifyStyles } from './styles.css';
 
@@ -14,8 +15,13 @@ export default function Page() {
   const [message, setMessage] = useState('');
   const [isSentMailAgain, setIsSentMailAgain] = useState(false);
   const isInvalidCode = (value: string) => value.length === 0;
-  const { mutate, data: verificationResponse } = useVerifyCode();
-  const { mutate: sendMail } = usePostMail();
+  const {
+    mutate,
+    data: verificationResponse,
+    isPending: isVerifying,
+    isSuccess,
+  } = useVerifyCode();
+  const { mutate: sendMail, isPending } = usePostMail();
   const { signUpInfo } = useSignUpInfoStore();
   const handleSubmitcode = () => {
     mutate(code);
@@ -35,6 +41,8 @@ export default function Page() {
     }
   }, [verificationResponse]);
 
+  if (isPending || isSuccess || isVerifying) return <Loader />;
+
   return (
     <StepsLayout
       title="인증코드"
@@ -52,7 +60,7 @@ export default function Page() {
       <p className={styles.message({ theme: 'error' })}>{message}</p>
       <div className={verifyStyles.retryButtonContainer}>
         {isSentMailAgain ? (
-          <p>전송 완료</p>
+          <p className={styles.message({ theme: 'default' })}>전송 완료</p>
         ) : (
           <button
             type="button"

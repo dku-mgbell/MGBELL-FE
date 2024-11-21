@@ -21,8 +21,17 @@ export const Bag = {
     }: { isLoggedIn?: boolean; sortedBy?: string; searchKeyword?: string },
     { page, size }: PageParams,
   ): Promise<BagInfoResponse[]> {
+    const url = `/post/${isLoggedIn ? 'list' : 'guest'}?page=${page}&size=${size}`;
+    if (sortedBy === 'review') {
+      const response = await API.get(
+        `${url}&sort=store.best%20%2B%20store.good%20%2B%20store.notBad%20%2B%20store.notGood%2CDESC`,
+      );
+      const list = (await response.data.content) as BagInfoResponse[];
+      return list;
+    }
+
     const response = await API.get(
-      `/post/${isLoggedIn ? 'list' : 'guest'}?page=${page}&size=${size}&sort=${sortedBy === 'onSale' ? '&onSale=true' : sortedBy || 'createdAt,desc'}${searchKeyword && `&storeName=${searchKeyword}`}`,
+      `${url}&sort=${sortedBy === 'onSale' ? '&onSale=true' : sortedBy || 'createdAt,desc'}${searchKeyword && `&storeName=${searchKeyword}`}`,
     );
     const list = (await response.data.content) as BagInfoResponse[];
     return list;

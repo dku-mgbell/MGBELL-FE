@@ -9,8 +9,14 @@ export const styles = {
       flexDirection: 'column',
       justifyContent: 'space-between',
       padding: `calc(env(safe-area-inset-top) + 10px) ${padding.layoutX} calc(env(safe-area-inset-bottom) + 20px) ${padding.layoutX}`,
-      height: '100vh',
       boxSizing: 'border-box',
+      height:
+        'calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom))',
+      '@media': {
+        'all and (display-mode: standalone)': {
+          height: '100vh!important',
+        },
+      },
     },
     variants: {
       paddingBottom: {
@@ -30,8 +36,8 @@ export const styles = {
   }),
   main: style({
     paddingTop: '24px',
-    height: 'calc(100% - 24px)',
     overflow: 'hidden',
+    height: '100%',
   }),
   title: style({
     fontSize: 17,

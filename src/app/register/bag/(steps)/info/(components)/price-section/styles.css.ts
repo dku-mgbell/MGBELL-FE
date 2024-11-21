@@ -46,11 +46,17 @@ export const styles = {
     borderRadius: borderRadius.md,
     display: 'flex',
     flexDirection: 'column',
-    gap: 10,
+    gap: 5,
   }),
   price: style({
     fontSize: 13,
     color: '#585858',
+  }),
+  costPrice: style({
+    fontSize: 10.5,
+    fontWeight: fontWeight.light,
+    color: colors.red,
+    lineHeight: 1.8,
   }),
   priceDesc: style({
     fontSize: 10.5,

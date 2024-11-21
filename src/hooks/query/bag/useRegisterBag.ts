@@ -11,7 +11,7 @@ export const useRegisterBag = () => {
   return useMutation({
     mutationFn: (data: BagInfo) => Bag.register(data),
     onSuccess: () => {
-      route.push('/');
+      route.push('/store/sale');
     },
     onError: () => {
       open({ content: '문제가 발생하였습니다.' });

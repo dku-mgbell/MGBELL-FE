@@ -8,13 +8,12 @@ import QuestionContainer from '@/components/question-container/question-containe
 import Input from '@/components/input/input';
 import { useBagInfoStateStore } from '@/hooks/stores/useBagInfoStore';
 import PriceSection from './(components)/price-section/price-section';
-import AmountSection from './(components)/amount-section/amount-section';
 import * as styles from '../styles.css';
 
 export default function Page() {
   const route = useRouter();
   const { bagInfoState, setBagInfoState } = useBagInfoStateStore();
-  const { bagName, description, salePrice, costPrice, amount } = bagInfoState;
+  const { bagName, description, salePrice, costPrice } = bagInfoState;
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -27,8 +26,7 @@ export default function Page() {
     route.push('/register/bag/activate');
   };
 
-  const isFormFilled =
-    !!bagName && !!description && !!salePrice && !!costPrice && amount > 0;
+  const isFormFilled = !!bagName && !!description && !!salePrice && !!costPrice;
 
   return (
     <StepsLayout
@@ -44,7 +42,6 @@ export default function Page() {
             <Input
               name="bagName"
               placeholder="ex) 베이커리 마감백"
-              theme="outline-secondary"
               value={bagName ?? ''}
               onChange={handleInputChange}
             />
@@ -57,18 +54,13 @@ export default function Page() {
             <Textarea
               name="description"
               placeholder="ex) 유기농으로 당일 생산된 쫄깃쫄깃한 빵이 담길 수 있어요!"
-              theme="outline-secondary"
               value={description ?? ''}
               onChange={handleInputChange}
+              maxLength={300}
             />
           }
         />
         <QuestionContainer title="마감백 가격" content={<PriceSection />} />
-        <QuestionContainer
-          title="마감백 판매 갯수"
-          desc="하루에 몇 개의 마감백을 판매할건가요?"
-          content={<AmountSection />}
-        />
       </div>
     </StepsLayout>
   );

@@ -8,12 +8,15 @@ interface StoreState {
 
 export const useStoreRegisterStore = create<StoreState>((set) => ({
   storeState: {
-    name: '',
+    storeName: '',
+    ownerName: '',
+    businessRegiNum: '',
     address: '',
+    contact: '',
     storeType: null,
     latitude: '',
     longitude: '',
-    // images: [],
+    images: [],
   },
   setStoreState: (state: StoreRegistration) => set({ storeState: state }),
 }));

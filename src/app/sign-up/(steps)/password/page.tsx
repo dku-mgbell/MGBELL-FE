@@ -31,7 +31,7 @@ export default function Page() {
         isValidPassword(password) && password === passwordCheck
       }
       onNextStep={handleNextButtonClick}
-      buttonContent="적용"
+      buttonContent="다음"
     >
       <Input
         type="password"
@@ -46,6 +46,9 @@ export default function Page() {
           setPassword(e.target.value);
         }}
       />
+
+      <div style={{ height: '10px' }} />
+
       {isValidPassword(password) && (
         <Input
           type="password"
@@ -56,7 +59,6 @@ export default function Page() {
           onChange={(e) => {
             setPasswordCheck(e.target.value);
           }}
-          style={{ marginTop: '14px' }}
         />
       )}
       <p className={styles.message()}>

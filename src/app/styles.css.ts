@@ -3,7 +3,7 @@ import { recipe } from '@vanilla-extract/recipes';
 import { borderRadius, colors, fontWeight, padding } from '../styles/constant';
 
 export const container = style({
-  height: '100vh',
+  height: '100dvh',
   display: 'flex',
   flexDirection: 'column',
   overflow: 'hidden',
@@ -39,13 +39,12 @@ export const styles = {
     display: 'flex',
     flexDirection: 'column',
     gap: '14px',
-    padding: `calc(10px + env(safe-area-inset-top)) ${padding.layoutX} 10px ${padding.layoutX}`,
+    padding: `calc(10px + env(safe-area-inset-top)) ${padding.layoutX} 30px ${padding.layoutX}`,
     fontWeight: fontWeight.md,
     backgroundColor: colors.primary,
     position: 'fixed',
     top: 0,
     width: '100vw',
-    zIndex: 9999,
   }),
 
   location: style({
@@ -108,12 +107,15 @@ export const styles = {
 
   contentWrapper: style({
     backgroundColor: colors.white,
-    padding: `calc(env(safe-area-inset-top) * 0.9 + 14px) ${padding.layoutX} 14px ${padding.layoutX}`,
+    padding: `14px ${padding.layoutX} 14px ${padding.layoutX}`,
     position: 'absolute',
     top: 93,
     width: '100vw',
-    height: 'calc(100% - 93px)',
+    height: 'calc(100% - 110px)',
     overflow: 'hidden',
+    borderRadius: '15px 15px 0 0',
+    zIndex: 999,
+    marginTop: 'calc(env(safe-area-inset-top))',
   }),
 
   nav: style({

@@ -1,20 +1,27 @@
 import { ChangeEvent } from 'react';
 import { useBagInfoStateStore } from '@/hooks/stores/useBagInfoStore';
 import { common } from '@/styles/common.css';
+import { commaizeNumber } from '@/utils/commaizeNumber';
 import { styles } from './styles.css';
 
 export default function PriceButton({
   price,
   desc,
+  costPrice,
 }: {
   price: number;
   desc: string;
+  costPrice?: number;
 }) {
   const { bagInfoState, setBagInfoState } = useBagInfoStateStore();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setBagInfoState({ ...bagInfoState, [name]: value });
+    setBagInfoState({
+      ...bagInfoState,
+      [name]: Number(value),
+      costPrice: (Number(value) + 100) * 2,
+    });
   };
 
   return (
@@ -29,7 +36,14 @@ export default function PriceButton({
           checked={price === Number(bagInfoState.salePrice)}
         />
       </div>
-      <p className={styles.priceDesc}>{desc}</p>
+      <div>
+        {costPrice && (
+          <p className={styles.costPrice}>
+            정가 약 {commaizeNumber(costPrice)}원
+          </p>
+        )}
+        <p className={styles.priceDesc}>{desc}</p>
+      </div>
     </label>
   );
 }

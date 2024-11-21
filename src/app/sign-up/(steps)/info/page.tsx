@@ -39,6 +39,7 @@ export default function Page() {
           setName(e.target.value);
         }}
       />
+      <div style={{ height: '10px' }} />
       <Input
         placeholder="-을 제외한 연락처를 입력해주세요."
         maxLength={11}
@@ -47,7 +48,6 @@ export default function Page() {
         onChange={(e) => {
           setPhoneNumber(e.target.value);
         }}
-        style={{ marginTop: '14px' }}
       />
       <p className={styles.message()}>주문 관련 알림톡을 전송해드립니다.</p>
     </StepsLayout>

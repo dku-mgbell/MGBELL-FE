@@ -38,6 +38,7 @@ export interface Address {
 
 export interface UserAddressState {
   address?: string;
+  detail?: string;
   latitude?: string;
   longitude?: string;
 }

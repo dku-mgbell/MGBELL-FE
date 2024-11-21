@@ -7,6 +7,12 @@ export const container = style({
   width: '100%',
   overflow: 'auto',
   height: '100%',
+  '@media': {
+    'all and (display-mode: standalone)': {
+      marginTop: -80,
+      height: 'calc(100vh - 250px)',
+    },
+  },
 });
 
 export const listItem = style({

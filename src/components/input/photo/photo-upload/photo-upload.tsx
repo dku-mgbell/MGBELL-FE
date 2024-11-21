@@ -39,6 +39,7 @@ export default function PhotoUpload({
 
   return (
     <div className={styles.container}>
+      {error && <p className={styles.error}>최대 3장까지 업로드 가능합니다.</p>}
       {images.length === 0 && (
         <PhotoUploadButton
           multiple
@@ -89,7 +90,6 @@ export default function PhotoUpload({
             </div>
           ))}
       </div>
-      {error && <p className={styles.error}>최대 3장만 업로드 가능합니다.</p>}
     </div>
   );
 }

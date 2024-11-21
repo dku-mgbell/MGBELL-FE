@@ -1,5 +1,6 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { useEffect, useState } from 'react';
 import CameraIcon from '@/assets/svg/CameraIcon';
 import SortIcon from '@/assets/svg/SortIcon';
 import { useGetReviewList } from '@/hooks/query/review/useGetReviewList';
@@ -7,6 +8,7 @@ import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import { ReviewResponse } from '@/types/review';
 import { Intersection } from '@/components/intersection/intersection';
 import ReviewPost from '@/components/review-post/review-post';
+import { useQueryClient } from '@tanstack/react-query';
 import * as styles from './styles.css';
 
 export default function ReviewSection({
@@ -16,9 +18,19 @@ export default function ReviewSection({
   storeId: number;
   reviewCount: number;
 }) {
-  const reviewListState = useGetReviewList({ storeId, size: 5 });
+  const [sortedByRecentDate, setSortedByRecentDate] = useState(true);
+  const reviewListState = useGetReviewList({
+    storeId,
+    size: 5,
+    sortedByRecentDate,
+  });
   const { list, intersection, isLoading } =
     useInfiniteScroll<ReviewResponse>(reviewListState);
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: ['review-list'] });
+  }, [sortedByRecentDate]);
 
   if (isLoading) return <> </>;
 
@@ -34,9 +46,15 @@ export default function ReviewSection({
           </p>
         </div>
         <div className={styles.buttonContainer}>
-          <button type="button" className={styles.button({ theme: 'primary' })}>
+          <button
+            type="button"
+            className={styles.button({ theme: 'primary' })}
+            onClick={() => {
+              setSortedByRecentDate((prev) => !prev);
+            }}
+          >
             <SortIcon />
-            최신순
+            {sortedByRecentDate ? '최신순' : '오래된 순'}
           </button>
           <button type="button" className={styles.button({ theme: 'green' })}>
             <CameraIcon />

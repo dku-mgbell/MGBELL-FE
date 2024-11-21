@@ -4,44 +4,68 @@ import Input from '@/components/input/input';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useStoreRegisterStore } from '@/hooks/stores/useStoreRegisterStore';
 import QuestionContainer from '@/components/question-container/question-container';
-// import AddressInput from '@/components/input/address/address-input';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import { useRegisterStore } from '@/hooks/query/store/useRegisterStore';
 import { useAuth } from '@/hooks/useAuth';
-import { StoreID } from '@/types/store';
-import { Coordinate } from '@/types/map';
+import AddressInput from '@/components/input/address/address-input';
+import { UserAddressState } from '@/types/address';
+import PhotoUpload from '@/components/input/photo/photo-upload/photo-upload';
 import StoreSelector from '../(components)/store-selector/store-selector';
-import ImageUploader from '../(components)/image-uploader/image-uploader';
 import { styles } from './styles.css';
 
 export default function Page() {
   const { storeState, setStoreState } = useStoreRegisterStore();
   const { mutate } = useRegisterStore();
   const { redirectLoginPage } = useAuth();
-  const [storeCoordinate] = useState<Coordinate>();
+  const [addressInputValue, setAddressInputValue] =
+    useState<UserAddressState>();
+  const [imageFiles, setImageFiles] = useState<File[]>();
+  const {
+    storeName,
+    ownerName,
+    contact,
+    businessRegiNum,
+    address,
+    longitude,
+    latitude,
+    storeType,
+  } = storeState;
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setStoreState({ ...storeState, [e.target.name]: e.target.value });
   };
 
   const handleNextButtonClick = () => {
-    mutate({
-      name: storeState.name,
-      address: storeState.address,
-      storeType: storeState.storeType as StoreID,
-      latitude: storeCoordinate?.latitude as string,
-      longitude: storeCoordinate?.longitude as string,
-    });
+    mutate(storeState);
   };
 
   const isFormFilled =
-    !!storeState.address.length &&
-    !!storeState.name.length &&
-    !!storeState.storeType;
+    storeName.length > 0 &&
+    ownerName.length > 0 &&
+    contact.length > 0 &&
+    businessRegiNum.length > 0 &&
+    address.length > 0 &&
+    !!longitude &&
+    !!latitude &&
+    !!imageFiles &&
+    !!storeType;
 
   useEffect(() => {
     redirectLoginPage();
   }, []);
+
+  useEffect(() => {
+    setStoreState({
+      ...storeState,
+      address: `${addressInputValue?.address}${addressInputValue?.detail ? ` ${addressInputValue?.detail}` : ''}`,
+      longitude: addressInputValue?.longitude ?? '',
+      latitude: addressInputValue?.latitude ?? '',
+    });
+  }, [addressInputValue]);
+
+  useEffect(() => {
+    setStoreState({ ...storeState, images: imageFiles ?? [] });
+  }, [imageFiles]);
 
   return (
     <StepsLayout
@@ -55,23 +79,51 @@ export default function Page() {
           desc="체인점일 경우, 지점명까지 입력해주세요!"
           content={
             <Input
-              name="name"
-              placeholder="ex) 나리네 상점 / 보정동점"
+              name="storeName"
+              placeholder="ex) 마감베이커리 죽전점"
               onChange={handleInputChange}
-              value={storeState.name}
+              value={storeState.storeName}
             />
           }
         />
-        {/* <QuestionContainer
-          title="매장 주소"
-          desc="클릭하여 주소를 입력해주세요!"
+        <QuestionContainer
+          title="사업주"
           content={
-            <AddressInput
+            <Input
+              name="ownerName"
+              placeholder="사업주 성함을 입력해주세요"
               onChange={handleInputChange}
-              setCoordinateState={setStoreCoordinate}
+              value={storeState.ownerName}
             />
           }
-        /> */}
+        />
+        <QuestionContainer
+          title="사업자등록번호"
+          content={
+            <Input
+              name="businessRegiNum"
+              placeholder="사업자등록번호를 입력해주세요"
+              onChange={handleInputChange}
+              value={storeState.businessRegiNum}
+            />
+          }
+        />
+        <QuestionContainer
+          title="매장 연락처"
+          content={
+            <Input
+              name="contact"
+              placeholder="ex) 03112345678"
+              onChange={handleInputChange}
+              value={storeState.contact}
+            />
+          }
+        />
+        <QuestionContainer
+          title="매장 주소"
+          desc="클릭하여 주소를 입력해주세요!"
+          content={<AddressInput updateAddress={setAddressInputValue} />}
+        />
         <QuestionContainer
           title="매장 업종 선택"
           desc={
@@ -88,7 +140,7 @@ export default function Page() {
           }
         />
         <QuestionContainer
-          title="매장 음식 사진"
+          title="매장 사진"
           desc={
             <>
               <span className={styles.darkGrayText}>
@@ -103,7 +155,7 @@ export default function Page() {
               </span>
             </>
           }
-          content={<ImageUploader />}
+          content={<PhotoUpload updateImageFiles={setImageFiles} />}
         />
       </div>
     </StepsLayout>

@@ -28,7 +28,7 @@ export default function Page() {
     },
     environment: {
       name: '탄소 절감',
-      value: `${isLoading ? '0' : data?.carbonReduction}kgCO2`,
+      value: `${isLoading ? '0' : Number(data?.carbonReduction).toFixed(1)}kgCO2`,
       icon: CO2Icon,
     },
     money: {
@@ -90,7 +90,7 @@ export default function Page() {
           </Link>
         </header>
         <div className={styles.orderContainer}>
-          {data?.currentOrders.map((order) => (
+          {data?.currentOrders.toReversed().map((order) => (
             <Link
               key={order.id}
               href={`/order/${order.id}`}

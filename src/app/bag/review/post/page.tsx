@@ -12,7 +12,7 @@ import Loader from '@/components/loader/loader';
 import useModal from '@/hooks/useModal';
 import ReviewScoreSelector from './(components)/review-score-selector/review-score-selector';
 import SatisfiedReasonSelector from './(components)/satisfied-reason-selector/satisfied-reason-selector';
-import PhotoUpload from './(components)/photo-upload/photo-upload';
+import PhotoUpload from '../../../../components/input/photo/photo-upload/photo-upload';
 import * as styles from './styles.css';
 
 export default function Page() {

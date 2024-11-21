@@ -13,7 +13,7 @@ export const container = style({
 export const settingsButton = style({
   display: 'flex',
   justifyContent: 'end',
-  padding: '10px 25px 0 25px',
+  padding: 'env(safe-area-inset-top) 25px 0 25px',
   width: '100%',
 });
 
@@ -41,7 +41,9 @@ export const profile = style({
 
 export const activityContainer = style({
   display: 'flex',
-  gap: 30,
+  width: '100%',
+  justifyContent: 'space-around',
+  padding: '0 15px',
 });
 
 export const activityItem = style({

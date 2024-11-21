@@ -9,5 +9,5 @@ export const container = style({
 
 export const error = style({
   color: '#ef6c6c',
-  marginTop: 15,
+  marginBottom: 15,
 });

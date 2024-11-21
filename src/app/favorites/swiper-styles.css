@@ -1,11 +1,22 @@
 .screen-swiper.swiper {
   width: 100%;
-  height: calc(100vh - 150px);
+  height: calc(100dvh - 110px);
 }
 .screen-swiper .swiper-wrapper {
-  height: calc(100vh - 150px);
+  height: calc(100dvh - 110px);
 }
-
+@media all and (display-mode: standalone) {
+  .screen-swiper.swiper {
+    width: 100%;
+    /* height: calc(100vh - 300px); */
+  }
+  .screen-swiper .swiper-wrapper {
+    /* height: calc(100vh - 300px); */
+  }
+  .screen-swiper .swiper-slide {
+    /* height: calc(100vh - 300px); */
+  }
+}
 .screen-swiper .swiper-slide {
   text-align: center;
   font-size: 18px;
@@ -14,6 +25,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: calc(100dvh - 150px);
 }
 
 .screen-swiper .swiper-slide img {

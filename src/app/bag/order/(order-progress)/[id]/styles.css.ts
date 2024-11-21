@@ -4,6 +4,7 @@ import { globalStyle, style } from '@vanilla-extract/css';
 export const container = style({
   display: 'flex',
   flexDirection: 'column',
+  height: '100%',
 });
 
 export const sheet = style({
@@ -15,10 +16,9 @@ export const sheet = style({
   flexDirection: 'column',
   marginTop: -10,
   borderRadius: '20px 20px 0 0',
-  padding: '2rem 1.6rem 2.5rem 1.6rem',
+  padding: '2rem 1.6rem calc(51px + 2.5rem) 1.6rem',
   boxShadow: '0px -4px 10px 2px rgba(0, 0, 0, 0.05)',
   color: '#5F5F5F ',
-  height: 'calc(100vh - 400px)',
 });
 
 export const imageWrapper = style({
@@ -26,7 +26,6 @@ export const imageWrapper = style({
   justifyContent: 'center',
   width: '100%',
   alignItems: 'center',
-  padding: '20px 0 50px 0 ',
 });
 
 export const header = style({
@@ -41,6 +40,8 @@ export const header = style({
 export const message = style({
   lineHeight: 1.7,
   color: '#5F5F5F ',
+  paddingBottom: 10,
+  fontWeight: '1rem',
 });
 
 globalStyle(`${sheet}  strong`, {

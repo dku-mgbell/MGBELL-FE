@@ -76,7 +76,7 @@ export default function Page() {
   };
 
   return (
-    <HeaderLayout title="비밀번호 찾기">
+    <HeaderLayout title="비밀번호 찾기" previousPageLink="/login">
       <StepsLayout
         onNextStep={handleNextButtonClick}
         buttonContent={handleNextButtonContent(isMailSent, isCodeValid)}

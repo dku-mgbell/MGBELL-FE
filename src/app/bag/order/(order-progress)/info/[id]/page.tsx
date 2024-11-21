@@ -1,6 +1,6 @@
 'use client';
 
-import { useParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import TimeIcon from '@/assets/svg/TimeIcon';
 import { usePostBagOrder } from '@/hooks/query/order/usePostBagOrder';
@@ -19,10 +19,10 @@ import Loader from '@/components/loader/loader';
 import * as styles from './styles.css';
 
 export default function Page() {
-  const params = useParams();
+  const searchParams = useSearchParams();
   const { data, isLoading } = useGetBagDetail({
     isLoggedIn: true,
-    id: Number(params.id),
+    id: Number(searchParams.get('bagId')),
   });
   const { bagAmount } = useBagOrderState();
   const [time, setTime] = useState('');

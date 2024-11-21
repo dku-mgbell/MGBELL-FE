@@ -6,8 +6,8 @@ import { buttonContainer } from '../input/number/styles.css';
 export const styles = {
   wrapper: style({
     width: '100%',
-    height: '100vh',
-    position: 'absolute',
+    height: '100%',
+    position: 'fixed',
     backgroundColor: 'rgba(0,0,0,0.2)',
     top: 0,
     left: 0,

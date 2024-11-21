@@ -115,7 +115,7 @@ export default function Page() {
                 return;
               }
               if (bagAmount > 0) {
-                route.push(`order/${storeId}`);
+                route.push(`order/${storeId}?bagId=${bagId}`);
               } else {
                 open({ content: '수량을 선택해주세요' });
               }

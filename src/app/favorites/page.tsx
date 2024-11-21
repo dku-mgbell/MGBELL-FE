@@ -34,6 +34,7 @@ export default function Page() {
         pagination={{
           clickable: true,
         }}
+        spaceBetween={30}
         modules={[Pagination]}
       >
         <SwiperSlide>

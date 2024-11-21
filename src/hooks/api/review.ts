@@ -48,10 +48,11 @@ export const Review = {
   },
   async getInfiniteList(
     storeId: number,
+    sortedByRecentDate: boolean,
     { page, size }: PageParams,
   ): Promise<ReviewResponse[]> {
     const response = await API.get(
-      `/review/list/${storeId}?page=${page}&size=${size}&sort=createdAt,desc`,
+      `/review/list/${storeId}?page=${page}&size=${size}&sort=createdAt,${sortedByRecentDate ? 'desc' : 'asc'}`,
     );
     const list = (await response.data.content) as ReviewResponse[];
     return list;

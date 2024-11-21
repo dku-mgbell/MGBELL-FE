@@ -4,7 +4,7 @@ import { style } from '@vanilla-extract/css';
 export const listShowButton = style({
   zIndex: 9999,
   position: 'absolute',
-  bottom: 40,
+  bottom: 100,
   left: '50%',
   transform: 'translateX(-50%)',
 });

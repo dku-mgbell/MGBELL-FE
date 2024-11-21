@@ -10,8 +10,10 @@ import Loader from '@/components/loader/loader';
 
 export default function AddressInput({
   updateAddress,
+  showDetailInput,
 }: {
   updateAddress: Dispatch<SetStateAction<UserAddressState | undefined>>;
+  showDetailInput?: boolean;
 }) {
   const { open, close } = useModal();
   const [address, setAddress] = useState('');
@@ -57,29 +59,16 @@ export default function AddressInput({
         theme={addressError ? 'error' : 'default'}
         readOnly
       />
-      {/* {hiddenDetailAddress || (
+      <div style={{ height: 10 }} />
+      {showDetailInput || (
         <Input
           name="address"
           placeholder="세부 주소 입력"
           onChange={(e) => {
-            if (address.length > 0) {
-              setAddressError(false);
-              setDetailAddress(e.target.value);
-              onChange({
-                ...e,
-                target: {
-                  ...e.target,
-                  name: 'address',
-                  value: `${address} ${e.target.value}`,
-                },
-              });
-            } else {
-              setAddressError(true);
-            }
+            updateAddress((prev) => ({ ...prev, detail: e.target.value }));
           }}
-          value={detailAddress}
         />
-      )} */}
+      )}
     </>
   );
 }

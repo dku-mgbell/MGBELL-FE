@@ -21,6 +21,7 @@ export const handlers = [
           costPrice: 12000,
           salePrice: 5900,
           amount: 1,
+          images: [Image.src, Image.src],
         },
         {
           id: 2,
@@ -34,6 +35,7 @@ export const handlers = [
           latitude: '37.3265608752936',
           costPrice: 12000,
           salePrice: 5900,
+          images: [Image.src, Image.src],
           amount: 0,
         },
         {
@@ -49,6 +51,7 @@ export const handlers = [
           costPrice: 12000,
           salePrice: 5900,
           amount: 1,
+          images: [Image.src, Image.src],
         },
         {
           id: 1,
@@ -62,6 +65,7 @@ export const handlers = [
           latitude: '37.3213682',
           costPrice: 12000,
           salePrice: 5900,
+          images: [Image.src, Image.src],
           amount: 1,
         },
         {
@@ -77,6 +81,7 @@ export const handlers = [
           costPrice: 12000,
           salePrice: 5900,
           amount: 1,
+          images: [Image.src, Image.src],
         },
       ],
       pageable: {

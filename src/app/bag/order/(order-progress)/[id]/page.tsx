@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import BagImage from '@/assets/images/store/bag.png';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import CheckIcon from '@/assets/svg/CheckIcon';
@@ -10,13 +10,17 @@ import * as styles from './styles.css';
 export default function Page() {
   const route = useRouter();
   const params = useParams();
+  const searchParams = useSearchParams();
 
   return (
     <StepsLayout
       buttonContent="확인"
       onNextStep={() => {
-        route.push(`/bag/order/info/${params.id}`);
+        route.push(
+          `/bag/order/info/${params.id}?bagId=${searchParams.get('bagId')}`,
+        );
       }}
+      isPadding={false}
     >
       <div className={styles.container}>
         <div className={styles.imageWrapper}>

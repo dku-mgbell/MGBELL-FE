@@ -5,7 +5,7 @@ export const container = style({
   flexDirection: 'column',
   paddingTop: 20,
   gap: 12,
-  height: 'calc(100vh - 30px)',
+  height: '100%',
   overflow: 'auto',
 });
 
