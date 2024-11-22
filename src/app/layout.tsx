@@ -4,10 +4,9 @@ import localFont from 'next/font/local';
 import ReactQueryProviders from '@/hooks/query/useReactQuery';
 import ModalProvider from '@/components/modal/modal-provider';
 import Navigation from '@/components/navigation/navigation';
-import Head from 'next/head';
+import MSWProvider from './(components)/msw-provider/msw-provider';
 import { styles } from './styles.css';
 import '../styles/globals.css';
-import MSWProvider from './(components)/msw-provider/msw-provider';
 
 const notoSans = localFont({
   src: '../assets/fonts/NotoSansKRVF.woff2',
@@ -47,7 +46,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <Head>
+      <head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,7 +54,7 @@ export default function RootLayout({
           name="apple-mobile-web-app-status-bar-style"
           content="black-translucent"
         />
-      </Head>
+      </head>
       <body className={`${notoSans.variable} ${styles.body}`}>
         <Script
           strategy="afterInteractive"

@@ -3,11 +3,16 @@ import { style } from '@vanilla-extract/css';
 
 export const container = style({
   backgroundColor: '#F6F6F6',
-  height: '100vh',
+  height: 'calc(100dvh - 30px)',
   display: 'flex',
   flexDirection: 'column',
   gap: 25,
   overflow: 'auto',
+  '@media': {
+    'all and (display-mode: standalone)': {
+      height: 'calc(100vh - 0px)',
+    },
+  },
 });
 
 export const settingsButton = style({
