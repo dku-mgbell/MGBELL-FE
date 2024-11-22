@@ -16,8 +16,20 @@ const notoSans = localFont({
 });
 
 export const metadata: Metadata = {
-  title: '마감벨',
+  title: '마감벨: 마감할인 상품을 한눈에! 🔔',
   description: '단국대 인근, 보정동 카페거리 마감할인 상품을 한눈에! 🔔',
+  icons: {
+    icon: '/logo192.png',
+    apple: '/logo192.png',
+  },
+  openGraph: {
+    images: [
+      {
+        url: '/og-img.png',
+        alt: '마감벨 대표 이미지',
+      },
+    ],
+  },
 };
 
 export const viewport: Viewport = {
@@ -37,7 +49,7 @@ export default function RootLayout({
     <html lang="ko">
       <Head>
         <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" href="/favicon.ico" sizes="any" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
           name="apple-mobile-web-app-status-bar-style"
