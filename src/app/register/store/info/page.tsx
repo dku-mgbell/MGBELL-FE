@@ -122,7 +122,12 @@ export default function Page() {
         <QuestionContainer
           title="매장 주소"
           desc="클릭하여 주소를 입력해주세요!"
-          content={<AddressInput updateAddress={setAddressInputValue} />}
+          content={
+            <AddressInput
+              updateAddress={setAddressInputValue}
+              showDetailInput
+            />
+          }
         />
         <QuestionContainer
           title="매장 업종 선택"

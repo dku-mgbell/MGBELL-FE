@@ -4,6 +4,7 @@ import localFont from 'next/font/local';
 import ReactQueryProviders from '@/hooks/query/useReactQuery';
 import ModalProvider from '@/components/modal/modal-provider';
 import Navigation from '@/components/navigation/navigation';
+import Head from 'next/head';
 import { styles } from './styles.css';
 import '../styles/globals.css';
 import MSWProvider from './(components)/msw-provider/msw-provider';
@@ -34,13 +35,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <link rel="manifest" href="/manifest.json" />
-      <link rel="icon" href="/favicon.ico" sizes="any" />
-      <meta name="apple-mobile-web-app-capable" content="yes" />
-      <meta
-        name="apple-mobile-web-app-status-bar-style"
-        content="black-translucent"
-      />
+      <Head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/favicon.ico" sizes="any" type="image/x-icon" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
+      </Head>
       <body className={`${notoSans.variable} ${styles.body}`}>
         <Script
           strategy="afterInteractive"

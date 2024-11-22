@@ -60,7 +60,7 @@ export default function AddressInput({
         readOnly
       />
       <div style={{ height: 10 }} />
-      {showDetailInput || (
+      {showDetailInput && (
         <Input
           name="address"
           placeholder="세부 주소 입력"
