@@ -3,7 +3,7 @@ import { globalStyle, style } from '@vanilla-extract/css';
 export const container = style({
   display: 'flex',
   flexDirection: 'column',
-  height: '100vh',
+  height: '100dvh',
   width: '100%',
   left: '50%',
   transform: 'translateX(-50%)',

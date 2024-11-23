@@ -13,11 +13,8 @@ export const scoreImageContainer = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  gap: 5,
 });
 export const scoreImage = style({
-  borderRadius: '100%',
-  border: '1.5px solid #d3d3d3',
   padding: 2,
   boxSizing: 'content-box',
 });
