@@ -69,6 +69,10 @@ export default function Page({
             // eslint-disable-next-line no-console
             console.error('Service Worker registration failed:', error);
           });
+        navigator.serviceWorker.addEventListener('message', () => {
+          const audio = new Audio('/notification-sound.mp3');
+          audio.play();
+        });
       }
     }
   }, []);
@@ -88,6 +92,7 @@ export default function Page({
 
   // useEffect(() => {
   //   if (playNotificationSound) {
+  //   const audio = new Audio('/notification-sound.mp3');
   //     if (typeof window !== 'undefined') {
   //       audio
   //         .play()
