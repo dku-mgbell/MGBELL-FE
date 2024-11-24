@@ -32,6 +32,7 @@ export const button = recipe({
         border: `1px solid ${colors.secondary}`,
         color: colors.secondary,
         fontSize: 13,
+        padding: '12px 0',
       },
       'outline-gray': {
         border: '1px solid #D9D9D9',

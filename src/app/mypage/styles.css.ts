@@ -157,6 +157,7 @@ export const pickUpStore = style({
 
 export const pickUpTime = style({
   color: colors.white,
+  fontSize: 14,
 });
 
 export const orderPageLink = style({

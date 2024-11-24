@@ -23,7 +23,7 @@ export const header = style({
   alignItems: 'center',
 });
 
-export const storeName = style({ fontSize: 19 });
+export const storeName = style({ fontSize: 19, flex: 1 });
 
 export const address = style({
   color: '#A9A9A9',

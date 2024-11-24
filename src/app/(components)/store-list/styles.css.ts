@@ -112,7 +112,7 @@ export const gradientyOverlay = style({
   width: '100%',
   height: '100%',
   background:
-    'linear-gradient(rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.2))',
+    'linear-gradient(rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.5))',
   pointerEvents: 'none',
 });
 
@@ -123,7 +123,8 @@ export const infoContainer = style({
 });
 
 export const storeName = style({
-  fontSize: 18,
+  fontSize: 17,
+  fontWeight: 600,
   color: colors.white,
 });
 

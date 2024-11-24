@@ -19,10 +19,12 @@ export default function ReviewSection({
   reviewCount: number;
 }) {
   const [sortedByRecentDate, setSortedByRecentDate] = useState(true);
+  const [filterPhoto, setFilterPhoto] = useState(false);
   const reviewListState = useGetReviewList({
     storeId,
     size: 5,
     sortedByRecentDate,
+    isOnlyPhoto: filterPhoto,
   });
   const { list, intersection, isLoading } =
     useInfiniteScroll<ReviewResponse>(reviewListState);
@@ -30,7 +32,7 @@ export default function ReviewSection({
 
   useEffect(() => {
     queryClient.invalidateQueries({ queryKey: ['review-list'] });
-  }, [sortedByRecentDate]);
+  }, [sortedByRecentDate, filterPhoto]);
 
   if (isLoading) return <> </>;
 
@@ -41,9 +43,9 @@ export default function ReviewSection({
           <h1 className={styles.reviewCommentTitle}>
             최근 리뷰 {reviewCount}개
           </h1>
-          <p className={styles.ownerCommentTitle}>
+          {/* <p className={styles.ownerCommentTitle}>
             사장님 댓글 {reviewCount}개
-          </p>
+          </p> */}
         </div>
         <div className={styles.buttonContainer}>
           <button
@@ -56,9 +58,15 @@ export default function ReviewSection({
             <SortIcon />
             {sortedByRecentDate ? '최신순' : '오래된 순'}
           </button>
-          <button type="button" className={styles.button({ theme: 'green' })}>
+          <button
+            type="button"
+            className={styles.button({ theme: 'green' })}
+            onClick={() => {
+              setFilterPhoto((prev) => !prev);
+            }}
+          >
             <CameraIcon />
-            사진리뷰만
+            {filterPhoto ? '전체보기' : '사진리뷰만'}
           </button>
         </div>
       </header>

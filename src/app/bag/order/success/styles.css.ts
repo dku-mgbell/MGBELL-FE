@@ -13,7 +13,6 @@ export const container = style({
   justifyContent: 'center',
   fontSize: 24,
   gap: 14,
-  zIndex: -1,
 });
 
 export const content = style({

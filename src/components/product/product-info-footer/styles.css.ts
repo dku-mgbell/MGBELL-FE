@@ -6,7 +6,6 @@ export const infoContainer = style({
   display: 'flex',
   flexDirection: 'column',
   padding: 8,
-  gap: 2,
 });
 
 export const storeName = style({

@@ -57,7 +57,7 @@ export default function OrderItem({
         <Button
           value="리뷰 작성"
           theme="outline-secondary"
-          style={{ margin: '15px 0 5px 0' }}
+          style={{ margin: '10px 0 5px 0' }}
           onClick={() => {
             route.push(`/bag/review/post?orderId=${orderId}`);
           }}
