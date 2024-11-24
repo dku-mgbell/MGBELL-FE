@@ -10,6 +10,7 @@ export const styles = {
       justifyContent: 'space-between',
       padding: `calc(env(safe-area-inset-top) + 10px) ${padding.layoutX} calc(env(safe-area-inset-bottom) + 20px) ${padding.layoutX}`,
       boxSizing: 'border-box',
+      backgroundColor: colors.white,
       height:
         'calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom))',
       '@media': {
