@@ -104,7 +104,9 @@ export default function Page() {
                   {order.storeName}
                 </strong>
                 <p className={styles.pickUpTime}>
-                  {order.pickupTime}까지 픽업하시면 됩니다.
+                  {order.orderState === 'REQUESTED'
+                    ? '매장에서 주문을 확인 중입니다.'
+                    : `${order.pickupTime} 픽업 예정입니다.`}
                 </p>
               </div>
             </Link>

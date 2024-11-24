@@ -12,6 +12,7 @@ export default function Page() {
   useEffect(() => {
     logout({ withoutRedirect: true });
   }, []);
+
   return (
     <section className={container()}>
       <header className={styles.header} />

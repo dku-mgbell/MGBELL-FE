@@ -9,6 +9,12 @@ import SearchInput from '@/components/input/search/search-input';
 import { UserRole } from '@/types/user';
 import { useAddressStateStore } from '@/hooks/stores/useAddressStore';
 // import FilterIcon from '../assets/svg/FilterIcon';
+import {
+  initializeMessaging,
+  issueFcmToken,
+  onMessageListener,
+} from '@/hooks/notification/firebase';
+import { useRegisterFCMToken } from '@/hooks/query/notification/useRegisterFCMToken';
 import LocationMarkerIcon from '../assets/svg/LocationMarkerIcon';
 import { container, styles } from './styles.css';
 import SortContainer from './(components)/sort-container/sort-container';
@@ -32,6 +38,36 @@ export default function Page({
   const { setToken, oAuthLogin } = useAuth();
   const { addressState } = useAddressStateStore();
   const route = useRouter();
+  const { mutate: registerFCMToken } = useRegisterFCMToken();
+
+  useEffect(() => {
+    const messaging = initializeMessaging();
+    const fcmToken = localStorage.getItem('fcmToken');
+    if (messaging) {
+      issueFcmToken(messaging).then(() => {
+        if (fcmToken) registerFCMToken(fcmToken);
+      });
+      onMessageListener(messaging).then((payload) => {
+        // eslint-disable-next-line no-console
+        console.log(payload);
+      });
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+          .register('/firebase-messaging-sw.js')
+          .then((registration) => {
+            // eslint-disable-next-line no-console
+            console.log(
+              'Service Worker registered with scope:',
+              registration.scope,
+            );
+          })
+          .catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error('Service Worker registration failed:', error);
+          });
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (userRole) setUserRole(userRole);

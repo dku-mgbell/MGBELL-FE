@@ -1,10 +1,11 @@
-export type ReviewScore = 'BEST' | 'GOOD' | 'NOTBAD' | 'NOTGOOD';
+export type ReviewScore = 'BEST' | 'GOOD' | 'NOTBAD' | 'NOTGOOD' | 'NONE';
 
 export const ReviewScoreName = {
   NOTGOOD: '아쉬워요',
   NOTBAD: '적당했어요',
   GOOD: '좋았어요',
   BEST: '최고였어요',
+  NONE: '평가가 없어요',
 };
 
 export type SatisfiedReason =

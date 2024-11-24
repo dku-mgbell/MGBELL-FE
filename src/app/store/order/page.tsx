@@ -18,6 +18,12 @@ import { useRefuseOrderByOwner } from '@/hooks/query/order/owner/useRefuseOrderB
 import { useAcceptOrderByOwner } from '@/hooks/query/order/owner/useAcceptOrderByOwner';
 import { useCompleteOrderByOwner } from '@/hooks/query/order/owner/useCompleteOrderByOwner';
 import { formatDateTime } from '@/utils/formatDateTime';
+import {
+  initializeMessaging,
+  issueFcmToken,
+  onMessageListener,
+} from '@/hooks/notification/firebase';
+import { useRegisterFCMToken } from '@/hooks/query/notification/useRegisterFCMToken';
 import Aside from './(components)/aside/aside';
 import * as styles from './styles.css';
 
@@ -33,11 +39,63 @@ export default function Page({
   const { mutate: postRefuseOrder } = useRefuseOrderByOwner();
   const { mutate: postAcceptOrder } = useAcceptOrderByOwner();
   const { mutate: postCompleteOrder } = useCompleteOrderByOwner();
+  const { mutate: registerFCMToken } = useRegisterFCMToken();
   const { open } = useModal();
+  // const audio = new Audio('/notification-sound.mp3');
+  // const [playNotificationSound, setPlayNotificationSound] = useState(false);
+
+  useEffect(() => {
+    const messaging = initializeMessaging();
+    const fcmToken = localStorage.getItem('fcmToken');
+    if (messaging) {
+      issueFcmToken(messaging).then(() => {
+        if (fcmToken) registerFCMToken(fcmToken);
+      });
+      onMessageListener(messaging).then((payload) => {
+        // eslint-disable-next-line no-console
+        console.log(payload);
+      });
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+          .register('/firebase-messaging-sw.js')
+          .then((registration) => {
+            // eslint-disable-next-line no-console
+            console.log(
+              'Service Worker registered with scope:',
+              registration.scope,
+            );
+          })
+          .catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error('Service Worker registration failed:', error);
+          });
+      }
+    }
+  }, []);
 
   useEffect(() => {
     setOrderList(list);
   }, [list, state]);
+
+  // useEffect(() => {
+  //   if (list)
+  //     setPlayNotificationSound(
+  //       list.some((item) => {
+  //         return item.orderState === 'REQUESTED';
+  //       }),
+  //     );
+  // }, [list]);
+
+  // useEffect(() => {
+  //   if (playNotificationSound) {
+  //     if (typeof window !== 'undefined') {
+  //       audio
+  //         .play()
+  //         .then(() => console.log('Audio is playing'))
+  //         .catch((error) => console.error('Audio play error:', error));
+  //     }
+  //   }
+  // }, [playNotificationSound]);
 
   const handleRefuseButtonClick = (orderId: number) => {
     open({

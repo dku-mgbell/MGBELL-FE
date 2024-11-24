@@ -24,6 +24,7 @@ export default function ScoreSection({
       </div>
       <div className={styles.scoreStatistic}>
         {Object.entries(ReviewScoreName)
+          .slice(0, -1)
           .reverse()
           .map(([id, name]) => (
             <div key={id} className={styles.scoreItem}>

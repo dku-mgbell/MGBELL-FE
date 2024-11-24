@@ -8,7 +8,7 @@ import * as styles from './styles.css';
 
 export default function OrderItem({
   data: {
-    postId,
+    id,
     storeName,
     bagName,
     orderState,
@@ -28,7 +28,7 @@ export default function OrderItem({
           <span className={styles.orderState({ orderState })}>
             {OrderStateName[orderState]}
           </span>
-          <Link href={`/bag/${postId}`} className={styles.storeName}>
+          <Link href={`/bag/${id}`} className={styles.storeName}>
             {storeName}
           </Link>
           <p className={styles.bagInfo}>

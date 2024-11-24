@@ -7,8 +7,8 @@ export interface OrderInfo {
 }
 
 export interface UserOrderDetailPreview {
+  id: number;
   orderId: number;
-  postId: number;
   orderDateTime: string;
   storeName: string;
   bagName: string;

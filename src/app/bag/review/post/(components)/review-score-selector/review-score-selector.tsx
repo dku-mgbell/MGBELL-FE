@@ -14,26 +14,28 @@ export default function ReviewScoreSelector({
 }) {
   return (
     <div className={styles.inputContainer}>
-      {Object.entries(ReviewScoreName).map(([id, name]) => (
-        <label key={id} className={styles.input}>
-          <input
-            type="radio"
-            name="review-score"
-            value={id}
-            checked={id === checked}
-            className={common.hidden}
-            onChange={onChange}
-          />
-          <Image
-            src={ReviewScoreImage[id as ReviewScore].src}
-            alt={`review-score-${id}`}
-            className={styles.inputThumbnail}
-            width={86}
-            height={86}
-          />
-          <p className={styles.inputName}>{name}</p>
-        </label>
-      ))}
+      {Object.entries(ReviewScoreName)
+        .slice(0, -1)
+        .map(([id, name]) => (
+          <label key={id} className={styles.input}>
+            <input
+              type="radio"
+              name="review-score"
+              value={id}
+              checked={id === checked}
+              className={common.hidden}
+              onChange={onChange}
+            />
+            <Image
+              src={ReviewScoreImage[id as ReviewScore].src}
+              alt={`review-score-${id}`}
+              className={styles.inputThumbnail}
+              width={86}
+              height={86}
+            />
+            <p className={styles.inputName}>{name}</p>
+          </label>
+        ))}
     </div>
   );
 }

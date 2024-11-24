@@ -10,7 +10,7 @@ import * as styles from './styles.css';
 export default function OrderItem({
   data: {
     orderId,
-    postId,
+    id,
     orderDateTime,
     storeName,
     bagName,
@@ -44,7 +44,7 @@ export default function OrderItem({
           style={{ backgroundImage: `url('${images}')` }}
         />
         <div className={styles.orderInfoSection}>
-          <Link href={`/bag/${postId}`} className={styles.storeName}>
+          <Link href={`/bag/${id}`} className={styles.storeName}>
             {storeName} <ChevronRightIcon color="#000" />
           </Link>
           <p className={styles.bagInfo}>

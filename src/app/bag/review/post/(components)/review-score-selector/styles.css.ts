@@ -30,7 +30,6 @@ export const styles = {
 
 globalStyle(`${styles.input}:has(input)>img`, {
   filter: 'grayscale(100%) brightness(1.1)',
-  zIndex: -1,
 });
 
 globalStyle(`${styles.input}:has(input:checked)>img`, {
