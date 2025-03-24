@@ -11,4 +11,5 @@ export interface SignUpInfo {
   email?: string;
   userRole: UserRole | null;
   password: string;
+  nickname?: string;
 }

@@ -14,6 +14,7 @@ export const signUpInfoDefaultValue = {
   email: '',
   userRole: null,
   password: '',
+  nickname: '',
 };
 
 export const useSignUpInfoStore = create<SignUpInfoState>((set) => ({

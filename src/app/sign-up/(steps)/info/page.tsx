@@ -12,12 +12,13 @@ import { styles } from '../styles.css';
 export default function Page() {
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [nickname, setNickname] = useState('');
   const { signUpInfo, setSignUpInfo } = useSignUpInfoStore();
   const { mutate: postSignUpInfo, isPending, isSuccess } = usePostSignUp();
 
   const handleNextButtonClick = () => {
-    setSignUpInfo({ ...signUpInfo, name, phoneNumber });
-    postSignUpInfo({ ...signUpInfo, name, phoneNumber });
+    setSignUpInfo({ ...signUpInfo, name, phoneNumber, nickname });
+    postSignUpInfo({ ...signUpInfo, name, phoneNumber, nickname });
   };
 
   const isInvalidPhoneNumber = (value: string) =>
@@ -28,7 +29,11 @@ export default function Page() {
   return (
     <StepsLayout
       title="회원 정보"
-      isNextStepAllowed={name.length > 0 && isValidPhoneNumber(phoneNumber)}
+      isNextStepAllowed={
+        name.length > 0 &&
+        nickname.length > 0 &&
+        isValidPhoneNumber(phoneNumber)
+      }
       onNextStep={handleNextButtonClick}
       buttonContent="가입"
     >
@@ -37,6 +42,14 @@ export default function Page() {
         value={name}
         onChange={(e) => {
           setName(e.target.value);
+        }}
+      />
+      <div style={{ height: '10px' }} />
+      <Input
+        placeholder="닉네임을 입력해주세요."
+        value={nickname}
+        onChange={(e) => {
+          setNickname(e.target.value);
         }}
       />
       <div style={{ height: '10px' }} />
