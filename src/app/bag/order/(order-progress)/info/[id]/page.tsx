@@ -1,21 +1,21 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
-import TimeIcon from '@/assets/svg/TimeIcon';
-import { usePostBagOrder } from '@/hooks/query/order/usePostBagOrder';
-import StepsLayout from '@/components/layout/steps-layout/steps-layout';
-import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
-import { useGetBagDetail } from '@/hooks/query/bag/useGetBagDetail';
-import Textarea from '@/components/input/textarea/textarea';
-import MessageIcon from '@/assets/svg/MessageIcon';
-import CardIcon from '@/assets/svg/CardIcon';
+import { useSearchParams } from 'next/navigation';
 import BagIcon from '@/assets/svg/BagIcon';
-import InputSection from '@/components/input-section/input-section';
-import OrderDetailTable from '@/components/order-detail-table/order-detail-table';
-import useModal from '@/hooks/useModal';
+import CardIcon from '@/assets/svg/CardIcon';
+import MessageIcon from '@/assets/svg/MessageIcon';
+import TimeIcon from '@/assets/svg/TimeIcon';
 import Input from '@/components/input/input';
+import Textarea from '@/components/input/textarea/textarea';
+import InputSection from '@/components/input-section/input-section';
+import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import Loader from '@/components/loader/loader';
+import OrderDetailTable from '@/components/order-detail-table/order-detail-table';
+import { useGetBagDetail } from '@/hooks/query/bag/useGetBagDetail';
+import { usePostBagOrder } from '@/hooks/query/order/usePostBagOrder';
+import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
+import useModal from '@/hooks/useModal';
 import * as styles from './styles.css';
 
 export default function Page() {

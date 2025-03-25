@@ -1,5 +1,5 @@
-import { colors } from '@/styles/constant';
 import { globalStyle, style } from '@vanilla-extract/css';
+import { colors } from '@/styles/constant';
 
 export const styles = {
   inputWrapper: style({

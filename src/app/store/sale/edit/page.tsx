@@ -2,16 +2,16 @@
 
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Button from '@/components/button/text-button/button';
 import Input from '@/components/input/input';
 import Textarea from '@/components/input/textarea/textarea';
 import QuestionContainer from '@/components/question-container/question-container';
 import { useGetBagInfoByOwner } from '@/hooks/query/bag/useGetBagInfoByOwner';
+import { usePatchBag } from '@/hooks/query/bag/usePatchBag';
+import useModal from '@/hooks/useModal';
+import { common } from '@/styles/common.css';
 import { MyBagInfoResponse } from '@/types/bag';
 import { commaizeNumber } from '@/utils/commaizeNumber';
-import Button from '@/components/button/text-button/button';
-import { usePatchBag } from '@/hooks/query/bag/usePatchBag';
-import { common } from '@/styles/common.css';
-import useModal from '@/hooks/useModal';
 import * as styles from './styles.css';
 
 export default function Page() {

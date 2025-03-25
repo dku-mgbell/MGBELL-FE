@@ -1,5 +1,5 @@
-import { InfiniteData, UseInfiniteQueryResult } from '@tanstack/react-query';
 import { useCallback, useMemo, useRef } from 'react';
+import { InfiniteData, UseInfiniteQueryResult } from '@tanstack/react-query';
 
 export const useInfiniteScroll = <T>({
   data,

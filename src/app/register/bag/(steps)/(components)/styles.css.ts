@@ -1,5 +1,5 @@
-import { borderRadius, colors } from '@/styles/constant';
 import { globalStyle, style } from '@vanilla-extract/css';
+import { borderRadius, colors } from '@/styles/constant';
 
 export const collapse = style({
   backgroundColor: colors.lightGray10,

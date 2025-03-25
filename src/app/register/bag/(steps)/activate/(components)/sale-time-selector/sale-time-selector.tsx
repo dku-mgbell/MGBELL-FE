@@ -1,7 +1,7 @@
+import { ChangeEvent } from 'react';
 import TimeSelector from '@/components/time-selector/time-selector';
 import { useBagInfoStateStore } from '@/hooks/stores/useBagInfoStore';
 import { common } from '@/styles/common.css';
-import { ChangeEvent } from 'react';
 
 export default function SaleTimeSelector() {
   const { bagInfoState, setBagInfoState } = useBagInfoStateStore();

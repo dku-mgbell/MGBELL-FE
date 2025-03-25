@@ -1,10 +1,10 @@
+import { PageParams } from '@/types/api';
 import {
   MyReviewResponse,
   ReviewResponse,
   ReviewStatistic,
   UserReviewUpload,
 } from '@/types/review';
-import { PageParams } from '@/types/api';
 import { API } from '.';
 
 export const Review = {

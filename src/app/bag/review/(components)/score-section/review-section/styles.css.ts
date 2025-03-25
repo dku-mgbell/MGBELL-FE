@@ -1,5 +1,5 @@
-import { colors, fontWeight } from '@/styles/constant';
 import { style } from '@vanilla-extract/css';
+import { colors, fontWeight } from '@/styles/constant';
 import { recipe } from '@vanilla-extract/recipes';
 
 export const container = style({

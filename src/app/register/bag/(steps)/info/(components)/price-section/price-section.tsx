@@ -2,8 +2,8 @@
 
 import { ChangeEvent, useState } from 'react';
 import { common } from '@/styles/common.css';
-import { styles } from './styles.css';
 import PriceContent from './price-content';
+import { styles } from './styles.css';
 
 type TabType = 'select' | 'enter';
 

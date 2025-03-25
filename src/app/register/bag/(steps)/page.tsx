@@ -2,12 +2,12 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import BagImage from '@/assets/images/store/bag.png';
-import { common } from '@/styles/common.css';
+import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import QuestionContainer from '@/components/question-container/question-container';
-import * as styles from './styles.css';
+import { common } from '@/styles/common.css';
 import Qna from './(components)/qna';
+import * as styles from './styles.css';
 
 export default function Page() {
   const route = useRouter();

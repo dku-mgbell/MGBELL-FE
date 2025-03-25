@@ -1,19 +1,20 @@
-import Link from 'next/link';
 import { useEffect } from 'react';
-import { common } from '@/styles/common.css';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import LikeIcon from '@/assets/svg/LikeIcon';
 import ShoppingIcon from '@/assets/svg/ShoppingIcon';
 import TimeIcon from '@/assets/svg/TimeIcon';
-import { colors } from '@/styles/constant';
-import LikeIcon from '@/assets/svg/LikeIcon';
-import { useGetBagInfiniteList } from '@/hooks/query/bag/useGetBagInfiniteList';
-import { BagInfoResponse } from '@/types/bag';
 import { Intersection } from '@/components/intersection/intersection';
-import Tag from '@/components/text/tag/tag';
 import ProductInfoFooter from '@/components/product/product-info-footer/product-info-footer';
-import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
+import Tag from '@/components/text/tag/tag';
+import { useGetBagInfiniteList } from '@/hooks/query/bag/useGetBagInfiniteList';
 import { useAuthStore } from '@/hooks/stores/useAuthStore';
-import { useSearchParams } from 'next/navigation';
+import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
+import { common } from '@/styles/common.css';
+import { colors } from '@/styles/constant';
+import { BagInfoResponse } from '@/types/bag';
 import { useQueryClient } from '@tanstack/react-query';
+
 import * as styles from './styles.css';
 
 export default function StoreList() {

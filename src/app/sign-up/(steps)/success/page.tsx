@@ -1,8 +1,8 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import SuccessLayout from '@/components/layout/success-layout/success-layout';
-import { useRouter } from 'next/navigation';
 
 export default function Page() {
   const route = useRouter();

@@ -1,5 +1,5 @@
-import { borderRadius } from '@/styles/constant';
 import { globalStyle, style } from '@vanilla-extract/css';
+import { borderRadius } from '@/styles/constant';
 import { recipe } from '@vanilla-extract/recipes';
 import { buttonContainer } from '../input/number/styles.css';
 

@@ -2,10 +2,10 @@
 
 import { useRouter } from 'next/navigation';
 import HeaderLayout from '@/components/layout/header-layout/header-layout';
-import { useGetStoreInfo } from '@/hooks/query/store/useGetStoreInfo';
 import { useGetReviewStatistic } from '@/hooks/query/review/useGetReviewStatistic';
-import ScoreSection from './(components)/score-section/score-section/score-section';
+import { useGetStoreInfo } from '@/hooks/query/store/useGetStoreInfo';
 import ReviewSection from './(components)/score-section/review-section/review-section';
+import ScoreSection from './(components)/score-section/score-section/score-section';
 import * as styles from './styles.css';
 
 export default function Page({

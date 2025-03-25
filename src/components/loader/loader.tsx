@@ -1,5 +1,5 @@
-import { colors } from '@/styles/constant';
 import { BeatLoader } from 'react-spinners';
+import { colors } from '@/styles/constant';
 import * as styles from './styles.css';
 
 export default function Loader() {

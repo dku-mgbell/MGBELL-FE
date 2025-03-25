@@ -5,10 +5,10 @@ import Input from '@/components/input/input';
 import HeaderLayout from '@/components/layout/header-layout/header-layout';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import QuestionContainer from '@/components/question-container/question-container';
+import { useResetPassword } from '@/hooks/query/user/useResetPassword';
 import { useSendFindPasswordCode } from '@/hooks/query/user/useSendFindPasswordCode';
 import { useVerifyFindPasswordCode } from '@/hooks/query/user/useVerifyFindPasswordCode';
 import { isValidEmail, isValidPassword } from '@/utils/regex';
-import { useResetPassword } from '@/hooks/query/user/useResetPassword';
 import * as styles from './styles.css';
 
 export default function Page() {

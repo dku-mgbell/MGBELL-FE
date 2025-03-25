@@ -1,9 +1,9 @@
 'use client';
 
 import { ChangeEvent, FormEvent, useState } from 'react';
+import Loader from '@/components/loader/loader';
 import { usePostLogin } from '@/hooks/query/user/usePostLogin';
 import { LoginInfo } from '@/types/login';
-import Loader from '@/components/loader/loader';
 import { styles } from './styles.css';
 
 export default function LoginForm() {

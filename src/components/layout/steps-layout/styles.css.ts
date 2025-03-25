@@ -1,5 +1,5 @@
-import { fontWeight, padding } from '@/styles/constant';
 import { style } from '@vanilla-extract/css';
+import { fontWeight, padding } from '@/styles/constant';
 import { recipe } from '@vanilla-extract/recipes';
 
 export const styles = {

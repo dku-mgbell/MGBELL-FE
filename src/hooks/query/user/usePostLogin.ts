@@ -1,3 +1,4 @@
+import { usePathname, useRouter } from 'next/navigation';
 import { User } from '@/hooks/api/user';
 import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import useModal from '@/hooks/useModal';
@@ -9,7 +10,6 @@ import {
   LoginResponse,
 } from '@/types/login';
 import { useMutation } from '@tanstack/react-query';
-import { usePathname, useRouter } from 'next/navigation';
 
 export const usePostLogin = () => {
   const route = useRouter();

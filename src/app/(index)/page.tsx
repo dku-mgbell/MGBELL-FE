@@ -1,20 +1,19 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { useAuth } from '@/hooks/useAuth';
-import { useAuthStore } from '@/hooks/stores/useAuthStore';
+import { useRouter } from 'next/navigation';
 import SearchInput from '@/components/input/search/search-input';
-import { UserRole } from '@/types/user';
-import { useAddressStateStore } from '@/hooks/stores/useAddressStore';
-// import FilterIcon from '../assets/svg/FilterIcon';
 import {
   initializeMessaging,
   issueFcmToken,
   onMessageListener,
 } from '@/hooks/notification/firebase';
 import { useRegisterFCMToken } from '@/hooks/query/notification/useRegisterFCMToken';
+import { useAddressStateStore } from '@/hooks/stores/useAddressStore';
+import { useAuthStore } from '@/hooks/stores/useAuthStore';
+import { useAuth } from '@/hooks/useAuth';
+import { UserRole } from '@/types/user';
 import LocationMarkerIcon from '../../assets/svg/LocationMarkerIcon';
 import { container, styles } from '../styles.css';
 import SortContainer from './sort-container/sort-container';

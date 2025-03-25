@@ -1,5 +1,5 @@
-import ChevronRightIcon from '@/assets/svg/ChevronRightIcon';
 import { useRouter } from 'next/navigation';
+import ChevronRightIcon from '@/assets/svg/ChevronRightIcon';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
 import * as styles from './styles.css';
