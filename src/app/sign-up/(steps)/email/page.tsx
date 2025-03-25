@@ -3,11 +3,11 @@
 import { useEffect, useState } from 'react';
 import Input from '@/components/input/input';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
-import { isValidEmail } from '@/utils/regex';
-import { usePostMail } from '@/hooks/query/sign-up/usePostMail';
-import { useCheckDuplicate } from '@/hooks/query/sign-up/useCheckDuplicate';
-import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
 import Loader from '@/components/loader/loader';
+import { useCheckDuplicate } from '@/hooks/query/sign-up/useCheckDuplicate';
+import { usePostMail } from '@/hooks/query/sign-up/usePostMail';
+import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
+import { isValidEmail } from '@/utils/regex';
 import { styles } from '../styles.css';
 
 export default function Page() {

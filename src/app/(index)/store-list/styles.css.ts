@@ -1,5 +1,5 @@
-import { borderRadius, colors } from '@/styles/constant';
 import { globalStyle, style } from '@vanilla-extract/css';
+import { borderRadius, colors } from '@/styles/constant';
 import { recipe } from '@vanilla-extract/recipes';
 
 export const main = style({

@@ -7,13 +7,13 @@ import { useRouter } from 'next/navigation';
 import BellImage from '@/assets/images/review/bell-not-bad.png';
 import BellIcon from '@/assets/svg/BellIcon';
 import CO2Icon from '@/assets/svg/CO2Icon';
+import HeadphoneIcon from '@/assets/svg/HeadphoneIcon';
 import MoneyPocketIcon from '@/assets/svg/MoneyPocketIcon';
 import ReviewIcon from '@/assets/svg/ReviewIcon';
-import HeadphoneIcon from '@/assets/svg/HeadphoneIcon';
 import SettingsIcon from '@/assets/svg/SettingsIcon';
-import { commaizeNumber } from '@/utils/commaizeNumber';
 import MenuButton from '@/components/button/menu-button/menu-button';
 import { useGetUserActivity } from '@/hooks/query/user/useGetUserActivity';
+import { commaizeNumber } from '@/utils/commaizeNumber';
 import * as styles from './styles.css';
 
 export default function Page() {

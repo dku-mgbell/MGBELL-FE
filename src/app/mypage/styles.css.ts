@@ -1,5 +1,5 @@
-import { colors, fontWeight } from '@/styles/constant';
 import { style } from '@vanilla-extract/css';
+import { colors, fontWeight } from '@/styles/constant';
 
 export const container = style({
   backgroundColor: '#F6F6F6',

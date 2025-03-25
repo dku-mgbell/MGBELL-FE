@@ -1,8 +1,8 @@
+import { useRouter } from 'next/navigation';
 import { SignUp } from '@/hooks/api/sign-up';
 import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
 import { CodeVerificationResponse } from '@/types/sign-up';
 import { useMutation } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
 
 export const useVerifyCode = () => {
   const route = useRouter();

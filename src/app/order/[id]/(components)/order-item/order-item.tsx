@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { OrderStateName, UserOrderDetailPreview } from '@/types/order';
 import ProductInfoFooter from '@/components/product/product-info-footer/product-info-footer';
 import { fontWeight } from '@/styles/constant';
+import { OrderStateName, UserOrderDetailPreview } from '@/types/order';
 import { formatDateTime } from '@/utils/formatDateTime';
 
 import * as styles from './styles.css';

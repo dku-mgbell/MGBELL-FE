@@ -1,9 +1,9 @@
 import { ChangeEvent } from 'react';
 import Image from 'next/image';
-import { StoreName as Store, StoreID } from '@/types/store';
 import { common } from '@/styles/common.css';
-import { styles } from './styles.css';
+import { StoreName as Store, StoreID } from '@/types/store';
 import Thumbnail from '../../../../../mocks/thumbnail.png';
+import { styles } from './styles.css';
 
 export default function StoreSelector({
   checked,

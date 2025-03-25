@@ -1,8 +1,8 @@
+import { useRouter } from 'next/navigation';
 import { Order } from '@/hooks/api/order';
 import useModal from '@/hooks/useModal';
 import { OrderInfo } from '@/types/order';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
 
 export const usePostBagOrder = (price: number) => {
   const queryClient = useQueryClient();

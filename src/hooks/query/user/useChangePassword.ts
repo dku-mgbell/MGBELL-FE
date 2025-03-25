@@ -1,8 +1,8 @@
+import { useRouter } from 'next/navigation';
 import { User } from '@/hooks/api/user';
 import useModal from '@/hooks/useModal';
 import { PasswordChange } from '@/types/user';
 import { useMutation } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
 
 export const useChangePassword = () => {
   const route = useRouter();

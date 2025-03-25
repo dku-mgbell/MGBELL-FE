@@ -1,11 +1,10 @@
+import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 
 import './styles.css';
-
-import { Pagination } from 'swiper/modules';
 
 export default function Carousel({ images }: { images: string[] }) {
   return (

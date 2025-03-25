@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
-import { useBagInfoStateStore } from '@/hooks/stores/useBagInfoStore';
 import Input from '@/components/input/input';
+import { useBagInfoStateStore } from '@/hooks/stores/useBagInfoStore';
 import { common } from '@/styles/common.css';
 import PriceButton from './price-button';
 import { styles } from './styles.css';

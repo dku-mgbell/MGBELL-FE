@@ -1,7 +1,7 @@
+import { Dispatch, SetStateAction } from 'react';
 import { User } from '@/hooks/api/user';
 import useModal from '@/hooks/useModal';
 import { useMutation } from '@tanstack/react-query';
-import { Dispatch, SetStateAction } from 'react';
 
 export const useSendFindPasswordCode = (
   updateIsMailSent: Dispatch<SetStateAction<boolean>>,

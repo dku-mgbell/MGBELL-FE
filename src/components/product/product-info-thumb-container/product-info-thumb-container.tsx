@@ -1,6 +1,6 @@
-import { BagInfoResponse } from '@/types/bag';
 import TagContainer from '@/app/map/(components)/tag-container/tag-container';
 import ProductInfoFooter from '@/components/product/product-info-container/(components)/footer';
+import { BagInfoResponse } from '@/types/bag';
 import * as styles from './styles.css';
 
 export default function ProductInfoThumbContainer({

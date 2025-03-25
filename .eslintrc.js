@@ -7,6 +7,7 @@ module.exports = {
   },
   plugins: ['import', '@typescript-eslint', 'react', 'prettier'],
   extends: [
+    'plugin:import/recommended',
     'airbnb',
     'airbnb-typescript',
     'airbnb/hooks',
@@ -31,6 +32,53 @@ module.exports = {
       'error',
       {
         endOfLine: 'auto',
+      },
+    ],
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'type',
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
+          'unknown',
+        ],
+        pathGroups: [
+          {
+            pattern: 'react*',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'next/*',
+            group: 'internal',
+            position: 'before',
+          },
+          {
+            pattern: '@hooks/*',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: '@pages/*',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: '@components/*',
+            group: 'internal',
+            position: 'after',
+          },
+        ],
+
+        pathGroupsExcludedImportTypes: ['@tanstack*'],
+        alphabetize: {
+          order: 'asc',
+        },
       },
     ],
   },

@@ -1,7 +1,7 @@
-import BottomSheet from '@/components/bottom-sheet/bottom-sheet';
-import { BagInfoResponse } from '@/types/bag';
 import Link from 'next/link';
+import BottomSheet from '@/components/bottom-sheet/bottom-sheet';
 import ProductInfoContainer from '@/components/product/product-info-container/product-info-container';
+import { BagInfoResponse } from '@/types/bag';
 
 export default function DetailBottomSheet({
   info: {

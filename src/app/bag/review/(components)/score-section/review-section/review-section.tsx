@@ -3,11 +3,11 @@ import 'swiper/css/pagination';
 import { useEffect, useState } from 'react';
 import CameraIcon from '@/assets/svg/CameraIcon';
 import SortIcon from '@/assets/svg/SortIcon';
+import { Intersection } from '@/components/intersection/intersection';
+import ReviewPost from '@/components/review-post/review-post';
 import { useGetReviewList } from '@/hooks/query/review/useGetReviewList';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import { ReviewResponse } from '@/types/review';
-import { Intersection } from '@/components/intersection/intersection';
-import ReviewPost from '@/components/review-post/review-post';
 import { useQueryClient } from '@tanstack/react-query';
 import * as styles from './styles.css';
 

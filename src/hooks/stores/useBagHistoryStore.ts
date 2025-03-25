@@ -1,6 +1,6 @@
+import { BagDetail } from '@/types/bag';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { BagDetail } from '@/types/bag';
 
 type BagHistoryState = {
   bagHistory: BagDetail[];

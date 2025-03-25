@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
 import Image from 'next/image';
-import { common } from '@/styles/common.css';
 import { ReviewScoreImage } from '@/assets/images/review/bell';
+import { common } from '@/styles/common.css';
 import { ReviewScore, ReviewScoreName } from '@/types/review';
 import { styles } from './styles.css';
 

@@ -1,5 +1,5 @@
-import { colors } from '@/styles/constant';
 import { style } from '@vanilla-extract/css';
+import { colors } from '@/styles/constant';
 
 export const nav = style({
   display: 'flex',

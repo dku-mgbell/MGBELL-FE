@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { useSearchParams } from 'next/navigation';
 import BagImage from '@/assets/images/store/bag-confetti.png';
 import EarthImage from '@/assets/images/store/save-earth.png';
+import { motion } from 'framer-motion';
 import * as styles from './styles.css';
 
 export default function Page() {

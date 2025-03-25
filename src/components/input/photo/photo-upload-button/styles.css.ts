@@ -1,5 +1,5 @@
-import { fontWeight } from '@/styles/constant';
 import { style } from '@vanilla-extract/css';
+import { fontWeight } from '@/styles/constant';
 
 export const button = style({
   display: 'flex',

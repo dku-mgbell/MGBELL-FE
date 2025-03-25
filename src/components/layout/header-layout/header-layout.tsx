@@ -1,6 +1,6 @@
-import ChevronLeftIcon from '@/assets/svg/ChevronLeftIcon';
 import { ReactNode } from 'react';
 import Link from 'next/link';
+import ChevronLeftIcon from '@/assets/svg/ChevronLeftIcon';
 import { styles } from './styles.css';
 
 export default function HeaderLayout({

@@ -1,5 +1,5 @@
-import { borderRadius, fontWeight } from '@/styles/constant';
 import { globalStyle, style } from '@vanilla-extract/css';
+import { borderRadius, fontWeight } from '@/styles/constant';
 
 export const buttonContainer = style({
   margin: '20px 0 30px 0',
