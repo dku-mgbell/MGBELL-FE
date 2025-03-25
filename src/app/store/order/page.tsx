@@ -33,7 +33,7 @@ export default function Page({
   searchParams: { state?: OrderState | '' };
 }) {
   const orderListState = useGetOrderListByOwner({ size: 5, state });
-  const { list, intersection, isLoading } =
+  const { list, intersection, isLoading, isError } =
     useInfiniteScroll<OwnerOrderDetail>(orderListState);
   const [orderList, setOrderList] = useState<OwnerOrderDetail[]>();
   const { mutate: postRefuseOrder } = useRefuseOrderByOwner();
@@ -157,6 +157,9 @@ export default function Page({
   };
 
   if (isLoading || !orderList) return <> </>;
+  if (isError) {
+    window.location.href = '/register/store';
+  }
 
   return (
     <>
