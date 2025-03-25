@@ -4,7 +4,7 @@ import localFont from 'next/font/local';
 import ReactQueryProviders from '@/hooks/query/useReactQuery';
 import ModalProvider from '@/components/modal/modal-provider';
 import Navigation from '@/components/navigation/navigation';
-import MSWProvider from './(components)/msw-provider/msw-provider';
+import MSWProvider from './(index)/msw-provider/msw-provider';
 import { styles } from './styles.css';
 import '../styles/globals.css';
 

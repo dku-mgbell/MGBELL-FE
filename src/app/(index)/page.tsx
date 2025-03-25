@@ -15,10 +15,10 @@ import {
   onMessageListener,
 } from '@/hooks/notification/firebase';
 import { useRegisterFCMToken } from '@/hooks/query/notification/useRegisterFCMToken';
-import LocationMarkerIcon from '../assets/svg/LocationMarkerIcon';
-import { container, styles } from './styles.css';
-import SortContainer from './(components)/sort-container/sort-container';
-import StoreList from './(components)/store-list/store-list';
+import LocationMarkerIcon from '../../assets/svg/LocationMarkerIcon';
+import { container, styles } from '../styles.css';
+import SortContainer from './sort-container/sort-container';
+import StoreList from './store-list/store-list';
 
 export default function Page({
   searchParams: { sort, accessToken, isNewUser, userRole },
