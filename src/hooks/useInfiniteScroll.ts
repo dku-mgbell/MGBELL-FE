@@ -9,7 +9,7 @@ export const useInfiniteScroll = <T>({
   isFetching,
   isError,
 }: UseInfiniteQueryResult<InfiniteData<T[], unknown>, Error>) => {
-  const observer = useRef<IntersectionObserver>();
+  const observer = useRef<IntersectionObserver>(null);
 
   const intersection = useCallback(
     (target: HTMLDivElement) => {

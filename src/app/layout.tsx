@@ -5,7 +5,7 @@ import Navigation from '@/components/navigation/navigation';
 import ReactQueryProviders from '@/hooks/query/useReactQuery';
 import localFont from 'next/font/local';
 import MSWProvider from './(index)/msw-provider/msw-provider';
-import { styles } from './styles.css';
+import { styles } from './(index)/styles.css';
 import '../styles/globals.css';
 
 const notoSans = localFont({

@@ -4550,13 +4550,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^18":
+"@types/react@npm:*":
   version: 18.3.6
   resolution: "@types/react@npm:18.3.6"
   dependencies:
     "@types/prop-types": "npm:*"
     csstype: "npm:^3.0.2"
   checksum: 10c0/e347787a496f2006fe61358316e040c22548a1669559277b72dad39e2f1f713080115be9fe6c30f9d1d28a54054b96cf6c06471be6967a3605e31f5b84a6cec7
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^19.0.12":
+  version: 19.0.12
+  resolution: "@types/react@npm:19.0.12"
+  dependencies:
+    csstype: "npm:^3.0.2"
+  checksum: 10c0/c814b6af5c0fbcf5c65d031b1c9bf98c5b857e015254d95811f2851b27b869c3d31c6f35dab127dc6921a3dbda0b0622c6323d493a14b31b231a6a58c41c5e84
   languageName: node
   linkType: hard
 
@@ -5738,7 +5747,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:^2.0.0":
+"clsx@npm:^2.0.0, clsx@npm:^2.1.1":
   version: 2.1.1
   resolution: "clsx@npm:2.1.1"
   checksum: 10c0/c4c8eb865f8c82baab07e71bfa8897c73454881c4f99d6bc81585aecd7c441746c1399d08363dc096c550cceaf97bd4ce1e8854e1771e9998d9f94c4fe075839
@@ -7321,15 +7330,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^11.11.7":
-  version: 11.11.7
-  resolution: "framer-motion@npm:11.11.7"
+"framer-motion@npm:^12.6.2":
+  version: 12.6.2
+  resolution: "framer-motion@npm:12.6.2"
   dependencies:
+    motion-dom: "npm:^12.6.1"
+    motion-utils: "npm:^12.5.0"
     tslib: "npm:^2.4.0"
   peerDependencies:
     "@emotion/is-prop-valid": "*"
-    react: ^18.0.0
-    react-dom: ^18.0.0
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
   peerDependenciesMeta:
     "@emotion/is-prop-valid":
       optional: true
@@ -7337,7 +7348,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/3ea38038c4ff7e421c22811109ebe0aced595afcf8a204b2548c137b5d73cea983bc78d8fd2fb43406636f848bd53414eb41afb9fe182bb23afcddb2dccd98bb
+  checksum: 10c0/a89b70efb4e2a985ffb297fd4003b3ed0ff5a4594acc799acf46e2afdbe244f14e253949a319ae36e6b081c4807b7965c958826f3512b2f634785bca74234fec
   languageName: node
   linkType: hard
 
@@ -8817,7 +8828,7 @@ __metadata:
     "@types/navermaps": "npm:^3.7.8"
     "@types/next-pwa": "npm:^5"
     "@types/node": "npm:^20"
-    "@types/react": "npm:^18"
+    "@types/react": "npm:^19.0.12"
     "@types/react-dom": "npm:^18"
     "@typescript-eslint/eslint-plugin": "npm:7.0.0"
     "@typescript-eslint/parser": "npm:^8.6.0"
@@ -8825,6 +8836,7 @@ __metadata:
     "@vanilla-extract/next-plugin": "npm:^2.4.5"
     "@vanilla-extract/recipes": "npm:^0.5.5"
     axios: "npm:^1.7.7"
+    clsx: "npm:^2.1.1"
     eslint: "npm:8.57.0"
     eslint-config-airbnb: "npm:^19.0.4"
     eslint-config-airbnb-typescript: "npm:^18.0.0"
@@ -8836,7 +8848,7 @@ __metadata:
     eslint-plugin-react: "npm:^7.36.1"
     eslint-plugin-react-hooks: "npm:^4.6.2"
     firebase: "npm:^11.0.2"
-    framer-motion: "npm:^11.11.7"
+    framer-motion: "npm:^12.6.2"
     husky: "npm:^9.1.6"
     lint-staged: "npm:^15.2.10"
     msw: "npm:2.0.0"
@@ -8849,6 +8861,7 @@ __metadata:
     react-modal-sheet: "npm:^3.1.0"
     react-spinners: "npm:^0.14.1"
     swiper: "npm:^11.1.14"
+    tailwind-merge: "npm:^3.0.2"
     typescript: "npm:5.2.2"
     zustand: "npm:^5.0.0-rc.2"
   languageName: unknown
@@ -9053,6 +9066,22 @@ __metadata:
   version: 1.0.1
   resolution: "modern-ahocorasick@npm:1.0.1"
   checksum: 10c0/90ef4516ba8eef136d0cd4949faacdadee02217b8e25deda2881054ca8fcc32b985ef159b6e794c40e11c51040303c8e2975b20b23b86ec8a2a63516bbf93add
+  languageName: node
+  linkType: hard
+
+"motion-dom@npm:^12.6.1":
+  version: 12.6.1
+  resolution: "motion-dom@npm:12.6.1"
+  dependencies:
+    motion-utils: "npm:^12.5.0"
+  checksum: 10c0/3a9a4dcb8ce15e7860537b19ac773e846e6a971e5a626f76b0b2eff732413e3f563300296f6116ed6760d654f1877670a87482fbca1dcf61ed052711a47225d0
+  languageName: node
+  linkType: hard
+
+"motion-utils@npm:^12.5.0":
+  version: 12.5.0
+  resolution: "motion-utils@npm:12.5.0"
+  checksum: 10c0/f556240efda96a4bb86b13bb0e6cad689b2665ca688b2616585a7c7db182e3b8d93377ff1fb3782ca0088a4a8aa6dd5e47e81fda5c19ab334f01812eade639ef
   languageName: node
   linkType: hard
 
@@ -10954,6 +10983,13 @@ __metadata:
     "@pkgr/core": "npm:^0.1.0"
     tslib: "npm:^2.6.2"
   checksum: 10c0/d8b89e1bf30ba3ffb469d8418c836ad9c0c062bf47028406b4d06548bc66af97155ea2303b96c93bf5c7c0f0d66153a6fbd6924c76521b434e6a9898982abc2e
+  languageName: node
+  linkType: hard
+
+"tailwind-merge@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "tailwind-merge@npm:3.0.2"
+  checksum: 10c0/73f528345e5130e7690c5c57701155849ae4f0834e0a4bf56bc03e25d4563d45d4905ff9c487a7dce9efdfa18689a223e78365962105ad0e2f2d1226216c66ef
   languageName: node
   linkType: hard
 

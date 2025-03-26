@@ -1,122 +1,36 @@
-'use client';
-
-import { useEffect } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import SearchInput from '@/components/input/search/search-input';
-import {
-  initializeMessaging,
-  issueFcmToken,
-  onMessageListener,
-} from '@/hooks/notification/firebase';
-import { useRegisterFCMToken } from '@/hooks/query/notification/useRegisterFCMToken';
-import { useAddressStateStore } from '@/hooks/stores/useAddressStore';
-import { useAuthStore } from '@/hooks/stores/useAuthStore';
-import { useAuth } from '@/hooks/useAuth';
-import { UserRole } from '@/types/user';
-import LocationMarkerIcon from '../../assets/svg/LocationMarkerIcon';
-import { container, styles } from '../styles.css';
+import { cn } from '@/styles/cn';
+import AdressEnterLink from './address-enter-link';
+import InitialSetter from './initial-setter';
 import SortContainer from './sort-container/sort-container';
 import StoreList from './store-list/store-list';
+import { container, styles } from './styles.css';
+import { IndexPageSearchParams } from './types';
 
 export default function Page({
-  searchParams: { sort, accessToken, isNewUser, userRole },
+  searchParams,
 }: {
-  searchParams: {
-    sort: string;
-    accessToken: string;
-    isNewUser: string;
-    userRole: UserRole;
-  };
+  searchParams: IndexPageSearchParams;
 }) {
-  const {
-    setUserRole,
-    setOAuthState,
-    userRole: savedUserRole,
-  } = useAuthStore();
-  const { setToken, oAuthLogin } = useAuth();
-  const { addressState } = useAddressStateStore();
-  const route = useRouter();
-  const { mutate: registerFCMToken } = useRegisterFCMToken();
-
-  useEffect(() => {
-    const messaging = initializeMessaging();
-    const fcmToken = localStorage.getItem('fcmToken');
-    if (messaging) {
-      issueFcmToken(messaging).then(() => {
-        if (fcmToken) registerFCMToken(fcmToken);
-      });
-      onMessageListener(messaging).then((payload) => {
-        // eslint-disable-next-line no-console
-        console.log(payload);
-      });
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker
-          .register('/firebase-messaging-sw.js')
-          .then((registration) => {
-            // eslint-disable-next-line no-console
-            console.log(
-              'Service Worker registered with scope:',
-              registration.scope,
-            );
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error('Service Worker registration failed:', error);
-          });
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    if (userRole) setUserRole(userRole);
-  }, [userRole]);
-
-  useEffect(() => {
-    if (savedUserRole === 'OWNER') route.push('/store/order');
-  }, [savedUserRole]);
-
-  useEffect(() => {
-    if (isNewUser === 'true') {
-      route.push('/sign-up?oAuth=true');
-      setOAuthState({
-        isOAuth: true,
-        isNewUser: true,
-      });
-      setToken({ accessToken });
-    } else if (isNewUser === 'false') {
-      oAuthLogin({ accessToken });
-      setOAuthState({
-        isOAuth: true,
-        isNewUser: false,
-      });
-    }
-  }, [isNewUser]);
-
   return (
-    !isNewUser && (
-      <section className={`${container} pwa-layout`}>
+    !searchParams.isNewUser && (
+      <section className={cn(container, 'pwa-layout')}>
+        <InitialSetter searchParams={searchParams} />
         <header className={styles.header}>
-          <Link href="location" className={styles.location}>
-            <LocationMarkerIcon />
-            <span className={styles.locationText}>
-              {addressState.address
-                ? addressState.address
-                : '위치를 입력해주세요'}
-            </span>
-          </Link>
+          <AdressEnterLink />
           <div className={styles.search}>
             <SearchInput placeholder="마감벨 입점 매장을 검색해보세요!" />
-            {/* <button type="button" className={styles.filterButton}>
-              <FilterIcon />
-            </button> */}
           </div>
         </header>
         <section className={styles.contentWrapper}>
-          <SortContainer state={sort} />
+          <SortContainer state={searchParams.sort} />
           <StoreList />
         </section>
       </section>
     )
   );
 }
+
+// <button type="button" className={styles.filterButton}>
+// <FilterIcon />
+// </button>
