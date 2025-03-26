@@ -1,6 +1,6 @@
-import { API_BASE_URL } from '@/constant';
-import Image from '@/mocks/thumbnail.png';
 import { http, HttpResponse } from 'msw';
+import Image from '@/mocks/thumbnail.png';
+import { API_BASE_URL } from '@/constant';
 
 export const handlers = [
   http.get(`${API_BASE_URL}post/list`, ({ params }) => {

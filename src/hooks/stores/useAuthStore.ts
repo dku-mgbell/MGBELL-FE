@@ -1,6 +1,6 @@
 import { create } from 'zustand';
-import { UserRole } from '@/types/user';
 import { persist } from 'zustand/middleware';
+import { UserRole } from '@/types/user';
 
 interface OAuthState {
   isOAuth: boolean;

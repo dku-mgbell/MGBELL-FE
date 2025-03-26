@@ -58,6 +58,11 @@ module.exports = {
             position: 'before',
           },
           {
+            pattern: 'next/font/local',
+            group: 'external',
+            position: 'before',
+          },
+          {
             pattern: '@vanilla-extract/*',
             group: 'external',
             position: 'before',
@@ -69,6 +74,21 @@ module.exports = {
           },
           {
             pattern: 'zustand',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'zustand/middleware',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'msw',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'framer-motion',
             group: 'external',
             position: 'before',
           },
@@ -87,11 +107,20 @@ module.exports = {
             group: 'internal',
             position: 'after',
           },
+          {
+            pattern: '@/constant',
+            group: 'internal',
+            position: 'after',
+          },
         ],
         pathGroupsExcludedImportTypes: [
           '@tanstack/*',
           '@vanilla-extract/*',
           'zustand',
+          'zustand/middleware',
+          'msw',
+          'next/font/local',
+          'framer-motion',
         ],
         alphabetize: {
           order: 'asc',

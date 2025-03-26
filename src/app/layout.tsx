@@ -1,8 +1,8 @@
 import Script from 'next/script';
+import localFont from 'next/font/local';
 import ModalProvider from '@/components/modal/modal-provider';
 import Navigation from '@/components/navigation/navigation';
 import ReactQueryProviders from '@/hooks/query/useReactQuery';
-import localFont from 'next/font/local';
 import MSWProvider from './(index)/msw-provider/msw-provider';
 import { styles } from './(index)/styles.css';
 import type { Metadata, Viewport } from 'next';

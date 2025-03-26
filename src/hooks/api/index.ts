@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { API_BASE_URL } from '@/constant';
 // eslint-disable-next-line import/no-cycle
 import { User } from '@/hooks/api/user';
+import { API_BASE_URL } from '@/constant';
 
 export const API = axios.create({
   baseURL: API_BASE_URL,

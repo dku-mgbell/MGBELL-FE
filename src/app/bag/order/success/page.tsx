@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
+import { motion } from 'framer-motion';
 import BagImage from '@/assets/images/store/bag-confetti.png';
 import EarthImage from '@/assets/images/store/save-earth.png';
-import { motion } from 'framer-motion';
 import * as styles from './styles.css';
 
 export default function Page() {
