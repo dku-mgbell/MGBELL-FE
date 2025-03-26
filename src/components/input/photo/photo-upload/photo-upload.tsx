@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import AddIcon from '@/assets/svg/AddIcon';
 import CrossIcon from '@/assets/svg/CrossIcon';
 import { common } from '@/styles/common.css';
-import AddIcon from '@/assets/svg/AddIcon';
 import PhotoUploadButton from '../photo-upload-button/photo-upload-button';
-import * as styles from './styles.css';
 import { styles as imageStyles } from './styles-image.css';
+import * as styles from './styles.css';
 
 export default function PhotoUpload({
   updateImageFiles,

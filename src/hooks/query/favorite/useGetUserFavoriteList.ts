@@ -1,5 +1,5 @@
-import { Favorite } from '@/hooks/api/favorite';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { Favorite } from '@/hooks/api/favorite';
 
 export const useGetUserFavoriteList = ({ size }: { size: number }) =>
   useInfiniteQuery({

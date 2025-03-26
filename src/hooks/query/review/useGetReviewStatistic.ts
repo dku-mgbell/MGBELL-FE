@@ -1,5 +1,5 @@
-import { Review } from '@/hooks/api/review';
 import { useQuery } from '@tanstack/react-query';
+import { Review } from '@/hooks/api/review';
 
 export const useGetReviewStatistic = ({ storeId }: { storeId: number }) =>
   useQuery({

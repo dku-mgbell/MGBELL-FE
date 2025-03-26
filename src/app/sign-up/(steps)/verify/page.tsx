@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import Input from '@/components/input/input';
-import { useVerifyCode } from '@/hooks/query/sign-up/useVerifyCode';
-import { usePostMail } from '@/hooks/query/sign-up/usePostMail';
-import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import Loader from '@/components/loader/loader';
+import { usePostMail } from '@/hooks/query/sign-up/usePostMail';
+import { useVerifyCode } from '@/hooks/query/sign-up/useVerifyCode';
+import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
 import { styles } from '../styles.css';
 import { verifyStyles } from './styles.css';
 

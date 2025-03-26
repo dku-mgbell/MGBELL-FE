@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
 import { useBagInfoStateStore } from '@/hooks/stores/useBagInfoStore';
-import { common } from '@/styles/common.css';
 import { commaizeNumber } from '@/utils/commaizeNumber';
+import { common } from '@/styles/common.css';
 import { styles } from './styles.css';
 
 export default function PriceButton({

@@ -1,5 +1,5 @@
-import { InfiniteData, UseInfiniteQueryResult } from '@tanstack/react-query';
 import { useCallback, useMemo, useRef } from 'react';
+import { InfiniteData, UseInfiniteQueryResult } from '@tanstack/react-query';
 
 export const useInfiniteScroll = <T>({
   data,
@@ -7,8 +7,9 @@ export const useInfiniteScroll = <T>({
   fetchNextPage,
   hasNextPage,
   isFetching,
+  isError,
 }: UseInfiniteQueryResult<InfiniteData<T[], unknown>, Error>) => {
-  const observer = useRef<IntersectionObserver>();
+  const observer = useRef<IntersectionObserver>(null);
 
   const intersection = useCallback(
     (target: HTMLDivElement) => {
@@ -30,5 +31,5 @@ export const useInfiniteScroll = <T>({
     }, []);
   }, [data]);
 
-  return { intersection, list, isLoading, isFetching };
+  return { intersection, list, isLoading, isFetching, isError };
 };

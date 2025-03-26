@@ -1,6 +1,6 @@
+import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { borderRadius, colors, fontWeight } from '@/styles/constant';
-import { style } from '@vanilla-extract/css';
 
 export const container = style({
   backgroundColor: colors.lightGray10,

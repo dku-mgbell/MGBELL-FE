@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react';
 import ShoppingIcon from '@/assets/svg/ShoppingIcon';
 import ToggleSwitch from '@/components/toggle-switch/toggle-switch';
-import { common } from '@/styles/common.css';
 import { useBagInfoStateStore } from '@/hooks/stores/useBagInfoStore';
+import { common } from '@/styles/common.css';
 import { styles } from './styles.css';
 
 export default function OnSaleButton() {

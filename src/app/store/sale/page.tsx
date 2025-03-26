@@ -2,10 +2,10 @@
 
 import { useRouter } from 'next/navigation';
 import MenuButton from '@/components/button/menu-button/menu-button';
-import { usePatchOnSale } from '@/hooks/query/bag/usePatchOnSale';
+import ProductInfoThumbContainer from '@/components/product/product-info-thumb-container/product-info-thumb-container';
 import ToggleSwitch from '@/components/toggle-switch/toggle-switch';
 import { useGetBagInfoByOwner } from '@/hooks/query/bag/useGetBagInfoByOwner';
-import ProductInfoThumbContainer from '@/components/product/product-info-thumb-container/product-info-thumb-container';
+import { usePatchOnSale } from '@/hooks/query/bag/usePatchOnSale';
 import { BagInfoResponse } from '@/types/bag';
 import { common } from '@/styles/common.css';
 import * as styles from './styles.css';

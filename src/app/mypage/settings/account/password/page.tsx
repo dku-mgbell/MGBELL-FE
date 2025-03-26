@@ -5,8 +5,8 @@ import Input from '@/components/input/input';
 import HeaderLayout from '@/components/layout/header-layout/header-layout';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import QuestionContainer from '@/components/question-container/question-container';
-import { isValidPassword } from '@/utils/regex';
 import { useChangePassword } from '@/hooks/query/user/useChangePassword';
+import { isValidPassword } from '@/utils/regex';
 import * as styles from './styles.css';
 
 export default function Page() {

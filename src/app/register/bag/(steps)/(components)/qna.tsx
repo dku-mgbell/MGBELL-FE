@@ -1,6 +1,6 @@
+import ChevronDownIcon from '@/assets/svg/ChevronDownIcon';
 import LoudSpeakerIcon from '@/assets/svg/LoudSpeakerIconsvg';
 import { common } from '@/styles/common.css';
-import ChevronDownIcon from '@/assets/svg/ChevronDownIcon';
 import { qna } from '../qna';
 import * as styles from './styles.css';
 

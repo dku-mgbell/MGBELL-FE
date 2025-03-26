@@ -1,6 +1,6 @@
-import { FavoriteRegistration } from '@/types/favorite';
 import { PageParams } from '@/types/api';
 import { BagInfoResponse } from '@/types/bag';
+import { FavoriteRegistration } from '@/types/favorite';
 import { API } from '.';
 
 export const Favorite = {

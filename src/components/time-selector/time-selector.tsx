@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
-import * as styles from './styles.css';
 import { generateTimes } from './(utils)/generateTimes';
+import * as styles from './styles.css';
 
 export default function TimeSelector({
   onChange,

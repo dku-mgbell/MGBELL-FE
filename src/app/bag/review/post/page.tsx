@@ -5,14 +5,14 @@ import { useSearchParams } from 'next/navigation';
 import Textarea from '@/components/input/textarea/textarea';
 import HeaderLayout from '@/components/layout/header-layout/header-layout';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
-import QuestionContainer from '@/components/question-container/question-container';
-import { ReviewScore, SatisfiedReason, UserReviewUpload } from '@/types/review';
-import { usePostReviewByUser } from '@/hooks/query/review/usePostReviewByUser';
 import Loader from '@/components/loader/loader';
+import QuestionContainer from '@/components/question-container/question-container';
+import { usePostReviewByUser } from '@/hooks/query/review/usePostReviewByUser';
+import { ReviewScore, SatisfiedReason, UserReviewUpload } from '@/types/review';
 import useModal from '@/hooks/useModal';
+import PhotoUpload from '../../../../components/input/photo/photo-upload/photo-upload';
 import ReviewScoreSelector from './(components)/review-score-selector/review-score-selector';
 import SatisfiedReasonSelector from './(components)/satisfied-reason-selector/satisfied-reason-selector';
-import PhotoUpload from '../../../../components/input/photo/photo-upload/photo-upload';
 import * as styles from './styles.css';
 
 export default function Page() {

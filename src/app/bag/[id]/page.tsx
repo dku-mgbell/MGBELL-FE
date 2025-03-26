@@ -1,20 +1,20 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useGetBagDetail } from '@/hooks/query/bag/useGetBagDetail';
 import { useParams, useRouter } from 'next/navigation';
+import BagIcon from '@/assets/svg/BagIcon';
 import BackButton from '@/components/button/back-button/back-button';
 import Button from '@/components/button/text-button/button';
-import BagIcon from '@/assets/svg/BagIcon';
-import ProductInfoContainer from '@/components/product/product-info-container/product-info-container';
 import Carousel from '@/components/carousel/carousel';
-import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
 import NumberInput from '@/components/input/number/number-input';
-import useModal from '@/hooks/useModal';
-import { useNumberInputStore } from '@/hooks/stores/useNumberInputStore';
+import ProductInfoContainer from '@/components/product/product-info-container/product-info-container';
+import { useGetBagDetail } from '@/hooks/query/bag/useGetBagDetail';
 import { useAuthStore } from '@/hooks/stores/useAuthStore';
-import { useAuth } from '@/hooks/useAuth';
 import { useBagHistoryStore } from '@/hooks/stores/useBagHistoryStore';
+import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
+import { useNumberInputStore } from '@/hooks/stores/useNumberInputStore';
+import { useAuth } from '@/hooks/useAuth';
+import useModal from '@/hooks/useModal';
 import FavoriteButton from './(componets)/favorite-button/favorite-button';
 import * as styles from './styles.css';
 

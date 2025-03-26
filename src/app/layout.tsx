@@ -1,11 +1,11 @@
-import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import localFont from 'next/font/local';
-import ReactQueryProviders from '@/hooks/query/useReactQuery';
 import ModalProvider from '@/components/modal/modal-provider';
 import Navigation from '@/components/navigation/navigation';
-import MSWProvider from './(components)/msw-provider/msw-provider';
-import { styles } from './styles.css';
+import ReactQueryProviders from '@/hooks/query/useReactQuery';
+import MSWProvider from './(index)/msw-provider/msw-provider';
+import { styles } from './(index)/styles.css';
+import type { Metadata, Viewport } from 'next';
 import '../styles/globals.css';
 
 const notoSans = localFont({

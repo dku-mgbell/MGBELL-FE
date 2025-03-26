@@ -1,15 +1,15 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { MapMarker } from '@/types/map';
 import markerImg from '@/assets/images/map/marker.png';
 import pinImg from '@/assets/images/map/pin.png';
 import BackButton from '@/components/button/back-button/back-button';
-import { BagInfoResponse as StoreInfoResponse } from '@/types/bag';
 import { useGetBagList as useGetStoreList } from '@/hooks/query/bag/useGetBagList';
-import LocationButton from './(components)/location-button';
-import ListBottomSheet from './(components)/list-bottom-sheet/list-bottom-sheet';
+import { BagInfoResponse as StoreInfoResponse } from '@/types/bag';
+import { MapMarker } from '@/types/map';
 import DetailBottomSheet from './(components)/detail-bottom-sheet/detail-bottom-sheet';
+import ListBottomSheet from './(components)/list-bottom-sheet/list-bottom-sheet';
+import LocationButton from './(components)/location-button';
 import * as styles from './styles.css';
 
 const DEFAULT_COORD = [37.3214151882177, 127.110106750383];

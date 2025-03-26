@@ -1,8 +1,8 @@
-import { Store } from '@/hooks/api/store';
-import useModal from '@/hooks/useModal';
-import { StoreRegistration } from '@/types/store';
-import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import { useMutation } from '@tanstack/react-query';
+import { Store } from '@/hooks/api/store';
+import { StoreRegistration } from '@/types/store';
+import useModal from '@/hooks/useModal';
 
 export const useRegisterStore = () => {
   const route = useRouter();

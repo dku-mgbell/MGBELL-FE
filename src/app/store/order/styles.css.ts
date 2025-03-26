@@ -1,5 +1,5 @@
-import { borderRadius, colors } from '@/styles/constant';
 import { style } from '@vanilla-extract/css';
+import { borderRadius, colors } from '@/styles/constant';
 
 export const content = style({
   display: 'flex',

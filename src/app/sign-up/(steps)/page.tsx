@@ -1,14 +1,14 @@
 'use client';
 
-import Image from 'next/image';
 import { ChangeEvent, Suspense, useEffect, useState } from 'react';
-import { UserRole } from '@/types/user';
-import { OwnerImage, UserImage } from '@/assets/images/sign-up/image';
+import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
-import { useAuthStore } from '@/hooks/stores/useAuthStore';
+import { OwnerImage, UserImage } from '@/assets/images/sign-up/image';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import Loader from '@/components/loader/loader';
+import { useAuthStore } from '@/hooks/stores/useAuthStore';
+import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
+import { UserRole } from '@/types/user';
 import { userStyles } from './styles.css';
 
 function SignUpPageContent() {

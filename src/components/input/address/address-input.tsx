@@ -1,12 +1,12 @@
-import DaumPostcode from 'react-daum-postcode';
-import useModal from '@/hooks/useModal';
-import { common } from '@/styles/common.css';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import DaumPostcode from 'react-daum-postcode';
 import Input from '@/components/input/input';
-import { useGetCoord } from '@/hooks/query/map/useGetCoord';
-import { Address, UserAddressState } from '@/types/address';
-import { useAddressStateStore } from '@/hooks/stores/useAddressStore';
 import Loader from '@/components/loader/loader';
+import { useGetCoord } from '@/hooks/query/map/useGetCoord';
+import { useAddressStateStore } from '@/hooks/stores/useAddressStore';
+import { Address, UserAddressState } from '@/types/address';
+import { common } from '@/styles/common.css';
+import useModal from '@/hooks/useModal';
 
 export default function AddressInput({
   updateAddress,

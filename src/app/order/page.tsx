@@ -3,9 +3,9 @@
 import { Intersection } from '@/components/intersection/intersection';
 import HeaderLayout from '@/components/layout/header-layout/header-layout';
 import { useGetUserOrderList } from '@/hooks/query/order/useGetUserOrderList';
-import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import { UserOrderDetailPreview } from '@/types/order';
 import { common } from '@/styles/common.css';
+import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import OrderItem from './(components)/order-item/order-item';
 import * as styles from './styles.css';
 

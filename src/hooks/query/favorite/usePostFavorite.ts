@@ -1,6 +1,6 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Favorite } from '@/hooks/api/favorite';
 import { FavoriteRegistration } from '@/types/favorite';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const usePostFavorite = () => {
   const queryClient = useQueryClient();

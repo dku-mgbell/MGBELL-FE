@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { common } from '@/styles/common.css';
 import AddIcon from '@/assets/svg/AddIcon';
 import CrossIcon from '@/assets/svg/CrossIcon';
+import { common } from '@/styles/common.css';
 import { styles } from './styles.css';
 
 export default function ImageUploader() {

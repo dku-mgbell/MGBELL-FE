@@ -1,6 +1,6 @@
-import { colors, fontWeight } from '@/styles/constant';
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
+import { colors, fontWeight } from '@/styles/constant';
 
 export const container = style({
   display: 'flex',

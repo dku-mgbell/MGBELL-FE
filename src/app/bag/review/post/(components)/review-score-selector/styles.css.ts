@@ -1,5 +1,5 @@
-import { colors, fontWeight } from '@/styles/constant';
 import { globalStyle, style } from '@vanilla-extract/css';
+import { colors, fontWeight } from '@/styles/constant';
 
 export const styles = {
   inputContainer: style({

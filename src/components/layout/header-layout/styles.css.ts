@@ -1,6 +1,6 @@
-import { colors, fontWeight, padding } from '@/styles/constant';
 import { globalStyle, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
+import { colors, fontWeight, padding } from '@/styles/constant';
 
 export const styles = {
   container: recipe({

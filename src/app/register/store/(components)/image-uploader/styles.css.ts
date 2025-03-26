@@ -1,6 +1,6 @@
-import { borderRadius, colors } from '@/styles/constant';
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
+import { borderRadius, colors } from '@/styles/constant';
 
 export const styles = {
   container: style({

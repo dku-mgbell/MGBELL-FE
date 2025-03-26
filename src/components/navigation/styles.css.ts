@@ -1,6 +1,6 @@
-import { colors } from '@/styles/constant';
 import { globalStyle, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
+import { colors } from '@/styles/constant';
 
 export const wrapper = style({
   backgroundColor: colors.white,

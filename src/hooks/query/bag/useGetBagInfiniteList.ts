@@ -1,5 +1,5 @@
-import { Bag } from '@/hooks/api/bag';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { Bag } from '@/hooks/api/bag';
 
 export const useGetBagInfiniteList = ({
   isLoggedIn,

@@ -1,5 +1,5 @@
-import { colors } from '@/styles/constant';
 import { style } from '@vanilla-extract/css';
+import { colors } from '@/styles/constant';
 
 export const nav = style({
   display: 'flex',
@@ -15,6 +15,7 @@ export const button = style({
   padding: '1.4vw 1.7vw',
   fontWeight: 400,
   color: '#484747',
+  cursor: 'pointer',
   '@media': {
     'screen and (min-width: 431px)': {
       fontSize: '13px',

@@ -2,11 +2,11 @@
 
 import { useState } from 'react';
 import Input from '@/components/input/input';
-import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
-import { isValidPhoneNumber } from '@/utils/regex';
-import { usePostSignUp } from '@/hooks/query/sign-up/usePostSignUp';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import Loader from '@/components/loader/loader';
+import { usePostSignUp } from '@/hooks/query/sign-up/usePostSignUp';
+import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
+import { isValidPhoneNumber } from '@/utils/regex';
 import { styles } from '../styles.css';
 
 export default function Page() {

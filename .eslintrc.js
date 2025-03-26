@@ -7,6 +7,7 @@ module.exports = {
   },
   plugins: ['import', '@typescript-eslint', 'react', 'prettier'],
   extends: [
+    'plugin:import/recommended',
     'airbnb',
     'airbnb-typescript',
     'airbnb/hooks',
@@ -31,6 +32,100 @@ module.exports = {
       'error',
       {
         endOfLine: 'auto',
+      },
+    ],
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
+          'type',
+        ],
+        pathGroups: [
+          {
+            pattern: 'react*',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'next/*',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'next/font/local',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '@vanilla-extract/*',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '@tanstack/*',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'zustand',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'zustand/middleware',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'msw',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'framer-motion',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '@/styles/*',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: '@/hooks/*',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: '@/components/*',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: '@/constant',
+            group: 'internal',
+            position: 'after',
+          },
+        ],
+        pathGroupsExcludedImportTypes: [
+          '@tanstack/*',
+          '@vanilla-extract/*',
+          'zustand',
+          'zustand/middleware',
+          'msw',
+          'next/font/local',
+          'framer-motion',
+        ],
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
       },
     ],
   },

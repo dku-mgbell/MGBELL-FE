@@ -1,7 +1,7 @@
+import { Dispatch, SetStateAction } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import { SignUp } from '@/hooks/api/sign-up';
 import useModal from '@/hooks/useModal';
-import { useMutation } from '@tanstack/react-query';
-import { Dispatch, SetStateAction } from 'react';
 
 export const useCheckDuplicate = (
   updateIsDuplicateUser: Dispatch<SetStateAction<boolean>>,

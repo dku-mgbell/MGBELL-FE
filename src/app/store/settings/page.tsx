@@ -3,11 +3,11 @@
 // import { useRouter } from 'next/navigation';
 import LogoutIcon from '@/assets/svg/LogoutIcon';
 import MenuButton from '@/components/button/menu-button/menu-button';
+import { useGetMyStoreInfo } from '@/hooks/query/store/useGetMyStoreInfo';
+import { common } from '@/styles/common.css';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
 // import ReviewIcon from '@/assets/svg/ReviewIcon';
-import { useGetMyStoreInfo } from '@/hooks/query/store/useGetMyStoreInfo';
-import { common } from '@/styles/common.css';
 import * as styles from './styles.css';
 
 export default function Page() {

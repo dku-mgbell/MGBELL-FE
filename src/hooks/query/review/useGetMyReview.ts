@@ -1,5 +1,5 @@
-import { Review } from '@/hooks/api/review';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { Review } from '@/hooks/api/review';
 
 export const useGetMyReview = ({ size }: { size: number }) =>
   useInfiniteQuery({

@@ -1,3 +1,4 @@
+import { PageParams } from '@/types/api';
 import {
   OrderInfo,
   OrderState,
@@ -5,7 +6,6 @@ import {
   UserOrderDetail,
   UserOrderDetailPreview,
 } from '@/types/order';
-import { PageParams } from '@/types/api';
 import { API } from '.';
 
 export const Order = {

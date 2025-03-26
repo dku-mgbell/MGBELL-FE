@@ -1,15 +1,15 @@
 'use client';
 
-import Input from '@/components/input/input';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { useStoreRegisterStore } from '@/hooks/stores/useStoreRegisterStore';
-import QuestionContainer from '@/components/question-container/question-container';
-import StepsLayout from '@/components/layout/steps-layout/steps-layout';
-import { useRegisterStore } from '@/hooks/query/store/useRegisterStore';
-import { useAuth } from '@/hooks/useAuth';
 import AddressInput from '@/components/input/address/address-input';
-import { UserAddressState } from '@/types/address';
+import Input from '@/components/input/input';
 import PhotoUpload from '@/components/input/photo/photo-upload/photo-upload';
+import StepsLayout from '@/components/layout/steps-layout/steps-layout';
+import QuestionContainer from '@/components/question-container/question-container';
+import { useRegisterStore } from '@/hooks/query/store/useRegisterStore';
+import { useStoreRegisterStore } from '@/hooks/stores/useStoreRegisterStore';
+import { UserAddressState } from '@/types/address';
+import { useAuth } from '@/hooks/useAuth';
 import StoreSelector from '../(components)/store-selector/store-selector';
 import { styles } from './styles.css';
 

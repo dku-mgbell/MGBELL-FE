@@ -1,6 +1,11 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
-import { borderRadius, colors, fontWeight, padding } from '../styles/constant';
+import {
+  borderRadius,
+  colors,
+  fontWeight,
+  padding,
+} from '../../styles/constant';
 
 export const container = style({
   height: '100dvh',
@@ -45,28 +50,6 @@ export const styles = {
     position: 'fixed',
     top: 0,
     width: '100vw',
-  }),
-
-  location: style({
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px',
-    width: 'fit-content',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    lineClamp: '1',
-    maxWidth: '100%',
-  }),
-
-  locationText: style({
-    width: 'fit-content',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    lineClamp: '1',
-    color: colors.white,
-    flex: 1,
   }),
 
   search: style({

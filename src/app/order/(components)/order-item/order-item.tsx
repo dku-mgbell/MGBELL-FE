@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { OrderStateName, UserOrderDetailPreview } from '@/types/order';
-import { formatDate } from '@/utils/formatDate';
-import { commaizeNumber } from '@/utils/commaizeNumber';
-import Button from '@/components/button/text-button/button';
 import ChevronRightIcon from '@/assets/svg/ChevronRightIcon';
+import Button from '@/components/button/text-button/button';
+import { OrderStateName, UserOrderDetailPreview } from '@/types/order';
+import { commaizeNumber } from '@/utils/commaizeNumber';
+import { formatDate } from '@/utils/formatDate';
 import * as styles from './styles.css';
 
 export default function OrderItem({
