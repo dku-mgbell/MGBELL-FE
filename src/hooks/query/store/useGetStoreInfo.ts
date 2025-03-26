@@ -1,5 +1,5 @@
-import { Store } from '@/hooks/api/store';
 import { useQuery } from '@tanstack/react-query';
+import { Store } from '@/hooks/api/store';
 
 export const useGetStoreInfo = (id: number) =>
   useQuery({

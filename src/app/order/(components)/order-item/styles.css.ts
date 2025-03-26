@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
-import { borderRadius, colors, fontWeight } from '@/styles/constant';
 import { recipe } from '@vanilla-extract/recipes';
+import { borderRadius, colors, fontWeight } from '@/styles/constant';
 
 export const container = style({
   display: 'flex',

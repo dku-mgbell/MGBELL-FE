@@ -1,14 +1,14 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { useEffect, useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import CameraIcon from '@/assets/svg/CameraIcon';
 import SortIcon from '@/assets/svg/SortIcon';
 import { Intersection } from '@/components/intersection/intersection';
 import ReviewPost from '@/components/review-post/review-post';
 import { useGetReviewList } from '@/hooks/query/review/useGetReviewList';
-import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import { ReviewResponse } from '@/types/review';
-import { useQueryClient } from '@tanstack/react-query';
+import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import * as styles from './styles.css';
 
 export default function ReviewSection({

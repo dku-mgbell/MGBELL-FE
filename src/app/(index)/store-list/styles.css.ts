@@ -1,6 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { borderRadius, colors } from '@/styles/constant';
 import { recipe } from '@vanilla-extract/recipes';
+import { borderRadius, colors } from '@/styles/constant';
 
 export const main = style({
   display: 'flex',

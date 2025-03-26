@@ -4,9 +4,9 @@ import Input from '@/components/input/input';
 import Loader from '@/components/loader/loader';
 import { useGetCoord } from '@/hooks/query/map/useGetCoord';
 import { useAddressStateStore } from '@/hooks/stores/useAddressStore';
-import useModal from '@/hooks/useModal';
-import { common } from '@/styles/common.css';
 import { Address, UserAddressState } from '@/types/address';
+import { common } from '@/styles/common.css';
+import useModal from '@/hooks/useModal';
 
 export default function AddressInput({
   updateAddress,

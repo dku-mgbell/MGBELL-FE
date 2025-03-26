@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import { useQueryClient } from '@tanstack/react-query';
 import LikeIcon from '@/assets/svg/LikeIcon';
 import ShoppingIcon from '@/assets/svg/ShoppingIcon';
 import TimeIcon from '@/assets/svg/TimeIcon';
@@ -11,11 +12,10 @@ import ProductInfoFooter from '@/components/product/product-info-footer/product-
 import Tag from '@/components/text/tag/tag';
 import { useGetBagInfiniteList } from '@/hooks/query/bag/useGetBagInfiniteList';
 import { useAuthStore } from '@/hooks/stores/useAuthStore';
-import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
+import { BagInfoResponse } from '@/types/bag';
 import { common } from '@/styles/common.css';
 import { colors } from '@/styles/constant';
-import { BagInfoResponse } from '@/types/bag';
-import { useQueryClient } from '@tanstack/react-query';
+import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 
 import * as styles from './styles.css';
 

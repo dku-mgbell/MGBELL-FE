@@ -6,8 +6,8 @@ import ProductInfoThumbContainer from '@/components/product/product-info-thumb-c
 import ToggleSwitch from '@/components/toggle-switch/toggle-switch';
 import { useGetBagInfoByOwner } from '@/hooks/query/bag/useGetBagInfoByOwner';
 import { usePatchOnSale } from '@/hooks/query/bag/usePatchOnSale';
-import { common } from '@/styles/common.css';
 import { BagInfoResponse } from '@/types/bag';
+import { common } from '@/styles/common.css';
 import * as styles from './styles.css';
 
 export default function Page() {

@@ -1,13 +1,13 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import Link from 'next/link';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import ChevronRightIcon from '@/assets/svg/ChevronRightIcon';
 import ThumbsUpIcon from '@/assets/svg/ThumbsUpIcon';
 import { useDeleteReview } from '@/hooks/query/review/useDeleteReview';
-import useModal from '@/hooks/useModal';
 import { MyReviewResponse, SatisfiedReasonName } from '@/types/review';
 import formatTimeDifference from '@/utils/formatTimeDifference';
+import useModal from '@/hooks/useModal';
 import * as styles from './styles.css';
 
 export default function ReviewPost({

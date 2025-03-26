@@ -1,5 +1,5 @@
-import { SignUpInfo } from '@/types/sign-up';
 import { create } from 'zustand';
+import { SignUpInfo } from '@/types/sign-up';
 
 type SignUpInfoState = {
   signUpInfo: SignUpInfo;

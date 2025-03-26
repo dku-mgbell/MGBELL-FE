@@ -5,8 +5,8 @@ import BottomSheet from '@/components/bottom-sheet/bottom-sheet';
 import { Intersection } from '@/components/intersection/intersection';
 import ProductInfoThumbContainer from '@/components/product/product-info-thumb-container/product-info-thumb-container';
 import { useGetBagInfiniteList } from '@/hooks/query/bag/useGetBagInfiniteList';
-import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import { BagInfoResponse as StoreInfoResponse } from '@/types/bag';
+import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import ListShowButton from '../list-show-button/list-show-button';
 import * as styles from './styles.css';
 

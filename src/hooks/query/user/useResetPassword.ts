@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation';
+import { useMutation } from '@tanstack/react-query';
 import { User } from '@/hooks/api/user';
 import useModal from '@/hooks/useModal';
-import { useMutation } from '@tanstack/react-query';
 
 export const useResetPassword = () => {
   const { open } = useModal();

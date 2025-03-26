@@ -1,5 +1,5 @@
-import { User } from '@/hooks/api/user';
 import { useQuery } from '@tanstack/react-query';
+import { User } from '@/hooks/api/user';
 
 export const useGetUserActivity = () =>
   useQuery({

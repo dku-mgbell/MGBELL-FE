@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import useModal from '@/hooks/useModal';
 import { motion } from 'framer-motion';
+import useModal from '@/hooks/useModal';
 import Button from '../button/text-button/button';
 import { styles } from './styles.css';
 

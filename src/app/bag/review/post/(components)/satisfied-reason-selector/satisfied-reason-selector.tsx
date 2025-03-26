@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { common } from '@/styles/common.css';
 import { SatisfiedReason, SatisfiedReasonName } from '@/types/review';
+import { common } from '@/styles/common.css';
 import { styles } from './styles.css';
 
 export default function SatisfiedReasonSelector({

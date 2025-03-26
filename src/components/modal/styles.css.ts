@@ -1,6 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { borderRadius } from '@/styles/constant';
 import { recipe } from '@vanilla-extract/recipes';
+import { borderRadius } from '@/styles/constant';
 import { buttonContainer } from '../input/number/styles.css';
 
 export const styles = {

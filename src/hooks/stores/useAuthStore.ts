@@ -1,5 +1,5 @@
-import { UserRole } from '@/types/user';
 import { create } from 'zustand';
+import { UserRole } from '@/types/user';
 import { persist } from 'zustand/middleware';
 
 interface OAuthState {

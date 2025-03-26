@@ -8,8 +8,8 @@ import HeaderLayout from '@/components/layout/header-layout/header-layout';
 import OrderDetailTable from '@/components/order-detail-table/order-detail-table';
 import { useCancelOrderByUser } from '@/hooks/query/order/useCancelOrderByUser';
 import { useGetUserOrderDetail } from '@/hooks/query/order/useGetUserOrderDetail';
-import useModal from '@/hooks/useModal';
 import { commaizeNumber } from '@/utils/commaizeNumber';
+import useModal from '@/hooks/useModal';
 import OrderItem from './(components)/order-item/order-item';
 import * as styles from './styles.css';
 

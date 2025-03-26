@@ -1,5 +1,5 @@
-import { colors } from '@/styles/constant';
 import { recipe } from '@vanilla-extract/recipes';
+import { colors } from '@/styles/constant';
 
 export const tag = recipe({
   base: {

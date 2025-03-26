@@ -1,5 +1,5 @@
-import { Order } from '@/hooks/api/order';
 import { useQuery } from '@tanstack/react-query';
+import { Order } from '@/hooks/api/order';
 
 export const useGetUserOrderDetail = (id: number) =>
   useQuery({

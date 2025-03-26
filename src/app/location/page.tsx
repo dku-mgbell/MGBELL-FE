@@ -6,8 +6,8 @@ import AddressInput from '@/components/input/address/address-input';
 import HeaderLayout from '@/components/layout/header-layout/header-layout';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import { useAddressStateStore } from '@/hooks/stores/useAddressStore';
-import { common } from '@/styles/common.css';
 import { UserAddressState } from '@/types/address';
+import { common } from '@/styles/common.css';
 
 export default function Page() {
   const route = useRouter();

@@ -5,8 +5,8 @@ import { Intersection } from '@/components/intersection/intersection';
 import HeaderLayout from '@/components/layout/header-layout/header-layout';
 import ReviewPost from '@/components/review-post/review-post';
 import { useGetMyReview } from '@/hooks/query/review/useGetMyReview';
-import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import { MyReviewResponse } from '@/types/review';
+import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 
 import * as styles from './styles.css';
 

@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
 import Image from 'next/image';
-import { common } from '@/styles/common.css';
 import { StoreName as Store, StoreID } from '@/types/store';
+import { common } from '@/styles/common.css';
 import Thumbnail from '../../../../../mocks/thumbnail.png';
 import { styles } from './styles.css';
 

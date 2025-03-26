@@ -1,5 +1,5 @@
-import { UserAddressState } from '@/types/address';
 import { create } from 'zustand';
+import { UserAddressState } from '@/types/address';
 import { persist } from 'zustand/middleware';
 
 type AddressState = {

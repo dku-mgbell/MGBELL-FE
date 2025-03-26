@@ -38,14 +38,13 @@ module.exports = {
       'error',
       {
         groups: [
-          'type',
           'builtin',
           'external',
           'internal',
           'parent',
           'sibling',
           'index',
-          'unknown',
+          'type',
         ],
         pathGroups: [
           {
@@ -55,29 +54,48 @@ module.exports = {
           },
           {
             pattern: 'next/*',
-            group: 'internal',
+            group: 'external',
             position: 'before',
           },
           {
-            pattern: '@hooks/*',
+            pattern: '@vanilla-extract/*',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '@tanstack/*',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'zustand',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '@/styles/*',
             group: 'internal',
             position: 'after',
           },
           {
-            pattern: '@pages/*',
+            pattern: '@/hooks/*',
             group: 'internal',
             position: 'after',
           },
           {
-            pattern: '@components/*',
+            pattern: '@/components/*',
             group: 'internal',
             position: 'after',
           },
         ],
-
-        pathGroupsExcludedImportTypes: ['@tanstack*'],
+        pathGroupsExcludedImportTypes: [
+          '@tanstack/*',
+          '@vanilla-extract/*',
+          'zustand',
+        ],
         alphabetize: {
           order: 'asc',
+          caseInsensitive: true,
         },
       },
     ],

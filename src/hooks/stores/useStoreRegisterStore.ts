@@ -1,5 +1,5 @@
-import { StoreRegistration } from '@/types/store';
 import { create } from 'zustand';
+import { StoreRegistration } from '@/types/store';
 
 interface StoreState {
   storeState: StoreRegistration;

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation';
-import { SignUp } from '@/hooks/api/sign-up';
 import { useMutation } from '@tanstack/react-query';
+import { SignUp } from '@/hooks/api/sign-up';
 
 export const usePostMail = () => {
   const route = useRouter();

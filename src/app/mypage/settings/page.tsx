@@ -7,9 +7,9 @@ import ReviewIcon from '@/assets/svg/ReviewIcon';
 import MenuButton from '@/components/button/menu-button/menu-button';
 import HeaderLayout from '@/components/layout/header-layout/header-layout';
 import { useDeleteAccount } from '@/hooks/query/user/useDeleteAccount';
+import { colors } from '@/styles/constant';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
-import { colors } from '@/styles/constant';
 import * as styles from './styles.css';
 
 export default function Page() {

@@ -8,8 +8,8 @@ import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import QuestionContainer from '@/components/question-container/question-container';
 import { useRegisterStore } from '@/hooks/query/store/useRegisterStore';
 import { useStoreRegisterStore } from '@/hooks/stores/useStoreRegisterStore';
-import { useAuth } from '@/hooks/useAuth';
 import { UserAddressState } from '@/types/address';
+import { useAuth } from '@/hooks/useAuth';
 import StoreSelector from '../(components)/store-selector/store-selector';
 import { styles } from './styles.css';
 

@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react';
 import Image from 'next/image';
 import { ReviewScoreImage } from '@/assets/images/review/bell';
-import { common } from '@/styles/common.css';
 import { ReviewScore, ReviewScoreName } from '@/types/review';
+import { common } from '@/styles/common.css';
 import { styles } from './styles.css';
 
 export default function ReviewScoreSelector({
