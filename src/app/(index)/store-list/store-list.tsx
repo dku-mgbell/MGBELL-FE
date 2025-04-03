@@ -38,78 +38,81 @@ export default function StoreList() {
   useEffect(() => {
     queryClient.invalidateQueries({ queryKey: ['bag-list'] });
   }, [searchParams]);
-  if (isLoading) return <> </>;
+  // if (isLoading) return <>loading...</>;
 
   return (
     <main className={styles.main}>
-      {list!.map(
-        ({
-          id,
-          amount,
-          favorite,
-          costPrice,
-          salePrice,
-          storeName,
-          bagName,
-          onSale,
-          startAt,
-          endAt,
-          images,
-        }) => (
-          <Link href={`/bag/${id}`} key={id}>
-            <div className={styles.thumbWrapper}>
-              <div className={styles.thumbGrid}>
-                <img src={images[0]} className={styles.imageLeft} />
-                <img
-                  src={images[1] ?? images[0]}
-                  className={styles.imageTopRight}
-                />
-                <img
-                  src={images[2] ?? images[0]}
-                  className={styles.imageBottomRight}
-                />
-                <div className={styles.gradientyOverlay} />
-              </div>
-              <div className={styles.thumbContainer}>
-                <div
-                  className={common.flexBox({
-                    direction: 'row',
-                    justify: 'between',
-                  })}
-                >
-                  <div className={common.flexBox({ direction: 'row', gap: 5 })}>
-                    <Tag
-                      content={onSale ? '예약가능' : '예약불가'}
-                      theme={onSale ? 'default' : 'gray'}
-                      shadow
-                    />
-                    <Tag
-                      content={amount > 0 ? `${amount}개 남음` : '재고 없음'}
-                      theme={amount > 0 ? 'white' : 'gray'}
-                      shadow
-                    />
-                  </div>
-                  {favorite ? <LikeIcon /> : <LikeIcon off />}
+      {!isLoading &&
+        list!.map(
+          ({
+            id,
+            amount,
+            favorite,
+            costPrice,
+            salePrice,
+            storeName,
+            bagName,
+            onSale,
+            startAt,
+            endAt,
+            images,
+          }) => (
+            <Link href={`/bag/${id}`} key={id}>
+              <div className={styles.thumbWrapper}>
+                <div className={styles.thumbGrid}>
+                  <img src={images[0]} className={styles.imageLeft} />
+                  <img
+                    src={images[1] ?? images[0]}
+                    className={styles.imageTopRight}
+                  />
+                  <img
+                    src={images[2] ?? images[0]}
+                    className={styles.imageBottomRight}
+                  />
+                  <div className={styles.gradientyOverlay} />
                 </div>
-                <p className={styles.storeName}>{storeName}</p>
+                <div className={styles.thumbContainer}>
+                  <div
+                    className={common.flexBox({
+                      direction: 'row',
+                      justify: 'between',
+                    })}
+                  >
+                    <div
+                      className={common.flexBox({ direction: 'row', gap: 5 })}
+                    >
+                      <Tag
+                        content={onSale ? '예약가능' : '예약불가'}
+                        theme={onSale ? 'default' : 'gray'}
+                        shadow
+                      />
+                      <Tag
+                        content={amount > 0 ? `${amount}개 남음` : '재고 없음'}
+                        theme={amount > 0 ? 'white' : 'gray'}
+                        shadow
+                      />
+                    </div>
+                    {favorite ? <LikeIcon /> : <LikeIcon off />}
+                  </div>
+                  <p className={styles.storeName}>{storeName}</p>
+                </div>
               </div>
-            </div>
-            <ProductInfoFooter
-              costPrice={costPrice!}
-              salePrice={salePrice!}
-              firstRow={{
-                icon: <ShoppingIcon color={colors.black} />,
-                text: bagName ?? '',
-                color: 'black',
-              }}
-              secondRow={{
-                icon: <TimeIcon />,
-                text: `${startAt} ~ ${endAt}`,
-              }}
-            />
-          </Link>
-        ),
-      )}
+              <ProductInfoFooter
+                costPrice={costPrice!}
+                salePrice={salePrice!}
+                firstRow={{
+                  icon: <ShoppingIcon color={colors.black} />,
+                  text: bagName ?? '',
+                  color: 'black',
+                }}
+                secondRow={{
+                  icon: <TimeIcon />,
+                  text: `${startAt} ~ ${endAt}`,
+                }}
+              />
+            </Link>
+          ),
+        )}
       <Intersection ref={intersection} />
     </main>
   );

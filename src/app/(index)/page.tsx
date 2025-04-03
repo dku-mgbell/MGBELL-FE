@@ -13,21 +13,23 @@ export default function Page({
   searchParams: IndexPageSearchParams;
 }) {
   return (
-    !searchParams.isNewUser && (
-      <section className={cn(container, 'pwa-layout')}>
-        <InitialSetter searchParams={searchParams} />
-        <header className={styles.header}>
-          <AdressEnterLink />
-          <div className={styles.search}>
-            <SearchInput placeholder="마감벨 입점 매장을 검색해보세요!" />
-          </div>
-        </header>
-        <section className={styles.contentWrapper}>
-          <SortContainer state={searchParams.sort} />
-          <StoreList />
+    <>
+      <InitialSetter searchParams={searchParams} />
+      {!searchParams.isNewUser && (
+        <section className={cn(container, 'pwa-layout')}>
+          <header className={styles.header}>
+            <AdressEnterLink />
+            <div className={styles.search}>
+              <SearchInput placeholder="마감벨 입점 매장을 검색해보세요!" />
+            </div>
+          </header>
+          <section className={styles.contentWrapper}>
+            <SortContainer state={searchParams.sort} />
+            <StoreList />
+          </section>
         </section>
-      </section>
-    )
+      )}
+    </>
   );
 }
 
