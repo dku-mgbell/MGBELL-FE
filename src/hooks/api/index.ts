@@ -20,27 +20,43 @@ API.interceptors.response.use(
     return response;
   },
   function async(error) {
-    if (error.status === 401) {
-      if (error.config.url === '/user/reissue') {
-        window.location.href = '/login';
-        localStorage.removeItem('accessToken');
-        return;
-      }
-      User.reissueToken().then(
-        ({
-          accessToken: accessTokenResponse,
-          refreshToken: refreshTokenResponse,
-        }) => {
-          localStorage.setItem('accessToken', accessTokenResponse);
-          localStorage.setItem('refreshToken', refreshTokenResponse);
-        },
-      );
-      return;
-    }
-    if (error.status === 500) {
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    const logout = () => {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       window.location.href = '/login';
+    };
+
+    // AccessToken 만료
+    if (error.status === 401) {
+      if (refreshToken) {
+        User.reissueToken(refreshToken).then(
+          ({
+            accessToken: accessTokenResponse,
+            refreshToken: refreshTokenResponse,
+          }) => {
+            localStorage.setItem('accessToken', accessTokenResponse);
+            localStorage.setItem('refreshToken', refreshTokenResponse);
+          },
+        );
+      } else {
+        logout();
+      }
+      return;
+    }
+
+    // RefreshToken 만료
+    if (error.status === 403) {
+      logout();
+    }
+
+    // Token 에러
+    if (
+      error.status === 500 &&
+      error.response.data.code === 'UserNotFoundException'
+    ) {
+      logout();
     }
   },
 );
