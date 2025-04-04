@@ -20,27 +20,27 @@ API.interceptors.response.use(
     return response;
   },
   function async(error) {
-    const refreshToken = localStorage.getItem('refreshToken');
     if (error.status === 401) {
-      if (refreshToken) {
+      if (error.config.url === '/user/reissue') {
+        window.location.href = '/login';
         localStorage.removeItem('accessToken');
-        User.reissueToken(refreshToken)
-          .then(
-            ({
-              accessToken: accessTokenResponse,
-              refreshToken: refreshTokenResponse,
-            }) => {
-              localStorage.setItem('accessToken', accessTokenResponse);
-              localStorage.setItem('refreshToken', refreshTokenResponse);
-            },
-          )
-          .catch(() => {
-            localStorage.removeItem('accessToken');
-            localStorage.removeItem('refreshToken');
-            window.location.href = '/login';
-          });
+        return;
       }
+      User.reissueToken().then(
+        ({
+          accessToken: accessTokenResponse,
+          refreshToken: refreshTokenResponse,
+        }) => {
+          localStorage.setItem('accessToken', accessTokenResponse);
+          localStorage.setItem('refreshToken', refreshTokenResponse);
+        },
+      );
+      return;
     }
-    return Promise.reject(error);
+    if (error.status === 500) {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      window.location.href = '/login';
+    }
   },
 );
