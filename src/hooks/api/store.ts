@@ -34,7 +34,10 @@ export const Store = {
     }
     const response = await API.post('/store/register', formData, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        Authorization:
+          typeof window !== 'undefined'
+            ? `Bearer ${localStorage.getItem('accessToken')}`
+            : null,
         'Content-Type': 'multipart/form-data',
       },
     });

@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import SearchInput from '@/components/input/search/search-input';
 import { cn } from '@/styles/cn';
 import AdressEnterLink from './address-enter-link';
@@ -27,7 +28,9 @@ export default function Page({
           </header>
           <section className={styles.contentWrapper}>
             <SortContainer state={searchParams.sort} />
-            <StoreList />
+            <Suspense fallback={<div>Loading...</div>}>
+              <StoreList />
+            </Suspense>
           </section>
         </section>
       )}

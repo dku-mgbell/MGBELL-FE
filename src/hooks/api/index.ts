@@ -10,7 +10,8 @@ export const API = axios.create({
 });
 
 API.interceptors.request.use((config) => {
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken =
+    typeof window !== 'undefined' ? localStorage.getItem('accessToken') : null;
   // eslint-disable-next-line no-param-reassign
   config.headers.Authorization = accessToken ? `Bearer ${accessToken}` : null;
   return config;
@@ -21,7 +22,10 @@ API.interceptors.response.use(
     return response;
   },
   function async(error) {
-    const refreshToken = localStorage.getItem('refreshToken');
+    const refreshToken =
+      typeof window !== 'undefined'
+        ? localStorage.getItem('refreshToken')
+        : null;
     const currentPath = window.location.pathname;
 
     const logout = () => {

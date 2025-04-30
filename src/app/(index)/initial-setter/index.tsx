@@ -24,7 +24,8 @@ export default function InitialSetter({
 
   useEffect(() => {
     const messaging = initializeMessaging();
-    const fcmToken = localStorage.getItem('fcmToken');
+    const fcmToken =
+      typeof window !== 'undefined' ? localStorage.getItem('fcmToken') : null;
     if (messaging) {
       issueFcmToken(messaging).then(() => {
         if (fcmToken) registerFCMToken(fcmToken);

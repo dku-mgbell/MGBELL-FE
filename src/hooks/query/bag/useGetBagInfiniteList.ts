@@ -22,4 +22,6 @@ export const useGetBagInfiniteList = ({
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) =>
       lastPage.length ? allPages.length : undefined,
+    suspense: true,
+    enabled: typeof window !== 'undefined',
   });
