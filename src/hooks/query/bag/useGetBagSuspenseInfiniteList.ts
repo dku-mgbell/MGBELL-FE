@@ -1,7 +1,7 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { Bag } from '@/hooks/api/bag';
 
-export const useGetBagInfiniteList = ({
+export const useGetBagSuspenseInfiniteList = ({
   isLoggedIn,
   size,
   sortedBy,
@@ -12,7 +12,7 @@ export const useGetBagInfiniteList = ({
   sortedBy?: string;
   searchKeyword?: string;
 }) =>
-  useInfiniteQuery({
+  useSuspenseInfiniteQuery({
     queryKey: ['bag-list'],
     queryFn: ({ pageParam: pageNum }) =>
       Bag.getInfiniteList(

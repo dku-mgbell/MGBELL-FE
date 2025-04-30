@@ -101,7 +101,7 @@ export default function Map() {
   };
 
   useEffect(() => {
-    if (window.naver && window.naver.maps) {
+    if (window && window.naver && window.naver.maps) {
       loadMap();
     } else {
       const mapScript = document.createElement('script');
