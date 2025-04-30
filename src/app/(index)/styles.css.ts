@@ -38,6 +38,8 @@ export const wrapper = style({
   flexDirection: 'column',
   overflow: 'hidden',
   margin: '0 auto',
+  backgroundColor: 'white',
+  minHeight: '100dvh',
 });
 
 export const header = style({

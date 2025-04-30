@@ -57,12 +57,14 @@ export const description = style({
 export const footer = style({
   display: 'flex',
   position: 'fixed',
+  maxWidth: '450px',
   bottom: 'env(safe-area-inset-bottom)',
-  left: 0,
-  width: '100vw',
+  left: '50%',
+  transform: 'translateX(-50%)',
   padding: '10px 1.2rem',
   backgroundColor: colors.white,
   gap: 10,
+  width: '100%',
 });
 
 export const numberInput = style({

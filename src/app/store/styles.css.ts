@@ -2,6 +2,9 @@ import { style } from '@vanilla-extract/css';
 import { colors, fontWeight } from '@/styles/constant';
 
 export const container = style({
+  position: 'absolute',
+  width: '100%',
+  left: 0,
   display: 'flex',
   flexDirection: 'column',
   height: '100vh',

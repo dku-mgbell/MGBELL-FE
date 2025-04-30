@@ -47,9 +47,9 @@ API.interceptors.response.use(
     }
 
     // RefreshToken 만료
-    if (error.status === 403) {
-      logout();
-    }
+    // if (error.status === 403) {
+    //   logout();
+    // }
 
     // Token 에러
     if (

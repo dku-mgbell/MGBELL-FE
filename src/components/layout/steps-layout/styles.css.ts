@@ -44,5 +44,8 @@ export const styles = {
     position: 'fixed',
     bottom: 'calc(15px + env(safe-area-inset-bottom) * 0.8)',
     width: `calc(100% - ${padding.layoutX} * 2)`,
+    maxWidth: `calc(450px - ${padding.layoutX} * 2)`,
+    left: '50%',
+    transform: 'translateX(-50%)',
   }),
 };

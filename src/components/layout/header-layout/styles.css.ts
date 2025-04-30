@@ -6,6 +6,7 @@ export const styles = {
   container: recipe({
     base: {
       display: 'flex',
+      position: 'relative',
       flexDirection: 'column',
       justifyContent: 'space-between',
       padding: `calc(env(safe-area-inset-top) + 10px) ${padding.layoutX} calc(env(safe-area-inset-bottom) + 20px) ${padding.layoutX}`,
@@ -28,12 +29,15 @@ export const styles = {
   header: style({
     display: 'flex',
     alignItems: 'center',
+    maxWidth: '450px',
+    margin: '0 auto',
+    left: '50%',
+    transform: 'translateX(-50%)',
     position: 'fixed',
     width: '100%',
     backgroundColor: colors.white,
     paddingBottom: 5,
     top: 'env(safe-area-inset-top)',
-    left: 0,
   }),
   main: style({
     paddingTop: '24px',
