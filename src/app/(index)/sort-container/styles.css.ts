@@ -12,7 +12,7 @@ export const nav = style({
   position: 'fixed',
   backgroundColor: 'white',
   padding: 10,
-  top: 90,
+  top: 'calc(env(safe-area-inset-top) + 90px)',
 });
 
 export const button = style({
