@@ -11,6 +11,10 @@ export const wrapper = style({
   justifyContent: 'center',
   display: 'flex',
   boxShadow: '0px -2px 15px 2px rgba(0, 0, 0, 0.1)',
+  maxWidth: '450px',
+  margin: '0 auto',
+  left: '50%',
+  transform: 'translateX(-50%)',
 });
 
 export const container = style({

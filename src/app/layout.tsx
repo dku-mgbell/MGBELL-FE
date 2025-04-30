@@ -4,7 +4,7 @@ import ModalProvider from '@/components/modal/modal-provider';
 import Navigation from '@/components/navigation/navigation';
 import ReactQueryProviders from '@/hooks/query/useReactQuery';
 import MSWProvider from './(index)/msw-provider/msw-provider';
-import { styles } from './(index)/styles.css';
+import * as styles from './(index)/styles.css';
 import type { Metadata, Viewport } from 'next';
 import '../styles/globals.css';
 
@@ -64,7 +64,7 @@ export default function RootLayout({
           <ModalProvider>
             <MSWProvider />
             <div id="modal-root" />
-            {children}
+            <div className={styles.wrapper}>{children}</div>
             <Navigation />
           </ModalProvider>
         </ReactQueryProviders>
