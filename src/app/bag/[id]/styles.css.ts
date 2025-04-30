@@ -13,7 +13,8 @@ export const header = style({
   position: 'fixed',
   top: 0,
   justifyContent: 'end',
-  width: '100vw',
+  width: '100%',
+  maxWidth: 450,
   padding: 'calc(5px + env(safe-area-inset-top)) 25px 0 0',
   zIndex: 999,
 });
