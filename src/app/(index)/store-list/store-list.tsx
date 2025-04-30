@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useQueryClient } from '@tanstack/react-query';
@@ -59,14 +60,26 @@ export default function StoreList() {
             <Link href={`/bag/${id}`} key={id}>
               <div className={styles.thumbWrapper}>
                 <div className={styles.thumbGrid}>
-                  <img src={images[0]} className={styles.imageLeft} />
-                  <img
-                    src={images[1] ?? images[0]}
-                    className={styles.imageTopRight}
+                  <Image
+                    alt={`${storeName}-thumb-01`}
+                    src={images[0]}
+                    className={styles.imageLeft}
+                    width={100}
+                    height={100}
                   />
-                  <img
+                  <Image
+                    src={images[1] ?? images[0]}
+                    alt={`${storeName}-thumb-02`}
+                    className={styles.imageTopRight}
+                    width={100}
+                    height={100}
+                  />
+                  <Image
                     src={images[2] ?? images[0]}
+                    alt={`${storeName}-thumb-03`}
                     className={styles.imageBottomRight}
+                    width={100}
+                    height={100}
                   />
                   <div className={styles.gradientyOverlay} />
                 </div>

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -11,16 +12,7 @@ export default function Carousel({ images }: { images: string[] }) {
     <Swiper pagination modules={[Pagination]} className="carousel">
       {images.map((item) => (
         <SwiperSlide key={item}>
-          <div
-            style={{
-              backgroundImage: `url('${item}')`,
-              width: '100%',
-              height: '100%',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
-            }}
-          />
+          <Image src={item} alt={`carousel-${item}`} width={450} height={450} />
         </SwiperSlide>
       ))}
     </Swiper>

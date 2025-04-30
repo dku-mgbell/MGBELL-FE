@@ -1,5 +1,6 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ChevronRightIcon from '@/assets/svg/ChevronRightIcon';
@@ -84,11 +85,12 @@ export default function ReviewPost({
       >
         {review.images.map((image) => (
           <SwiperSlide key={image}>
-            <div
+            <Image
+              src={image}
+              alt={`review-image-${image}`}
+              width={200}
+              height={200}
               className={styles.image}
-              style={{
-                backgroundImage: `url('${image}')`,
-              }}
             />
           </SwiperSlide>
         ))}
