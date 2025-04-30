@@ -79,19 +79,20 @@ export default function ReviewPost({
             slidesPerView: 2.1,
           },
           530: {
-            slidesPerView: 3,
+            slidesPerView: 2.2,
           },
         }}
       >
         {review.images.map((image) => (
-          <SwiperSlide key={image}>
-            <Image
-              src={image}
-              alt={`review-image-${image}`}
-              width={200}
-              height={200}
-              className={styles.image}
-            />
+          <SwiperSlide key={image} className={styles.slide}>
+            <div className={styles.imageContainer}>
+              <Image
+                src={image}
+                alt={`review-image-${image}`}
+                fill
+                className={styles.image}
+              />
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>

@@ -12,7 +12,7 @@ export default function Carousel({ images }: { images: string[] }) {
     <Swiper pagination modules={[Pagination]} className="carousel">
       {images.map((item) => (
         <SwiperSlide key={item}>
-          <Image src={item} alt={`carousel-${item}`} width={450} height={450} />
+          <Image src={item} alt={`carousel-${item}`} width={800} height={800} />
         </SwiperSlide>
       ))}
     </Swiper>

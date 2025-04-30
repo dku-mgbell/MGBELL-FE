@@ -116,12 +116,18 @@ export const swiper = style({
   maxWidth: 500,
   margin: 0,
 });
+export const slide = style({
+  width: '100%',
+  height: '200px',
+});
+export const imageContainer = style({
+  position: 'relative',
+  width: '100%',
+  height: '200px',
+});
 export const image = style({
-  width: 168,
-  height: 168,
-  backgroundSize: 'cover',
-  borderRadius: borderRadius.md,
-  backgroundPosition: 'center',
+  objectFit: 'cover',
+  borderRadius: '10px',
 });
 export const comment = style({
   display: 'flex',

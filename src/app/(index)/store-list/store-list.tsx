@@ -64,22 +64,22 @@ export default function StoreList() {
                     alt={`${storeName}-thumb-01`}
                     src={images[0]}
                     className={styles.imageLeft}
-                    width={100}
-                    height={100}
+                    width={200}
+                    height={200}
                   />
                   <Image
                     src={images[1] ?? images[0]}
                     alt={`${storeName}-thumb-02`}
                     className={styles.imageTopRight}
-                    width={100}
-                    height={100}
+                    width={200}
+                    height={200}
                   />
                   <Image
                     src={images[2] ?? images[0]}
                     alt={`${storeName}-thumb-03`}
                     className={styles.imageBottomRight}
-                    width={100}
-                    height={100}
+                    width={200}
+                    height={200}
                   />
                   <div className={styles.gradientyOverlay} />
                 </div>
