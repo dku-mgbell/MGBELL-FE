@@ -31,7 +31,7 @@ export const Bag = {
     }
 
     const response = await API.get(
-      `${url}&sort=${sortedBy === 'onSale' ? '&onSale=true' : sortedBy || 'createdAt,desc'}${searchKeyword && `&storeName=${searchKeyword}`}`,
+      `${url}&sort=${sortedBy === 'onSale' ? '&onSale=true' : sortedBy || 'createdAt,desc'}${searchKeyword ? `&storeName=${searchKeyword}` : ''}`,
     );
     const list = (await response.data.content) as BagInfoResponse[];
     return list;
