@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import axios from 'axios';
 // eslint-disable-next-line import/no-cycle
 import { User } from '@/hooks/api/user';
@@ -21,11 +22,14 @@ API.interceptors.response.use(
   },
   function async(error) {
     const refreshToken = localStorage.getItem('refreshToken');
+    const currentPath = window.location.pathname;
 
     const logout = () => {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
-      window.location.href = '/login';
+      if (currentPath !== '/login') {
+        window.location.href = '/login';
+      }
     };
 
     // AccessToken 만료
@@ -47,9 +51,9 @@ API.interceptors.response.use(
     }
 
     // RefreshToken 만료
-    // if (error.status === 403) {
-    //   logout();
-    // }
+    if (error.status === 403) {
+      logout();
+    }
 
     // Token 에러
     if (
@@ -58,5 +62,6 @@ API.interceptors.response.use(
     ) {
       logout();
     }
+    return Promise.reject(error);
   },
 );

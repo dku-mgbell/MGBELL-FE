@@ -14,6 +14,7 @@ export default function LoginForm() {
     const { value, name } = e.target;
     setLoginInfo((prev) => ({ ...prev, [name]: value }) as LoginInfo);
   };
+
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (loginInfo && loginInfo.email && loginInfo.password) {
@@ -21,8 +22,7 @@ export default function LoginForm() {
     }
   };
 
-  if (isPending || isSuccess) return <Loader />;
-
+  // 로딩 중일 때는 폼을 그대로 표시하고 버튼만 비활성화
   return (
     <form className={styles.form} onSubmit={handleFormSubmit}>
       <input
@@ -30,6 +30,8 @@ export default function LoginForm() {
         placeholder="이메일을 입력하세요."
         onChange={handleInputChange}
         name="email"
+        value={loginInfo?.email || ''}
+        disabled={isPending || isSuccess}
       />
       <input
         className={styles.input}
@@ -37,10 +39,17 @@ export default function LoginForm() {
         placeholder="비밀번호를 입력하세요."
         onChange={handleInputChange}
         name="password"
+        value={loginInfo?.password || ''}
+        disabled={isPending || isSuccess}
       />
-      <button className={styles.loginButton} type="submit">
-        로그인
+      <button
+        className={styles.loginButton}
+        type="submit"
+        disabled={isPending || isSuccess}
+      >
+        {isPending ? '로그인 중...' : '로그인'}
       </button>
+      {isPending && <Loader />}
     </form>
   );
 }
