@@ -38,3 +38,8 @@ next-env.d.ts
 
 # eslint
 .eslintcache
+
+# workbox
+/public/workbox-*.js
+/public/workbox-*.js.map
+/public/sw.js.map
