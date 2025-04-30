@@ -4,7 +4,15 @@ import { colors } from '@/styles/constant';
 export const nav = style({
   display: 'flex',
   justifyContent: 'space-between',
-  maxWidth: 430,
+  maxWidth: 450,
+  width: '100%',
+  marginLeft: -20,
+  borderRadius: '15px 15px 0 0',
+  zIndex: 9999,
+  position: 'fixed',
+  backgroundColor: 'white',
+  padding: 10,
+  top: 90,
 });
 
 export const button = style({
@@ -16,6 +24,7 @@ export const button = style({
   fontWeight: 400,
   color: '#484747',
   cursor: 'pointer',
+
   '@media': {
     'screen and (min-width: 431px)': {
       fontSize: '13px',

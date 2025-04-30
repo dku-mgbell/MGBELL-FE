@@ -53,20 +53,14 @@ export const header = style({
   top: 0,
   width: '100%',
   maxWidth: '450px',
-  zIndex: 999,
+  zIndex: 9999,
 });
 
 export const headerContent = style({
   display: 'flex',
   gap: '14px',
-  padding: `calc(10px + env(safe-area-inset-top)) ${padding.layoutX} 0px ${padding.layoutX}`,
+  padding: `calc(10px + env(safe-area-inset-top)) ${padding.layoutX} 30px ${padding.layoutX}`,
   flexDirection: 'column',
-});
-
-export const headerEdge = style({
-  backgroundColor: 'white',
-  height: '25px',
-  borderRadius: '15px 15px 0 0',
 });
 
 export const container = style({

@@ -24,7 +24,6 @@ export default function Page({
                 <SearchInput placeholder="마감벨 입점 매장을 검색해보세요!" />
               </div>
             </div>
-            <div className={styles.headerEdge} />
           </header>
           <section className={styles.contentWrapper}>
             <SortContainer state={searchParams.sort} />
