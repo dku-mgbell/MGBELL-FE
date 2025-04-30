@@ -87,7 +87,9 @@ export const activityValue = style({
 });
 
 export const sheet = style({
-  width: '100vw',
+  maxWidth: '450px',
+  margin: '0 auto',
+  width: '100%',
   flex: 1,
   flexDirection: 'column',
   borderRadius: '20px 20px 0 0',

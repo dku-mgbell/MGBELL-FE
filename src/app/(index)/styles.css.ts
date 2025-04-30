@@ -39,6 +39,7 @@ export const wrapper = style({
   overflow: 'hidden',
   margin: '0 auto',
   backgroundColor: 'white',
+  boxShadow: '0.2px 4px 4px 2px #00000010',
   minHeight: '100dvh',
 });
 
