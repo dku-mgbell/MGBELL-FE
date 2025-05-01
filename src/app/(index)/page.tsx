@@ -4,6 +4,7 @@ import { cn } from '@/styles/cn';
 import AdressEnterLink from './address-enter-link';
 import InitialSetter from './initial-setter';
 import SortContainer from './sort-container/sort-container';
+import SkeletonStoreList from './store-list/skeleton-store-list';
 import StoreList from './store-list/store-list';
 import * as styles from './styles.css';
 import { IndexPageSearchParams } from './types';
@@ -28,7 +29,7 @@ export default function Page({
           </header>
           <section className={styles.contentWrapper}>
             <SortContainer state={searchParams.sort} />
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<SkeletonStoreList />}>
               <StoreList />
             </Suspense>
           </section>

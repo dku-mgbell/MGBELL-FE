@@ -1,6 +1,15 @@
-import { globalStyle, style } from '@vanilla-extract/css';
+import { globalStyle, keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { borderRadius, colors } from '@/styles/constant';
+
+const fadeIn = keyframes({
+  '0%': {
+    opacity: 0,
+  },
+  '100%': {
+    opacity: 1,
+  },
+});
 
 export const main = style({
   display: 'flex',
@@ -11,9 +20,62 @@ export const main = style({
   height: 'calc(100% - 100px)',
 });
 
+export const imageLeft = style({
+  gridColumn: '1 / 2',
+  gridRow: '1 / 3',
+  width: '100%',
+  height: '180px',
+  objectFit: 'cover',
+  borderRight: '1px solid white',
+  borderRadius: '0 5px 5px 0',
+  opacity: 0,
+  animation: `${fadeIn} 0.5s ease-out 0.1s forwards`,
+  transition: 'transform 0.3s ease',
+  position: 'relative',
+  overflow: 'hidden',
+});
+
+export const imageTopRight = style({
+  gridColumn: '2 / 3',
+  gridRow: '1 / 2',
+  width: '100%',
+  height: '90px',
+  borderLeft: '1px solid white',
+  borderBottom: '1px solid white',
+  borderRadius: '5px 0 0 5px',
+  objectFit: 'cover',
+  opacity: 0,
+  animation: `${fadeIn} 0.5s ease-out 0.1s forwards`,
+  transition: 'transform 0.3s ease',
+  position: 'relative',
+  overflow: 'hidden',
+});
+
+export const imageBottomRight = style({
+  gridColumn: '2 / 3',
+  gridRow: '2 / 3',
+  width: '100%',
+  height: '90px',
+  borderLeft: '1px solid white',
+  borderTop: '1px solid white',
+  borderRadius: '5px 0 0 5px',
+  objectFit: 'cover',
+  opacity: 0,
+  animation: `${fadeIn} 0.5s ease-out 0.1s forwards`,
+  transition: 'transform 0.3s ease',
+  position: 'relative',
+  overflow: 'hidden',
+});
+
 export const thumbWrapper = style({
   overflow: 'hidden',
   position: 'relative',
+  animation: `${fadeIn} 0.5s ease-out forwards`,
+  ':hover': {
+    [`& img`]: {
+      transform: 'scale(1.1)',
+    },
+  },
 });
 
 export const thumbGrid = style({
@@ -25,6 +87,7 @@ export const thumbGrid = style({
   borderRadius: borderRadius.md,
   overflow: 'hidden',
   position: 'absolute',
+
   //   '@media': {
   //     'screen and (min-width: 600px)': {
   //       gap: 20,
@@ -39,57 +102,6 @@ globalStyle(`${thumbGrid} img`, {
   //     'screen and (min-width: 600px)': {
   //       borderRadius: borderRadius.md,
   //       height: '180px',
-  //     },
-  //   },
-});
-
-export const imageLeft = style({
-  gridColumn: '1 / 2',
-  gridRow: '1 / 3',
-  width: '100%',
-  height: '180px',
-  objectFit: 'cover',
-  borderRight: '1px solid white',
-  borderRadius: '0 5px 5px 0',
-  //   '@media': {
-  //     'screen and (min-width: 600px)': {
-  //       gridColumn: '1 / 2',
-  //       gridRow: '1 ',
-  //     },
-  //   },
-});
-
-export const imageTopRight = style({
-  gridColumn: '2 / 2',
-  gridRow: '1 / 2',
-  width: '100%',
-  height: '90px',
-  borderLeft: '1px solid white',
-  borderBottom: '1px solid white',
-  borderRadius: '5px 0 0 5px',
-  objectFit: 'cover',
-
-  //   '@media': {
-  //     'screen and (min-width: 600px)': {
-  //       gridColumn: '2 / 3',
-  //       gridRow: '1 ',
-  //     },
-  //   },
-});
-
-export const imageBottomRight = style({
-  gridColumn: '2 / 2',
-  gridRow: '2 / 2',
-  width: '100%',
-  height: '90px',
-  borderLeft: '1px solid white',
-  borderTop: '1px solid white',
-  borderRadius: '5px 0 0 5px',
-  objectFit: 'cover',
-  //   '@media': {
-  //     'screen and (min-width: 600px)': {
-  //       gridColumn: '3 / 3',
-  //       gridRow: '1',
   //     },
   //   },
 });
