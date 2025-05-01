@@ -71,8 +71,8 @@ export const thumbWrapper = style({
   overflow: 'hidden',
   position: 'relative',
   animation: `${fadeIn} 0.5s ease-out forwards`,
-  ':hover': {
-    [`& img`]: {
+  selectors: {
+    'img:hover &': {
       transform: 'scale(1.1)',
     },
   },
