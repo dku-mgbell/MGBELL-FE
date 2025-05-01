@@ -23,7 +23,6 @@ export default function StoreListItem(
             <div className={styles.imageLeft} />
             <div className={styles.imageTopRight} />
             <div className={styles.imageBottomRight} />
-            <div className={styles.gradientyOverlay} />
           </div>
           <div className={styles.thumbContainer}>
             <div
@@ -33,12 +32,15 @@ export default function StoreListItem(
               })}
             >
               <div className={common.flexBox({ direction: 'row', gap: 5 })}>
-                <Tag content="" theme="gray" shadow />
-                <Tag content="" theme="gray" shadow />
+                <Tag content="ㅤ" theme="gray" shadow />
+                <Tag content="ㅤ" theme="gray" shadow />
               </div>
+              <LikeIcon off />
             </div>
+            <p className={styles.storeName}>ㅤ</p>
           </div>
         </div>
+        <div style={{ height: '54.5px' }} />
       </div>
     );
   }

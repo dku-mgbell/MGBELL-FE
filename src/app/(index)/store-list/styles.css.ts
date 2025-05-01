@@ -28,11 +28,10 @@ export const imageLeft = style({
   objectFit: 'cover',
   borderRight: '1px solid white',
   borderRadius: '0 5px 5px 0',
-  opacity: 0,
-  animation: `${fadeIn} 0.5s ease-out 0.1s forwards`,
   transition: 'transform 0.3s ease',
   position: 'relative',
   overflow: 'hidden',
+  backgroundColor: '#F5F5F5',
 });
 
 export const imageTopRight = style({
@@ -44,11 +43,10 @@ export const imageTopRight = style({
   borderBottom: '1px solid white',
   borderRadius: '5px 0 0 5px',
   objectFit: 'cover',
-  opacity: 0,
-  animation: `${fadeIn} 0.5s ease-out 0.1s forwards`,
   transition: 'transform 0.3s ease',
   position: 'relative',
   overflow: 'hidden',
+  backgroundColor: '#F5F5F5',
 });
 
 export const imageBottomRight = style({
@@ -60,11 +58,10 @@ export const imageBottomRight = style({
   borderTop: '1px solid white',
   borderRadius: '5px 0 0 5px',
   objectFit: 'cover',
-  opacity: 0,
-  animation: `${fadeIn} 0.5s ease-out 0.1s forwards`,
   transition: 'transform 0.3s ease',
   position: 'relative',
   overflow: 'hidden',
+  backgroundColor: '#F5F5F5',
 });
 
 export const thumbWrapper = style({

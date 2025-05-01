@@ -4,7 +4,6 @@ import { colors, fontWeight } from '@/styles/constant';
 export const container = style({
   display: 'flex',
   flexDirection: 'column',
-  height: '100vh',
   overflow: 'auto',
 });
 
