@@ -28,6 +28,8 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'no-console': 'error',
+    'no-undef-init': 'off',
+    'no-else-return': 'off',
     'prettier/prettier': [
       'error',
       {

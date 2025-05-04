@@ -2,8 +2,8 @@ import Script from 'next/script';
 import localFont from 'next/font/local';
 import ModalProvider from '@/components/modal/modal-provider';
 import Navigation from '@/components/navigation/navigation';
-import ReactQueryProviders from '@/hooks/query/useReactQuery';
 import MSWProvider from './(index)/msw-provider/msw-provider';
+import Providers from './(index)/provider';
 import * as styles from './(index)/styles.css';
 import type { Metadata, Viewport } from 'next';
 import '../styles/globals.css';
@@ -60,14 +60,14 @@ export default function RootLayout({
           strategy="afterInteractive"
           src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}
         />
-        <ReactQueryProviders>
+        <Providers>
           <ModalProvider>
             <MSWProvider />
             <div id="modal-root" />
             <div className={styles.wrapper}>{children}</div>
             <Navigation />
           </ModalProvider>
-        </ReactQueryProviders>
+        </Providers>
       </body>
     </html>
   );
