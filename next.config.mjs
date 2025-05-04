@@ -9,7 +9,7 @@ const nextPWA = withPWA({
 
 const nextConfig = {
   experimental: {
-    middlewarePrefetch: true,
+    middlewarePrefetch: 'flexible',
   },
   webpack: (config) => {
     config.module.rules.push({
