@@ -5,9 +5,20 @@ import { PasswordChange, UserActivity, UserInfoResponse } from '@/types/user';
 import { API } from '.';
 
 export const User = {
-  async login(data: LoginInfo) {
-    const response = await API.post('/user/login', data);
-    return response.data;
+  async login(req: LoginInfo): Promise<LoginResponse> {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(req),
+    });
+    if (!response.ok) {
+      throw new Error('로그인 실패');
+    }
+
+    const data = await response.json();
+    return data;
   },
   async reissueToken(token: string) {
     const response = await API.post('/user/reissue', { refreshToken: token });
