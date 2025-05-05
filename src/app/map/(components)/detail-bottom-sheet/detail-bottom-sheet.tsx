@@ -4,18 +4,7 @@ import ProductInfoContainer from '@/components/product/product-info-container/pr
 import { BagInfoResponse } from '@/types/bag';
 
 export default function DetailBottomSheet({
-  info: {
-    storeName,
-    address,
-    salePrice,
-    costPrice,
-    startAt,
-    endAt,
-    onSale,
-    amount,
-    id,
-    reviewCnt,
-  },
+  info,
   isOpen,
   setOpen,
 }: {
@@ -28,20 +17,11 @@ export default function DetailBottomSheet({
       isOpen={isOpen}
       setOpen={setOpen}
       content={
-        <Link href={`/bag/${id}`}>
+        <Link href={`/bag/${info.id}`}>
           <ProductInfoContainer
-            info={{
-              storeName,
-              onSale,
-              amount,
-              address,
-              salePrice,
-              costPrice,
-              startAt,
-              endAt,
-            }}
+            info={info}
             isPadding
-            reviewButton={{ reviewCnt }}
+            reviewButton={{ reviewCnt: info.reviewCnt }}
           />
         </Link>
       }
