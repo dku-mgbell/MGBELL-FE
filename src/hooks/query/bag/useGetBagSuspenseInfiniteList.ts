@@ -22,4 +22,5 @@ export const useGetBagSuspenseInfiniteList = ({
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) =>
       lastPage.length ? allPages.length : undefined,
+    staleTime: 60,
   });

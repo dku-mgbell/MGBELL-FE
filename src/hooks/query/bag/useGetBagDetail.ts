@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { Bag } from '@/hooks/api/bag';
 
 export const useGetBagDetail = ({
@@ -8,7 +8,7 @@ export const useGetBagDetail = ({
   id: number;
   isLoggedIn?: boolean;
 }) =>
-  useQuery({
+  useSuspenseQuery({
     queryFn: () => Bag.getDetail({ id, isLoggedIn }),
     queryKey: ['bag-detail'],
     gcTime: 0,
