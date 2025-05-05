@@ -1,12 +1,11 @@
 import { useRouter } from 'next/navigation';
 import Button from '@/components/button/text-button/button';
 import { useAuthStore } from '@/hooks/stores/useAuthStore';
+import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
 import { useGetBagDetailStore } from '../../(stores)/useGetBagDetailStore';
-
 import * as styles from '../../styles.css';
-import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
 
 export default function OrderButton() {
   const { isLoggedIn } = useAuthStore();

@@ -45,23 +45,7 @@ export default function BagDetailContent({ bagId, isLoggedIn }: Props) {
         <Carousel images={bagDetail.images} />
       </div>
       <div className={styles.sheet}>
-        <ProductInfoContainer
-          info={{
-            storeName: bagDetail.storeName,
-            onSale: bagDetail.onSale,
-            amount: bagDetail.amount,
-            address: bagDetail.address,
-            salePrice: bagDetail.salePrice,
-            costPrice: bagDetail.costPrice,
-            startAt: bagDetail.startAt,
-            endAt: bagDetail.endAt,
-          }}
-          reviewButton={{
-            bagId,
-            storeId: bagDetail.storeId,
-            reviewCnt: bagDetail.reviewCnt,
-          }}
-        />
+        <ProductInfoContainer info={bagDetail} reviewButton={bagDetail} />
         <div className={styles.descriptionSection}>
           <h2 className={styles.descriptionHeader}>
             <BagIcon />
@@ -72,7 +56,6 @@ export default function BagDetailContent({ bagId, isLoggedIn }: Props) {
             *위 정보를 바탕으로 주문하기를 누르면 예약이 진행됩니다.
           </p>
         </div>
-
         <footer className={styles.footer}>
           <NumberInput
             className={styles.numberInput}
