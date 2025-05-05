@@ -8,7 +8,6 @@ import ProductInfoContainer from '@/components/product/product-info-container/pr
 import { useGetBagDetail } from '@/hooks/query/bag/useGetBagDetail';
 import { useBagHistoryStore } from '@/hooks/stores/useBagHistoryStore';
 import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
-import { useNumberInputStore } from '@/hooks/stores/useNumberInputStore';
 import OrderButton from './(componets)/order-button';
 import { useGetBagDetailStore } from './(stores)/useGetBagDetailStore';
 import * as styles from './styles.css';
@@ -23,9 +22,7 @@ export default function BagDetailContent({ bagId, isLoggedIn }: Props) {
     id: bagId,
     isLoggedIn,
   });
-  const { number: numberInputData, setNumber: setNumberInputData } =
-    useNumberInputStore();
-  const { setBagAmount } = useBagOrderState();
+  const { bagAmount, setBagAmount } = useBagOrderState();
   const { setBagHistory } = useBagHistoryStore();
   const { setBagDetail } = useGetBagDetailStore();
 
@@ -37,12 +34,8 @@ export default function BagDetailContent({ bagId, isLoggedIn }: Props) {
   }, [isBagDetailFetched, bagDetail, setBagHistory, setBagDetail]);
 
   useEffect(() => {
-    setNumberInputData(0);
+    setBagAmount(0);
   }, []);
-
-  useEffect(() => {
-    setBagAmount(numberInputData);
-  }, [numberInputData, setBagAmount]);
 
   if (!bagDetail) return null;
 
@@ -84,6 +77,8 @@ export default function BagDetailContent({ bagId, isLoggedIn }: Props) {
           <NumberInput
             className={styles.numberInput}
             maxSize={bagDetail.amount}
+            number={bagAmount}
+            setNumber={setBagAmount}
           />
           <OrderButton />
         </footer>

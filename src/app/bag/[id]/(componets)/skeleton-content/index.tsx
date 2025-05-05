@@ -15,7 +15,11 @@ export default function SkeletonContent() {
       <div className={styles.sheet} />
 
       <footer className={styles.footer}>
-        <NumberInput className={styles.numberInput} />
+        <NumberInput
+          className={styles.numberInput}
+          number={0}
+          setNumber={() => {}}
+        />
         <Button
           value="로딩 중..."
           theme="primary"

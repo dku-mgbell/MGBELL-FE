@@ -6,6 +6,7 @@ import useModal from '@/hooks/useModal';
 import { useGetBagDetailStore } from '../../(stores)/useGetBagDetailStore';
 
 import * as styles from '../../styles.css';
+import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
 
 export default function OrderButton() {
   const { isLoggedIn } = useAuthStore();
@@ -13,6 +14,7 @@ export default function OrderButton() {
   const route = useRouter();
   const { bagDetail, isBagDetailFetched } = useGetBagDetailStore();
   const { open } = useModal();
+  const { bagAmount } = useBagOrderState();
 
   const isOrderable =
     isBagDetailFetched && bagDetail!.amount > 0 && bagDetail!.onSale;
@@ -31,7 +33,7 @@ export default function OrderButton() {
           });
           return;
         }
-        if (bagDetail!.amount > 0) {
+        if (bagAmount > 0) {
           route.push(`order/${bagDetail!.storeId}?bagId=${bagDetail!.id}`);
         } else {
           open({ content: '수량을 선택해주세요' });

@@ -1,16 +1,17 @@
 import { MouseEvent } from 'react';
-import { useNumberInputStore } from '@/hooks/stores/useNumberInputStore';
 import * as styles from './styles.css';
 
 export default function NumberInput({
   className,
   maxSize,
+  number,
+  setNumber,
 }: {
   className?: string;
   maxSize?: number;
+  number: number;
+  setNumber: (number: number) => void;
 }) {
-  const { number, setNumber } = useNumberInputStore();
-
   const handleButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     const { name } = e.target as HTMLButtonElement;
     if (name === 'minus' && number === 0) return;
