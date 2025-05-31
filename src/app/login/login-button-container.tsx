@@ -2,9 +2,9 @@ import Link from 'next/link';
 import GoogleIcon from '@/assets/svg/social/google';
 import KakaoIcon from '@/assets/svg/social/kakao';
 import NaverIcon from '@/assets/svg/social/naver';
-import { styles } from './styles.css';
+import * as styles from './styles.css';
 
-export default function SNSLogin() {
+export default function LoginButtonContainer() {
   return (
     <div className={styles.buttonContainer}>
       <Link href={process.env.NEXT_PUBLIC_KAKAO_OAUTH!}>
