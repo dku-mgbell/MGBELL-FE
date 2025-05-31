@@ -140,5 +140,5 @@ module.exports = {
     },
     project: './tsconfig.json',
   },
-  ignorePatterns: ['build', 'dist', 'public'],
+  ignorePatterns: ['build', 'dist', 'public', 'postcss.config.js'],
 };
