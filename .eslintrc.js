@@ -65,6 +65,26 @@ module.exports = {
             position: 'before',
           },
           {
+            pattern: 'storybook/*',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '@storybook/*',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '@radix-ui/*',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'class-variance-authority',
+            group: 'external',
+            position: 'before',
+          },
+          {
             pattern: '@vanilla-extract/*',
             group: 'external',
             position: 'before',
@@ -116,6 +136,10 @@ module.exports = {
           },
         ],
         pathGroupsExcludedImportTypes: [
+          'storybook/*',
+          '@storybook/*',
+          '@radix-ui/*',
+          'class-variance-authority',
           '@tanstack/*',
           '@vanilla-extract/*',
           'zustand',
