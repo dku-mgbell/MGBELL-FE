@@ -9,9 +9,9 @@ import type { Metadata, Viewport } from 'next';
 import '../styles/index.css';
 import '../styles/global.css';
 
-const notoSans = localFont({
-  src: '../assets/fonts/NotoSansKRVF.woff2',
-  variable: '--font-noto-sans',
+const pretendard = localFont({
+  src: '../assets/fonts/PretendardVariable.woff2',
+  variable: '--font-pretendard',
   weight: '100 900',
 });
 
@@ -56,7 +56,7 @@ export default function RootLayout({
           content="black-translucent"
         />
       </head>
-      <body className={`${notoSans.variable} ${styles.body}`}>
+      <body className={`${pretendard.variable} ${styles.body}`}>
         <Script
           strategy="afterInteractive"
           src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}

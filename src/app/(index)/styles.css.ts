@@ -1,4 +1,4 @@
-import { globalStyle, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { borderRadius, colors, fontWeight, padding } from '@/styles/constant';
 
@@ -23,13 +23,8 @@ export const viewButton = recipe({
 });
 
 export const body = style({
-  fontFamily: 'var(--font-noto-sans)',
   overflow: 'hidden',
   backgroundColor: '#f5f6f8',
-});
-
-globalStyle(`${body} button, ${body} input, ${body} textarea`, {
-  fontFamily: 'var(--font-noto-sans)',
 });
 
 export const wrapper = style({
