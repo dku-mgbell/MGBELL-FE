@@ -6,8 +6,8 @@ import MSWProvider from './(index)/msw-provider/msw-provider';
 import Providers from './(index)/provider';
 import * as styles from './(index)/styles.css';
 import type { Metadata, Viewport } from 'next';
-import './global.css';
-import './index.css';
+import '../styles/index.css';
+import '../styles/global.css';
 
 const notoSans = localFont({
   src: '../assets/fonts/NotoSansKRVF.woff2',
