@@ -1,0 +1,60 @@
+import { Meta, Typeset } from '@storybook/addon-docs/blocks';
+ 
+<Meta title="Typography" />
+ 
+export const typography = {
+  type: {
+    primary: '"Pretendard"',
+  },
+  weight: {
+    regular: '500',
+    bold: '700',
+  },
+  size: {
+    h1: 32,
+    h2: 28,
+    h3: 24,
+    h4: 20,
+    h5: 18,
+    b1: 16,
+    b2: 14,
+    b3: 12,
+  },
+};
+ 
+export const SampleText = '폰트 디자인시스템입니다.';
+ 
+# Typography
+ 
+**Font:** Pretendard
+ 
+**Weights:** 700(bold)
+ 
+<Typeset
+  fontSizes={[
+    Number(typography.size.h1),
+    Number(typography.size.h2),
+    Number(typography.size.h3),
+    Number(typography.size.h4),
+    Number(typography.size.h5),
+    Number(typography.size.b1),
+    Number(typography.size.b2),
+    Number(typography.size.b3),
+  ]}
+  fontWeight={typography.weight.bold}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+
+**Weights:** 500(regular)
+
+<Typeset
+  fontSizes={[
+    Number(typography.size.b1),
+    Number(typography.size.b2),
+    Number(typography.size.b3),
+  ]}
+  fontWeight={typography.weight.regular}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
