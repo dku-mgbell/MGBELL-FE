@@ -139,6 +139,7 @@ module.exports = {
       jsx: true,
     },
     project: './tsconfig.json',
+    extraFileExtensions: ['.mdx'],
   },
   ignorePatterns: ['build', 'dist', 'public', 'postcss.config.js'],
 };
