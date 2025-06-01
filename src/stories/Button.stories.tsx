@@ -3,6 +3,7 @@ import { fn } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import type { VariantProps } from 'class-variance-authority';
 
+import KakaoIcon from '@/assets/svg/social/kakao';
 import { Button, buttonVariants } from '@/components/ui/button';
 
 // Button의 정확한 타입 정의
@@ -74,6 +75,17 @@ export const AllVariants: Story = {
       <Button variant="primary">primary</Button>
       <Button variant="secondary-outline">secondary-outline</Button>
       <Button variant="gray-outline">gray-outline</Button>
+    </div>
+  ),
+};
+
+export const Customized: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4 w-[500px] justify-center">
+      <Button className="bg-[#FFE200] text-gray1 relative">
+        <KakaoIcon className="absolute left-[20px]" />
+        카카오로 로그인하기
+      </Button>
     </div>
   ),
 };
