@@ -4,12 +4,6 @@ body {
   overflow-x: hidden;
 }
 
-html {
-  * {
-    color: #000000;
-  }
-}
-
 body {
   background-color: #fff;
   -webkit-font-smoothing: antialiased;
