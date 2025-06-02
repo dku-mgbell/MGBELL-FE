@@ -13,14 +13,6 @@ export const loginButtonConfig = {
     bgColor: '#FAE200',
     link: process.env.NEXT_PUBLIC_KAKAO_OAUTH!,
   },
-  naver: {
-    icon: <NaverIcon />,
-    text: '네이버로 로그인하기',
-    borderColor: '#36AE3C',
-    textColor: '#FFFFFF',
-    bgColor: '#36AE3C',
-    link: process.env.NEXT_PUBLIC_NAVER_OAUTH!,
-  },
   google: {
     icon: <GoogleIcon />,
     text: '구글로 로그인하기',
@@ -36,5 +28,13 @@ export const loginButtonConfig = {
     textColor: '#FFFFFF',
     bgColor: '#000000',
     link: process.env.NEXT_PUBLIC_APPLE_OAUTH!,
+  },
+  naver: {
+    icon: <NaverIcon />,
+    text: '네이버로 로그인하기',
+    borderColor: '#36AE3C',
+    textColor: '#FFFFFF',
+    bgColor: '#36AE3C',
+    link: process.env.NEXT_PUBLIC_NAVER_OAUTH!,
   },
 };

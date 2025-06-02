@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { loginButtonConfig } from './login-button-list';
+import { loginButtonConfig } from './login-button-config';
 
 export default function LoginButton({
   type,
