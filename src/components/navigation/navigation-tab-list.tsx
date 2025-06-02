@@ -1,6 +1,6 @@
 import HeartIcon from '@/assets/svg/HeartIcon';
 import HomeIcon from '@/assets/svg/HomeIcon';
-import PaperIcon from '@/assets/svg/PaperIcon';
+import OrderHistoryIcon from '@/assets/svg/OrderHistoryIcon';
 import PersonIcon from '@/assets/svg/PersonIcon';
 import PinIcon from '@/assets/svg/PinIcon';
 
@@ -11,7 +11,6 @@ export const navigationTabList = [
     name: '메인',
     route: '/',
     icon: (active: boolean) => <HomeIcon active={active} />,
-    margin: {},
   },
   {
     id: 'favorites',
@@ -21,14 +20,19 @@ export const navigationTabList = [
     icon: (active: boolean) => <HeartIcon active={active} />,
     margin: { marginLeft: '-70px' },
   },
-
+  {
+    id: 'map',
+    forGuest: true,
+    name: '지도',
+    route: '/map',
+    icon: (active: boolean) => <PinIcon active={active} />,
+  },
   {
     id: 'order',
     forGuest: false,
     name: '주문내역',
     route: '/order',
-    icon: (active: boolean) => <PaperIcon active={active} />,
-    margin: { marginRight: '-70px' },
+    icon: (active: boolean) => <OrderHistoryIcon active={active} />,
   },
   {
     id: 'mypage',
@@ -36,7 +40,6 @@ export const navigationTabList = [
     name: '마이페이지',
     route: '/mypage',
     icon: (active: boolean) => <PersonIcon active={active} />,
-    margin: {},
   },
 ];
 

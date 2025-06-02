@@ -21,44 +21,27 @@ export const container = style({
   display: 'flex',
   width: '100%',
   maxWidth: 500,
-  height: 'calc(70px + env(safe-area-inset-bottom) * 0.9)',
+  height: 'calc(60px + env(safe-area-inset-bottom) * 0.9)',
   backgroundColor: colors.white,
   justifyContent: 'space-between',
   alignItems: 'top',
+  paddingTop: 12,
 });
 
 globalStyle(`${container} a`, {
   textAlign: 'center',
   width: '25%',
-  paddingTop: 20,
 });
 
 export const tabName = recipe({
   base: {
-    fontSize: 9,
+    fontSize: 12,
+    lineHeight: 1.5,
   },
   variants: {
     active: {
-      true: { color: colors.primary },
-      false: { color: '#A5A5A5' },
+      true: { color: colors.gray1 },
+      false: { color: colors.gray6 },
     },
   },
-});
-
-export const mapButton = style({
-  backgroundColor: colors.secondary,
-  position: 'absolute',
-  left: '50%',
-  transform: 'translateX(-50%)',
-  //   marginLeft: -5,
-  bottom: 'calc(20px + env(safe-area-inset-bottom) * 0.9)',
-  zIndex: 999999,
-  borderRadius: '100%',
-  width: 54,
-  height: 54,
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  border: '5px solid white',
-  boxSizing: 'content-box',
 });
