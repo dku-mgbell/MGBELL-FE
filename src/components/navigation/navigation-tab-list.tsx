@@ -23,7 +23,7 @@ export const navigationTabList = [
   {
     id: 'map',
     forGuest: true,
-    name: '지도',
+    name: '내주변',
     route: '/map',
     icon: (active: boolean) => <PinIcon active={active} />,
   },
@@ -37,7 +37,7 @@ export const navigationTabList = [
   {
     id: 'mypage',
     forGuest: false,
-    name: '마이페이지',
+    name: 'MY',
     route: '/mypage',
     icon: (active: boolean) => <PersonIcon active={active} />,
   },
