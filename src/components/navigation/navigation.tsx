@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
-import { mapButtonInfo, navigationTabList } from './navigation-tab-list';
+import { navigationTabList } from './navigation-tab-list';
 import * as styles from './styles.css';
 
 export default function Navigation() {
@@ -39,6 +39,7 @@ export default function Navigation() {
             return (
               <Link
                 key={tabInfo.id}
+                className="flex flex-col items-center justify-center gap-[2px] clickable"
                 href={handleNavigationLink({ loggedIn: isLoggedIn, tabInfo })}
                 onClick={() => {
                   if (!isLoggedIn && !tabInfo.forGuest)
@@ -49,7 +50,6 @@ export default function Navigation() {
                       },
                     });
                 }}
-                style={tabInfo.margin}
               >
                 <div>{tabInfo.icon(active)}</div>
                 <p className={styles.tabName({ active })}>{tabInfo.name}</p>
@@ -57,9 +57,6 @@ export default function Navigation() {
             );
           })}
         </div>
-        <Link className={styles.mapButton} href={mapButtonInfo.route}>
-          {mapButtonInfo.icon}
-        </Link>
       </nav>
     )
   );
