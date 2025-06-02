@@ -1,19 +1,21 @@
+import { cn } from '@/lib/utils';
+
 export default function KakaoIcon({
+  size = 30,
   className,
-  size = 32,
 }: {
-  className?: string;
   size?: number;
+  className?: string;
 }) {
   return (
     <svg
+      className={cn(`size-[${size}px]`, className)}
       width={size}
       height={size}
       viewBox="0 0 43 43"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      className={className}
     >
       <mask
         id="mask0_186_3317"

@@ -1,21 +1,16 @@
-import Link from 'next/link';
-import GoogleIcon from '@/assets/svg/social/google';
-import KakaoIcon from '@/assets/svg/social/kakao';
-import NaverIcon from '@/assets/svg/social/naver';
-import * as styles from './styles.css';
+import LoginButton from './components/login-button';
+import { loginButtonConfig } from './components/login-button-config';
 
 export default function LoginButtonContainer() {
+  const socialLoginTypeList = Object.keys(loginButtonConfig) as Array<
+    keyof typeof loginButtonConfig
+  >;
+
   return (
-    <div className={styles.buttonContainer}>
-      <Link href={process.env.NEXT_PUBLIC_KAKAO_OAUTH!}>
-        <KakaoIcon />
-      </Link>
-      <Link href={process.env.NEXT_PUBLIC_NAVER_OAUTH!}>
-        <NaverIcon />
-      </Link>
-      <Link href={process.env.NEXT_PUBLIC_GOOGLE_OAUTH!}>
-        <GoogleIcon />
-      </Link>
+    <div className="flex flex-col gap-[12px]">
+      {socialLoginTypeList.map((type) => (
+        <LoginButton key={type} type={type} />
+      ))}
     </div>
   );
 }

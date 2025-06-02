@@ -6,7 +6,7 @@ export default function Page() {
     <section className={styles.container}>
       <header className={styles.header} />
       <section className={styles.contentWrapper}>
-        <main>
+        <main className="flex flex-col gap-[60px]">
           <div>
             <h2>
               안녕하세요 :) <br /> 마감벨입니다.
