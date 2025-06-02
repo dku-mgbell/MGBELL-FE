@@ -16,13 +16,18 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: '마감벨: 마감할인 상품을 한눈에! 🔔',
-  description: '단국대 인근, 보정동 카페거리 마감할인 상품을 한눈에! 🔔',
+  title: '마감벨',
+  description: '오늘도 어김없이 마감벨이 울립니다🔔',
   icons: {
     icon: '/logo192.png',
     apple: '/logo192.png',
   },
   openGraph: {
+    siteName: 'magambell',
+    title: '마감벨',
+    description: '오늘도 어김없이 마감벨이 울립니다🔔',
+    type: 'website',
+    url: 'https://magambell.com',
     images: [
       {
         url: '/og-img.png',
