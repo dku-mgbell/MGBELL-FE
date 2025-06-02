@@ -14,6 +14,17 @@ export const colors = {
   darkGray300: '#333333',
   red: '#EF444D',
   black: '#000',
+  gray1: '#212121',
+  gray2: '#424242',
+  gray3: '#616161',
+  gray4: '#757575',
+  gray5: '#9E9E9E',
+  gray6: '#BDBDBD',
+  gray7: '#E0E0E0',
+  gray8: '#EEEEEE',
+  gray9: '#F5F5F5',
+  gray10: '#FAFAFA',
+  gray11: '#FFFFFF',
 };
 
 export const padding = {
