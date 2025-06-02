@@ -70,6 +70,9 @@ export const Primary: Story = {
 };
 
 export const AllVariants: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
   render: () => (
     <div className="flex flex-col gap-4 w-[500px] justify-center">
       <Button variant="primary">primary</Button>
@@ -80,11 +83,14 @@ export const AllVariants: Story = {
 };
 
 export const Customized: Story = {
-  render: () => (
+  parameters: {
+    controls: { disable: true },
+  },
+  render: ({ children }) => (
     <div className="flex flex-col gap-4 w-[500px] justify-center">
       <Button className="bg-[#FFE200] text-gray1 relative">
         <KakaoIcon className="absolute left-[20px]" />
-        카카오로 로그인하기
+        {children}
       </Button>
     </div>
   ),

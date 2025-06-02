@@ -1,11 +1,12 @@
-export default function NaverIcon() {
+export default function NaverIcon({ size = 30 }: { size?: number }) {
   return (
     <svg
-      width="43"
-      height="43"
+      width={size}
+      height={size}
       viewBox="0 0 43 43"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={`size-[${size}px]`}
     >
       <g clipPath="url(#clip0_186_3278)">
         <mask
@@ -39,8 +40,8 @@ export default function NaverIcon() {
           y2="43.2514"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#03E866" />
-          <stop offset="1" stopColor="#03BA66" />
+          <stop stopColor="#36AE3C" />
+          <stop offset="1" stopColor="#36AE3C" />
         </linearGradient>
         <clipPath id="clip0_186_3278">
           <rect width="43" height="43" rx="21.5" fill="white" />
