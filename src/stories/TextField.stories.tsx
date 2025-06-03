@@ -8,7 +8,7 @@ type TextFieldProps = React.ComponentProps<'input'> &
   VariantProps<typeof textFieldVariants>;
 
 const meta: Meta<TextFieldProps> = {
-  title: 'Example/TextField',
+  title: 'Input/TextField',
   component: TextField,
   parameters: {
     layout: 'centered',
