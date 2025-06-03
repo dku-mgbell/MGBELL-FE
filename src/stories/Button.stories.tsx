@@ -6,7 +6,6 @@ import type { VariantProps } from 'class-variance-authority';
 import KakaoIcon from '@/assets/svg/social/kakao';
 import { Button, buttonVariants } from '@/components/ui/button';
 
-// Button의 정확한 타입 정의
 type ButtonProps = React.ComponentProps<'button'> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
