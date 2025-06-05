@@ -10,7 +10,8 @@
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
