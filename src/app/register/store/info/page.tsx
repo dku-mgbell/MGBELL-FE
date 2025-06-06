@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
@@ -7,12 +8,14 @@ import LabeledField from '@/components/ui/labeled-field';
 import TextField from '@/components/ui/text-field';
 import { useRegisterStore } from '@/hooks/query/store/useRegisterStore';
 import { zodResolver } from '@hookform/resolvers/zod';
+import useSearchAddress from './use-search-address';
 
 type RegisterStoreFormFields = z.infer<typeof schema>;
 
 const schema = z.object({
   storeName: z.string().min(1, { message: '' }),
   address: z.string().min(1, { message: '' }),
+  detailAddress: z.string().optional(),
   ownerName: z.string().min(1, { message: '' }),
   ownerPhone: z.string().min(1, { message: '' }),
   businessRegiNum: z.string().min(1, { message: '' }),
@@ -27,9 +30,12 @@ export default function Page() {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<RegisterStoreFormFields>({
     resolver: zodResolver(schema),
   });
+  const { address, openAddressModal, isCoordDataFetched, coordData } =
+    useSearchAddress();
 
   const onSubmit: SubmitHandler<RegisterStoreFormFields> = (data) => {
     mutate({
@@ -37,13 +43,19 @@ export default function Page() {
       ownerName: data.ownerName,
       contact: data.ownerPhone,
       businessRegiNum: data.businessRegiNum,
-      address: data.address,
-      longitude: '',
-      latitude: '',
+      address: data.address + data.detailAddress,
+      longitude: coordData!.addresses[0].x,
+      latitude: coordData!.addresses[0].y,
       storeType: null,
       images: data.storeImages,
     });
   };
+
+  useEffect(() => {
+    if (isCoordDataFetched) {
+      setValue('address', coordData!.addresses[0].roadAddress!);
+    }
+  }, [isCoordDataFetched, coordData, setValue]);
 
   return (
     <form
@@ -65,6 +77,14 @@ export default function Page() {
         <TextField
           name="address"
           placeholder="매장 주소 입력"
+          register={register}
+          errors={errors}
+          value={address}
+          onClick={openAddressModal}
+        />
+        <TextField
+          name="detailAddress"
+          placeholder="상세 주소 입력 (선택)"
           register={register}
           errors={errors}
         />
