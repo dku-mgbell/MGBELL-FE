@@ -40,7 +40,6 @@ export default function Page() {
     <StepsLayout
       isNextStepAllowed
       onNextStep={handleNextButtonClick}
-      theme="secondary"
       buttonContent="등록"
     >
       <div className={common.flexBox({ gap: 45 })}>

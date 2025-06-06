@@ -2,7 +2,7 @@
 
 import { ReactNode, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Button from '@/components/button/text-button/button';
+import { Button } from '@/components/ui/button';
 import { styles } from './styles.css';
 
 export default function StepsLayout({
@@ -13,7 +13,6 @@ export default function StepsLayout({
   title,
   initialRoute,
   isValueEmpty,
-  theme,
   isPadding,
   isFullHeightContent,
 }: {
@@ -24,7 +23,6 @@ export default function StepsLayout({
   title?: string;
   initialRoute?: string;
   isValueEmpty?: boolean;
-  theme?: 'primary' | 'secondary';
   isPadding?: boolean;
   isFullHeightContent?: boolean;
 }) {
@@ -46,18 +44,9 @@ export default function StepsLayout({
         {children}
       </div>
       <div className={styles.buttonContainer}>
-        {isNextStepAllowed === false ? (
-          <Button
-            value={buttonContent ?? '다음'}
-            theme={theme ? `inactive-${theme}` : `inactive-primary`}
-          />
-        ) : (
-          <Button
-            value={buttonContent ?? '다음'}
-            onClick={onNextStep}
-            theme={theme ?? 'primary'}
-          />
-        )}
+        <Button disabled={isNextStepAllowed === false} onClick={onNextStep}>
+          {buttonContent ?? '다음'}
+        </Button>
       </div>
     </div>
   );

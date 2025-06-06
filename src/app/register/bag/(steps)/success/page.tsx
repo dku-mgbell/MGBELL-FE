@@ -15,7 +15,6 @@ export default function Page() {
     <StepsLayout
       isNextStepAllowed
       onNextStep={handleNextButtonClick}
-      theme="secondary"
       isFullHeightContent
     >
       <SuccessLayout

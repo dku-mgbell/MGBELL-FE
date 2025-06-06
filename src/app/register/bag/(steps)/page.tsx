@@ -19,7 +19,6 @@ export default function Page() {
         route.push('/register/bag/info');
       }}
       buttonContent="마감백 설정하기"
-      theme="secondary"
     >
       <div className={styles.container}>
         <div className={styles.imageSection}>

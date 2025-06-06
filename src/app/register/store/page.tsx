@@ -13,9 +13,9 @@ export default function Page() {
       onNextStep={() => route.push('/register/store/info')}
       buttonContent="매장 등록하기"
     >
-      <div className={styles.container}>
+      <div className="h-[calc(100dvh-100px)] flex flex-col items-center justify-center gap-[30px]">
         <Image
-          className={styles.image}
+          className="bg-cover"
           src={RegisterStoreImage.src}
           width={RegisterStoreImage.width}
           height={RegisterStoreImage.height}
@@ -24,9 +24,6 @@ export default function Page() {
         <h3 className={styles.message}>
           매장 등록은 <br /> 5분 정도 소요돼요!
         </h3>
-        <p className={styles.messageDetail}>
-          마이페이지에서 추후에 수정 가능합니다.
-        </p>
       </div>
     </StepsLayout>
   );

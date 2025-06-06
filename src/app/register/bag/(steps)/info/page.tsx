@@ -32,7 +32,6 @@ export default function Page() {
     <StepsLayout
       isNextStepAllowed={isFormFilled}
       onNextStep={handleNextButtonClick}
-      theme="secondary"
     >
       <div className={styles.container}>
         <QuestionContainer
