@@ -9,7 +9,7 @@ import TimeIcon from '@/assets/svg/TimeIcon';
 import Input from '@/components/input/input';
 import Textarea from '@/components/input/textarea/textarea';
 import InputSection from '@/components/input-section/input-section';
-import StepsLayout from '@/components/layout/steps-layout/steps-layout';
+import StepsLayout from '@/components/layout/steps-layout';
 import Loader from '@/components/loader/loader';
 import OrderDetailTable from '@/components/order-detail-table/order-detail-table';
 import { useGetBagDetail } from '@/hooks/query/bag/useGetBagDetail';

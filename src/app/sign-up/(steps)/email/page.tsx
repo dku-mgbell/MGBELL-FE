@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Input from '@/components/input/input';
-import StepsLayout from '@/components/layout/steps-layout/steps-layout';
+import StepsLayout from '@/components/layout/steps-layout';
 import Loader from '@/components/loader/loader';
 import { useCheckDuplicate } from '@/hooks/query/sign-up/useCheckDuplicate';
 import { usePostMail } from '@/hooks/query/sign-up/usePostMail';

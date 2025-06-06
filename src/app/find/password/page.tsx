@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import Input from '@/components/input/input';
-import HeaderLayout from '@/components/layout/header-layout/header-layout';
-import StepsLayout from '@/components/layout/steps-layout/steps-layout';
+import HeaderLayout from '@/components/layout/header-layout';
+import StepsLayout from '@/components/layout/steps-layout';
 import QuestionContainer from '@/components/question-container/question-container';
 import { useResetPassword } from '@/hooks/query/user/useResetPassword';
 import { useSendFindPasswordCode } from '@/hooks/query/user/useSendFindPasswordCode';

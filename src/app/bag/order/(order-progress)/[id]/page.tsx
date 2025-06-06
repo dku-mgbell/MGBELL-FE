@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import BagImage from '@/assets/images/store/bag.png';
 import CheckIcon from '@/assets/svg/CheckIcon';
-import StepsLayout from '@/components/layout/steps-layout/steps-layout';
+import StepsLayout from '@/components/layout/steps-layout';
 import * as styles from './styles.css';
 
 export default function Page() {

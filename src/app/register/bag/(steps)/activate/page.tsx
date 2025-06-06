@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import StepsLayout from '@/components/layout/steps-layout/steps-layout';
+import StepsLayout from '@/components/layout/steps-layout';
 import Loader from '@/components/loader/loader';
 import QuestionContainer from '@/components/question-container/question-container';
 import { useRegisterBag } from '@/hooks/query/bag/useRegisterBag';

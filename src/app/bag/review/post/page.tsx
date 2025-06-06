@@ -3,8 +3,8 @@
 import { Suspense, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Textarea from '@/components/input/textarea/textarea';
-import HeaderLayout from '@/components/layout/header-layout/header-layout';
-import StepsLayout from '@/components/layout/steps-layout/steps-layout';
+import HeaderLayout from '@/components/layout/header-layout';
+import StepsLayout from '@/components/layout/steps-layout';
 import Loader from '@/components/loader/loader';
 import QuestionContainer from '@/components/question-container/question-container';
 import { usePostReviewByUser } from '@/hooks/query/review/usePostReviewByUser';

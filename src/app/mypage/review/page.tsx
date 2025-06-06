@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { Intersection } from '@/components/intersection/intersection';
-import HeaderLayout from '@/components/layout/header-layout/header-layout';
+import HeaderLayout from '@/components/layout/header-layout';
 import ReviewPost from '@/components/review-post/review-post';
 import { useGetMyReview } from '@/hooks/query/review/useGetMyReview';
 import { MyReviewResponse } from '@/types/review';

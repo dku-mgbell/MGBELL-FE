@@ -1,7 +1,7 @@
 'use client';
 
 import { Intersection } from '@/components/intersection/intersection';
-import HeaderLayout from '@/components/layout/header-layout/header-layout';
+import HeaderLayout from '@/components/layout/header-layout';
 import { useGetUserOrderList } from '@/hooks/query/order/useGetUserOrderList';
 import { UserOrderDetailPreview } from '@/types/order';
 import { common } from '@/styles/common.css';

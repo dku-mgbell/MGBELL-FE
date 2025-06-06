@@ -4,7 +4,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import AddressInput from '@/components/input/address/address-input';
 import Input from '@/components/input/input';
 import PhotoUpload from '@/components/input/photo/photo-upload/photo-upload';
-import StepsLayout from '@/components/layout/steps-layout/steps-layout';
+import StepsLayout from '@/components/layout/steps-layout';
 import QuestionContainer from '@/components/question-container/question-container';
 import { useRegisterStore } from '@/hooks/query/store/useRegisterStore';
 import { useStoreRegisterStore } from '@/hooks/stores/useStoreRegisterStore';

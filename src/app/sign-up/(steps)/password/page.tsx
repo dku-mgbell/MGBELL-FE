@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Input from '@/components/input/input';
-import StepsLayout from '@/components/layout/steps-layout/steps-layout';
+import StepsLayout from '@/components/layout/steps-layout';
 import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
 import { isValidPassword } from '@/utils/regex';
 import { styles } from '../styles.css';

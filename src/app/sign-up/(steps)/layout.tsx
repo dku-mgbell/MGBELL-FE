@@ -2,7 +2,7 @@
 
 import { ReactNode, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import HeaderLayout from '@/components/layout/header-layout/header-layout';
+import HeaderLayout from '@/components/layout/header-layout';
 import {
   signUpInfoDefaultValue,
   useSignUpInfoStore,

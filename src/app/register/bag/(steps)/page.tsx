@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import BagImage from '@/assets/images/store/bag.png';
-import StepsLayout from '@/components/layout/steps-layout/steps-layout';
+import StepsLayout from '@/components/layout/steps-layout';
 import QuestionContainer from '@/components/question-container/question-container';
 import { common } from '@/styles/common.css';
 import Qna from './(components)/qna';

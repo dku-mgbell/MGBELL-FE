@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import HeaderLayout from '@/components/layout/header-layout/header-layout';
+import HeaderLayout from '@/components/layout/header-layout';
 import { useGetReviewStatistic } from '@/hooks/query/review/useGetReviewStatistic';
 import { useGetStoreInfo } from '@/hooks/query/store/useGetStoreInfo';
 import ReviewSection from './(components)/score-section/review-section/review-section';

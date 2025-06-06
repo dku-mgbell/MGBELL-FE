@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import Input from '@/components/input/input';
-import HeaderLayout from '@/components/layout/header-layout/header-layout';
+import HeaderLayout from '@/components/layout/header-layout';
 import QuestionContainer from '@/components/question-container/question-container';
 import { useGetUserInfo } from '@/hooks/query/user/useGetUserInfo';
 import { useAuthStore } from '@/hooks/stores/useAuthStore';

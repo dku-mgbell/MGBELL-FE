@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Intersection } from '@/components/intersection/intersection';
-import HeaderLayout from '@/components/layout/header-layout/header-layout';
+import HeaderLayout from '@/components/layout/header-layout';
 import ProductInfoThumbContainer from '@/components/product/product-info-thumb-container/product-info-thumb-container';
 import { useGetUserFavoriteList } from '@/hooks/query/favorite/useGetUserFavoriteList';
 import { useBagHistoryStore } from '@/hooks/stores/useBagHistoryStore';

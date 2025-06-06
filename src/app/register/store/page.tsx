@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import RegisterStoreImage from '@/assets/images/store/register-store.png';
-import StepsLayout from '@/components/layout/steps-layout/steps-layout';
+import StepsLayout from '@/components/layout/steps-layout';
 import * as styles from './styles.css';
 
 export default function Page() {

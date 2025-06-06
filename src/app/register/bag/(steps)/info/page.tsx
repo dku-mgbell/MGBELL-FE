@@ -4,7 +4,7 @@ import { ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Input from '@/components/input/input';
 import Textarea from '@/components/input/textarea/textarea';
-import StepsLayout from '@/components/layout/steps-layout/steps-layout';
+import StepsLayout from '@/components/layout/steps-layout';
 import QuestionContainer from '@/components/question-container/question-container';
 import { useBagInfoStateStore } from '@/hooks/stores/useBagInfoStore';
 import * as styles from '../styles.css';

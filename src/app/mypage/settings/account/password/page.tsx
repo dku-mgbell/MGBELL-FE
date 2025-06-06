@@ -2,8 +2,8 @@
 
 import { ChangeEvent, useState } from 'react';
 import Input from '@/components/input/input';
-import HeaderLayout from '@/components/layout/header-layout/header-layout';
-import StepsLayout from '@/components/layout/steps-layout/steps-layout';
+import HeaderLayout from '@/components/layout/header-layout';
+import StepsLayout from '@/components/layout/steps-layout';
 import QuestionContainer from '@/components/question-container/question-container';
 import { useChangePassword } from '@/hooks/query/user/useChangePassword';
 import { isValidPassword } from '@/utils/regex';

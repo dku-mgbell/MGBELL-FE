@@ -4,7 +4,7 @@ import { ChangeEvent, Suspense, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { OwnerImage, UserImage } from '@/assets/images/sign-up/image';
-import StepsLayout from '@/components/layout/steps-layout/steps-layout';
+import StepsLayout from '@/components/layout/steps-layout';
 import Loader from '@/components/loader/loader';
 import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import { useSignUpInfoStore } from '@/hooks/stores/useSignUpInfoStore';
