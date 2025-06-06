@@ -1,168 +1,121 @@
 'use client';
 
-import { ChangeEvent, useEffect, useState } from 'react';
-import AddressInput from '@/components/input/address/address-input';
-import Input from '@/components/input/input';
-import PhotoUpload from '@/components/input/photo/photo-upload/photo-upload';
-import StepsLayout from '@/components/layout/steps-layout';
-import QuestionContainer from '@/components/question-container/question-container';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { Button } from '@/components/ui/button';
+import LabeledField from '@/components/ui/labeled-field';
+import TextField from '@/components/ui/text-field';
 import { useRegisterStore } from '@/hooks/query/store/useRegisterStore';
-import { useStoreRegisterStore } from '@/hooks/stores/useStoreRegisterStore';
-import { UserAddressState } from '@/types/address';
-import { useAuth } from '@/hooks/useAuth';
-import StoreSelector from '../(components)/store-selector/store-selector';
-import { styles } from './styles.css';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+type RegisterStoreFormFields = z.infer<typeof schema>;
+
+const schema = z.object({
+  storeName: z.string().min(1, { message: '' }),
+  address: z.string().min(1, { message: '' }),
+  ownerName: z.string().min(1, { message: '' }),
+  ownerPhone: z.string().min(1, { message: '' }),
+  businessRegiNum: z.string().min(1, { message: '' }),
+  bankName: z.string().min(1, { message: '' }),
+  accountNumber: z.string().min(1, { message: '' }),
+  storeImages: z.array(z.instanceof(File)),
+});
 
 export default function Page() {
-  const { storeState, setStoreState } = useStoreRegisterStore();
   const { mutate } = useRegisterStore();
-  const { redirectLoginPage } = useAuth();
-  const [addressInputValue, setAddressInputValue] =
-    useState<UserAddressState>();
-  const [imageFiles, setImageFiles] = useState<File[]>();
   const {
-    storeName,
-    ownerName,
-    contact,
-    businessRegiNum,
-    address,
-    longitude,
-    latitude,
-    storeType,
-  } = storeState;
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterStoreFormFields>({
+    resolver: zodResolver(schema),
+  });
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setStoreState({ ...storeState, [e.target.name]: e.target.value });
-  };
-
-  const handleNextButtonClick = () => {
-    mutate(storeState);
-  };
-
-  const isFormFilled =
-    storeName.length > 0 &&
-    ownerName.length > 0 &&
-    contact.length > 0 &&
-    businessRegiNum.length > 0 &&
-    address.length > 0 &&
-    !!longitude &&
-    !!latitude &&
-    !!imageFiles &&
-    !!storeType;
-
-  useEffect(() => {
-    redirectLoginPage();
-  }, []);
-
-  useEffect(() => {
-    setStoreState({
-      ...storeState,
-      address: `${addressInputValue?.address}${addressInputValue?.detail ? ` ${addressInputValue?.detail}` : ''}`,
-      longitude: addressInputValue?.longitude ?? '',
-      latitude: addressInputValue?.latitude ?? '',
+  const onSubmit: SubmitHandler<RegisterStoreFormFields> = (data) => {
+    mutate({
+      storeName: data.storeName,
+      ownerName: data.ownerName,
+      contact: data.ownerPhone,
+      businessRegiNum: data.businessRegiNum,
+      address: data.address,
+      longitude: '',
+      latitude: '',
+      storeType: null,
+      images: data.storeImages,
     });
-  }, [addressInputValue]);
-
-  useEffect(() => {
-    setStoreState({ ...storeState, images: imageFiles ?? [] });
-  }, [imageFiles]);
+  };
 
   return (
-    <StepsLayout
-      isNextStepAllowed={isFormFilled}
-      onNextStep={handleNextButtonClick}
-      buttonContent="등록"
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-[20px] p-[20px] pb-[90px]"
     >
-      <div className={styles.container}>
-        <QuestionContainer
-          title="매장 이름"
-          desc="체인점일 경우, 지점명까지 입력해주세요!"
-          content={
-            <Input
-              name="storeName"
-              placeholder="ex) 마감베이커리 죽전점"
-              onChange={handleInputChange}
-              value={storeState.storeName}
-            />
-          }
+      <LabeledField
+        label="매장 이름"
+        description="체인점일 경우, 지점명까지 입력해주세요!"
+      >
+        <TextField
+          name="storeName"
+          placeholder="매장 이름 입력"
+          register={register}
+          errors={errors}
         />
-        <QuestionContainer
-          title="사업주"
-          content={
-            <Input
-              name="ownerName"
-              placeholder="사업주 성함을 입력해주세요"
-              onChange={handleInputChange}
-              value={storeState.ownerName}
-            />
-          }
+      </LabeledField>
+      <LabeledField label="매장 주소">
+        <TextField
+          name="address"
+          placeholder="매장 주소 입력"
+          register={register}
+          errors={errors}
         />
-        <QuestionContainer
-          title="사업자등록번호"
-          content={
-            <Input
-              name="businessRegiNum"
-              placeholder="사업자등록번호를 입력해주세요"
-              onChange={handleInputChange}
-              value={storeState.businessRegiNum}
-            />
-          }
+      </LabeledField>
+      <LabeledField label="대표님 정보">
+        <TextField
+          name="ownerName"
+          placeholder="대표님 성함 입력"
+          register={register}
+          errors={errors}
         />
-        <QuestionContainer
-          title="매장 연락처"
-          content={
-            <Input
-              name="contact"
-              placeholder="ex) 03112345678"
-              onChange={handleInputChange}
-              value={storeState.contact}
-            />
-          }
+        <TextField
+          name="ownerPhone"
+          placeholder="대표님 연락처 입력"
+          register={register}
+          errors={errors}
         />
-        <QuestionContainer
-          title="매장 주소"
-          desc="클릭하여 주소를 입력해주세요!"
-          content={
-            <AddressInput
-              updateAddress={setAddressInputValue}
-              showDetailInput
-            />
-          }
+      </LabeledField>
+      <LabeledField label="사업자 등록 번호">
+        <TextField
+          name="businessRegiNum"
+          placeholder="사업자 등록 번호 입력"
+          register={register}
+          errors={errors}
         />
-        <QuestionContainer
-          title="매장 업종 선택"
-          desc={
-            <>
-              나의 매장에 해당되는 항목을 체크해주세요.
-              <span className={styles.primaryText}>(택1)</span>
-            </>
-          }
-          content={
-            <StoreSelector
-              checked={storeState.storeType}
-              onChange={handleInputChange}
-            />
-          }
+      </LabeledField>
+      <LabeledField label="은행 정보">
+        <TextField
+          name="bankName"
+          placeholder="은행 선택"
+          register={register}
+          errors={errors}
         />
-        <QuestionContainer
-          title="매장 사진"
-          desc={
-            <>
-              <span className={styles.darkGrayText}>
-                우리의 멋진 매장을 홍보할 음식 사진이 필요해요.
-              </span>
-              <br />
-              지금 당장 업로드 할 사진이 생각나지 않으신다면 비워두셔도
-              괜찮습니다! 저희 마감벨이 SNS를 통해 가장 예쁘게 나온 사진을
-              업로드 해놓겠습니다!
-              <span className={styles.primaryText}>
-                (3장의 사진이 필요해요.)
-              </span>
-            </>
-          }
-          content={<PhotoUpload updateImageFiles={setImageFiles} />}
+        <TextField
+          name="accountNumber"
+          placeholder="계좌번호 입력"
+          register={register}
+          errors={errors}
         />
+      </LabeledField>
+      <LabeledField label="대표 이미지">
+        <TextField
+          name="storeImages"
+          placeholder="대표 이미지 입력"
+          register={register}
+          errors={errors}
+        />
+      </LabeledField>
+      <div className="bg-white fixed bottom-0 pb-[20px] w-[calc(100%-40px)] left-1/2 -translate-x-1/2 max-w-[410px]">
+        <Button type="submit">등록</Button>
       </div>
-    </StepsLayout>
+    </form>
   );
 }

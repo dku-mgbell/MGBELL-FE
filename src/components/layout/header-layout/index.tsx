@@ -19,10 +19,10 @@ export default function HeaderLayout({
   return (
     <div
       style={{
-        padding: `calc(env(safe-area-inset-top) + 10px) ${padding.layoutX} ${paddingBottom === false ? '0px' : 'calc(env(safe-area-inset-bottom) + 20px)'} ${padding.layoutX}`,
+        padding: `calc(env(safe-area-inset-top) + 10px) ${padding.layoutX}${paddingBottom === false ? '0px' : 'calc(env(safe- area-inset-bottom) + 20px)'} ${padding.layoutX}`,
       }}
     >
-      <header className="fixed h-[48px] w-full ml-[-20px] px-[20px] py-[10px] bg-white max-w-[450px] mx-auto flex items-center top-[env(safe-area-inset-top)]">
+      <header className="fixed h-[48px] w-full px-[20px] py-[10px] bg-white max-w-[450px] mx-auto flex items-center top-[env(safe-area-inset-top)]">
         {previousButtonClickEvent && (
           <PreviousButton previousButtonClickEvent={previousButtonClickEvent} />
         )}
@@ -35,7 +35,7 @@ export default function HeaderLayout({
           {title}
         </strong>
       </header>
-      <main className="pt-[24px]">{children}</main>
+      <main className="pt-[30px]">{children}</main>
     </div>
   );
 }

@@ -44,7 +44,11 @@ export default function StepsLayout({
         {children}
       </div>
       <div className={styles.buttonContainer}>
-        <Button disabled={isNextStepAllowed === false} onClick={onNextStep}>
+        <Button
+          disabled={isNextStepAllowed === false}
+          onClick={onNextStep}
+          type="submit"
+        >
           {buttonContent ?? '다음'}
         </Button>
       </div>

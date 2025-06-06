@@ -17,7 +17,6 @@ a {
 }
 
 input {
-  border: none;
   &:focus {
     outline: none;
   }
