@@ -87,6 +87,7 @@ const RAW_RUNTIME_STATE =
           ["tw-animate-css", "npm:1.3.3"],\
           ["typescript", "patch:typescript@npm%3A5.2.2#optional!builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
           ["webpack", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:5.99.9"],\
+          ["zod", "npm:3.25.55"],\
           ["zustand", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:5.0.0-rc.2"]\
         ],\
         "linkType": "SOFT"\
@@ -18848,6 +18849,7 @@ const RAW_RUNTIME_STATE =
           ["tw-animate-css", "npm:1.3.3"],\
           ["typescript", "patch:typescript@npm%3A5.2.2#optional!builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
           ["webpack", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:5.99.9"],\
+          ["zod", "npm:3.25.55"],\
           ["zustand", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:5.0.0-rc.2"]\
         ],\
         "linkType": "SOFT"\
@@ -24000,6 +24002,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../.yarn/berry/cache/yocto-queue-npm-1.2.1-98b92882fa-10c0.zip/node_modules/yocto-queue/",\
         "packageDependencies": [\
           ["yocto-queue", "npm:1.2.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["zod", [\
+      ["npm:3.25.55", {\
+        "packageLocation": "../../../.yarn/berry/cache/zod-npm-3.25.55-0213e8e13e-10c0.zip/node_modules/zod/",\
+        "packageDependencies": [\
+          ["zod", "npm:3.25.55"]\
         ],\
         "linkType": "HARD"\
       }]\
