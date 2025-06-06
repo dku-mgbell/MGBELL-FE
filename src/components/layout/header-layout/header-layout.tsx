@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
-import ChevronLeftIcon from '@/assets/svg/ChevronLeftIcon';
-import { styles } from './styles.css';
+import { padding } from '@/styles/constant';
+import PreviousButton from './previous-button';
 
 export default function HeaderLayout({
   children,
@@ -17,23 +17,25 @@ export default function HeaderLayout({
   paddingBottom?: boolean;
 }) {
   return (
-    <div className={styles.container({ paddingBottom })}>
-      <header className={styles.header}>
+    <div
+      style={{
+        padding: `calc(env(safe-area-inset-top) + 10px) ${padding.layoutX} ${paddingBottom === false ? '0px' : 'calc(env(safe-area-inset-bottom) + 20px)'} ${padding.layoutX}`,
+      }}
+    >
+      <header className="fixed h-[48px] w-full ml-[-20px] px-[20px] py-[10px] bg-white max-w-[450px] mx-auto flex items-center top-[env(safe-area-inset-top)]">
         {previousButtonClickEvent && (
-          <button type="button" onClick={previousButtonClickEvent}>
-            <ChevronLeftIcon />
-          </button>
+          <PreviousButton previousButtonClickEvent={previousButtonClickEvent} />
         )}
         {previousPageLink && (
           <Link href={previousPageLink}>
-            <button type="button">
-              <ChevronLeftIcon />
-            </button>
+            <PreviousButton />
           </Link>
         )}
-        <strong>{title}</strong>
+        <strong className="fixed left-1/2 -translate-x-1/2 text-h4 ml-[-5px]">
+          {title}
+        </strong>
       </header>
-      <main className={styles.main}>{children}</main>
+      <main className="pt-[24px]">{children}</main>
     </div>
   );
 }
