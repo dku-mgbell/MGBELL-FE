@@ -3,40 +3,38 @@ import Link from 'next/link';
 import { padding } from '@/styles/constant';
 import PreviousButton from './previous-button';
 
-export default function HeaderLayout({
-  children,
-  title,
-  previousPageLink,
-  previousButtonClickEvent,
-  style,
-}: {
+interface HeaderLayoutProps {
   children: ReactNode;
   title: string;
-  previousPageLink?: string;
+  previousPage?: string;
   previousButtonClickEvent?: () => void;
   style?: React.CSSProperties;
-}) {
+}
+
+export default function HeaderLayout(props: HeaderLayoutProps) {
   return (
     <div
       style={{
         padding: `calc(env(safe-area-inset-top) + 10px) ${padding.layoutX} calc(env(safe-area-inset-bottom) + 20px) ${padding.layoutX}`,
-        ...style,
+        ...props.style,
       }}
     >
       <header className="fixed h-[48px] w-full px-[20px] py-[10px] bg-white max-w-[450px] left-1/2 -translate-x-1/2 flex items-center top-[env(safe-area-inset-top)]">
-        {previousButtonClickEvent && (
-          <PreviousButton previousButtonClickEvent={previousButtonClickEvent} />
+        {props.previousButtonClickEvent && (
+          <PreviousButton
+            previousButtonClickEvent={props.previousButtonClickEvent}
+          />
         )}
-        {previousPageLink && (
-          <Link href={previousPageLink}>
+        {props.previousPage && (
+          <Link href={props.previousPage}>
             <PreviousButton />
           </Link>
         )}
         <strong className="fixed left-1/2 -translate-x-1/2 text-h4 ml-[-5px]">
-          {title}
+          {props.title}
         </strong>
       </header>
-      <main className="pt-[38px]">{children}</main>
+      <main className="pt-[38px]">{props.children}</main>
     </div>
   );
 }
