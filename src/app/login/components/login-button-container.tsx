@@ -1,5 +1,5 @@
-import LoginButton from './components/login-button';
-import { loginButtonConfig } from './components/login-button-config';
+import LoginButton from './login-button';
+import { loginButtonConfig } from './login-button-config';
 
 export default function LoginButtonContainer() {
   const socialLoginTypeList = Object.keys(loginButtonConfig) as Array<
