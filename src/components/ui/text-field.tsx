@@ -23,7 +23,7 @@ export const textFieldVariants = cva(
   },
 );
 
-interface TextFieldProps
+export interface TextFieldProps
   extends React.ComponentProps<'input'>,
     VariantProps<typeof textFieldVariants> {}
 
