@@ -37,7 +37,7 @@ function SignUpPageContent() {
         setSignUpInfo({ ...signUpInfo, userRole });
       }}
     >
-      <div className={userStyles.container}>
+      <div className="flex gap-[20px]">
         <label className={userStyles.button}>
           <input
             type="radio"

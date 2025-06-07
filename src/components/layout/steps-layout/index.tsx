@@ -3,6 +3,7 @@
 import { ReactNode, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import { styles } from './styles.css';
 
 export default function StepsLayout({
@@ -35,7 +36,12 @@ export default function StepsLayout({
   }, []);
 
   return (
-    <div className={styles.container({ isPadding })}>
+    <div
+      className={cn(
+        'flex flex-col gap-[20px] p-[20px] pt-[40px]',
+        isPadding || 'p-0',
+      )}
+    >
       <div
         className={styles.content}
         style={{ flex: isFullHeightContent ? 1 : 'none' }}

@@ -15,7 +15,7 @@ export default function Page() {
           <p className="text-b1 text-center text-gray4">
             24시간 내에 승인이 완료됩니다.
             <br />
-            승인 이후 고객이 앱에서 사장님 가게를
+            승인 이후 고객이 앱에서 등록된 매장을
             <br />볼 수 있으며 판매가 시작됩니다.
           </p>
         </div>
