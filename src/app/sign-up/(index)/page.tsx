@@ -18,7 +18,7 @@ function SignUpPageContent() {
     <StepsLayout
       title="사용자 유형을 선택해주세요"
       isNextButtonEnabled={signUpInfo.userRole !== null}
-      nextPage="/sign-up/user-info"
+      nextPage="/sign-up/info"
     >
       <div className="flex w-full gap-[18px]">
         {Object.values(buttonConfig).map((config) => (
@@ -27,6 +27,7 @@ function SignUpPageContent() {
             <UserButton.Input
               value={config.value}
               onChange={handleButtonClick}
+              checked={signUpInfo.userRole === config.value}
             />
             <UserButton.Character image={config.image} label={config.label} />
             <UserButton.LabelText

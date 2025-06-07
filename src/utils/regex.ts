@@ -18,3 +18,9 @@ export const isValidPhoneNumber = (input: string): boolean => {
   const phoneRegex = /^010[0-9]{8}$/;
   return phoneRegex.test(input);
 };
+
+export const isValidNickname = (input: string): boolean => {
+  const nicknameRegex =
+    /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,8}\s?[a-z0-9가-힣]{0,7}$/;
+  return nicknameRegex.test(input);
+};

@@ -43,8 +43,8 @@ function LabelText({
   description: React.ReactNode;
 }) {
   return (
-    <div>
-      <strong className="text-b1">{label}</strong>
+    <div className="flex flex-col items-center gap-[4px]">
+      <strong className="text-b1 text-center">{label}</strong>
       <p className="text-b3 text-center">{description}</p>
     </div>
   );
@@ -53,9 +53,11 @@ function LabelText({
 function Input({
   value,
   onChange,
+  checked,
 }: {
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  checked: boolean;
 }) {
   return (
     <input
@@ -63,6 +65,7 @@ function Input({
       name="user-type"
       value={value}
       onChange={onChange}
+      checked={checked}
       className="hidden"
     />
   );
