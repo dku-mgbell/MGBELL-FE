@@ -36,7 +36,7 @@ export default function HeaderLayout({
           {title}
         </strong>
       </header>
-      <main className="pt-[48px]">{children}</main>
+      <main className="pt-[38px]">{children}</main>
     </div>
   );
 }
