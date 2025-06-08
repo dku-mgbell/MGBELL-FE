@@ -1,0 +1,13 @@
+.counterInput::-webkit-outer-spin-button,
+.counterInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.counterInput[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.counterInput:focus {
+  outline: none;
+}

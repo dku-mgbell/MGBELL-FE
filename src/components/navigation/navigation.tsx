@@ -6,7 +6,6 @@ import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
 import { navigationTabList } from './navigation-tab-list';
-import * as styles from './styles.css';
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -32,14 +31,19 @@ export default function Navigation() {
 
   return (
     navigationTabList.map(({ route }) => route).includes(currentRoute) && (
-      <nav className={styles.wrapper}>
-        <div className={styles.container}>
+      <nav
+        className="bg-white z-[999] fixed w-full bottom-0 justify-center flex max-w-[450px] mx-auto left-1/2 -translate-x-1/2"
+        style={{
+          boxShadow: '0px -2px 15px 2px rgba(0, 0, 0, 0.1)',
+        }}
+      >
+        <div className="flex w-full pt-3 pb-[calc(env(safe-area-inset-bottom)*0.9+10px)] bg-white justify-between items-end">
           {navigationTabList.map((tabInfo) => {
             const active = currentRoute === tabInfo.route;
             return (
               <Link
                 key={tabInfo.id}
-                className="flex flex-col items-center justify-center gap-[2px] clickable"
+                className="flex flex-col items-center justify-center gap-[2px] clickable w-[25%]"
                 href={handleNavigationLink({ loggedIn: isLoggedIn, tabInfo })}
                 onClick={() => {
                   if (!isLoggedIn && !tabInfo.forGuest)
@@ -52,7 +56,13 @@ export default function Navigation() {
                 }}
               >
                 <div>{tabInfo.icon(active)}</div>
-                <p className={styles.tabName({ active })}>{tabInfo.name}</p>
+                <p
+                  className={`text-center text-b3 ${
+                    active ? 'text-gray1' : 'text-gray6'
+                  }`}
+                >
+                  {tabInfo.name}
+                </p>
               </Link>
             );
           })}

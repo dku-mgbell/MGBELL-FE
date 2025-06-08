@@ -30,14 +30,21 @@ export default function StepsLayout(props: StepsLayoutProps) {
   return (
     <>
       <div
-        className={cn('flex flex-col gap-[20px] mt-[20px]', props.className)}
+        className={cn(
+          'flex flex-col gap-[20px] mt-[20px] pb-[80px]',
+          props.className,
+        )}
       >
         <strong className="text-b1">{props.title}</strong>
         {props.children}
       </div>
       <footer className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[450px] px-[20px] py-[16px] bg-white">
         <Button
-          disabled={!props.isNextButtonEnabled}
+          disabled={
+            props.isNextButtonEnabled === undefined
+              ? false
+              : !props.isNextButtonEnabled
+          }
           onClick={handleNextButtonClick}
         >
           {props.nextButtonText ?? '다음'}
