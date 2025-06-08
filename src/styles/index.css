@@ -41,7 +41,6 @@ strong {
 }
 
 textarea {
-  border: none;
   resize: none;
   &:focus {
     outline: none;
