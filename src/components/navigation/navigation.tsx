@@ -31,7 +31,12 @@ export default function Navigation() {
 
   return (
     navigationTabList.map(({ route }) => route).includes(currentRoute) && (
-      <nav className="bg-white z-[999] fixed w-full bottom-0 justify-center flex box-shadow-[0px_-2px_15px_2px_rgba(0,0,0,0.1)] max-w-[450px] mx-auto left-1/2 -translate-x-1/2">
+      <nav
+        className="bg-white z-[999] fixed w-full bottom-0 justify-center flex max-w-[450px] mx-auto left-1/2 -translate-x-1/2"
+        style={{
+          boxShadow: '0px -2px 15px 2px rgba(0, 0, 0, 0.1)',
+        }}
+      >
         <div className="flex w-full pt-3 pb-[calc(env(safe-area-inset-bottom)*0.9+10px)] bg-white justify-between items-end">
           {navigationTabList.map((tabInfo) => {
             const active = currentRoute === tabInfo.route;
