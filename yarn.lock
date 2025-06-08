@@ -5076,6 +5076,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hookform/resolvers@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "@hookform/resolvers@npm:5.1.0"
+  dependencies:
+    "@standard-schema/utils": "npm:^0.3.0"
+  peerDependencies:
+    react-hook-form: ^7.55.0
+  checksum: 10c0/5bd28ef58a182102f40b7fa2bc73a5e423c8bcf9cb25fee91cb8933026e7efba6f9adfda1ee637294de59c5467c938f4fb99c77a73bbb8c6180482c69d31cbbd
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.14":
   version: 0.11.14
   resolution: "@humanwhocodes/config-array@npm:0.11.14"
@@ -6617,6 +6628,13 @@ __metadata:
   dependencies:
     "@sinonjs/commons": "npm:^3.0.1"
   checksum: 10c0/a707476efd523d2138ef6bba916c83c4a377a8372ef04fad87499458af9f01afc58f4f245c5fd062793d6d70587309330c6f96947b5bd5697961c18004dc3e26
+  languageName: node
+  linkType: hard
+
+"@standard-schema/utils@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@standard-schema/utils@npm:0.3.0"
+  checksum: 10c0/6eb74cd13e52d5fc74054df51e37d947ef53f3ab9e02c085665dcca3c38c60ece8d735cebbdf18fbb13c775fbcb9becb3f53109b0e092a63f0f7389ce0993fd0
   languageName: node
   linkType: hard
 
@@ -14946,6 +14964,7 @@ __metadata:
   resolution: "mgbell@workspace:."
   dependencies:
     "@chromatic-com/storybook": "npm:^4.0.0-0"
+    "@hookform/resolvers": "npm:^5.1.0"
     "@radix-ui/react-select": "npm:^2.2.5"
     "@radix-ui/react-slot": "npm:^1.2.3"
     "@storybook/addon-a11y": "npm:^9.0.2"
