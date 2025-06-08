@@ -67,6 +67,16 @@ module.exports = {
             position: 'before',
           },
           {
+            pattern: '@hookform/resolvers/zod',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'zod',
+            group: 'external',
+            position: 'after',
+          },
+          {
             pattern: 'storybook/*',
             group: 'external',
             position: 'before',
@@ -155,6 +165,8 @@ module.exports = {
           'next/font/local',
           'framer-motion',
           'lucide-react',
+          '@hookform/resolvers/zod',
+          'zod',
         ],
         alphabetize: {
           order: 'asc',

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import BottomSheet from '@/components/bottom-sheet/bottom-sheet';
 import FormLayout from '@/components/layout/form-layout';
@@ -9,7 +10,6 @@ import LabeledField from '@/components/ui/labeled-field';
 import { Selector } from '@/components/ui/select';
 import TextField from '@/components/ui/text-field';
 import { phoneRegex } from '@/utils/regex';
-import { zodResolver } from '@hookform/resolvers/zod';
 import useSearchAddress from '@/hooks/useSearchAddress';
 import ImageUploader from '../(components)/image-uploader';
 import BankSelectSheet from './_components/bank-select-sheet';
