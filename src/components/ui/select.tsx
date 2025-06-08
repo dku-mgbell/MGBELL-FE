@@ -7,7 +7,9 @@ import { cn } from '@/lib/utils';
 
 interface SelectorProps {
   placeholder: string;
-  options: string[];
+  options?: string[];
+  onClick?: () => void;
+  isError?: boolean;
 }
 
 function Select({
@@ -71,6 +73,7 @@ function SelectTrigger({
   ...props
 }: React.ComponentProps<typeof SelectPrimitive.Trigger> & {
   size?: 'sm' | 'default';
+  isError?: boolean;
 }) {
   return (
     <SelectPrimitive.Trigger
@@ -80,6 +83,7 @@ function SelectTrigger({
         "cursor-pointer w-full text-b1 text-gray4 border-gray7 data-[placeholder]:text-muted-foreground  disabled:cursor-not-allowed disabled:opacity-50 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         "[&_svg:not([class*='text-'])]:text-muted-foreground aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50",
         'flex items-center justify-between rounded-[10px] border bg-transparent px-[14px] py-[12px] whitespace-nowrap transition-[color,box-shadow] outline-none',
+        props.isError && 'border-destructive',
         className,
       )}
       {...props}
@@ -177,19 +181,21 @@ function SelectSeparator({
   );
 }
 
-function Selector({ placeholder, options }: SelectorProps) {
+function Selector(props: SelectorProps) {
   return (
     <Select>
-      <SelectTrigger>
-        <SelectValue placeholder={placeholder} />
+      <SelectTrigger onClick={props.onClick} isError={props.isError}>
+        <SelectValue placeholder={props.placeholder} />
       </SelectTrigger>
-      <SelectContent>
-        {options.map((option) => (
-          <SelectItem key={option} value={option}>
-            {option}
-          </SelectItem>
-        ))}
-      </SelectContent>
+      {props.options && (
+        <SelectContent>
+          {props.options?.map((option) => (
+            <SelectItem key={option} value={option}>
+              {option}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      )}
     </Select>
   );
 }

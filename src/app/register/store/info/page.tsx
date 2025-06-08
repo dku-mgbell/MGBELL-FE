@@ -1,13 +1,17 @@
 'use client';
 
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
+import BottomSheet from '@/components/bottom-sheet/bottom-sheet';
 import FormLayout from '@/components/layout/form-layout';
 import LabeledField from '@/components/ui/labeled-field';
+import { Selector } from '@/components/ui/select';
 import TextField from '@/components/ui/text-field';
 import { phoneRegex } from '@/utils/regex';
 import { zodResolver } from '@hookform/resolvers/zod';
 import useSearchAddress from '@/hooks/useSearchAddress';
+import BankSelectSheet from './_components/bank-select-sheet';
 
 type StoreForm = z.infer<typeof schema>;
 
@@ -19,6 +23,7 @@ const schema = z.object({
   ownerPhone: z.string().regex(phoneRegex, ''),
   businessNumber: z.string().min(1, ''),
   accountNumber: z.string().min(1, ''),
+  bank: z.string().min(1, ''),
 });
 
 export default function Page() {
@@ -27,6 +32,7 @@ export default function Page() {
     handleSubmit,
     formState: { errors },
     setValue,
+    getValues,
   } = useForm<StoreForm>({
     resolver: zodResolver(schema),
     mode: 'onChange',
@@ -34,6 +40,7 @@ export default function Page() {
   const { openAddressModal, coordData } = useSearchAddress({
     setValue,
   });
+  const [isBankSelectSheetOpen, setIsBankSelectSheetOpen] = useState(false);
 
   const onSubmit: SubmitHandler<StoreForm> = (data) => {
     return {
@@ -62,7 +69,8 @@ export default function Page() {
           register={register}
           errors={errors}
           onClick={openAddressModal}
-          onKeyDown={openAddressModal}
+          readOnly
+          className="cursor-pointer"
         />
         <TextField
           name="detailAddress"
@@ -96,6 +104,11 @@ export default function Page() {
         />
       </LabeledField>
       <LabeledField label="계좌 등록">
+        <Selector
+          placeholder={getValues('bank') || '은행 선택'}
+          onClick={() => setIsBankSelectSheetOpen(true)}
+          isError={!!errors.bank}
+        />
         <TextField
           name="accountNumber"
           type="number"
@@ -104,6 +117,20 @@ export default function Page() {
           errors={errors}
         />
       </LabeledField>
+      <BottomSheet
+        isOpen={isBankSelectSheetOpen}
+        setOpen={setIsBankSelectSheetOpen}
+        content={
+          <BankSelectSheet
+            value={getValues('bank')}
+            updateValue={(value) =>
+              setValue('bank', value, { shouldValidate: true })
+            }
+            setOpen={setIsBankSelectSheetOpen}
+          />
+        }
+        height={500}
+      />
     </FormLayout>
   );
 }
