@@ -187,21 +187,14 @@ function SelectSeparator({
 
 function Selector(props: SelectorProps) {
   return (
-    <Select>
+    <Select onValueChange={props.setValue}>
       <SelectTrigger onClick={props.onClick} isError={props.isError}>
         <SelectValue placeholder={props.placeholder} />
       </SelectTrigger>
       {props.options && (
         <SelectContent>
           {props.options?.map((option) => (
-            <SelectItem
-              key={option}
-              value={option}
-              onClick={() => {
-                props.setValue?.(option);
-              }}
-              isError={props.isError}
-            >
+            <SelectItem key={option} value={option} isError={props.isError}>
               {option}
             </SelectItem>
           ))}
