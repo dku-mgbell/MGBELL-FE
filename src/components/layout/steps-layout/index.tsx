@@ -37,7 +37,11 @@ export default function StepsLayout(props: StepsLayoutProps) {
       </div>
       <footer className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[450px] px-[20px] py-[16px] bg-white">
         <Button
-          disabled={!props.isNextButtonEnabled}
+          disabled={
+            props.isNextButtonEnabled === undefined
+              ? false
+              : !props.isNextButtonEnabled
+          }
           onClick={handleNextButtonClick}
         >
           {props.nextButtonText ?? '다음'}
