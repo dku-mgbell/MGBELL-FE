@@ -57,8 +57,8 @@ export default function Navigation() {
               >
                 <div>{tabInfo.icon(active)}</div>
                 <p
-                  className={`text-center text-b3 text-gray6 ${
-                    active ? 'text-gray1' : ''
+                  className={`text-center text-b3 ${
+                    active ? 'text-gray1' : 'text-gray6'
                   }`}
                 >
                   {tabInfo.name}
