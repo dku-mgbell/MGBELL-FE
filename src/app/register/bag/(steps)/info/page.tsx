@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import FormLayout from '@/components/layout/form-layout';
+import Counter from '@/components/ui/counter';
 import LabeledField from '@/components/ui/labeled-field';
 import { Selector } from '@/components/ui/select';
 import TextField from '@/components/ui/text-field';
@@ -93,11 +94,10 @@ export default function Page() {
         </div>
       </LabeledField>
       <LabeledField label="판매 개수 설정">
-        <TextField
-          name="count"
-          placeholder="판매 개수 입력"
-          register={register}
-          errors={errors}
+        <Counter
+          setValue={(value) => {
+            setValue('count', value.toString());
+          }}
         />
       </LabeledField>
       <LabeledField label="정가 입력">
