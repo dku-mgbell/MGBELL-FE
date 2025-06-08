@@ -1,25 +1,20 @@
 import { ReactNode } from 'react';
 import CheckIcon from '@/assets/svg/CheckIcon';
-import * as styles from './styles.css';
 
 export default function SuccessLayout({
   title,
   message,
   theme,
 }: {
-  title: string;
-  message: string | ReactNode;
+  title: ReactNode;
+  message?: string | ReactNode;
   theme?: 'primary' | 'secondary';
 }) {
   return (
-    <div className={styles.container}>
+    <div className="absolute left-1/2 top-[45%] flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-[10px]">
       <CheckIcon theme={theme ?? 'primary'} />
-      <h2>
-        <strong>{title}</strong>이
-        <br />
-        완료되었습니다.
-      </h2>
-      <p className={styles.message}>{message}</p>
+      <h2 className="text-center text-[24px] font-bold">{title}</h2>
+      <p className="text-b2 text-gray3">{message}</p>
     </div>
   );
 }

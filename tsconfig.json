@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".eslintrc.js",
-    "src/**/*.css.ts"
-, "src/stories/color.mdx"  ],
-  "exclude": ["node_modules"]
+    "src/**/*.css.ts",
+    "src/stories/color.mdx"
+  ],
+  "exclude": ["node_modules", ".next"]
 }

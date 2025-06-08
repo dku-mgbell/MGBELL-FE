@@ -19,6 +19,7 @@ module.exports = {
     'prettier',
   ],
   rules: {
+    'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/require-default-props': 'off',
     'react/jsx-props-no-spreading': 'off',
@@ -64,6 +65,16 @@ module.exports = {
             pattern: 'next/font/local',
             group: 'external',
             position: 'before',
+          },
+          {
+            pattern: '@hookform/resolvers/zod',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'zod',
+            group: 'external',
+            position: 'after',
           },
           {
             pattern: 'storybook/*',
@@ -116,6 +127,11 @@ module.exports = {
             position: 'before',
           },
           {
+            pattern: 'lucide-react',
+            group: 'external',
+            position: 'before',
+          },
+          {
             pattern: '@/styles/*',
             group: 'internal',
             position: 'after',
@@ -148,6 +164,9 @@ module.exports = {
           'msw',
           'next/font/local',
           'framer-motion',
+          'lucide-react',
+          '@hookform/resolvers/zod',
+          'zod',
         ],
         alphabetize: {
           order: 'asc',
