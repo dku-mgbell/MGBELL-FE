@@ -19,7 +19,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <HeaderLayout title="회원가입" previousPageLink="/login">
+    <HeaderLayout title="회원가입" previousPage="/login">
       {children}
     </HeaderLayout>
   );
