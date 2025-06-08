@@ -17,10 +17,19 @@ a {
 }
 
 input {
-  border: none;
   &:focus {
     outline: none;
   }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
 }
 
 li {
@@ -41,7 +50,7 @@ textarea {
 
 * {
   &::-webkit-scrollbar {
-    width: 5px;
+    width: 0px;
     height: 0px;
   }
 

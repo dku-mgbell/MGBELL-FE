@@ -31,5 +31,5 @@
     "src/**/*.css.ts",
     "src/stories/color.mdx"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", ".next"]
 }
