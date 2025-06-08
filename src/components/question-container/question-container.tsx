@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { styles } from './styles.css';
 
 export default function QuestionContainer({
   title,
@@ -13,9 +12,9 @@ export default function QuestionContainer({
   contentMarginTop?: number;
 }) {
   return (
-    <div className={styles.container}>
-      <strong className={styles.title}>{title}</strong>
-      {desc && <p className={styles.desc}>{desc}</p>}
+    <div className="flex flex-col gap-[5px] w-full">
+      <strong className="text-h5">{title}</strong>
+      {desc && <p className="text-b1 text-gray6">{desc}</p>}
       <div style={{ marginTop: contentMarginTop ?? 8 }}>{content}</div>
     </div>
   );

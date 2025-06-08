@@ -1,4 +1,8 @@
-export default function ChevronDownIcon() {
+interface ChevronDownIconProps {
+  className?: string;
+}
+
+export default function ChevronDownIcon({ className }: ChevronDownIconProps) {
   return (
     <svg
       width="11"
@@ -6,6 +10,7 @@ export default function ChevronDownIcon() {
       viewBox="0 0 11 6"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
     >
       <path
         d="M1 1L5.125 5L10 1"

@@ -30,7 +30,10 @@ export default function StepsLayout(props: StepsLayoutProps) {
   return (
     <>
       <div
-        className={cn('flex flex-col gap-[20px] mt-[20px]', props.className)}
+        className={cn(
+          'flex flex-col gap-[20px] mt-[20px] pb-[80px]',
+          props.className,
+        )}
       >
         <strong className="text-b1">{props.title}</strong>
         {props.children}
