@@ -12,7 +12,7 @@ const buttonVariants = cva(
         primary: 'bg-primary text-gray11',
         'secondary-outline':
           'bg-white border-[1px] border-secondary text-secondary ',
-        'gray-outline': 'bg-white border-[1px] border-gray6 text-gray3',
+        'gray-outline': 'bg-white border-[1px] border-gray6 text-gray4',
       },
       size: {
         full: 'w-full',

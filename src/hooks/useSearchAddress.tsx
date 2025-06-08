@@ -18,7 +18,7 @@ export default function useSearchAddress({
 
   const handleCompleteAddressSearch = (res: Address) => {
     setAddress(res.address);
-    setValue('address', res.address);
+    setValue('address', res.address, { shouldValidate: true });
     close();
   };
 

@@ -11,6 +11,7 @@ import TextField from '@/components/ui/text-field';
 import { phoneRegex } from '@/utils/regex';
 import { zodResolver } from '@hookform/resolvers/zod';
 import useSearchAddress from '@/hooks/useSearchAddress';
+import ImageUploader from '../(components)/image-uploader';
 import BankSelectSheet from './_components/bank-select-sheet';
 
 type StoreForm = z.infer<typeof schema>;
@@ -24,6 +25,7 @@ const schema = z.object({
   businessNumber: z.string().min(1, ''),
   accountNumber: z.string().min(1, ''),
   bank: z.string().min(1, ''),
+  images: z.array(z.instanceof(File)).min(1, ''),
 });
 
 export default function Page() {
@@ -115,6 +117,17 @@ export default function Page() {
           placeholder="계좌번호 입력"
           register={register}
           errors={errors}
+        />
+      </LabeledField>
+      <LabeledField
+        label="대표 이미지"
+        description="최소 1장의 사진을 추가해주세요"
+      >
+        <ImageUploader
+          setFiles={(files) =>
+            setValue('images', files, { shouldValidate: files.length > 0 })
+          }
+          isError={!!errors.images}
         />
       </LabeledField>
       <BottomSheet
