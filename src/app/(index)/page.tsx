@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import SearchInput from '@/components/input/search/search-input';
 import { cn } from '@/styles/cn';
 import AdressEnterLink from './address-enter-link';
+import Footer from './footer';
 import InitialSetter from './initial-setter';
 import SortContainer from './sort-container/sort-container';
 import SkeletonStoreList from './store-list/skeleton-store-list';
@@ -32,6 +33,7 @@ export default function Page({
             <Suspense fallback={<SkeletonStoreList />}>
               <StoreList />
             </Suspense>
+            <Footer />
           </section>
         </section>
       )}
