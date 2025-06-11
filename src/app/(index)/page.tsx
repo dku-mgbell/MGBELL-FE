@@ -15,11 +15,10 @@ export default function Page({
   return (
     <>
       <InitialSetter searchParams={searchParams} />
-      <MainHeader />
+      <MainHeader sortValue={searchParams.sort} />
       {!searchParams.isNewUser && (
         <section className={cn(styles.container, 'pwa-layout')}>
           <section className={styles.contentWrapper}>
-            {/* <SortContainer state={searchParams.sort} /> */}
             <Suspense fallback={<SkeletonStoreList />}>
               <StoreList />
             </Suspense>
@@ -29,7 +28,3 @@ export default function Page({
     </>
   );
 }
-
-// <button type="button" className={styles.filterButton}>
-// <FilterIcon />
-// </button>
