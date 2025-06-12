@@ -2,9 +2,10 @@ import Script from 'next/script';
 import localFont from 'next/font/local';
 import ModalProvider from '@/components/modal/modal-provider';
 import Navigation from '@/components/navigation/navigation';
+import { cn } from '@/lib/utils';
 import MSWProvider from './(index)/msw-provider/msw-provider';
 import Providers from './(index)/provider';
-import * as styles from './(index)/styles.css';
+import Container from './(layout)/container';
 import type { Metadata, Viewport } from 'next';
 import '../styles/index.css';
 import '../styles/global.css';
@@ -61,7 +62,7 @@ export default function RootLayout({
           content="black-translucent"
         />
       </head>
-      <body className={`${pretendard.variable} ${styles.body}`}>
+      <body className={cn(pretendard.variable, 'bg-[#f5f6f8]')}>
         <Script
           strategy="afterInteractive"
           src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}
@@ -70,7 +71,7 @@ export default function RootLayout({
           <ModalProvider>
             <MSWProvider />
             <div id="modal-root" />
-            <div className={styles.wrapper}>{children}</div>
+            <Container>{children}</Container>
             <Navigation />
           </ModalProvider>
         </Providers>

@@ -15,7 +15,6 @@ export const main = style({
   display: 'flex',
   flexDirection: 'column',
   gap: 15,
-  marginTop: 15,
   overflow: 'auto',
   height: 'calc(100% - 100px)',
 });
