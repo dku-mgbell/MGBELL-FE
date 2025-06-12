@@ -8,8 +8,7 @@ import { useGetBagSuspenseInfiniteList } from '@/hooks/query/bag/useGetBagSuspen
 import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import { BagInfoResponse } from '@/types/bag';
 import { useSuspenseInfiniteScroll } from '@/hooks/useSuspenseInfiniteScroll';
-import StoreListItem from './store-list-item';
-import * as styles from './styles.css';
+import StoreListItem from './item';
 
 export default function StoreList() {
   const { isLoggedIn } = useAuthStore();
@@ -33,12 +32,12 @@ export default function StoreList() {
   // if (isLoading) return <>loading...</>;
 
   return (
-    <main className={styles.main}>
+    <>
       {isSuccess &&
         list!.map((props: BagInfoResponse) => (
           <StoreListItem key={props.id} {...props} />
         ))}
       <Intersection ref={intersection} />
-    </main>
+    </>
   );
 }

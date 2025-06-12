@@ -11,7 +11,9 @@ export default function Footer() {
       {Object.entries(businessInfo).map(([key, value]) => (
         <div key={key} className="flex gap-[4px] ">
           <span className="text-b3 text-gray3">{key}</span>
-          <span className="text-b3 text-gray5">{value}</span>
+          <span className="text-b3 text-gray5" style={{ fontSize: 12 }}>
+            {value}
+          </span>
         </div>
       ))}
     </footer>

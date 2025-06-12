@@ -93,7 +93,7 @@
   --color-gray10: #fafafa;
   --color-gray11: #ffffff;
   --font-weight-bold: 700;
-  --font-weight-regular: 500;
+  --font-weight-regular: 400;
   --text-h1: 32px;
   --text-h2: 28px;
   --text-h3: 24px;
@@ -161,5 +161,9 @@
   }
   .absolute-center {
     @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+
+  .main-store-thumbnail {
+    @apply border-white w-full rounded-tl-[5px] object-cover transition-transform ease-in-out relative overflow-hidden bg-[#F5F5F5];
   }
 }
