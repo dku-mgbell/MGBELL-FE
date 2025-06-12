@@ -3,8 +3,8 @@ import Container from './_components/container';
 import Footer from './_components/footer';
 import MainHeader from './_components/header';
 import InitialSetter from './initial-setter';
-import SkeletonStoreList from './store-list/skeleton-store-list';
-import StoreList from './store-list/store-list';
+import StoreList from './store-list';
+import SkeletonStoreList from './store-list/skeleton';
 import { IndexPageSearchParams } from './types';
 
 export default function Page({
