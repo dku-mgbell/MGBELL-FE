@@ -1,7 +1,11 @@
-export const buttonList = [
+export const buttonConfig = [
   {
     name: '최신순',
     sortValue: 'createdAt,desc',
+  },
+  {
+    name: '찜 많은순',
+    sortValue: 'store.favorited,desc',
   },
   {
     name: '낮은 가격순',
@@ -10,10 +14,6 @@ export const buttonList = [
   {
     name: '리뷰 많은순',
     sortValue: 'review',
-  },
-  {
-    name: '찜 많은순',
-    sortValue: 'store.favorited,desc',
   },
   {
     name: '예약 가능',
