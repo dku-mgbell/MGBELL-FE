@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { cn } from '@/styles/cn';
 import MainHeader from './_components/header';
+import Footer from './footer';
 import InitialSetter from './initial-setter';
 import SkeletonStoreList from './store-list/skeleton-store-list';
 import StoreList from './store-list/store-list';
@@ -22,6 +23,7 @@ export default function Page({
             <Suspense fallback={<SkeletonStoreList />}>
               <StoreList />
             </Suspense>
+            <Footer />
           </section>
         </section>
       )}
