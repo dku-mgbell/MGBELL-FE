@@ -12,4 +12,5 @@ export const useGetBagDetail = ({
     queryFn: () => Bag.getDetail({ id, isLoggedIn }),
     queryKey: ['bag-detail'],
     gcTime: 0,
+    staleTime: 0,
   });

@@ -1,5 +1,5 @@
 import LocationIcon from '@/assets/svg/LocationIcon';
-import IconButton from '@/components/button/icon-button/button';
+import IconButton from '@/components/button/icon-button';
 
 export default function LocationButton({ onClick }: { onClick: () => void }) {
   return (

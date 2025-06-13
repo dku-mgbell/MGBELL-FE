@@ -7,7 +7,7 @@ export default function MainHeader({ sortValue }: { sortValue: string }) {
   return (
     <HeaderContainer>
       <AddressEnterLink />
-      <SearchInput placeholder="마감벨 입점 매장을 검색해보세요!" />
+      <SearchInput placeholder="가게의 이름을 검색해보세요!" />
       <SortNav sortValue={sortValue} />
     </HeaderContainer>
   );

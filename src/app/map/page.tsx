@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import markerImg from '@/assets/images/map/marker.png';
 import pinImg from '@/assets/images/map/pin.png';
-import BackButton from '@/components/button/back-button/back-button';
+import BackButton from '@/components/button/back-button';
 import { useGetBagList as useGetStoreList } from '@/hooks/query/bag/useGetBagList';
 import { BagInfoResponse as StoreInfoResponse } from '@/types/bag';
 import { MapMarker } from '@/types/map';
