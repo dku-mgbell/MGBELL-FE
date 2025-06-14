@@ -61,7 +61,7 @@ export default function Page() {
     setOrderData({
       가게: data.storeName,
       픽업장소: data.address,
-      결제수단: '현장결제',
+      // 결제수단: '현장결제',
       수량: bagAmount,
       결제금액: `${commaizeNumber(data.salePrice! * bagAmount)}원`,
       픽업시간: null,
@@ -111,14 +111,13 @@ export default function Page() {
       <LabeledField label="요청사항">
         <TextArea
           name="request"
-          placeholder="가게 사장님에게 요청 사항을 50자 이내로 작성해주세요 (선택)"
+          placeholder="가게 사장님에게 전달할 요청사항을 50자 이내로 작성해주세요 (선택)"
           maxLength={50}
           register={register}
           errors={errors}
           className="h-[100px]"
         />
       </LabeledField>
-      <LabeledField label="결제방법">결제방법</LabeledField>
       <LabeledField label="주문상세">
         <OrderDetailTable data={orderData} />
       </LabeledField>

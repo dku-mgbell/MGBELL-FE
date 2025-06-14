@@ -88,13 +88,15 @@ function OpenStatus({
           {isOpenTextVisible && '픽업 가능 시간: '} {startAt}~{endAt}
         </span>
       </p>
-      {amount && amount > 0 && (
+      {amount && amount > 0 ? (
         <>
           <hr className="w-[1px] h-[12px] bg-[#E9E9E9]" />
           <span className="text-b2 font-bold text-[#EF444D]">
             {amount}개 남음
           </span>
         </>
+      ) : (
+        ''
       )}
     </div>
   );
