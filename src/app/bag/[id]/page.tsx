@@ -1,24 +1,18 @@
-'use client';
-
 import { Suspense } from 'react';
-import { useParams } from 'next/navigation';
-import { useAuthStore } from '@/hooks/stores/useAuthStore';
-import Header from './(componets)/header';
-import SkeletonContent from './(componets)/skeleton-content';
-import BagDetailContent from './bag-detail-content';
-import * as styles from './styles.css';
+import Container from './_components/container';
+import BagDetailContent from './_components/content';
+import Header from './_components/header';
+import SkeletonContent from './_components/skeleton-content';
 
-export default function Page() {
-  const params = useParams();
+export default function Page({ params }: { params: { id: number } }) {
   const bagId = Number(params.id);
-  const { isLoggedIn } = useAuthStore();
 
   return (
-    <div className={styles.container}>
-      <Header />
+    <Container>
+      <Header bagId={bagId} />
       <Suspense fallback={<SkeletonContent />}>
-        <BagDetailContent bagId={bagId} isLoggedIn={isLoggedIn ?? false} />
+        <BagDetailContent bagId={bagId} />
       </Suspense>
-    </div>
+    </Container>
   );
 }

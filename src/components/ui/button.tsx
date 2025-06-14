@@ -10,9 +10,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: 'bg-primary text-gray11',
+        'primary-inactive':
+          'bg-[#F6F6F6] border-[1px] border-primary text-primary',
         'secondary-outline':
           'bg-white border-[1px] border-secondary text-secondary ',
         'gray-outline': 'bg-white border-[1px] border-gray6 text-gray4',
+        'primary-light':
+          'bg-[#FFF0D1] text-gray12 border-[1px] border-primary [&:has(input:not(:checked))]:bg-white [&:has(input:not(:checked))]:border-[#D9D9D9]',
       },
       size: {
         full: 'w-full',

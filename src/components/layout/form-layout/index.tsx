@@ -4,9 +4,11 @@ import { Button } from '@/components/ui/button';
 export default function FormLayout({
   children,
   onSubmit,
+  submitButtonText = '등록',
 }: {
   children: React.ReactNode;
   onSubmit: FormEventHandler<HTMLFormElement>;
+  submitButtonText?: string;
 }) {
   return (
     <form
@@ -15,7 +17,7 @@ export default function FormLayout({
     >
       {children}
       <div className="bg-white fixed bottom-0 pb-[20px] w-[calc(100%-40px)] left-1/2 -translate-x-1/2 max-w-[410px]">
-        <Button type="submit">등록</Button>
+        <Button type="submit">{submitButtonText}</Button>
       </div>
     </form>
   );

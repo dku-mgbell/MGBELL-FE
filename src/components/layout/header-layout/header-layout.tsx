@@ -11,7 +11,7 @@ export default function HeaderLayout({
   paddingBottom,
 }: {
   children: ReactNode;
-  title: string;
+  title?: string;
   previousPageLink?: string;
   previousButtonClickEvent?: () => void;
   paddingBottom?: boolean;
