@@ -2,7 +2,7 @@
 
 import StepsLayout from '@/components/layout/steps-layout';
 import TextField from '@/components/ui/text-field';
-import { usePostOAuthLogin } from '@/hooks/query/user/usePostOAuthLogin';
+import { usePostOAuthLogin } from '@/hooks/query/auth/oauth/usePostOAuthLogin';
 import { isValidPhoneNumber } from '@/utils/regex';
 import { useSignUpStore } from '../../_/sign-up-store';
 

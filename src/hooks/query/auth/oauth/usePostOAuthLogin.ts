@@ -5,7 +5,7 @@ import { User } from '@/hooks/api/user';
 import { ErrorResponse } from '@/types/api';
 import { OAuthLoginRequest, SignUpData } from '@/types/sign-up';
 import useModal from '@/hooks/useModal';
-import { useGetUserAccountInfo } from './useGetUserAccountInfo';
+import { useGetUserAccountInfo } from '../../user/useGetUserAccountInfo';
 
 type LoginErrorCode = 'INVALID_PHONE_NUMBER' | 'DUPLICATE_NICKNAME';
 
@@ -32,7 +32,6 @@ export const usePostOAuthLogin = (nextPage?: string) => {
       if (accessToken) {
         localStorage.setItem('accessToken', accessToken);
       }
-
       // 회원가입 시 정보 입력
       if (nextPage) {
         router.push(nextPage);

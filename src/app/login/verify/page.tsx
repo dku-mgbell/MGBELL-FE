@@ -3,7 +3,7 @@
 import { Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Loader from '@/components/loader/loader';
-import { usePostKakaoAccessToken } from '@/hooks/query/user/usePostKakaoAccessToken';
+import { usePostKakaoAccessToken } from '@/hooks/query/auth/oauth/usePostKakaoAccessToken';
 
 function VerifyContent() {
   const searchParams = useSearchParams();
