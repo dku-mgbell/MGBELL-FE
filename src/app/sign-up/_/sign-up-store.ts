@@ -9,7 +9,9 @@ type SignUpState = {
 
 export const signUpInfoDefaultValue = {
   userRole: null,
-  nickname: '',
+  nickName: '',
+  providerType: null,
+  authCode: '',
 };
 
 export const useSignUpStore = create<SignUpState>((set) => ({

@@ -1,6 +1,7 @@
+import { loginButtonConfig } from '@/app/login/components/login-button-config';
 import { OrderState } from './order';
 
-export type UserRole = 'USER' | 'OWNER';
+export type UserRole = 'CUSTOMER' | 'OWNER';
 
 export interface UserInfoResponse {
   id: number;
@@ -27,4 +28,14 @@ export interface CurrentOrder {
   pickupTime: string;
   orderState: OrderState;
   image: string;
+}
+
+export interface AccountInfo {
+  status: string;
+  data: {
+    email: string;
+    userRole: 'CUSTOMER' | 'OWNER';
+    providerType: keyof typeof loginButtonConfig;
+    approved: boolean | null;
+  };
 }

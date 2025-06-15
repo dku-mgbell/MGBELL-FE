@@ -8,6 +8,7 @@ const nextPWA = withPWA({
 });
 
 const nextConfig = {
+  reactStrictMode: false,
   experimental: {
     middlewarePrefetch: 'flexible',
   },
