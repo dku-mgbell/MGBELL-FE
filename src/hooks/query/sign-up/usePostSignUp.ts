@@ -25,7 +25,7 @@ export const usePostSignUp = () => {
       } else {
         mutate({ email: email!, password });
       }
-      if (userRole === 'USER') {
+      if (userRole === 'CUSTOMER') {
         route.push('/sign-up/success');
       } else {
         route.push('/register/store');

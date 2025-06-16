@@ -1,8 +1,35 @@
 import { useEffect, useState } from 'react';
+import { cva, VariantProps } from 'class-variance-authority';
 import MinusIcon from '@/assets/svg/MinusIcon';
 import PlusIcon from '@/assets/svg/PlusIcon';
 import { cn } from '@/lib/utils';
 import styles from './styles.module.css';
+
+export const counterVariants = cva(
+  cn(
+    'flex items-center justify-between gap-[10px] px-[20px] py-[12px] rounded-[10px]',
+  ),
+  {
+    variants: {
+      theme: {
+        default: 'bg-gray10',
+        outline: 'border-[1px] border-gray7',
+      },
+    },
+    defaultVariants: {
+      theme: 'default',
+    },
+  },
+);
+
+export interface CounterProps
+  extends React.ComponentProps<'input'>,
+    VariantProps<typeof counterVariants> {
+  defaultValue?: number;
+  setValue: (value: number) => void;
+  maxCount?: number;
+  minCount?: number;
+}
 
 function CounterButton({
   type,
@@ -35,12 +62,9 @@ export default function Counter({
   setValue,
   maxCount,
   minCount,
-}: {
-  defaultValue?: number;
-  setValue: (value: number) => void;
-  maxCount?: number;
-  minCount?: number;
-}) {
+  theme,
+  className,
+}: CounterProps) {
   const [count, setCount] = useState(defaultValue ?? 0);
 
   const handleButtonClick = (type: 'minus' | 'plus') => {
@@ -56,11 +80,7 @@ export default function Counter({
   }, [count]);
 
   return (
-    <div
-      className={cn(
-        'flex items-center gap-[10px] justify-between px-[20px] py-[12px] border rounded-[10px] border-gray7',
-      )}
-    >
+    <div className={cn(counterVariants({ theme }), className)}>
       <CounterButton
         type="minus"
         onClick={() => handleButtonClick('minus')}
@@ -72,14 +92,18 @@ export default function Counter({
         onChange={(e) => setValue(Number(e.target.value))}
         className={cn(
           styles.counterInput,
-          'cursor-default flex-1 text-center text-gray4 text-b1',
+          'cursor-default text-center text-gray4 text-b1 w-[60px]',
         )}
         readOnly
       />
       <CounterButton
         type="plus"
         onClick={() => handleButtonClick('plus')}
-        disabled={maxCount ? count >= maxCount : undefined}
+        disabled={
+          maxCount !== undefined
+            ? maxCount === 0 || count >= maxCount
+            : undefined
+        }
       />
     </div>
   );

@@ -1,3 +1,4 @@
+import { loginButtonConfig } from '@/app/login/components/login-button-config';
 import { UserRole } from './user';
 
 export interface LoginInfo {
@@ -17,3 +18,14 @@ export const LoginErrorMessage = {
 };
 
 export type LoginErrorCode = keyof typeof LoginErrorMessage;
+
+export type OAuthProviderType = keyof typeof loginButtonConfig;
+
+export interface KakaoAccessTokenResponse {
+  access_token: string;
+  token_type: string;
+  refresh_token: string;
+  expires_in: number;
+  scope: string;
+  refresh_token_expires_in: number;
+}

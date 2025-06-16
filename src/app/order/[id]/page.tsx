@@ -5,11 +5,11 @@ import BagIcon from '@/assets/svg/BagIcon';
 import Button from '@/components/button/text-button/button';
 import InputSection from '@/components/input-section/input-section';
 import HeaderLayout from '@/components/layout/header-layout/header-layout';
-import OrderDetailTable from '@/components/order-detail-table/order-detail-table';
 import { useCancelOrderByUser } from '@/hooks/query/order/useCancelOrderByUser';
 import { useGetUserOrderDetail } from '@/hooks/query/order/useGetUserOrderDetail';
 import { commaizeNumber } from '@/utils/commaizeNumber';
 import useModal from '@/hooks/useModal';
+import OrderDetailTable from '@/components/order-detail-table';
 import OrderItem from './(components)/order-item/order-item';
 import * as styles from './styles.css';
 
@@ -79,7 +79,7 @@ export default function Page({ params }: { params: { id: number } }) {
         )}
       </div>
       <InputSection title="주문상세" icon={<BagIcon color="black" />} border>
-        <OrderDetailTable orderData={orderData} />
+        <OrderDetailTable data={orderData} />
       </InputSection>
     </HeaderLayout>
   );

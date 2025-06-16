@@ -11,7 +11,7 @@ import { Selector } from '@/components/ui/select';
 import TextField from '@/components/ui/text-field';
 import TextArea from '@/components/ui/textarea';
 import { commaizeNumber } from '@/utils/commaizeNumber';
-import { returnTimeOptions } from './_/returnTimeOptions';
+import { returnTimeOptions } from '@/utils/returnTimeOptions';
 
 const schema = z.object({
   description: z.string().min(1, { message: '' }),

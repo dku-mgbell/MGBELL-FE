@@ -1,4 +1,4 @@
-import StarIcon from '@/assets/svg/StarIcon';
+import StarIcon from '@/assets/svg/StarCircleIcon';
 import TimeIcon from '@/assets/svg/TimeIcon';
 import ProductInfoContainer from '@/components/product/product-info-footer/product-info-footer';
 import { BagInfo } from '@/types/bag';
