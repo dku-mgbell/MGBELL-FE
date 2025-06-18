@@ -1,3 +1,4 @@
+import { ImageRequest } from './image';
 import { Coordinate } from './map';
 
 export type StoreID = 'BAKERY' | 'DESERT' | 'ETC';
@@ -16,6 +17,35 @@ export interface StoreRegistration extends Coordinate {
   address: string;
   storeType: StoreID | null;
   images: File[];
+}
+
+export interface StoreRegistrationFormRequest {
+  name: string;
+  address: string;
+  latitude: number;
+  longitude: number;
+  ownerName: string;
+  ownerPhone: string;
+  businessNumber: string;
+  bankName: string;
+  bankAccount: string;
+  detailAddress?: string;
+  storeImagesRegisters: ImageRequest[];
+  images: File[];
+}
+
+export type StoreRegistrationRequest = Omit<
+  StoreRegistrationFormRequest,
+  'images' | 'detailAddress'
+>;
+
+export interface StoreRegistrationResponse {
+  data: {
+    preSignedUrlImages: {
+      id: number;
+      url: string;
+    }[];
+  };
 }
 
 export interface MyStoreInfo {

@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import { User } from '@/hooks/api/user';
 import { ErrorResponse } from '@/types/api';
 
-type ErrorCode = 'OWNER_NOT_FOUND_STORE';
+type ErrorCode = 'STORE_NOT_FOUND';
 
 export const useGetUserAccountInfo = ({ redirect }: { redirect?: boolean }) => {
   const router = useRouter();
@@ -32,7 +32,7 @@ export const useGetUserAccountInfo = ({ redirect }: { redirect?: boolean }) => {
     },
     onError: (err: ErrorResponse<ErrorCode>) => {
       const errorCode = err.response.data.code;
-      if (errorCode === 'OWNER_NOT_FOUND_STORE') {
+      if (errorCode === 'STORE_NOT_FOUND') {
         router.push('/register/store');
       }
     },
