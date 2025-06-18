@@ -13,6 +13,7 @@ export type ModalProps = {
   content?: ReactNode;
   confirmEvent?: () => void;
   className?: string;
+  showButton?: boolean;
 };
 
 export const useModalStateStore = create<ModalState>((set) => ({
@@ -23,6 +24,7 @@ export const useModalStateStore = create<ModalState>((set) => ({
     content: null,
     confirmEvent: undefined,
     className: undefined,
+    showButton: true,
   },
   setModalState: (state: ModalProps) => set({ modalState: state }),
 }));
