@@ -1,18 +1,16 @@
-import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
+import { ModalProps } from '@/hooks/stores/useModalStateStore';
+import { cn } from '@/lib/utils';
 import useModal from '@/hooks/useModal';
-import Button from '../button/text-button/button';
-import { styles } from './styles.css';
+import { Button } from '../ui/button';
 
 export default function Modal({
+  title,
+  description,
   content,
   confirmEvent,
-  noPadding,
-}: {
-  content: ReactNode;
-  confirmEvent?: () => void;
-  noPadding?: boolean;
-}) {
+  className,
+}: ModalProps) {
   const { close } = useModal();
 
   const handleConfirmButtonClick = () => {
@@ -42,22 +40,34 @@ export default function Modal({
           duration: 0.15,
         },
       }}
-      className={styles.container({ noPadding })}
+      className={cn(
+        'max-w-[390px] w-[90vw] max-h-[80vh] rounded-[20px] overflow-hidden p-[30px] bg-white flex flex-col gap-[30px]',
+        className,
+      )}
     >
-      <div className={styles.content({ noPadding })}>{content}</div>
-      <div className={styles.buttonContainer}>
+      {content ? (
+        <div className="text-b1 text-gray1 text-center">{content}</div>
+      ) : (
+        (title || description) && (
+          <div className="flex flex-col gap-[4px] text-center">
+            {title && <p className="text-h4 text-gray1">{title}</p>}
+            {description && <p className="text-b2 text-gray4">{description}</p>}
+          </div>
+        )
+      )}
+
+      <div className="flex gap-[15px]">
         <Button
-          value="닫기"
           onClick={close}
-          theme={confirmEvent ? 'inactive-primary' : 'primary'}
-          height="small"
-        />
+          variant={confirmEvent ? 'primary-light' : 'primary'}
+          className="flex-1"
+        >
+          닫기
+        </Button>
         {confirmEvent && (
-          <Button
-            value="확인"
-            onClick={handleConfirmButtonClick}
-            height="small"
-          />
+          <Button onClick={handleConfirmButtonClick} className="flex-1">
+            확인
+          </Button>
         )}
       </div>
     </motion.div>
