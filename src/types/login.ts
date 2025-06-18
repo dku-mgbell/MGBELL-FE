@@ -29,3 +29,8 @@ export interface KakaoAccessTokenResponse {
   scope: string;
   refresh_token_expires_in: number;
 }
+
+export interface DeleteOAuthAccountRequest {
+  providerType: OAuthProviderType;
+  authCode: string;
+}

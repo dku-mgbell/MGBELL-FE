@@ -2,6 +2,7 @@ import {
   KakaoAccessTokenResponse,
   LoginInfo,
   LoginResponse,
+  DeleteOAuthAccountRequest,
 } from '@/types/login';
 import {
   OAuthLoginRequest,
@@ -100,8 +101,11 @@ export const User = {
     const response = await API.post(`${WIP_API_BASE_URL}/verify/social`, data);
     return response.data;
   },
-  async postKakaoAccessToken(data: { code: string }) {
-    const response = await fetch('/api/login/oauth', {
+  async postKakaoAccessToken(data: {
+    code: string;
+    action: 'login' | 'delete';
+  }) {
+    const response = await fetch('/api/login/oauth/kakao', {
       method: 'POST',
       body: JSON.stringify(data),
     });
@@ -110,6 +114,13 @@ export const User = {
   },
   async getAccountInfo(): Promise<AccountInfo> {
     const response = await API.post(`${WIP_API_BASE_URL}/user/me`);
+    return response.data;
+  },
+  async deleteOAuthAccount(data: DeleteOAuthAccountRequest) {
+    const response = await API.delete(`${WIP_API_BASE_URL}/auth/withdraw`, {
+      data,
+    });
+
     return response.data;
   },
 };
