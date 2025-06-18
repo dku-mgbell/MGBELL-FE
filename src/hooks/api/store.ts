@@ -1,7 +1,18 @@
-import { MyStoreInfo, StorePatch, StoreRegistration } from '@/types/store';
+import {
+  MyStoreInfo,
+  StorePatch,
+  StoreRegistration,
+  StoreRegistrationRequest,
+} from '@/types/store';
+import { WIP_API_BASE_URL } from '@/constant';
 import { API } from '.';
 
 export const Store = {
+  async postRegistration(data: StoreRegistrationRequest) {
+    const response = await API.post(`${WIP_API_BASE_URL}/store`, data);
+    return response.data;
+  },
+
   async register({
     storeName,
     ownerName,

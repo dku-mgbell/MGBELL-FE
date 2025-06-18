@@ -9,6 +9,7 @@ import FormLayout from '@/components/layout/form-layout';
 import LabeledField from '@/components/ui/labeled-field';
 import { Selector } from '@/components/ui/select';
 import TextField from '@/components/ui/text-field';
+import { usePostStoreRegistration } from '@/hooks/query/store/usePostStoreRegistration';
 import { phoneRegex } from '@/utils/regex';
 import useSearchAddress from '@/hooks/useSearchAddress';
 import ImageUploader from '../(components)/image-uploader';
@@ -17,14 +18,14 @@ import BankSelectSheet from './_components/bank-select-sheet';
 type StoreForm = z.infer<typeof schema>;
 
 const schema = z.object({
-  storeName: z.string().min(1, ''),
+  name: z.string().min(1, ''),
   address: z.string().min(1, ''),
   detailAddress: z.string().optional(),
   ownerName: z.string().min(1, ''),
   ownerPhone: z.string().regex(phoneRegex, ''),
   businessNumber: z.string().min(1, ''),
-  accountNumber: z.string().min(1, ''),
-  bank: z.string().min(1, ''),
+  bankAccount: z.string().min(1, ''),
+  bankName: z.string().min(1, ''),
   images: z.array(z.instanceof(File)).min(1, ''),
 });
 
@@ -43,12 +44,23 @@ export default function Page() {
     setValue,
   });
   const [isBankSelectSheetOpen, setIsBankSelectSheetOpen] = useState(false);
+  const { mutate: postStoreRegistration } = usePostStoreRegistration();
 
   const onSubmit: SubmitHandler<StoreForm> = (data) => {
-    return {
-      ...data,
-      coord: [coordData?.addresses[0].x, coordData?.addresses[0].y],
-    };
+    const fullAddress = `${data.address} ${data.detailAddress}`;
+    const request = { ...data };
+    delete request.detailAddress;
+
+    postStoreRegistration({
+      ...request,
+      address: fullAddress,
+      latitude: Number(coordData?.addresses[0].x ?? 0),
+      longitude: Number(coordData?.addresses[0].y ?? 0),
+      storeImagesRegisters: data.images.map((image, index) => ({
+        id: index + 1,
+        key: image.name,
+      })),
+    });
   };
 
   return (
@@ -58,7 +70,7 @@ export default function Page() {
         description="체인점일 경우, 지점명까지 입력해주세요!"
       >
         <TextField
-          name="storeName"
+          name="name"
           placeholder="매장 이름 입력"
           register={register}
           errors={errors}
@@ -107,12 +119,12 @@ export default function Page() {
       </LabeledField>
       <LabeledField label="계좌 등록">
         <Selector
-          placeholder={getValues('bank') || '은행 선택'}
+          placeholder={getValues('bankName') || '은행 선택'}
           onClick={() => setIsBankSelectSheetOpen(true)}
-          isError={!!errors.bank}
+          isError={!!errors.bankName}
         />
         <TextField
-          name="accountNumber"
+          name="bankAccount"
           type="number"
           placeholder="계좌번호 입력"
           register={register}
@@ -135,9 +147,9 @@ export default function Page() {
         setOpen={setIsBankSelectSheetOpen}
         content={
           <BankSelectSheet
-            value={getValues('bank')}
+            value={getValues('bankName')}
             updateValue={(value) =>
-              setValue('bank', value, { shouldValidate: true })
+              setValue('bankName', value, { shouldValidate: true })
             }
             setOpen={setIsBankSelectSheetOpen}
           />
