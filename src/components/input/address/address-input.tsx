@@ -24,7 +24,7 @@ export default function AddressInput({
 
   const handleInputClick = () => {
     open({
-      noPadding: true,
+      className: 'p-[15px]',
       content: (
         <DaumPostcode
           onComplete={(res: Address) => {
