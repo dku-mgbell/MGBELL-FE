@@ -1,24 +1,11 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import HeaderLayout from '@/components/layout/header-layout';
 import { Button } from '@/components/ui/button';
-import { usePostKakaoAccessToken } from '@/hooks/query/auth/oauth/usePostKakaoAccessToken';
+import DeleteContent from './DeleteContent';
 
 export default function Page() {
-  const { mutate: postKakaoAccessToken } = usePostKakaoAccessToken({
-    action: 'delete',
-  });
-  const searchParams = useSearchParams();
-  const code = searchParams.get('code');
-
-  useEffect(() => {
-    if (code) {
-      postKakaoAccessToken(code);
-    }
-  }, [code]);
-
   const handleDeleteOAuthAccount = () => {
     window.location.href = process.env.NEXT_PUBLIC_KAKAO_OAUTH_DELETE!;
   };
@@ -30,6 +17,9 @@ export default function Page() {
         <Button onClick={handleDeleteOAuthAccount} variant="gray-outline">
           삭제
         </Button>
+        <Suspense fallback={<div>로딩중...</div>}>
+          <DeleteContent />
+        </Suspense>
       </div>
     </HeaderLayout>
   );
