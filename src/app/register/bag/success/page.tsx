@@ -5,15 +5,15 @@ export default function Page() {
   return (
     <StepsLayout
       isNextButtonEnabled
-      nextPage="/"
+      nextPage="/store/order"
       nextButtonText="바로 시작하기"
     >
       <SuccessLayout
         title={
           <>
-            마감벨에 오신 것을
+            마감백 등록이
             <br />
-            환영합니다.
+            완료되었습니다.
           </>
         }
       />
