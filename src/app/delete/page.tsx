@@ -1,0 +1,36 @@
+'use client';
+
+import { useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+import HeaderLayout from '@/components/layout/header-layout';
+import { Button } from '@/components/ui/button';
+import { usePostKakaoAccessToken } from '@/hooks/query/auth/oauth/usePostKakaoAccessToken';
+
+export default function Page() {
+  const { mutate: postKakaoAccessToken } = usePostKakaoAccessToken({
+    action: 'delete',
+  });
+  const searchParams = useSearchParams();
+  const code = searchParams.get('code');
+
+  useEffect(() => {
+    if (code) {
+      postKakaoAccessToken(code);
+    }
+  }, [code]);
+
+  const handleDeleteOAuthAccount = () => {
+    window.location.href = process.env.NEXT_PUBLIC_KAKAO_OAUTH_DELETE!;
+  };
+
+  return (
+    <HeaderLayout title="계정삭제" previousPage="/login">
+      <div className="flex flex-col gap-4 mt-[100px]">
+        <p>계정을 삭제하시겠습니까?</p>
+        <Button onClick={handleDeleteOAuthAccount} variant="gray-outline">
+          삭제
+        </Button>
+      </div>
+    </HeaderLayout>
+  );
+}

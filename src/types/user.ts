@@ -36,6 +36,6 @@ export interface AccountInfo {
     email: string;
     userRole: 'CUSTOMER' | 'OWNER';
     providerType: keyof typeof loginButtonConfig;
-    approved: boolean | null;
+    approved: 'APPROVED' | 'WAITING' | 'REJECTED';
   };
 }

@@ -18,11 +18,14 @@ export const useGetUserAccountInfo = ({ redirect }: { redirect?: boolean }) => {
         }
 
         // OWNER 계정 & 가게 승인
-        else if (res.data.approved) {
+        else if (res.data.approved === 'APPROVED') {
           router.push('/store');
         }
-        // OWNER 계정 & 가게 미승인
-        else if (res.data.approved === false) {
+        // OWNER 계정 & 가게 승인 대기, 거절
+        else if (
+          res.data.approved === 'WAITING' ||
+          res.data.approved === 'REJECTED'
+        ) {
           router.push('/register/store/pending');
         }
       }
