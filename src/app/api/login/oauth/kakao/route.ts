@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { KakaoAccessTokenResponse } from '@/types/login';
+import { OAUTH_REDIRECT_BASE_URL } from '@/constant';
 
 export async function POST(request: Request) {
   const { code, action } = await request.json();
@@ -8,8 +9,8 @@ export async function POST(request: Request) {
 
   const redirectUri =
     action === 'login'
-      ? 'http://localhost:3000/login/verify?type=KAKAO'
-      : 'http://localhost:3000/delete?type=KAKAO';
+      ? `${OAUTH_REDIRECT_BASE_URL}/login/verify?type=KAKAO`
+      : `${OAUTH_REDIRECT_BASE_URL}/delete?type=KAKAO`;
 
   const res = await fetch(`https://kauth.kakao.com/oauth/token`, {
     method: 'POST',
