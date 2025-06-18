@@ -8,9 +8,7 @@ import { styles } from './styles.css';
 
 export default function ModalProvider({ children }: { children: ReactNode }) {
   const [portalElement, setPortalElement] = useState<HTMLElement | null>(null);
-  const {
-    modalState: { visible, content, confirmEvent, noPadding },
-  } = useModalStateStore();
+  const { modalState } = useModalStateStore();
 
   useEffect(() => {
     setPortalElement(document.getElementById('modal-root'));
@@ -20,14 +18,10 @@ export default function ModalProvider({ children }: { children: ReactNode }) {
     <>
       {children}
       {portalElement &&
-        visible &&
+        modalState.visible &&
         createPortal(
           <div className={styles.wrapper}>
-            <Modal
-              content={content}
-              confirmEvent={confirmEvent}
-              noPadding={noPadding}
-            />
+            <Modal {...modalState} />
           </div>,
           portalElement!,
         )}

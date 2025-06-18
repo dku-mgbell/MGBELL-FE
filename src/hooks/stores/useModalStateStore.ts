@@ -2,23 +2,27 @@ import { ReactNode } from 'react';
 import { create } from 'zustand';
 
 type ModalState = {
-  modalState: Modal;
-  setModalState: (state: Modal) => void;
+  modalState: ModalProps;
+  setModalState: (state: ModalProps) => void;
 };
 
-type Modal = {
+export type ModalProps = {
   visible: boolean;
-  content: ReactNode;
+  title?: string;
+  description?: string;
+  content?: ReactNode;
   confirmEvent?: () => void;
-  noPadding?: boolean;
+  className?: string;
 };
 
 export const useModalStateStore = create<ModalState>((set) => ({
   modalState: {
     visible: false,
+    title: undefined,
+    description: undefined,
     content: null,
     confirmEvent: undefined,
-    noPadding: undefined,
+    className: undefined,
   },
-  setModalState: (state: Modal) => set({ modalState: state }),
+  setModalState: (state: ModalProps) => set({ modalState: state }),
 }));

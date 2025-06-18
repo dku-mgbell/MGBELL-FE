@@ -1,19 +1,10 @@
-import { ReactNode } from 'react';
-import { useModalStateStore } from './stores/useModalStateStore';
+import { ModalProps, useModalStateStore } from './stores/useModalStateStore';
 
 export default function useModal() {
   const { setModalState } = useModalStateStore();
 
-  const open = ({
-    content,
-    confirmEvent,
-    noPadding,
-  }: {
-    content: ReactNode;
-    confirmEvent?: () => void;
-    noPadding?: boolean;
-  }) => {
-    setModalState({ visible: true, content, confirmEvent, noPadding });
+  const open = ({ visible, ...props }: ModalProps) => {
+    setModalState({ visible: true, ...props });
   };
 
   const close = () => {
@@ -21,7 +12,6 @@ export default function useModal() {
       visible: false,
       content: null,
       confirmEvent: () => {},
-      noPadding: undefined,
     });
   };
 
