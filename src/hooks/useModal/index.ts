@@ -1,9 +1,12 @@
-import { ModalProps, useModalStateStore } from './stores/useModalStateStore';
+import {
+  ModalProps,
+  useModalStateStore,
+} from '@/hooks/stores/useModalStateStore';
 
 export default function useModal() {
   const { setModalState } = useModalStateStore();
 
-  const open = ({ visible, ...props }: ModalProps) => {
+  const open = ({ ...props }: Omit<ModalProps, 'visible'>) => {
     setModalState({ visible: true, ...props });
   };
 

@@ -10,7 +10,8 @@ export default function Modal({
   content,
   confirmEvent,
   className,
-}: ModalProps) {
+  showButton,
+}: Omit<ModalProps, 'visible'>) {
   const { close } = useModal();
 
   const handleConfirmButtonClick = () => {
@@ -56,20 +57,22 @@ export default function Modal({
         )
       )}
 
-      <div className="flex gap-[15px]">
-        <Button
-          onClick={close}
-          variant={confirmEvent ? 'primary-light' : 'primary'}
-          className="flex-1"
-        >
-          닫기
-        </Button>
-        {confirmEvent && (
-          <Button onClick={handleConfirmButtonClick} className="flex-1">
-            확인
+      {showButton !== false && (
+        <div className="flex gap-[15px]">
+          <Button
+            onClick={close}
+            variant={confirmEvent ? 'primary-light' : 'primary'}
+            className="flex-1"
+          >
+            닫기
           </Button>
-        )}
-      </div>
+          {confirmEvent && (
+            <Button onClick={handleConfirmButtonClick} className="flex-1">
+              확인
+            </Button>
+          )}
+        </div>
+      )}
     </motion.div>
   );
 }

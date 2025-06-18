@@ -3,12 +3,13 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useModalStateStore } from '@/hooks/stores/useModalStateStore';
-import Modal from './modal';
-import { styles } from './styles.css';
+import Modal from './index';
 
 export default function ModalProvider({ children }: { children: ReactNode }) {
   const [portalElement, setPortalElement] = useState<HTMLElement | null>(null);
-  const { modalState } = useModalStateStore();
+  const {
+    modalState: { visible, ...props },
+  } = useModalStateStore();
 
   useEffect(() => {
     setPortalElement(document.getElementById('modal-root'));
@@ -18,10 +19,10 @@ export default function ModalProvider({ children }: { children: ReactNode }) {
     <>
       {children}
       {portalElement &&
-        modalState.visible &&
+        visible &&
         createPortal(
-          <div className={styles.wrapper}>
-            <Modal {...modalState} />
+          <div className="w-full h-full fixed top-0 left-0 bg-black/20 flex justify-center items-center z-[99999]">
+            <Modal {...props} />
           </div>,
           portalElement!,
         )}
