@@ -1,6 +1,7 @@
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { Store } from '@/hooks/api/store';
+import useLoadingModal from '@/hooks/useModal/loading';
 import {
   StoreRegistrationFormRequest,
   StoreRegistrationResponse,
@@ -10,6 +11,7 @@ import { usePostImages } from '../images/usePostImages';
 export const usePostStoreRegistration = () => {
   const { mutate: postImages } = usePostImages();
   const router = useRouter();
+  const { openLoading, closeLoading } = useLoadingModal();
 
   return useMutation({
     mutationFn: (data: StoreRegistrationFormRequest) => {
@@ -23,7 +25,11 @@ export const usePostStoreRegistration = () => {
         },
       );
     },
+    onMutate: () => {
+      openLoading();
+    },
     onSuccess: () => {
+      closeLoading();
       router.push('/register/store/info/success');
     },
   });
