@@ -3,14 +3,12 @@
 import React, { useEffect, useState } from 'react';
 import markerImg from '@/assets/images/map/marker.png';
 import pinImg from '@/assets/images/map/pin.png';
-import BackButton from '@/components/button/back-button';
 import { useGetBagList as useGetStoreList } from '@/hooks/query/bag/useGetBagList';
 import { BagInfoResponse as StoreInfoResponse } from '@/types/bag';
 import { MapMarker } from '@/types/map';
-import DetailBottomSheet from './(components)/detail-bottom-sheet/detail-bottom-sheet';
-import ListBottomSheet from './(components)/list-bottom-sheet/list-bottom-sheet';
+import DetailBottomSheet from './(components)/detail-bottom-sheet';
+import ListBottomSheet from './(components)/list-bottom-sheet';
 import LocationButton from './(components)/location-button';
-import * as styles from './styles.css';
 
 const DEFAULT_COORD = [37.3214151882177, 127.110106750383];
 
@@ -33,6 +31,7 @@ export default function Map() {
       });
     }
   };
+
   useEffect(() => {
     handleUserLocation();
   }, []);
@@ -50,8 +49,7 @@ export default function Map() {
       zoom: 13.5,
     };
     const map = new naver.maps.Map('map', mapOptions);
-    let markerWidth = 32;
-    let markerHeight = 32;
+    let [markerWidth, markerHeight] = [32, 32];
 
     setStoreMap(map);
 
@@ -61,13 +59,14 @@ export default function Map() {
     ) => {
       markerWidth = isUserLocation ? 32 : 32;
       markerHeight = isUserLocation ? 42 : 32;
+      const markerImage = isUserLocation ? pinImg.src : markerImg.src;
 
       return new naver.maps.Marker({
         position: new naver.maps.LatLng(lat, lng),
         map,
         title: name,
         icon: {
-          content: `<img src="${isUserLocation ? pinImg.src : markerImg.src}" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: ${markerWidth}px; height: ${markerHeight}px; left: 0px; top: 0px;">`,
+          content: `<img src="${markerImage}" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: ${markerWidth}px; height: ${markerHeight}px; left: 0px; top: 0px;">`,
           size: new naver.maps.Size(markerWidth, markerHeight),
         },
       });
@@ -125,8 +124,7 @@ export default function Map() {
   }, [isOpen]);
 
   return (
-    <div id="map" className={styles.container}>
-      <BackButton />
+    <div id="map" className="w-full h-[100dvh]">
       <LocationButton onClick={handleUserLocation} />
       <ListBottomSheet map={storeMap!} setSelectedStore={setSelectedStore} />
       {selectedStore && (

@@ -12,6 +12,7 @@ const buttonVariants = cva(
         primary: 'bg-primary text-gray11',
         'primary-inactive':
           'bg-[#F6F6F6] border-[1px] border-primary text-primary',
+        secondary: 'bg-secondary text-white',
         'secondary-outline':
           'bg-white border-[1px] border-secondary text-secondary ',
         'gray-outline': 'bg-white border-[1px] border-gray6 text-gray4',

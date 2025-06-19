@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import BottomSheet from '@/components/bottom-sheet/bottom-sheet';
+import BottomSheet from '@/components/bottom-sheet/index';
 import FormLayout from '@/components/layout/form-layout';
 import LabeledField from '@/components/ui/labeled-field';
 import { Selector } from '@/components/ui/select';

@@ -1,0 +1,7 @@
+div:has(.react-modal-sheet-backdrop) {
+  z-index: 999 !important;
+}
+
+.react-modal-sheet-backdrop {
+  pointer-events: none !important;
+}

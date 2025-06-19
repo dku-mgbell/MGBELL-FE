@@ -114,9 +114,9 @@ function HorizontalThumbnail({ images }: { images: string[] }) {
           <Image
             src={image}
             alt="thumbnail"
-            width={100}
+            width={200}
             height={70}
-            className="object-cover"
+            className="object-cover w-full h-full"
           />
         </div>
       ))}

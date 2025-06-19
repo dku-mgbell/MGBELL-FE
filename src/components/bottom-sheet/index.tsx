@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { Sheet } from 'react-modal-sheet';
-import * as styles from './styles.css';
+import './styles.css';
 
 export default function BottomSheet({
   isOpen,
@@ -33,10 +33,10 @@ export default function BottomSheet({
           transform: 'translateX(-50%)',
         }}
       />
-      <div className={styles.bottomSheetContainer}>
+      <div className="max-w-[450px] w-full relative h-full mx-auto z-[-9999]">
         <Sheet.Container>
           <Sheet.Header />
-          <Sheet.Content>
+          <Sheet.Content disableDrag>
             <div style={{ height: '100%', overflow: 'auto' }}>{content}</div>
           </Sheet.Content>
         </Sheet.Container>
