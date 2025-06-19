@@ -47,26 +47,31 @@ export default function Map() {
   const loadMap = () => {
     const mapOptions = {
       center: new naver.maps.LatLng(userLocation[0] - 0.001, userLocation[1]),
-      zoom: 17,
+      zoom: 13.5,
     };
     const map = new naver.maps.Map('map', mapOptions);
-    const markerSize = 60;
+    let markerWidth = 32;
+    let markerHeight = 32;
 
     setStoreMap(map);
 
     const generateMarker = (
       { lat, lng, name }: MapMarker,
       { isUserLocation }: { isUserLocation: boolean },
-    ) =>
-      new naver.maps.Marker({
+    ) => {
+      markerWidth = isUserLocation ? 32 : 32;
+      markerHeight = isUserLocation ? 42 : 32;
+
+      return new naver.maps.Marker({
         position: new naver.maps.LatLng(lat, lng),
         map,
         title: name,
         icon: {
-          url: isUserLocation ? pinImg.src : markerImg.src,
-          size: new naver.maps.Size(markerSize, markerSize),
+          content: `<img src="${isUserLocation ? pinImg.src : markerImg.src}" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: ${markerWidth}px; height: ${markerHeight}px; left: 0px; top: 0px;">`,
+          size: new naver.maps.Size(markerWidth, markerHeight),
         },
       });
+    };
 
     // 현위치 핀 표시
     generateMarker(
