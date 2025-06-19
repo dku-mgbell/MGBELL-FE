@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import ChevronRightIcon from '@/assets/svg/ChevronRightIcon';
 import StarIcon from '@/assets/svg/StarIcon';
@@ -102,10 +103,32 @@ function OpenStatus({
   );
 }
 
+function HorizontalThumbnail({ images }: { images: string[] }) {
+  return (
+    <div className="flex items-center gap-[6px] w-full">
+      {images.map((image) => (
+        <div
+          key={image}
+          className="w-[33%] h-[70px] rounded-[8px] overflow-hidden"
+        >
+          <Image
+            src={image}
+            alt="thumbnail"
+            width={100}
+            height={70}
+            className="object-cover"
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export const Store = {
   Title,
   Address,
   Price,
   OpenStatus,
   ReviewLink,
+  HorizontalThumbnail,
 };

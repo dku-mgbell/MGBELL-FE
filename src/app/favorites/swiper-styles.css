@@ -49,12 +49,12 @@
   background-color: #bbb;
   &:before {
     position: relative;
-    top: -30px;
+    top: -40px;
     width: 100%;
     display: block;
     font-weight: 700;
-    color: #585858;
-    font-size: 0.9rem;
+    color: #000;
+    font-size: 16px;
   }
   &:first-child:before {
     content: '찜한 매장';
