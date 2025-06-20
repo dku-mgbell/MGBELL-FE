@@ -55,6 +55,9 @@ export default function ListBottomSheet({ map }: { map: naver.maps.Map }) {
           snapPoints={[600, 150, 0]}
           initialSnap={initialSnap}
           isHidden={isListSheetHidden}
+          onClose={() => {
+            setInitialSnap(1);
+          }}
         >
           <div className="flex flex-col gap-[15px] px-[23px]">
             <StoreList.Container className="pb-[50px]">

@@ -6,6 +6,7 @@ interface BottomSheetProps
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   height?: number;
   isHidden?: boolean;
+  onClose?: () => void;
 }
 
 export default function BottomSheet({
@@ -15,12 +16,17 @@ export default function BottomSheet({
   isHidden,
   initialSnap,
   children,
+  onClose,
   ...props
 }: BottomSheetProps) {
   return (
     <Sheet
       onClose={() => {
-        setOpen(false);
+        if (onClose) {
+          onClose();
+        } else {
+          setOpen(false);
+        }
       }}
       snapPoints={snapPoints ?? [height ?? 200, 0]}
       initialSnap={initialSnap ?? snapPoints?.[0] ?? 0}
