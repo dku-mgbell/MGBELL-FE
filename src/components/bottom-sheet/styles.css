@@ -1,0 +1,3 @@
+div:has(.react-modal-sheet-backdrop) {
+  z-index: 999 !important;
+}

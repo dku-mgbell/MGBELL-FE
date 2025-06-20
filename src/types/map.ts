@@ -3,6 +3,8 @@ export interface MapMarker {
   name: string;
   lat: number;
   lng: number;
+  isUserLocation?: boolean;
+  map: naver.maps.Map;
 }
 
 export interface Coordinate {

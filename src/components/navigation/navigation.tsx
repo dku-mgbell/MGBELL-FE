@@ -13,6 +13,7 @@ export default function Navigation() {
   const { isLoggedIn } = useAuthStore();
   const { logout } = useAuth();
   const { open } = useModal();
+
   const handleNavigationLink = ({
     loggedIn,
     tabInfo,
@@ -32,7 +33,7 @@ export default function Navigation() {
   return (
     navigationTabList.map(({ route }) => route).includes(currentRoute) && (
       <nav
-        className="bg-white z-[999] fixed w-full bottom-0 justify-center flex max-w-[450px] mx-auto left-1/2 -translate-x-1/2"
+        className="bg-white z-[9999] fixed w-full bottom-0 justify-center flex max-w-[450px] mx-auto left-1/2 -translate-x-1/2"
         style={{
           boxShadow: '0px -2px 15px 2px rgba(0, 0, 0, 0.1)',
         }}

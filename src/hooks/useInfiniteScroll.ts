@@ -8,6 +8,7 @@ export const useInfiniteScroll = <T>({
   hasNextPage,
   isFetching,
   isError,
+  isFetched,
 }: UseInfiniteQueryResult<InfiniteData<T[], unknown>, Error>) => {
   const observer = useRef<IntersectionObserver>(null);
 
@@ -31,5 +32,5 @@ export const useInfiniteScroll = <T>({
     }, []);
   }, [data]);
 
-  return { intersection, list, isLoading, isFetching, isError };
+  return { intersection, list, isLoading, isFetching, isError, isFetched };
 };
