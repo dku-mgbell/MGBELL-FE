@@ -3,28 +3,32 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useGetBagList as useGetStoreList } from '@/hooks/query/bag/useGetBagList';
 import { BagInfoResponse as StoreInfoResponse } from '@/types/bag';
+import useModal from '@/hooks/useModal';
 import DetailBottomSheet from './(components)/detail-bottom-sheet';
 import ListBottomSheet from './(components)/list-bottom-sheet';
 import LocationButton from './(components)/location-button';
+import { useMapStore } from './useMapStore';
 import { generateMarker, getUserCurrentPosition } from './utils';
-
-const DEFAULT_COORD = [37.3214151882177, 127.110106750383];
 
 export default function Map() {
   const [isDetailBottomSheetOpen, setIsDetailBottomSheetOpen] = useState(false);
-  const [selectedStore, setSelectedStore] = useState<StoreInfoResponse>();
-  const [userLocation, setUserLocation] = useState(DEFAULT_COORD);
+  const [userLocation, setUserLocation] = useState<[number, number]>();
   const mapRef = useRef<naver.maps.Map | null>(null);
   const { data: storeList, isFetched: isStoreListFetched } = useGetStoreList({
     page: 0,
     size: 100,
   });
   const storeListOnMap = storeList?.pages[0];
+  const { selectedStore, setSelectedStore } = useMapStore();
 
   const [loadedMap, setLoadedMap] = useState<naver.maps.Map | null>(null);
 
+  const { open } = useModal();
+
   const markCurrentPosition = () => {
-    getUserCurrentPosition(setUserLocation);
+    getUserCurrentPosition((position) => {
+      setUserLocation(position);
+    });
   };
 
   useEffect(() => {
@@ -32,10 +36,16 @@ export default function Map() {
   }, []);
 
   const morphToCurrentPosition = useCallback(() => {
-    mapRef.current?.morph(
-      new naver.maps.LatLng(userLocation[0], userLocation[1]),
-      18,
-    );
+    if (userLocation) {
+      mapRef.current?.morph(
+        new naver.maps.LatLng(userLocation[0], userLocation[1]),
+        18,
+      );
+    } else {
+      open({
+        content: '위치 접근 권한이 필요합니다.',
+      });
+    }
   }, [userLocation]);
 
   const handleStoreClick = (
@@ -53,23 +63,28 @@ export default function Map() {
   };
 
   const loadMap = () => {
+    const defaultCoord = [36.5, 127.8];
+    const coord = userLocation || defaultCoord;
+
     const mapOptions = {
-      center: new naver.maps.LatLng(userLocation[0] - 0.001, userLocation[1]),
-      zoom: 13.5,
+      center: new naver.maps.LatLng(coord[0], coord[1]),
+      zoom: 7,
     };
     const map = new naver.maps.Map('map', mapOptions);
     mapRef.current = map;
     setLoadedMap(map);
 
     // 현위치 핀 표시
-    generateMarker({
-      name: 'user-location',
-      lat: userLocation[0],
-      lng: userLocation[1],
-      address: '',
-      isUserLocation: true,
-      map,
-    });
+    if (userLocation) {
+      generateMarker({
+        name: 'user-location',
+        lat: coord[0],
+        lng: coord[1],
+        address: '',
+        isUserLocation: true,
+        map,
+      });
+    }
 
     // 매장 위치 마커 표시
     if (storeListOnMap) {

@@ -145,17 +145,16 @@ export default function Page() {
       <BottomSheet
         isOpen={isBankSelectSheetOpen}
         setOpen={setIsBankSelectSheetOpen}
-        content={
-          <BankSelectSheet
-            value={getValues('bankName')}
-            updateValue={(value) =>
-              setValue('bankName', value, { shouldValidate: true })
-            }
-            setOpen={setIsBankSelectSheetOpen}
-          />
-        }
         height={500}
-      />
+      >
+        <BankSelectSheet
+          value={getValues('bankName')}
+          updateValue={(value) =>
+            setValue('bankName', value, { shouldValidate: true })
+          }
+          setOpen={setIsBankSelectSheetOpen}
+        />
+      </BottomSheet>
     </FormLayout>
   );
 }

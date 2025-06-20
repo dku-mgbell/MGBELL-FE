@@ -21,7 +21,7 @@ export const generateMarker = ({
     map,
     title: name,
     icon: {
-      content: `<img src="${markerImage}" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: ${markerWidth}px; height: ${markerHeight}px; left: 0px; top: 0px;">`,
+      content: `<img src="${markerImage}" alt="" style="z-index: 9999; margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: ${markerWidth}px; height: ${markerHeight}px; left: 0px; top: 0px;">`,
       size: new naver.maps.Size(markerWidth, markerHeight),
     },
   });

@@ -1,12 +1,13 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import BottomSheet from '@/components/bottom-sheet/index';
 import { Intersection } from '@/components/intersection/intersection';
 import { StoreList } from '@/components/store/list';
 import { useGetBagInfiniteList } from '@/hooks/query/bag/useGetBagInfiniteList';
 import { BagInfoResponse as StoreInfoResponse } from '@/types/bag';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
+import { MapStateStore, useMapStore } from '../../useMapStore';
 import ListShowButton from '../list-show-button';
 
 export default function ListBottomSheet({
@@ -14,27 +15,34 @@ export default function ListBottomSheet({
   setSelectedStore,
 }: {
   map: naver.maps.Map;
-  setSelectedStore: React.Dispatch<
-    React.SetStateAction<StoreInfoResponse | undefined>
-  >;
+  setSelectedStore: MapStateStore['setSelectedStore'];
 }) {
-  const [isOpen, setOpen] = useState(true);
+  const [isListSheetOpen, setIsListSheetOpen] = useState(true);
+  const [isListSheetHidden, setIsListSheetHidden] = useState(false);
   const bagListState = useGetBagInfiniteList({ size: 5 });
   const { list, intersection, isFetched } = useInfiniteScroll(bagListState);
+  const [initialSnap, setInitialSnap] = useState(1);
+  const { selectedStore } = useMapStore();
 
   const handleListShowButtonClick = () => {
-    setOpen(true);
+    setIsListSheetOpen(true);
+    setInitialSnap(0);
+    setIsListSheetHidden(false);
   };
+
+  useEffect(() => {
+    if (!selectedStore) {
+      setIsListSheetHidden(false);
+    }
+  }, [selectedStore]);
 
   const handleStoreItemClick = useCallback(
     (store: StoreInfoResponse) => {
-      const position = new naver.maps.LatLng(
-        Number(store.latitude),
-        Number(store.longitude),
-      );
+      const [lat, lng] = [Number(store.latitude), Number(store.longitude)];
+      const position = new naver.maps.LatLng(lat, lng);
       map.morph(position, 18);
-      setOpen(false);
       setSelectedStore(store);
+      setIsListSheetHidden(true);
     },
     [map],
   );
@@ -42,28 +50,29 @@ export default function ListBottomSheet({
   return (
     <>
       <ListShowButton onClick={handleListShowButtonClick} />
-      {isOpen && isFetched && (
+      {isListSheetOpen && isFetched && (
         <BottomSheet
-          isOpen={isOpen}
-          setOpen={setOpen}
-          height={600}
-          content={
-            <div className="flex flex-col gap-[15px] px-[23px]">
-              <StoreList.Container className="pb-[50px]">
-                {list!.map((store) => (
-                  <StoreList.Item
-                    key={store.id}
-                    data={store}
-                    onClick={() => {
-                      handleStoreItemClick(store);
-                    }}
-                  />
-                ))}
-              </StoreList.Container>
-              <Intersection ref={intersection} />
-            </div>
-          }
-        />
+          isOpen={isListSheetOpen}
+          setOpen={setIsListSheetOpen}
+          snapPoints={[600, 200, 0]}
+          initialSnap={initialSnap}
+          isHidden={isListSheetHidden}
+        >
+          <div className="flex flex-col gap-[15px] px-[23px]">
+            <StoreList.Container className="pb-[50px]">
+              {list!.map((store) => (
+                <StoreList.Item
+                  key={store.id}
+                  data={store}
+                  onClick={() => {
+                    handleStoreItemClick(store);
+                  }}
+                />
+              ))}
+            </StoreList.Container>
+            <Intersection ref={intersection} />
+          </div>
+        </BottomSheet>
       )}
     </>
   );

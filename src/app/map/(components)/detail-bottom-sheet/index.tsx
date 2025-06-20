@@ -12,15 +12,15 @@ export default function DetailBottomSheet({
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
-    <BottomSheet
-      isOpen={isOpen}
-      setOpen={setOpen}
-      height={300}
-      content={
-        <StoreList.Container className="px-[20px]">
-          <StoreList.Item data={info} />
-        </StoreList.Container>
-      }
-    />
+    <BottomSheet isOpen={isOpen} setOpen={setOpen} height={300} disableDrag>
+      <StoreList.Container className="px-[20px]">
+        <StoreList.Item
+          data={info}
+          onClick={() => {
+            window.open(`/bag/${info.id}`, '_blank');
+          }}
+        />
+      </StoreList.Container>
+    </BottomSheet>
   );
 }
