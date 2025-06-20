@@ -7,22 +7,16 @@ import { StoreList } from '@/components/store/list';
 import { useGetBagInfiniteList } from '@/hooks/query/bag/useGetBagInfiniteList';
 import { BagInfoResponse as StoreInfoResponse } from '@/types/bag';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
-import { MapStateStore, useMapStore } from '../_stores/useMapStore';
+import { useMapStore } from '../_stores/useMapStore';
 import ListShowButton from './list-show-button';
 
-export default function ListBottomSheet({
-  map,
-  setSelectedStore,
-}: {
-  map: naver.maps.Map;
-  setSelectedStore: MapStateStore['setSelectedStore'];
-}) {
+export default function ListBottomSheet({ map }: { map: naver.maps.Map }) {
   const [isListSheetOpen, setIsListSheetOpen] = useState(true);
   const [isListSheetHidden, setIsListSheetHidden] = useState(false);
   const bagListState = useGetBagInfiniteList({ size: 5 });
   const { list, intersection, isFetched } = useInfiniteScroll(bagListState);
   const [initialSnap, setInitialSnap] = useState(1);
-  const { selectedStore } = useMapStore();
+  const { selectedStore, setSelectedStore } = useMapStore();
 
   const handleListShowButtonClick = () => {
     setIsListSheetOpen(true);

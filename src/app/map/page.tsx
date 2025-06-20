@@ -11,7 +11,6 @@ import { useMapStore } from './_stores/useMapStore';
 import { generateMarker, getUserCurrentPosition } from './_utils/map';
 
 export default function Map() {
-  const [isDetailBottomSheetOpen, setIsDetailBottomSheetOpen] = useState(false);
   const [userLocation, setUserLocation] = useState<[number, number]>();
   const mapRef = useRef<naver.maps.Map | null>(null);
   const { data: storeList, isFetched: isStoreListFetched } = useGetStoreList({
@@ -19,8 +18,7 @@ export default function Map() {
     size: 100,
   });
   const storeListOnMap = storeList?.pages[0];
-  const { selectedStore, setSelectedStore } = useMapStore();
-
+  const { setSelectedStore } = useMapStore();
   const [loadedMap, setLoadedMap] = useState<naver.maps.Map | null>(null);
 
   const { open } = useModal();
@@ -121,27 +119,11 @@ export default function Map() {
     }
   }, [isStoreListFetched, userLocation]);
 
-  useEffect(() => {
-    setIsDetailBottomSheetOpen(true);
-  }, [selectedStore]);
-
-  useEffect(() => {
-    if (!isDetailBottomSheetOpen) {
-      setSelectedStore(undefined);
-    }
-  }, [isDetailBottomSheetOpen]);
-
   return (
     <div id="map" className="w-full h-[100dvh]">
       <LocationButton onClick={morphToCurrentPosition} />
-      <ListBottomSheet map={loadedMap!} setSelectedStore={setSelectedStore} />
-      {selectedStore && (
-        <DetailBottomSheet
-          info={selectedStore}
-          isOpen={isDetailBottomSheetOpen}
-          setOpen={setIsDetailBottomSheetOpen}
-        />
-      )}
+      <ListBottomSheet map={loadedMap!} />
+      <DetailBottomSheet />
     </div>
   );
 }
