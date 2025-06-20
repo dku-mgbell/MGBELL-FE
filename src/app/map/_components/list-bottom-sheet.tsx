@@ -7,8 +7,8 @@ import { StoreList } from '@/components/store/list';
 import { useGetBagInfiniteList } from '@/hooks/query/bag/useGetBagInfiniteList';
 import { BagInfoResponse as StoreInfoResponse } from '@/types/bag';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
-import { MapStateStore, useMapStore } from '../../useMapStore';
-import ListShowButton from '../list-show-button';
+import { MapStateStore, useMapStore } from '../_stores/useMapStore';
+import ListShowButton from './list-show-button';
 
 export default function ListBottomSheet({
   map,

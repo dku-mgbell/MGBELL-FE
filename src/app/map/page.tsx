@@ -4,11 +4,11 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useGetBagList as useGetStoreList } from '@/hooks/query/bag/useGetBagList';
 import { BagInfoResponse as StoreInfoResponse } from '@/types/bag';
 import useModal from '@/hooks/useModal';
-import DetailBottomSheet from './(components)/detail-bottom-sheet';
-import ListBottomSheet from './(components)/list-bottom-sheet';
-import LocationButton from './(components)/location-button';
-import { useMapStore } from './useMapStore';
-import { generateMarker, getUserCurrentPosition } from './utils';
+import DetailBottomSheet from './_components/detail-bottom-sheet';
+import ListBottomSheet from './_components/list-bottom-sheet';
+import LocationButton from './_components/location-button';
+import { useMapStore } from './_stores/useMapStore';
+import { generateMarker, getUserCurrentPosition } from './_utils/map';
 
 export default function Map() {
   const [isDetailBottomSheetOpen, setIsDetailBottomSheetOpen] = useState(false);
