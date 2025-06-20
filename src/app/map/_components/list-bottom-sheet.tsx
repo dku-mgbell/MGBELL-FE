@@ -12,11 +12,15 @@ import ListShowButton from './list-show-button';
 
 export default function ListBottomSheet({ map }: { map: naver.maps.Map }) {
   const [isListSheetOpen, setIsListSheetOpen] = useState(true);
-  const [isListSheetHidden, setIsListSheetHidden] = useState(false);
   const bagListState = useGetBagInfiniteList({ size: 5 });
   const { list, intersection, isFetched } = useInfiniteScroll(bagListState);
   const [initialSnap, setInitialSnap] = useState(1);
-  const { selectedStore, setSelectedStore } = useMapStore();
+  const {
+    selectedStore,
+    setSelectedStore,
+    isListSheetHidden,
+    setIsListSheetHidden,
+  } = useMapStore();
 
   const handleListShowButtonClick = () => {
     setIsListSheetOpen(true);
@@ -48,7 +52,7 @@ export default function ListBottomSheet({ map }: { map: naver.maps.Map }) {
         <BottomSheet
           isOpen={isListSheetOpen}
           setOpen={setIsListSheetOpen}
-          snapPoints={[600, 200, 0]}
+          snapPoints={[600, 150, 0]}
           initialSnap={initialSnap}
           isHidden={isListSheetHidden}
         >
