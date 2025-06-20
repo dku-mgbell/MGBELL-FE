@@ -37,7 +37,7 @@ export default function ListBottomSheet({ map }: { map: naver.maps.Map }) {
   const handleStoreItemClick = useCallback(
     (store: StoreInfoResponse) => {
       const [lat, lng] = [Number(store.latitude), Number(store.longitude)];
-      const position = new naver.maps.LatLng(lat, lng);
+      const position = new naver.maps.LatLng(lat - 0.0005, lng);
       map.morph(position, 18);
       setSelectedStore(store);
       setIsListSheetHidden(true);

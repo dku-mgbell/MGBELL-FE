@@ -54,7 +54,7 @@ export default function Map() {
     setSelectedStore(store);
     if (mapRef.current) {
       const map = mapRef.current;
-      const position = new naver.maps.LatLng(lat, lng);
+      const position = new naver.maps.LatLng(lat - 0.0005, lng);
 
       map.morph(position, 18);
     }
@@ -65,7 +65,7 @@ export default function Map() {
     const coord = userLocation || defaultCoord;
 
     const mapOptions = {
-      center: new naver.maps.LatLng(coord[0], coord[1]),
+      center: new naver.maps.LatLng(coord[0] - 0.7, coord[1]),
       zoom: 7,
     };
     const map = new naver.maps.Map('map', mapOptions);
