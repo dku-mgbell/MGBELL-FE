@@ -26,14 +26,14 @@ export default function BottomSheet({
           setOpen(false);
         }}
         style={{
-          backgroundColor: 'transparent',
           width: '100%',
           maxWidth: 450,
           left: '50%',
           transform: 'translateX(-50%)',
+          backgroundColor: 'transparent',
         }}
       />
-      <div className="max-w-[450px] w-full relative h-full mx-auto z-[-9999]">
+      <div className="max-w-[450px] w-full relative h-full mx-auto z-[9999]">
         <Sheet.Container>
           <Sheet.Header />
           <Sheet.Content disableDrag>
