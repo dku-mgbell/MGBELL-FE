@@ -56,7 +56,7 @@ export default function Page() {
       startTime: `${new Date().toISOString().split('T')[0]}T${data.startTime}:00.000Z`,
       endTime: `${new Date().toISOString().split('T')[0]}T${data.endTime}:00.000Z`,
       originalPrice: Number(data.originalPrice),
-      discount: Number(data.discount),
+      discount: Number(data.discount.replace('%', '')),
       quantity: Number(data.quantity),
       salePrice: finalPrice,
     });

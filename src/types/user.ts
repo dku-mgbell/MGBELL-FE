@@ -37,5 +37,6 @@ export interface AccountInfo {
     userRole: 'CUSTOMER' | 'OWNER';
     providerType: keyof typeof loginButtonConfig;
     approved: 'APPROVED' | 'WAITING' | 'REJECTED';
+    goodsId: number | null;
   };
 }
