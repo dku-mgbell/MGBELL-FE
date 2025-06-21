@@ -19,7 +19,7 @@ export const useGetUserAccountInfo = ({ redirect }: { redirect?: boolean }) => {
 
         // OWNER 계정 & 가게 승인
         else if (res.data.approved === 'APPROVED') {
-          if (res.data.goodsId) {
+          if (res.data.goodsId !== 'null') {
             router.push('/store/order');
           } else {
             router.push('/register/bag');

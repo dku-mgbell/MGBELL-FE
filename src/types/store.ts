@@ -1,3 +1,4 @@
+import { BagRegistrationRequest } from './bag';
 import { ImageRequest } from './image';
 import { Coordinate } from './map';
 
@@ -72,4 +73,13 @@ export interface StorePatch {
     storeType: StoreID;
   };
   images: string[];
+}
+
+export interface StoreDetailWithBag extends BagRegistrationRequest {
+  storeId: string;
+  goodsId: string;
+  storeName: string;
+  address: string;
+  images: string[];
+  saleStatus: 'ON' | 'OFF';
 }
