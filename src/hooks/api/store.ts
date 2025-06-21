@@ -66,4 +66,10 @@ export const Store = {
     const response = await API.patch('/store/edit', data);
     return response.data;
   },
+  async approve(id: number) {
+    const response = await API.post(`${WIP_API_BASE_URL}/store/approve`, {
+      id,
+    });
+    return response.data;
+  },
 };
