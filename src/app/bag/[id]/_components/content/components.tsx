@@ -2,7 +2,7 @@ import WarningIcon from '@/assets/svg/WarningIcon';
 import Carousel from '@/components/carousel/carousel';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Store } from '@/components/store';
-import { useGetBagDetailStore } from '../../_store/useGetBagDetailStore';
+import { useGetBagDetailStore } from '../../_stores/useGetBagDetailStore';
 
 function Container({ children }: { children: React.ReactNode }) {
   return (

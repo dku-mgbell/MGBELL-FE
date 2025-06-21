@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useGetBagDetail } from '@/hooks/query/bag/useGetBagDetail';
 import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import { useBagHistoryStore } from '@/hooks/stores/useBagHistoryStore';
-import { useGetBagDetailStore } from '../../_store/useGetBagDetailStore';
+import { useGetBagDetailStore } from '../../_stores/useGetBagDetailStore';
 import Footer from '../footer';
 import SkeletonContent from '../skeleton-content';
 import { BagContent } from './components';

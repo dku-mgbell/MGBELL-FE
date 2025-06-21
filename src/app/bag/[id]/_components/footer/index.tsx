@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Counter from '@/components/ui/counter';
 import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
-import { useGetBagDetailStore } from '../../_store/useGetBagDetailStore';
+import { useGetBagDetailStore } from '../../_stores/useGetBagDetailStore';
 import Container from './container';
 import OrderButton from './order-button';
 

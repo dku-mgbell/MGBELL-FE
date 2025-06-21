@@ -4,7 +4,7 @@ import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
-import { useGetBagDetailStore } from '../../_store/useGetBagDetailStore';
+import { useGetBagDetailStore } from '../../_stores/useGetBagDetailStore';
 
 export default function OrderButton() {
   const { isLoggedIn } = useAuthStore();
