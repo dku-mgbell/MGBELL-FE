@@ -1,35 +1,34 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useGetBagDetail } from '@/hooks/query/bag/useGetBagDetail';
-import { useAuthStore } from '@/hooks/stores/useAuthStore';
-import { useBagHistoryStore } from '@/hooks/stores/useBagHistoryStore';
-import { useGetBagDetailStore } from '../../_stores/useGetBagDetailStore';
+import { useGetStoreDetailWithBag } from '@/hooks/query/store/useGetStoreDetailWithBag';
+import { useStoreDetailStore } from '../../_stores/useStoreDetailStore';
 import Footer from '../footer';
 import SkeletonContent from '../skeleton-content';
 import { BagContent } from './components';
 
 interface Props {
-  bagId: number;
+  storeId: string;
 }
 
-export default function BagDetailContent({ bagId }: Props) {
-  const { isLoggedIn } = useAuthStore();
-  const { data: bagDetail, isFetched: isBagDetailFetched } = useGetBagDetail({
-    id: bagId,
-    isLoggedIn,
-  });
-  const { setBagHistory } = useBagHistoryStore();
-  const { bagDetail: bagDetailStore, setBagDetail } = useGetBagDetailStore();
+export default function BagDetailContent({ storeId }: Props) {
+  const { data: storeDetail, isFetched: isStoreDetailFetched } =
+    useGetStoreDetailWithBag(storeId);
+  const { setStoreId, setIsStoreDetailFetched, setStoreDetail } =
+    useStoreDetailStore();
 
   useEffect(() => {
-    if (isBagDetailFetched) {
-      setBagHistory(bagDetail);
-      setBagDetail(isBagDetailFetched, bagDetail);
-    }
-  }, [isBagDetailFetched, bagDetail, setBagHistory, setBagDetail]);
+    setStoreId(storeId);
+  }, [storeId]);
 
-  if (bagId !== bagDetailStore?.id) return <SkeletonContent />;
+  useEffect(() => {
+    setIsStoreDetailFetched(isStoreDetailFetched);
+    if (storeDetail) {
+      setStoreDetail(storeDetail);
+    }
+  }, [isStoreDetailFetched]);
+
+  if (!isStoreDetailFetched) return <SkeletonContent />;
 
   return (
     <>

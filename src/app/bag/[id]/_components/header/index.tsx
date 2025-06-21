@@ -1,16 +1,12 @@
 import BackButton from '@/components/button/back-button';
 import Container from './_components/container';
-import FavoriteButton from './_components/favorite-button';
+// import FavoriteButton from './_components/favorite-button';
 
-interface Props {
-  bagId: number;
-}
-
-export default function Header({ bagId }: Props) {
+export default function Header() {
   return (
     <Container>
       <BackButton />
-      <FavoriteButton bagId={bagId} />
+      {/* <FavoriteButton bagId={bagId} /> */}
     </Container>
   );
 }

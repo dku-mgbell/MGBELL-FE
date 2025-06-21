@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import Counter from '@/components/ui/counter';
 import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
-import { useGetBagDetailStore } from '../../_stores/useGetBagDetailStore';
+import { useStoreDetailStore } from '../../_stores/useStoreDetailStore';
 import Container from './container';
 import OrderButton from './order-button';
 
 export default function Footer() {
-  const { bagDetail } = useGetBagDetailStore();
+  const { storeDetail } = useStoreDetailStore();
   const { setBagAmount } = useBagOrderState();
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function Footer() {
     <Container>
       <Counter
         setValue={setBagAmount}
-        maxCount={bagDetail ? bagDetail.amount : 0}
+        maxCount={storeDetail ? storeDetail.quantity : 0}
         className="w-[170px]"
       />
       <OrderButton />

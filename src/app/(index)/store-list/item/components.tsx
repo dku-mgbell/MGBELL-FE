@@ -110,7 +110,12 @@ function MainStoreInfo({
         )}
       </div>
       {startAt && endAt && amount !== undefined ? (
-        <Store.OpenStatus startAt={startAt} endAt={endAt} amount={amount} />
+        <Store.OpenStatus
+          startTime={startAt}
+          endTime={endAt}
+          quantity={amount}
+          // saleStatus={openStatus}
+        />
       ) : (
         <Skeleton className="w-[100px] h-[21px]" />
       )}
