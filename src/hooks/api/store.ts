@@ -73,8 +73,8 @@ export const Store = {
     });
     return response.data;
   },
-  async getDetailWithBag(id: number): Promise<StoreDetailWithBag> {
+  async getDetailWithBag(id: string): Promise<StoreDetailWithBag> {
     const response = await API.get(`${WIP_API_BASE_URL}/store/${id}`);
-    return response.data;
+    return response.data.data;
   },
 };
