@@ -4,7 +4,7 @@ import { Intersection } from '@/components/intersection/intersection';
 import { useGetUserOrderList } from '@/hooks/query/order/useGetUserOrderList';
 import { UserOrderDetailPreview } from '@/types/order';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
-import OrderItem from '../_components/order-item';
+import { Order } from '../_components/order-item';
 
 export default function Page() {
   const orderListState = useGetUserOrderList({ size: 5 });
@@ -20,7 +20,7 @@ export default function Page() {
             주문 내역이 없어요!
           </p>
         ) : (
-          list!.map((item) => <OrderItem key={item.orderId} data={item} />)
+          list!.map((item) => <Order.ListItem key={item.orderId} data={item} />)
         )}
       </div>
       <Intersection ref={intersection} />
