@@ -8,7 +8,7 @@ function SlideContainer({ children }: { children: React.ReactNode }) {
 
 function EmptyContent() {
   return (
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-h4 font-bold text-gray4 w-full">
+    <div className="absolute-center text-h5 font-bold text-gray5 w-full">
       찜한 매장이 없어요!
     </div>
   );
