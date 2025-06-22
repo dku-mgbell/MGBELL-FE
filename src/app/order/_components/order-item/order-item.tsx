@@ -2,14 +2,18 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import ChevronRightIcon from '@/assets/svg/ChevronRightIcon';
 import { Button } from '@/components/ui/button';
+import { useCancelOrderByUser } from '@/hooks/query/order/useCancelOrderByUser';
+import { cn } from '@/lib/utils';
 import {
   OrderState,
   OrderStateColor,
   OrderStateName,
+  UserOrderDetail,
   UserOrderDetailPreview,
 } from '@/types/order';
 import { commaizeNumber } from '@/utils/commaizeNumber';
 import { formatDateTime } from '@/utils/formatDateTime';
+import useModal from '@/hooks/useModal';
 
 function Container({ children }: { children: React.ReactNode }) {
   return (
@@ -38,6 +42,26 @@ function OrderDetailButton({ orderId }: { orderId: number }) {
   );
 }
 
+function OpenStatusText({
+  orderState,
+  className,
+}: {
+  orderState: OrderState;
+  className?: string;
+}) {
+  return (
+    <p
+      className={cn(
+        'text-b2 font-bold',
+        className,
+        OrderStateColor[orderState],
+      )}
+    >
+      {OrderStateName[orderState]}
+    </p>
+  );
+}
+
 function HeaderOrderInfo({
   orderDateTime,
   orderState,
@@ -47,9 +71,7 @@ function HeaderOrderInfo({
 }) {
   return (
     <div className="flex gap-[6px] items-center">
-      <span className={`text-b2 font-bold ${OrderStateColor[orderState]}`}>
-        {OrderStateName[orderState]}
-      </span>
+      <OpenStatusText orderState={orderState} />
       <span className="text-b3 text-gray5">
         {formatDateTime(orderDateTime)}
       </span>
@@ -58,13 +80,22 @@ function HeaderOrderInfo({
 }
 
 function Body({ children }: { children: React.ReactNode }) {
-  return <div className="flex gap-[12px]">{children}</div>;
+  return <div className="flex gap-[12px] w-full">{children}</div>;
 }
 
-function Thumbnail({ images }: { images: string }) {
+function Thumbnail({
+  images,
+  className,
+}: {
+  images: string;
+  className?: string;
+}) {
   return (
     <div
-      className="w-[83px] h-[72px] rounded-[10px] bg-cover bg-center"
+      className={cn(
+        'w-[83px] h-[72px] rounded-[10px] bg-cover bg-center',
+        className,
+      )}
       style={{ backgroundImage: `url('${images}')` }}
     />
   );
@@ -79,19 +110,44 @@ function BodyOrderInfo({
   storeName,
   amount,
   subTotal,
+  openStatus,
+  textStyle = 'medium',
 }: {
   id: number;
   storeName: string;
   amount: number;
-  subTotal: number;
+  subTotal?: number;
+  openStatus?: OrderState;
+  textStyle?: 'medium' | 'large';
 }) {
+  const style = {
+    storeName: {
+      large: 'text-h5',
+      medium: 'text-b2',
+    },
+    amount: {
+      large: 'text-b1 font-bold',
+      medium: 'text-b2',
+    },
+  };
+
   return (
-    <div className="flex flex-col gap-[2px]">
-      <Link href={`/bag/${id}`} className="text-b2 font-bold">
+    <div className="flex flex-col gap-[2px] flex-1">
+      {openStatus && (
+        <OpenStatusText orderState={openStatus} className="text-b1" />
+      )}
+      <Link
+        href={`/bag/${id}`}
+        className={cn(style.storeName[textStyle], 'font-bold')}
+      >
         {storeName}
       </Link>
-      <p className="text-b2 text-gray5">마감백 {amount}개</p>
-      <p className="text-b2 font-bold">{commaizeNumber(subTotal)}원</p>
+      <p className={cn(style.amount[textStyle], 'text-gray4')}>
+        마감백 {amount}개
+      </p>
+      {subTotal && (
+        <p className="text-b2 font-bold">{commaizeNumber(subTotal)}원</p>
+      )}
     </div>
   );
 }
@@ -102,7 +158,7 @@ function ReviewButton({ orderId }: { orderId: number }) {
   return (
     <Button
       variant="secondary-outline"
-      className="py-[8px] text-b3 text-secondary tracking-[-0.5px]"
+      className="h-[40px] text-b3 text-secondary tracking-[-0.5px]"
       onClick={() => {
         route.push(`/bag/review/post?orderId=${orderId}`);
       }}
@@ -112,12 +168,22 @@ function ReviewButton({ orderId }: { orderId: number }) {
   );
 }
 
-function CancelButtons() {
+function CancelButtons({ orderId }: { orderId: number }) {
+  const { open } = useModal();
+  const { mutate: cancelOrder } = useCancelOrderByUser();
+
+  const handleCancelButtonClick = () => {
+    open({
+      content: '주문을 취소하시겠습니까?',
+      confirmEvent: () => cancelOrder(orderId),
+    });
+  };
   return (
-    <div className="w-full flex justify-between py-[8px] border-[1px] border-gray6 rounded-[10px] items-center">
+    <div className="w-full flex justify-between h-[40px] border-[1px] border-gray6 rounded-[10px] items-center">
       <button
         type="button"
         className="cursor-pointer text-b3 text-gray3 flex-1 font-bold"
+        onClick={handleCancelButtonClick}
       >
         주문 취소
       </button>
@@ -135,7 +201,7 @@ function CancelButtons() {
   );
 }
 
-export default function OrderItem({
+export function OrderListItem({
   data: {
     orderId,
     id,
@@ -170,7 +236,49 @@ export default function OrderItem({
         </Body>
       </OrderInfoContainer>
       <ButtonContainer>
-        {orderState === 'REQUESTED' && <CancelButtons />}
+        {orderState === 'REQUESTED' && <CancelButtons orderId={orderId} />}
+        {orderState === 'COMPLETED' && <ReviewButton orderId={orderId} />}
+      </ButtonContainer>
+    </Container>
+  );
+}
+
+export function OrderDateAndNumberInfo({
+  orderId,
+  orderDateTime,
+}: {
+  orderId: number;
+  orderDateTime: string;
+}) {
+  return (
+    <p className="text-b2 text-gray5">
+      주문일시: {formatDateTime(orderDateTime)}
+      <br />
+      주문번호: {orderId}
+    </p>
+  );
+}
+
+export function OrderDetailItem({
+  data: { orderId, id, orderDateTime, storeName, orderState, amount, images },
+}: {
+  data: UserOrderDetail;
+}) {
+  return (
+    <Container>
+      <Body>
+        <BodyOrderInfo
+          id={id}
+          storeName={storeName}
+          amount={amount}
+          openStatus={orderState}
+          textStyle="large"
+        />
+        <Thumbnail images={images} className="w-[110px] h-[86px]" />
+      </Body>
+      <OrderDateAndNumberInfo orderId={orderId} orderDateTime={orderDateTime} />
+      <ButtonContainer>
+        {orderState === 'REQUESTED' && <CancelButtons orderId={orderId} />}
         {orderState === 'COMPLETED' && <ReviewButton orderId={orderId} />}
       </ButtonContainer>
     </Container>
