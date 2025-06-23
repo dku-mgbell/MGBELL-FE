@@ -3,7 +3,7 @@
 import HeartOutlineIcon from '@/assets/svg/HeartOutlineIcon';
 import { usePostFavorite } from '@/hooks/query/favorite/usePostFavorite';
 import { useAuthStore } from '@/hooks/stores/useAuthStore';
-import { useGetBagDetailStore } from '../../../_store/useGetBagDetailStore';
+import { useGetBagDetailStore } from '../../../_stores/useGetBagDetailStore';
 
 interface Props {
   bagId: number;

@@ -12,6 +12,7 @@ import TextField from '@/components/ui/text-field';
 import TextArea from '@/components/ui/textarea';
 import usePostBagRegistration from '@/hooks/query/bag/usePostBagRegistration';
 import { commaizeNumber } from '@/utils/commaizeNumber';
+import { format24HourTimeToFullDate } from '@/utils/format24HourTimeToFullDate';
 import { returnTimeOptions } from '@/utils/returnTimeOptions';
 
 const schema = z.object({
@@ -53,8 +54,8 @@ export default function Page() {
   const onSubmit: SubmitHandler<RegisterBagFormFields> = (data) => {
     postBagRegistration({
       ...data,
-      startTime: `${new Date().toISOString().split('T')[0]}T${data.startTime}:00.000Z`,
-      endTime: `${new Date().toISOString().split('T')[0]}T${data.endTime}:00.000Z`,
+      startTime: format24HourTimeToFullDate(data.startTime),
+      endTime: format24HourTimeToFullDate(data.endTime),
       originalPrice: Number(data.originalPrice),
       discount: Number(data.discount.replace('%', '')),
       quantity: Number(data.quantity),

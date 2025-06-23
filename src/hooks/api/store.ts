@@ -3,6 +3,7 @@ import {
   StorePatch,
   StoreRegistration,
   StoreRegistrationRequest,
+  StoreDetailWithBag,
 } from '@/types/store';
 import { WIP_API_BASE_URL } from '@/constant';
 import { API } from '.';
@@ -65,5 +66,15 @@ export const Store = {
   async patchInfo(data: StorePatch) {
     const response = await API.patch('/store/edit', data);
     return response.data;
+  },
+  async approve(id: number) {
+    const response = await API.patch(`${WIP_API_BASE_URL}/store/approve`, {
+      id,
+    });
+    return response.data;
+  },
+  async getDetailWithBag(id: string): Promise<StoreDetailWithBag> {
+    const response = await API.get(`${WIP_API_BASE_URL}/store/${id}`);
+    return response.data.data;
   },
 };
