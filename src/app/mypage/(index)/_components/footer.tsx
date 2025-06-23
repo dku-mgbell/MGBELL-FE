@@ -1,13 +1,32 @@
 'use client';
 
+import { useDeleteAccount } from '@/hooks/query/user/useDeleteAccount';
+import { useAuth } from '@/hooks/useAuth';
+import useModal from '@/hooks/useModal';
+
 export default function Footer() {
+  const { logout } = useAuth();
+  const { mutate: deleteAccount } = useDeleteAccount();
+  const { open } = useModal();
+
   const handleLogout = () => {
-    // 로그아웃 처리
+    open({
+      content: '로그아웃하시겠습니까?',
+      confirmEvent: () => {
+        logout();
+      },
+    });
   };
 
   const handleWithdraw = () => {
-    // 회원탈퇴 처리
+    open({
+      content: '탈퇴하시겠습니까?',
+      confirmEvent: () => {
+        deleteAccount();
+      },
+    });
   };
+
   return (
     <div className="flex justify-center gap-[20px] items-center">
       <button
