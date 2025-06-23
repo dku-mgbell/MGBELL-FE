@@ -1,5 +1,5 @@
 export interface OrderRequest {
-  goodsId: number;
+  goodsId: string;
   quantity: number;
   totalPrice: number;
   pickupTime: string;

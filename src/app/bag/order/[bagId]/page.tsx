@@ -87,7 +87,7 @@ export default function Page() {
       content: '주문하시겠습니까?',
       confirmEvent: () => {
         postOrder({
-          goodsId: Number(data.goodsId),
+          goodsId: data.goodsId,
           pickupTime: format24HourTimeToFullDate(form.pickupTime),
           memo: form.memo,
           quantity: bagAmount,
