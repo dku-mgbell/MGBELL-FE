@@ -1,9 +1,14 @@
-export interface OrderRequest {
+export interface UserOrderRequest {
   goodsId: string;
   quantity: number;
   totalPrice: number;
   pickupTime: string;
   memo: string;
+}
+
+export interface UserOrderResponse {
+  merchantUid: string;
+  totalAmount: number;
 }
 
 export interface UserOrderDetailPreview {
