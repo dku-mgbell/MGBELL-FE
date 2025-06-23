@@ -1,107 +1,115 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import markerImg from '@/assets/images/map/marker.png';
-import pinImg from '@/assets/images/map/pin.png';
-import BackButton from '@/components/button/back-button';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useGetBagList as useGetStoreList } from '@/hooks/query/bag/useGetBagList';
 import { BagInfoResponse as StoreInfoResponse } from '@/types/bag';
-import { MapMarker } from '@/types/map';
-import DetailBottomSheet from './(components)/detail-bottom-sheet/detail-bottom-sheet';
-import ListBottomSheet from './(components)/list-bottom-sheet/list-bottom-sheet';
-import LocationButton from './(components)/location-button';
-import * as styles from './styles.css';
-
-const DEFAULT_COORD = [37.3214151882177, 127.110106750383];
+import useModal from '@/hooks/useModal';
+import DetailBottomSheet from './_components/detail-bottom-sheet';
+import ListBottomSheet from './_components/list-bottom-sheet';
+import LocationButton from './_components/location-button';
+import { useMapStore } from './_stores/useMapStore';
+import { generateMarker, getUserCurrentPosition } from './_utils/map';
 
 export default function Map() {
-  const [isOpen, setOpen] = useState(false);
-  const [selectedStore, setSelectedStore] = useState<StoreInfoResponse>();
-  const [userLocation, setUserLocation] = useState(DEFAULT_COORD);
-  const { data: storeList, isFetched: storeListFetched } = useGetStoreList({
+  const [userLocation, setUserLocation] = useState<[number, number]>();
+  const mapRef = useRef<naver.maps.Map | null>(null);
+  const { data: storeList, isFetched: isStoreListFetched } = useGetStoreList({
     page: 0,
     size: 100,
   });
-  const [storeListOnMap, setStoreListOnMap] = useState<StoreInfoResponse[]>();
-  const [storeMap, setStoreMap] = useState<naver.maps.Map>();
+  const storeListOnMap = storeList?.pages[0];
+  const { setSelectedStore } = useMapStore();
+  const [loadedMap, setLoadedMap] = useState<naver.maps.Map | null>(null);
 
-  // 사용자 현위치 조회
-  const handleUserLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setUserLocation([position.coords.latitude, position.coords.longitude]);
-      });
-    }
+  const { open } = useModal();
+
+  const markCurrentPosition = () => {
+    getUserCurrentPosition((position) => {
+      setUserLocation(position);
+    });
   };
+
   useEffect(() => {
-    handleUserLocation();
+    markCurrentPosition();
   }, []);
 
-  // 매장 리스트 조회
-  useEffect(() => {
-    if (storeListFetched) {
-      setStoreListOnMap(storeList!.pages[0]);
+  const morphToCurrentPosition = useCallback(() => {
+    if (userLocation) {
+      mapRef.current?.morph(
+        new naver.maps.LatLng(userLocation[0], userLocation[1]),
+        18,
+      );
+    } else {
+      open({
+        content: '위치 접근 권한이 필요합니다.',
+      });
     }
-  }, [storeList]);
+  }, [userLocation]);
+
+  const handleStoreClick = (
+    store: StoreInfoResponse,
+    coord: [number, number],
+  ) => {
+    const [lat, lng] = coord;
+    setSelectedStore(store);
+    if (mapRef.current) {
+      const map = mapRef.current;
+      const position = new naver.maps.LatLng(lat - 0.0005, lng);
+
+      map.morph(position, 18);
+    }
+  };
 
   const loadMap = () => {
+    const defaultCoord = [36.5, 127.8];
+    const coord = userLocation || defaultCoord;
+
     const mapOptions = {
-      center: new naver.maps.LatLng(userLocation[0] - 0.001, userLocation[1]),
-      zoom: 17,
+      center: new naver.maps.LatLng(coord[0] - 0.7, coord[1]),
+      zoom: 7,
     };
     const map = new naver.maps.Map('map', mapOptions);
-    const markerSize = 60;
-
-    setStoreMap(map);
-
-    const generateMarker = (
-      { lat, lng, name }: MapMarker,
-      { isUserLocation }: { isUserLocation: boolean },
-    ) =>
-      new naver.maps.Marker({
-        position: new naver.maps.LatLng(lat, lng),
-        map,
-        title: name,
-        icon: {
-          url: isUserLocation ? pinImg.src : markerImg.src,
-          size: new naver.maps.Size(markerSize, markerSize),
-        },
-      });
+    mapRef.current = map;
+    setLoadedMap(map);
 
     // 현위치 핀 표시
-    generateMarker(
-      {
+    if (userLocation) {
+      generateMarker({
         name: 'user-location',
-        lat: userLocation[0],
-        lng: userLocation[1],
+        lat: coord[0],
+        lng: coord[1],
         address: '',
-      },
-      { isUserLocation: true },
-    );
+        isUserLocation: true,
+        map,
+      });
+    }
 
     // 매장 위치 마커 표시
     if (storeListOnMap) {
       storeListOnMap.forEach((store: StoreInfoResponse) => {
-        const [name, lat, lng, address] = [
-          store.storeName,
-          Number(store.latitude),
-          Number(store.longitude),
-          store.address,
-        ];
-        const marker = generateMarker(
-          { name, lat, lng, address },
-          { isUserLocation: false },
-        );
+        const [lat, lng] = [Number(store.latitude), Number(store.longitude)];
+        const marker = generateMarker({
+          name: store.storeName,
+          address: store.address,
+          lat,
+          lng,
+          map,
+        });
         naver.maps.Event.addListener(marker, 'click', () => {
-          setSelectedStore(store);
-          map.morph(new naver.maps.LatLng(lat, lng));
+          handleStoreClick(store, [lat, lng]);
         });
       });
     }
   };
 
   useEffect(() => {
-    if (window && window.naver && window.naver.maps) {
+    if (
+      window &&
+      window.naver &&
+      window.naver.maps &&
+      isStoreListFetched &&
+      userLocation
+    ) {
       loadMap();
     } else {
       const mapScript = document.createElement('script');
@@ -109,28 +117,13 @@ export default function Map() {
       mapScript.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`;
       document.head.appendChild(mapScript);
     }
-  }, [userLocation, storeListOnMap]);
-
-  useEffect(() => {
-    setOpen(true);
-  }, [selectedStore]);
-
-  useEffect(() => {
-    if (!isOpen) setSelectedStore(undefined);
-  }, [isOpen]);
+  }, [isStoreListFetched, userLocation]);
 
   return (
-    <div id="map" className={styles.container}>
-      <BackButton />
-      <LocationButton onClick={handleUserLocation} />
-      <ListBottomSheet map={storeMap!} setSelectedStore={setSelectedStore} />
-      {selectedStore && (
-        <DetailBottomSheet
-          info={selectedStore}
-          isOpen={isOpen}
-          setOpen={setOpen}
-        />
-      )}
+    <div id="map" className="w-full h-[100dvh]">
+      <LocationButton onClick={morphToCurrentPosition} />
+      <ListBottomSheet map={loadedMap!} />
+      <DetailBottomSheet />
     </div>
   );
 }

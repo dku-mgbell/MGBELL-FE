@@ -1,6 +1,6 @@
 export interface LabeledFieldProps {
   children: React.ReactNode;
-  label: string;
+  label: React.ReactNode;
   description?: string;
 }
 

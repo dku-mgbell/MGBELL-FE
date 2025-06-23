@@ -1,0 +1,44 @@
+'use client';
+
+import { useEffect } from 'react';
+import { useGetStoreDetailWithBag } from '@/hooks/query/store/useGetStoreDetailWithBag';
+import { useStoreDetailStore } from '../../_stores/useStoreDetailStore';
+import Footer from '../footer';
+import SkeletonContent from '../skeleton-content';
+import { BagContent } from './components';
+
+interface Props {
+  storeId: string;
+}
+
+export default function BagDetailContent({ storeId }: Props) {
+  const { data: storeDetail, isFetched: isStoreDetailFetched } =
+    useGetStoreDetailWithBag(storeId);
+  const { setStoreId, setIsStoreDetailFetched, setStoreDetail } =
+    useStoreDetailStore();
+
+  useEffect(() => {
+    setStoreId(storeId);
+  }, [storeId]);
+
+  useEffect(() => {
+    setIsStoreDetailFetched(isStoreDetailFetched);
+    if (storeDetail) {
+      setStoreDetail(storeDetail);
+    }
+  }, [isStoreDetailFetched]);
+
+  if (!isStoreDetailFetched) return <SkeletonContent />;
+
+  return (
+    <>
+      <BagContent.Container>
+        <BagContent.Images />
+        <BagContent.StoreInfo />
+        <BagContent.Divider />
+        <BagContent.Description />
+      </BagContent.Container>
+      <Footer />
+    </>
+  );
+}
