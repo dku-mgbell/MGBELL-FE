@@ -19,6 +19,7 @@ import { format24HourTimeToFullDate } from '@/utils/format24HourTimeToFullDate';
 import { returnTimeOptions } from '@/utils/returnTimeOptions';
 import useModal from '@/hooks/useModal';
 import OrderDetailTable, { OrderData } from '@/components/order-detail-table';
+import { useUserPaymentStore } from '../_stores/useUserPaymentStore';
 
 const schema = z.object({
   pickupTime: z.string().min(1, { message: '' }),
@@ -36,10 +37,11 @@ export default function Page() {
   );
   const totalPrice =
     isStoreDetailLoading || !data?.salePrice ? 0 : data.salePrice * bagAmount;
-  const { mutate: postOrder } = usePostBagOrder(totalPrice);
+  const { mutate: postOrder } = usePostBagOrder();
   const { open } = useModal();
   const [price, setPrice] = useState(0);
   const [orderData, setOrderData] = useState<OrderData>();
+  const { userPaymentStore, setUserPaymentStore } = useUserPaymentStore();
   const {
     register,
     handleSubmit,
@@ -86,6 +88,12 @@ export default function Page() {
     open({
       content: '주문하시겠습니까?',
       confirmEvent: () => {
+        setUserPaymentStore({
+          ...userPaymentStore,
+          name: data.storeName,
+          amount: totalPrice,
+        });
+
         postOrder({
           goodsId: data.goodsId,
           pickupTime: format24HourTimeToFullDate(form.pickupTime),
