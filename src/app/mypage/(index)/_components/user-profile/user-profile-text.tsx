@@ -18,7 +18,7 @@ export default function UserProfileText() {
         email: userInfo?.email,
       });
     }
-  }, [data, userInfo]);
+  }, [userActivity, userInfo]);
 
   return (
     <>
