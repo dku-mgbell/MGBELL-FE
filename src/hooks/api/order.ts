@@ -1,6 +1,7 @@
 import { PageParams } from '@/types/api';
 import {
-  OrderRequest,
+  UserOrderRequest,
+  UserOrderResponse,
   OrderState,
   OwnerOrderDetail,
   UserOrderDetail,
@@ -10,9 +11,9 @@ import { WIP_API_BASE_URL } from '@/constant';
 import { API } from '.';
 
 export const Order = {
-  async register(data: OrderRequest) {
+  async register(data: UserOrderRequest): Promise<UserOrderResponse> {
     const response = await API.post(`${WIP_API_BASE_URL}/order`, data);
-    return response.data;
+    return response.data.data;
   },
   async cancelByUser(id: number) {
     const response = await API.post(`/order/user/cancle/${id}`);

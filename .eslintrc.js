@@ -187,4 +187,12 @@ module.exports = {
     extraFileExtensions: ['.mdx'],
   },
   ignorePatterns: ['build', 'dist', 'public', 'postcss.config.js'],
+  overrides: [
+    {
+      files: ['*.d.ts'],
+      rules: {
+        'max-classes-per-file': 'off',
+      },
+    },
+  ],
 };
