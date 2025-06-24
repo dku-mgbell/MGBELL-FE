@@ -27,15 +27,14 @@ export default function StoreList() {
     latitude,
     longitude,
   });
-  const { list, intersection, isSuccess } =
+  const { list, intersection } =
     useSuspenseInfiniteScroll<StoreListItemResponse>(bagListState);
 
   return (
     <>
-      {isSuccess &&
-        list!.map((props: StoreListItemResponse) => (
-          <StoreListItem key={props.storeId} {...props} />
-        ))}
+      {list!.map((props: StoreListItemResponse) => (
+        <StoreListItem key={props.storeId} {...props} />
+      ))}
       <Intersection ref={intersection} />
     </>
   );

@@ -22,6 +22,7 @@ export const useGetStoreInfiniteList = (
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) =>
       lastPage.length ? allPages.length : undefined,
-    staleTime: 60,
+    staleTime: 30 * 1000,
+    gcTime: 60 * 1000,
   });
 };
