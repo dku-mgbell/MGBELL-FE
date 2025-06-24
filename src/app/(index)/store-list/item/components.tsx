@@ -87,6 +87,7 @@ function MainStoreInfo({
   startAt,
   endAt,
   amount,
+  saleStatus,
 }: {
   title?: string;
   price?: number;
@@ -94,6 +95,7 @@ function MainStoreInfo({
   startAt?: string;
   endAt?: string;
   amount?: number;
+  saleStatus?: 'ON' | 'OFF';
 }) {
   return (
     <div className="flex flex-col mt-[8px] px-[4px]">
@@ -114,7 +116,7 @@ function MainStoreInfo({
           startTime={startAt}
           endTime={endAt}
           quantity={amount}
-          // saleStatus={openStatus}
+          saleStatus={saleStatus}
         />
       ) : (
         <Skeleton className="w-[100px] h-[21px]" />

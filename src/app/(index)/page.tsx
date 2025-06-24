@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import { StoreListSortType } from '@/types/store';
 import Container from './_components/container';
 import Footer from './_components/footer';
 import MainHeader from './_components/header';
@@ -15,7 +16,7 @@ export default function Page({
   return (
     <>
       <InitialSetter searchParams={searchParams} />
-      <MainHeader sortValue={searchParams.sort} />
+      <MainHeader sortValue={searchParams.sort as StoreListSortType} />
       {!searchParams.isNewUser && (
         <Container>
           <Suspense fallback={<SkeletonStoreList />}>

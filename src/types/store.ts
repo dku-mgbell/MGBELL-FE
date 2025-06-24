@@ -1,8 +1,39 @@
+import { PageParams } from './api';
 import { BagRegistrationRequest } from './bag';
 import { ImageRequest } from './image';
 import { Coordinate } from './map';
 
 export type StoreID = 'BAKERY' | 'DESERT' | 'ETC';
+
+export type StoreListSortType =
+  | 'RECENT_DESC'
+  | 'PRICE_ASC'
+  | 'DISTANCE_ASC'
+  | 'RATING_DESC'
+  | 'AVAILABLE';
+
+export interface StoreListRequestParams extends PageParams {
+  latitude?: number | null;
+  longitude?: number | null;
+  keyword?: string | null;
+  sortType: StoreListSortType;
+  onlyAvailable?: boolean | null;
+}
+
+export interface StoreListItemResponse {
+  storeId: string;
+  storeName: string;
+  ImageUrl: string[];
+  goodsName: string | null;
+  startTime: string;
+  endTime: string;
+  originPrice: number;
+  discount: number;
+  salePrice: number;
+  quantity: number;
+  distance: number | null;
+  saleStatus: 'ON' | 'OFF';
+}
 
 export const StoreName = {
   BAKERY: '베이커리',

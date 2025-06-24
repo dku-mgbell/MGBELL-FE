@@ -1,21 +1,21 @@
 import Link from 'next/link';
 import Thumbnail from '@/assets/images/store/thumbnail.png';
-import { BagInfoResponse } from '@/types/bag';
+import { StoreListItemResponse } from '@/types/store';
 import { Item } from './components';
 
-export default function StoreListItem(props: Partial<BagInfoResponse>) {
+export default function StoreListItem(props: Partial<StoreListItemResponse>) {
   return (
-    <Link href={`/bag/${props.id}`} key={props.id}>
-      <Item.ThumbnailGrid isSoldOut={props.amount === 0}>
-        {props.images
-          ? props.images.map((image, index) => {
+    <Link href={`/bag/${props.storeId}`} key={props.storeId}>
+      <Item.ThumbnailGrid isSoldOut={props.quantity === 0}>
+        {props.ImageUrl
+          ? props.ImageUrl.map((image, index) => {
               const imageId = `${props.storeName}-image-${index}`;
               return (
                 <Item.Thumbnail
                   key={imageId}
                   alt={imageId}
                   index={index}
-                  src={image}
+                  src={`https://${image}`}
                 />
               );
             })
@@ -30,11 +30,12 @@ export default function StoreListItem(props: Partial<BagInfoResponse>) {
       </Item.ThumbnailGrid>
       <Item.MainStoreInfo
         title={props.storeName}
-        price={props.salePrice!}
-        discount={50}
-        startAt={props.startAt}
-        endAt={props.endAt}
-        amount={props.amount}
+        price={props.salePrice}
+        discount={props.discount}
+        startAt={props.startTime}
+        endAt={props.endTime}
+        amount={props.quantity}
+        saleStatus={props.saleStatus!}
       />
     </Link>
   );
