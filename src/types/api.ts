@@ -37,11 +37,11 @@ export type PageResponse<TContent> = {
   empty: boolean;
 };
 
-export interface ErrorResponse<ErrorCode> {
+export interface ErrorResponse<ErrorCode = string | string[]> {
   response: {
     data: {
       code: ErrorCode;
-      message: ErrorCode[];
+      message: string[] | string;
       status: string;
       timestamp: string;
       trackingId: string;

@@ -4,17 +4,18 @@ import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
-import { useGetBagDetailStore } from '../../_store/useGetBagDetailStore';
+import { useStoreDetailStore } from '../../_stores/useStoreDetailStore';
 
 export default function OrderButton() {
   const { isLoggedIn } = useAuthStore();
   const { logout } = useAuth();
   const route = useRouter();
-  const { bagDetail } = useGetBagDetailStore();
   const { open } = useModal();
+  const { storeDetail } = useStoreDetailStore();
   const { bagAmount } = useBagOrderState();
 
-  const isOrderable = bagDetail && bagDetail.amount > 0 && bagDetail.onSale;
+  const isOrderable =
+    storeDetail && storeDetail.quantity > 0 && storeDetail.saleStatus === 'ON';
 
   const handleOrderButtonClick = () => {
     if (!isLoggedIn) {
@@ -27,7 +28,9 @@ export default function OrderButton() {
       return;
     }
     if (bagAmount > 0) {
-      route.push(`order/${bagDetail!.storeId}?bagId=${bagDetail!.id}`);
+      route.push(
+        `order/${storeDetail!.goodsId}?storeId=${storeDetail!.storeId}`,
+      );
     } else {
       open({ content: '수량을 선택해주세요' });
     }

@@ -1,9 +1,9 @@
-export interface OrderInfo {
-  storeId: number;
+export interface OrderRequest {
+  goodsId: string;
+  quantity: number;
+  totalPrice: number;
   pickupTime: string;
-  request: string;
-  amount: number;
-  payment: 'SPOT';
+  memo: string;
 }
 
 export interface UserOrderDetailPreview {

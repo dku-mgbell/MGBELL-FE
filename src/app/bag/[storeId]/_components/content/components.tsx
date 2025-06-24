@@ -2,7 +2,7 @@ import WarningIcon from '@/assets/svg/WarningIcon';
 import Carousel from '@/components/carousel/carousel';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Store } from '@/components/store';
-import { useGetBagDetailStore } from '../../_store/useGetBagDetailStore';
+import { useStoreDetailStore } from '../../_stores/useStoreDetailStore';
 
 function Container({ children }: { children: React.ReactNode }) {
   return (
@@ -13,44 +13,46 @@ function Container({ children }: { children: React.ReactNode }) {
 }
 
 function Images({ isLoading }: { isLoading?: boolean }) {
-  const { bagDetail } = useGetBagDetailStore();
-  const data = isLoading ? undefined : bagDetail;
+  const { storeDetail } = useStoreDetailStore();
+  const data = isLoading ? undefined : storeDetail;
+  const storeImages = data?.images.map((image) => `https://${image}`);
+
   return (
     <div className="flex h-[320px]">
-      <Carousel images={data?.images ?? []} />
+      <Carousel images={storeImages ?? []} />
     </div>
   );
 }
 
 function StoreInfo({ isLoading }: { isLoading?: boolean }) {
-  const { bagDetail } = useGetBagDetailStore();
-  const data = isLoading ? undefined : bagDetail;
+  const { storeDetail } = useStoreDetailStore();
+  const data = isLoading ? undefined : storeDetail;
 
   return (
     <div className="flex flex-col gap-[4px] px-[20px]">
       <Store.Title value={data?.storeName} />
-      <Store.ReviewLink
+      {/* <Store.ReviewLink
         bagId={data?.id}
         storeId={data?.storeId}
         count={data?.reviewCnt}
         score={4}
-      />
+      /> TODO: 리뷰 API 연동 */}
       <Store.OpenStatus
-        startAt={data?.startAt}
-        endAt={data?.endAt}
-        amount={data?.amount}
-        isOpen={data?.onSale}
+        startTime={data?.startTime}
+        endTime={data?.endTime}
+        quantity={data?.quantity}
+        saleStatus={data?.saleStatus}
         isOpenTextVisible
       />
       <Store.Address value={data?.address} />
-      <Store.Price price={data?.salePrice} discount={50} />
+      <Store.Price price={data?.salePrice} discount={data?.discount} />
     </div>
   );
 }
 
 function Description({ isLoading }: { isLoading?: boolean }) {
-  const { bagDetail } = useGetBagDetailStore();
-  const data = isLoading ? undefined : bagDetail;
+  const { storeDetail } = useStoreDetailStore();
+  const data = isLoading ? undefined : storeDetail;
   return (
     <div className="flex flex-col gap-[4px] px-[20px]">
       {data?.description ? (
