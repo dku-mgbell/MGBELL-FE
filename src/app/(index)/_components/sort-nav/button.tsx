@@ -25,7 +25,7 @@ export default function SortNavButton({
     <label
       key={name}
       className={cn(
-        'clickable flex-1 text-center border-[1px] border-gray7 max-w-[90px]',
+        'clickable text-center border-[1px] border-gray7',
         'rounded-[20px] px-2.5 py-[8px] font-bold text-gray4',
         'has-[input:checked]:border-primary has-[input:checked]:bg-primary has-[input:checked]:text-white',
         'text-xs whitespace-nowrap',
