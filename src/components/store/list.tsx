@@ -41,12 +41,12 @@ export function StoreListItem({
       >
         <div className="flex flex-col items-start gap-[4px]">
           <Store.Title value={data.storeName} />
-          <Store.OpenStatus
+          {/* <Store.OpenStatus
             isOpen={data.onSale}
             startAt={data.startAt}
             endAt={data.endAt}
             amount={data.amount}
-          />
+          /> */}
           <Store.Address value={data.address} />
         </div>
         <Store.HorizontalThumbnail

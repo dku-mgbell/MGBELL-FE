@@ -3,7 +3,9 @@ import Link from 'next/link';
 import ChevronRightIcon from '@/assets/svg/ChevronRightIcon';
 import StarIcon from '@/assets/svg/StarIcon';
 import TimeOutlineIcon from '@/assets/svg/TimeOutlineIcon';
+import { StoreDetailWithBag } from '@/types/store';
 import { commaizeNumber } from '@/utils/commaizeNumber';
+import { format24HourTime } from '@/utils/format24HourTime';
 import { Skeleton } from '../ui/skeleton';
 
 function Title({ value }: { value?: string }) {
@@ -61,39 +63,45 @@ function ReviewLink({
   );
 }
 
-function OpenStatus({
-  isOpen,
-  startAt,
-  endAt,
-  amount,
-  isOpenTextVisible,
-}: {
-  isOpen?: boolean;
-  startAt?: string;
-  endAt?: string;
-  amount?: number;
+type OpenStatusProps = Pick<
+  StoreDetailWithBag,
+  'saleStatus' | 'startTime' | 'endTime' | 'quantity'
+> & {
   isOpenTextVisible?: boolean;
-}) {
-  if (startAt === undefined) return <Skeleton className="w-[250px] h-[21px]" />;
+};
+
+function OpenStatus({
+  saleStatus,
+  startTime,
+  endTime,
+  quantity,
+  isOpenTextVisible,
+}: Partial<OpenStatusProps>) {
+  if (startTime === undefined)
+    return <Skeleton className="w-[250px] h-[21px]" />;
+
+  const startTimeString = format24HourTime(startTime!);
+  const endTimeString = format24HourTime(endTime!);
 
   return (
     <div className="flex items-center gap-[10px]">
-      {isOpen !== undefined && (
+      {saleStatus !== undefined && (
         <span className="text-b2 font-bold">
-          {isOpen ? '영업중' : '영업종료'}
+          {saleStatus === 'ON' ? '영업중' : '영업종료'}
         </span>
       )}
       <p className="flex items-center gap-[4px] flex-row tracking-[-0.02em]">
         <TimeOutlineIcon />
         <span className="text-b2 ">
-          {isOpenTextVisible && '픽업 가능 시간: '} {startAt}~{endAt}
+          {isOpenTextVisible && '픽업 가능 시간: '} {startTimeString}~
+          {endTimeString}
         </span>
       </p>
-      {amount && amount > 0 ? (
+      {quantity && quantity > 0 ? (
         <>
           <hr className="w-[1px] h-[12px] bg-[#E9E9E9]" />
           <span className="text-b2 font-bold text-[#EF444D]">
-            {amount}개 남음
+            {quantity}개 남음
           </span>
         </>
       ) : (

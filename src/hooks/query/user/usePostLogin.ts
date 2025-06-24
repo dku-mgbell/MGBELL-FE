@@ -34,7 +34,8 @@ export const usePostLogin = () => {
     },
     onError: (err: ErrorResponse<LoginErrorCode>) => {
       open({
-        content: LoginErrorMessage[err.response.data.message[0]],
+        content:
+          LoginErrorMessage[err.response.data.message[0] as LoginErrorCode],
       });
     },
   });

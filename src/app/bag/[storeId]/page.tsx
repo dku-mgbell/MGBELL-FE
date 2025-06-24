@@ -4,14 +4,20 @@ import BagDetailContent from './_components/content';
 import Header from './_components/header';
 import SkeletonContent from './_components/skeleton-content';
 
-export default function Page({ params }: { params: { id: number } }) {
-  const bagId = Number(params.id);
+interface PageProps {
+  params: {
+    storeId: string;
+  };
+}
+
+export default function Page({ params }: PageProps) {
+  const { storeId } = params;
 
   return (
     <Container>
-      <Header bagId={bagId} />
+      <Header />
       <Suspense fallback={<SkeletonContent />}>
-        <BagDetailContent bagId={bagId} />
+        <BagDetailContent storeId={storeId} />
       </Suspense>
     </Container>
   );
