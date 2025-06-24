@@ -85,7 +85,7 @@ function OpenStatus({
 
   return (
     <div className="flex items-center gap-[10px]">
-      {saleStatus !== undefined && (
+      {saleStatus !== undefined && isOpenTextVisible && (
         <span className="text-b2 font-bold">
           {saleStatus === 'ON' ? '영업중' : '영업종료'}
         </span>
