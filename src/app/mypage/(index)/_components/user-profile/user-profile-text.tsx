@@ -7,21 +7,28 @@ import { useGetUserInfo } from '@/hooks/query/user/useGetUserInfo';
 import { useUserAccountInfoStore } from '../../_stores/useUserAccountInfoStore';
 
 export default function UserProfileText() {
-  const { data } = useGetUserActivity();
-  const { setUserAccountInfo } = useUserAccountInfoStore();
+  const { data: userActivity } = useGetUserActivity();
   const { data: userInfo } = useGetUserInfo();
+  const { userAccountInfo, setUserAccountInfo } = useUserAccountInfoStore();
 
   useEffect(() => {
-    if (data) {
-      setUserAccountInfo(data);
+    if (userActivity && userInfo) {
+      setUserAccountInfo({
+        ...userActivity,
+        email: userInfo?.email,
+      });
     }
-  }, [data]);
+  }, [data, userInfo]);
 
   return (
     <>
-      <Text value={data?.name} height={30} className="font-bold text-h4" />
       <Text
-        value={userInfo?.email}
+        value={userAccountInfo?.name}
+        height={30}
+        className="font-bold text-h4"
+      />
+      <Text
+        value={userAccountInfo?.email}
         height={21}
         width={150}
         className="text-gray4 text-b2"

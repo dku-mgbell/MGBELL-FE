@@ -1,9 +1,13 @@
 import { create } from 'zustand';
 import { UserActivity } from '@/types/user';
 
+interface UserInfo extends UserActivity {
+  email: string;
+}
+
 interface UserAccountInfoStore {
-  userAccountInfo: UserActivity | null;
-  setUserAccountInfo: (userAccountInfo: UserActivity) => void;
+  userAccountInfo: UserInfo | null;
+  setUserAccountInfo: (userAccountInfo: UserInfo) => void;
 }
 
 export const useUserAccountInfoStore = create<UserAccountInfoStore>((set) => ({

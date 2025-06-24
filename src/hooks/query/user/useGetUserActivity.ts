@@ -1,8 +1,8 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { User } from '@/hooks/api/user';
 
 export const useGetUserActivity = () =>
-  useSuspenseQuery({
+  useQuery({
     queryFn: () => User.getActivity(),
     queryKey: ['user-activity'],
     gcTime: 0,
