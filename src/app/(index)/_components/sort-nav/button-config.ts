@@ -1,22 +1,23 @@
-export const buttonConfig = [
+import { StoreListSortType } from '@/types/store';
+
+export const buttonConfig: {
+  name: string;
+  sortValue: StoreListSortType | 'AVAILABLE';
+}[] = [
   {
-    name: '최신순',
-    sortValue: 'createdAt,desc',
-  },
-  {
-    name: '찜 많은순',
-    sortValue: 'store.favorited,desc',
+    name: '예약 가능',
+    sortValue: 'AVAILABLE',
   },
   {
     name: '낮은 가격순',
-    sortValue: 'salePrice,asc',
+    sortValue: 'PRICE_ASC',
   },
   {
-    name: '리뷰 많은순',
-    sortValue: 'review',
+    name: '가까운 거리순',
+    sortValue: 'DISTANCE_ASC',
   },
   {
-    name: '예약 가능',
-    sortValue: 'onSale',
+    name: '평점 높은순',
+    sortValue: 'RATING_DESC',
   },
 ];
