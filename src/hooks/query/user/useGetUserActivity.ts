@@ -6,4 +6,5 @@ export const useGetUserActivity = () =>
     queryFn: () => User.getActivity(),
     queryKey: ['user-activity'],
     gcTime: 0,
+    staleTime: 0,
   });
