@@ -9,8 +9,8 @@ export async function POST(request: Request) {
 
   const redirectUri =
     action === 'login'
-      ? `${BASE_URL}/login/verify?type=KAKAO`
-      : `${BASE_URL}/delete?type=KAKAO`;
+      ? `${BASE_URL}/login/verify/KAKAO`
+      : `${BASE_URL}/delete/KAKAO`;
 
   const res = await fetch(`https://kauth.kakao.com/oauth/token`, {
     method: 'POST',

@@ -1,37 +1,46 @@
 import { useMutation } from '@tanstack/react-query';
 import { useSignUpStore } from '@/app/sign-up/_/sign-up-store';
 import { User } from '@/hooks/api/user';
+import { OAuthProviderType } from '@/types/login';
 import { useDeleteOAuthAccount } from './useDeleteOAuthAccount';
 import { useVerifyAlreadySignedUp } from './useVerifyAlreadySignedUp';
 
-export const usePostKakaoAccessToken = (option?: {
-  action: 'login' | 'delete';
+export const usePostOAuthCode = ({
+  OAuthProvider,
+  action,
+}: {
+  OAuthProvider: OAuthProviderType;
+  action?: 'login' | 'delete';
 }) => {
   const { updateSignUpInfo } = useSignUpStore();
   const { mutate: deleteOAuthAccount } = useDeleteOAuthAccount();
   const { mutate: verifyAlreadySignedUp } = useVerifyAlreadySignedUp();
   return useMutation({
     mutationFn: (code: string) =>
-      User.postKakaoAccessToken({ code, action: option?.action ?? 'login' }),
+      User.postOAuthCode({
+        provider: OAuthProvider,
+        code,
+        action: action ?? 'login',
+      }),
     onSuccess: (data) => {
-      if (option?.action === 'delete') {
+      if (action === 'delete') {
         if (data.access_token) {
           deleteOAuthAccount({
-            providerType: 'KAKAO',
+            providerType: OAuthProvider,
             authCode: data.access_token,
           });
         } else {
-          alert('카카오 토큰 발급 실패');
+          alert('OAuth 인증 오류');
         }
         return;
       }
 
-      updateSignUpInfo('providerType', 'KAKAO');
+      updateSignUpInfo('providerType', OAuthProvider);
       updateSignUpInfo('authCode', data.access_token);
 
       if (data.access_token) {
         verifyAlreadySignedUp({
-          providerType: 'KAKAO',
+          providerType: OAuthProvider,
           authCode: data.access_token,
         });
       }
