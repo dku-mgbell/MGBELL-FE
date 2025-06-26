@@ -1,5 +1,5 @@
 import StepsLayout from '@/components/layout/steps-layout';
-import SuccessLayout from '@/components/layout/success-layout/success-layout';
+import SuccessLayout from '@/components/layout/success-layout';
 
 export default function Page() {
   return (

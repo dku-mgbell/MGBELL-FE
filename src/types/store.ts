@@ -1,6 +1,39 @@
+import { PageParams } from './api';
+import { BagRegistrationRequest } from './bag';
+import { ImageRequest } from './image';
 import { Coordinate } from './map';
 
 export type StoreID = 'BAKERY' | 'DESERT' | 'ETC';
+
+export type StoreListSortType =
+  | 'RECENT_DESC'
+  | 'PRICE_ASC'
+  | 'DISTANCE_ASC'
+  | 'RATING_DESC'
+  | 'AVAILABLE';
+
+export interface StoreListRequestParams extends PageParams {
+  latitude?: number | null;
+  longitude?: number | null;
+  keyword?: string | null;
+  sortType: StoreListSortType;
+  onlyAvailable?: boolean | null;
+}
+
+export interface StoreListItemResponse {
+  storeId: string;
+  storeName: string;
+  ImageUrl: string[];
+  goodsName: string | null;
+  startTime: string;
+  endTime: string;
+  originPrice: number;
+  discount: number;
+  salePrice: number;
+  quantity: number;
+  distance: number | null;
+  saleStatus: 'ON' | 'OFF';
+}
 
 export const StoreName = {
   BAKERY: '베이커리',
@@ -16,6 +49,35 @@ export interface StoreRegistration extends Coordinate {
   address: string;
   storeType: StoreID | null;
   images: File[];
+}
+
+export interface StoreRegistrationFormRequest {
+  name: string;
+  address: string;
+  latitude: number;
+  longitude: number;
+  ownerName: string;
+  ownerPhone: string;
+  businessNumber: string;
+  bankName: string;
+  bankAccount: string;
+  detailAddress?: string;
+  storeImagesRegisters: ImageRequest[];
+  images: File[];
+}
+
+export type StoreRegistrationRequest = Omit<
+  StoreRegistrationFormRequest,
+  'images' | 'detailAddress'
+>;
+
+export interface StoreRegistrationResponse {
+  data: {
+    preSignedUrlImages: {
+      id: number;
+      url: string;
+    }[];
+  };
 }
 
 export interface MyStoreInfo {
@@ -42,4 +104,13 @@ export interface StorePatch {
     storeType: StoreID;
   };
   images: string[];
+}
+
+export interface StoreDetailWithBag extends BagRegistrationRequest {
+  storeId: string;
+  goodsId: string;
+  storeName: string;
+  address: string;
+  images: string[];
+  saleStatus: 'ON' | 'OFF';
 }

@@ -10,16 +10,18 @@ import LabeledField from '@/components/ui/labeled-field';
 import { Selector } from '@/components/ui/select';
 import TextField from '@/components/ui/text-field';
 import TextArea from '@/components/ui/textarea';
+import usePostBagRegistration from '@/hooks/query/bag/usePostBagRegistration';
 import { commaizeNumber } from '@/utils/commaizeNumber';
+import { format24HourTimeToFullDate } from '@/utils/format24HourTimeToFullDate';
 import { returnTimeOptions } from '@/utils/returnTimeOptions';
 
 const schema = z.object({
   description: z.string().min(1, { message: '' }),
   startTime: z.string().min(1, { message: '' }),
   endTime: z.string().min(1, { message: '' }),
-  count: z.string().min(1, { message: '' }),
-  costPrice: z.string().min(1, { message: '' }),
-  discountRate: z.string().min(1, { message: '' }),
+  quantity: z.string().min(1, { message: '' }),
+  originalPrice: z.string().min(1, { message: '' }),
+  discount: z.string().min(1, { message: '' }),
 });
 
 type RegisterBagFormFields = z.infer<typeof schema>;
@@ -38,7 +40,8 @@ export default function Page() {
   });
 
   const [finalPrice, setFinalPrice] = useState(0);
-  const [costPrice, discountRate] = watch(['costPrice', 'discountRate']);
+  const [originalPrice, discount] = watch(['originalPrice', 'discount']);
+  const { mutate: postBagRegistration } = usePostBagRegistration();
 
   const calculatePrice = (price?: number, discountPercentage?: string) => {
     if (!price || !discountPercentage) return 0;
@@ -49,12 +52,20 @@ export default function Page() {
   };
 
   const onSubmit: SubmitHandler<RegisterBagFormFields> = (data) => {
-    return data;
+    postBagRegistration({
+      ...data,
+      startTime: format24HourTimeToFullDate(data.startTime),
+      endTime: format24HourTimeToFullDate(data.endTime),
+      originalPrice: Number(data.originalPrice),
+      discount: Number(data.discount.replace('%', '')),
+      quantity: Number(data.quantity),
+      salePrice: finalPrice,
+    });
   };
 
   useEffect(() => {
-    setFinalPrice(calculatePrice(Number(costPrice), discountRate));
-  }, [costPrice, discountRate]);
+    setFinalPrice(calculatePrice(Number(originalPrice), discount));
+  }, [originalPrice, discount]);
 
   return (
     <FormLayout onSubmit={handleSubmit(onSubmit)}>
@@ -96,13 +107,13 @@ export default function Page() {
       <LabeledField label="판매 개수 설정">
         <Counter
           setValue={(value) => {
-            setValue('count', value.toString());
+            setValue('quantity', value.toString());
           }}
         />
       </LabeledField>
       <LabeledField label="정가 입력">
         <TextField
-          name="costPrice"
+          name="originalPrice"
           type="number"
           placeholder="판매 상품의 정가 입력"
           register={register}
@@ -114,9 +125,9 @@ export default function Page() {
           placeholder="할인율 선택"
           options={['40%', '50%', '60%']}
           setValue={(value) => {
-            setValue('discountRate', value, { shouldValidate: !!value });
+            setValue('discount', value, { shouldValidate: !!value });
           }}
-          isError={!!errors.discountRate}
+          isError={!!errors.discount}
         />
       </LabeledField>
       <div className="flex justify-between bg-[#FFF8EB] py-[14px] px-[20px] rounded-[10px]">

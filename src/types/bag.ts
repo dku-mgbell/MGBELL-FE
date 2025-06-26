@@ -1,5 +1,15 @@
 import { Coordinate } from './map';
 
+export interface BagRegistrationRequest {
+  description: string;
+  startTime: string;
+  endTime: string;
+  quantity: number;
+  originalPrice: number;
+  discount: number;
+  salePrice: number;
+}
+
 export interface BagInfo {
   bagName: string | null;
   description: string | null;

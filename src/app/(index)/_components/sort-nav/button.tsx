@@ -1,24 +1,31 @@
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { StoreListSortType } from '@/types/store';
 
 export default function SortNavButton({
   name,
-  value,
-  sortValue,
-  index,
+  buttonValue,
+  currentSortValue,
 }: {
   name: string;
-  value: string;
-  sortValue: string;
-  index: number;
+  buttonValue: StoreListSortType;
+  currentSortValue: StoreListSortType;
 }) {
   const route = useRouter();
+  const handleNavButtonClick = (e: React.MouseEvent<HTMLInputElement>) => {
+    if (currentSortValue === buttonValue) {
+      e.preventDefault();
+      route.push('/');
+      return;
+    }
+    route.push(`?sort=${buttonValue}`);
+  };
 
   return (
     <label
       key={name}
       className={cn(
-        'clickable border-[1px] border-gray7',
+        'clickable text-center border-[1px] border-gray7',
         'rounded-[20px] px-2.5 py-[8px] font-bold text-gray4',
         'has-[input:checked]:border-primary has-[input:checked]:bg-primary has-[input:checked]:text-white',
         'text-xs whitespace-nowrap',
@@ -29,10 +36,10 @@ export default function SortNavButton({
       <input
         type="radio"
         name="sort"
-        value={value}
-        checked={sortValue ? sortValue === value : index === 0}
+        value={buttonValue}
+        checked={currentSortValue === buttonValue}
         className="hidden"
-        onChange={() => route.push(`?sort=${value}`)}
+        onClick={handleNavButtonClick}
       />
       {name}
     </label>

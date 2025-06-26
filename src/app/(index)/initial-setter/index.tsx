@@ -1,25 +1,14 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import {
   initializeMessaging,
   issueFcmToken,
   onMessageListener,
 } from '@/hooks/notification/firebase';
 import { useRegisterFCMToken } from '@/hooks/query/notification/useRegisterFCMToken';
-import { useAuthStore } from '@/hooks/stores/useAuthStore';
-import { useAuth } from '@/hooks/useAuth';
-import { IndexPageSearchParams } from '../types';
 
-export default function InitialSetter({
-  searchParams,
-}: {
-  searchParams: IndexPageSearchParams;
-}) {
-  const { setUserRole, setOAuthState, userRole } = useAuthStore();
-  const { setToken, oAuthLogin } = useAuth();
-  const route = useRouter();
+export default function InitialSetter() {
   const { mutate: registerFCMToken } = useRegisterFCMToken();
 
   useEffect(() => {
@@ -51,28 +40,6 @@ export default function InitialSetter({
       }
     }
   }, []);
-
-  useEffect(() => {
-    if (searchParams.userRole) setUserRole(searchParams.userRole);
-    if (searchParams.isNewUser === 'true') {
-      route.push('/sign-up?oAuth=true');
-      setOAuthState({
-        isOAuth: true,
-        isNewUser: true,
-      });
-      setToken({ accessToken: searchParams.accessToken });
-    } else if (searchParams.isNewUser === 'false') {
-      oAuthLogin({ accessToken: searchParams.accessToken });
-      setOAuthState({
-        isOAuth: true,
-        isNewUser: false,
-      });
-    }
-  }, [searchParams]);
-
-  useEffect(() => {
-    if (userRole === 'OWNER') route.push('/store/order');
-  }, [userRole]);
 
   return <div> </div>;
 }

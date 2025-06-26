@@ -8,6 +8,7 @@ const nextPWA = withPWA({
 });
 
 const nextConfig = {
+  reactStrictMode: false,
   experimental: {
     middlewarePrefetch: 'flexible',
   },
@@ -20,7 +21,10 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains: ['mgbell-s3.s3.ap-northeast-2.amazonaws.com'],
+    domains: [
+      'mgbell-s3.s3.ap-northeast-2.amazonaws.com',
+      'd8l60k7no0sr8.cloudfront.net',
+    ],
   },
 };
 

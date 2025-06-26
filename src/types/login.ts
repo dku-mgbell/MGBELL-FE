@@ -17,3 +17,5 @@ export const LoginErrorMessage = {
 };
 
 export type LoginErrorCode = keyof typeof LoginErrorMessage;
+
+export type OAuthProviderType = 'KAKAO' | 'GOOGLE' | 'NAVER' | 'APPLE';

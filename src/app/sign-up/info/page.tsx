@@ -1,32 +1,32 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import StepsLayout from '@/components/layout/steps-layout';
 import TextField from '@/components/ui/text-field';
+import { usePostOAuthLogin } from '@/hooks/query/auth/oauth/usePostOAuthLogin';
 import { isValidNickname } from '@/utils/regex';
 import { useSignUpStore } from '../_/sign-up-store';
 
 export default function Page() {
   const { signUpInfo, updateSignUpInfo } = useSignUpStore();
-  const router = useRouter();
+  const signUpRedirectPage =
+    signUpInfo.userRole === 'CUSTOMER' ? '/sign-up/success' : '/register/store';
+  const { mutate: postOAuthLogin } = usePostOAuthLogin(signUpRedirectPage);
 
   const handleNextButtonClick = () => {
-    const nextPage =
-      signUpInfo.userRole === 'USER' ? '/sign-up/success' : '/register/store';
-    router.push(nextPage);
+    postOAuthLogin(signUpInfo);
   };
 
   return (
     <StepsLayout
       title="닉네임을 입력해주세요"
-      isNextButtonEnabled={isValidNickname(signUpInfo.nickname)}
+      isNextButtonEnabled={isValidNickname(signUpInfo.nickName)}
       onNextButtonClick={handleNextButtonClick}
-      nextButtonText="회원가입"
+      nextButtonText="다음"
     >
       <TextField
         placeholder="닉네임을 입력해주세요"
-        value={signUpInfo.nickname}
-        onChange={(e) => updateSignUpInfo('nickname', e.target.value)}
+        value={signUpInfo.nickName}
+        onChange={(e) => updateSignUpInfo('nickName', e.target.value)}
         maxLength={16}
       />
       <p className="text-b3 pl-[10px] text-gray3">

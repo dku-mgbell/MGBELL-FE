@@ -1,9 +1,14 @@
-export interface OrderInfo {
-  storeId: number;
+export interface UserOrderRequest {
+  goodsId: string;
+  quantity: number;
+  totalPrice: number;
   pickupTime: string;
-  request: string;
-  amount: number;
-  payment: 'SPOT';
+  memo: string;
+}
+
+export interface UserOrderResponse {
+  merchantUid: string;
+  totalAmount: number;
 }
 
 export interface UserOrderDetailPreview {
@@ -53,12 +58,20 @@ export type OrderState =
   | 'USER_CANCELED'
   | 'OWNER_REFUSED';
 
-export const OrderStateName = {
+export const OrderStateName: Record<OrderState, string> = {
   REQUESTED: '주문대기',
   ACCEPTED: '픽업예정',
   COMPLETED: '픽업완료',
   USER_CANCELED: '본인취소',
   OWNER_REFUSED: '매장취소',
+} as const;
+
+export const OrderStateColor: Record<OrderState, string> = {
+  REQUESTED: 'text-primary',
+  ACCEPTED: 'text-secondary',
+  COMPLETED: 'text-gray5',
+  USER_CANCELED: 'text-error',
+  OWNER_REFUSED: 'text-error',
 } as const;
 
 export const OrderStateNameByOwner = {

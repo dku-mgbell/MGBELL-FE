@@ -24,8 +24,8 @@ export default function useSearchAddress({
 
   const openAddressModal = () => {
     open({
-      noPadding: true,
       content: <DaumPostcode onComplete={handleCompleteAddressSearch} />,
+      className: 'p-[15px]',
     });
   };
 

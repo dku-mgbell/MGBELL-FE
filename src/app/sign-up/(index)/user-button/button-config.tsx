@@ -2,7 +2,7 @@ import { OwnerImage, UserImage } from '@/assets/images/sign-up/image';
 
 export const buttonConfig = {
   user: {
-    value: 'USER',
+    value: 'CUSTOMER',
     label: '일반 사용자',
     description: (
       <>

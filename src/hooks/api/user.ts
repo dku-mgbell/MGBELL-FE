@@ -1,6 +1,22 @@
 import { LoginInfo, LoginResponse } from '@/types/login';
-import { SignUpInfo } from '@/types/sign-up';
-import { PasswordChange, UserActivity, UserInfoResponse } from '@/types/user';
+import {
+  DeleteOAuthAccountRequest,
+  OAuthAccessTokenResponse,
+  OAuthProviderType,
+} from '@/types/oauth';
+import {
+  OAuthLoginRequest,
+  SignUpData,
+  SignUpInfo,
+  VerifyAlreadySignedUpRequest,
+} from '@/types/sign-up';
+import {
+  AccountInfo,
+  PasswordChange,
+  UserActivity,
+  UserInfoResponse,
+} from '@/types/user';
+import { WIP_API_BASE_URL } from '@/constant';
 // eslint-disable-next-line import/no-cycle
 import { API } from '.';
 
@@ -28,9 +44,17 @@ export const User = {
     const response = await API.post(`/user/signup/${token}`, data);
     return response.data;
   },
+
   async oAuthSignUp(data: Omit<SignUpInfo, 'email'>) {
     const response = await API.patch('/oauth/signup', data);
     return response.data;
+  },
+  async oAuthLogin(data: SignUpData | OAuthLoginRequest) {
+    const response = await API.post(
+      `${WIP_API_BASE_URL}/auth/oauth/login`,
+      data,
+    );
+    return response;
   },
   async deleteAccount() {
     const response = await API.delete('/user/delete');
@@ -71,6 +95,36 @@ export const User = {
     newPassword: string;
   }) {
     const response = await API.patch('/user/password/reset', data);
+    return response.data;
+  },
+  async verifyAlreadySignedUp(data: VerifyAlreadySignedUpRequest) {
+    const response = await API.post(`${WIP_API_BASE_URL}/verify/social`, data);
+    return response.data;
+  },
+  async postOAuthCode(data: {
+    provider: OAuthProviderType;
+    code: string;
+    action: 'login' | 'delete';
+  }) {
+    const response = await fetch(
+      `/api/login/oauth/${data.provider.toLowerCase()}`,
+      {
+        method: 'POST',
+        body: JSON.stringify(data),
+      },
+    );
+    const res = (await response.json()) as OAuthAccessTokenResponse;
+    return res;
+  },
+  async getAccountInfo(): Promise<AccountInfo> {
+    const response = await API.post(`${WIP_API_BASE_URL}/user/me`);
+    return response.data;
+  },
+  async deleteOAuthAccount(data: DeleteOAuthAccountRequest) {
+    const response = await API.delete(`${WIP_API_BASE_URL}/auth/withdraw`, {
+      data,
+    });
+
     return response.data;
   },
 };
