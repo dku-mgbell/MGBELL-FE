@@ -30,6 +30,14 @@ export interface KakaoAccessTokenResponse {
   refresh_token_expires_in: number;
 }
 
+export interface GoogleAccessTokenResponse {
+  access_token: string;
+  expires_in: number;
+  scope: string;
+  token_type: string;
+  id_token: string;
+}
+
 export interface DeleteOAuthAccountRequest {
   providerType: OAuthProviderType;
   authCode: string;
