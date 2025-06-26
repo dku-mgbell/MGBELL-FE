@@ -73,7 +73,7 @@ export type StoreRegistrationRequest = Omit<
 
 export interface StoreRegistrationResponse {
   data: {
-    preSignedUrlImages: {
+    storePreSignedUrlImages: {
       id: number;
       url: string;
     }[];
