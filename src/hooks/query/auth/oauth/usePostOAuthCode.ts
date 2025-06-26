@@ -7,7 +7,7 @@ import { useVerifyAlreadySignedUp } from './useVerifyAlreadySignedUp';
 
 export const usePostOAuthCode = ({
   OAuthProvider,
-  action,
+  action = 'login',
 }: {
   OAuthProvider: OAuthProviderType;
   action?: 'login' | 'delete';
@@ -20,7 +20,7 @@ export const usePostOAuthCode = ({
       User.postOAuthCode({
         provider: OAuthProvider,
         code,
-        action: action ?? 'login',
+        action,
       }),
     onSuccess: (data) => {
       if (action === 'delete') {
