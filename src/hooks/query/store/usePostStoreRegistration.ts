@@ -20,7 +20,7 @@ export const usePostStoreRegistration = () => {
         (res: StoreRegistrationResponse) => {
           return postImages({
             files: data.images,
-            urls: res.data.preSignedUrlImages.map((image) => image.url),
+            urls: res.data.storePreSignedUrlImages.map((image) => image.url),
           });
         },
       );
