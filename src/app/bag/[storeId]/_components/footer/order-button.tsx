@@ -1,13 +1,12 @@
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
 import { useStoreDetailStore } from '../../_stores/useStoreDetailStore';
 
 export default function OrderButton() {
-  const { isLoggedIn } = useAuthStore();
+  const { isLoggedIn } = useAuth();
   const { logout } = useAuth();
   const route = useRouter();
   const { open } = useModal();

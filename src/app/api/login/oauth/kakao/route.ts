@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server';
-import { KakaoAccessTokenResponse } from '@/types/login';
-import { BASE_URL } from '@/constant';
+import { OAuthAccessTokenResponse } from '@/types/oauth';
+import { BASE_URL, KAKAO_OAUTH_REST_API_KEY } from '@/constant';
 
 export async function POST(request: Request) {
   const { code, action } = await request.json();
-
-  const clientId = process.env.KAKAO_OAUTH_REST_API_KEY;
+  const clientId = KAKAO_OAUTH_REST_API_KEY;
 
   const redirectUri =
     action === 'login'
@@ -30,6 +29,6 @@ export async function POST(request: Request) {
       { status: res.status },
     );
   }
-  const data = (await res.json()) as KakaoAccessTokenResponse;
+  const data = (await res.json()) as OAuthAccessTokenResponse;
   return NextResponse.json(data);
 }

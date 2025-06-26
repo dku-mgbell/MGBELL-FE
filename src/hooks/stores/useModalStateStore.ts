@@ -14,6 +14,7 @@ export type ModalProps = {
   confirmEvent?: () => void;
   className?: string;
   showButton?: boolean;
+  onlyConfirmButton?: boolean;
 };
 
 export const useModalStateStore = create<ModalState>((set) => ({
@@ -25,6 +26,7 @@ export const useModalStateStore = create<ModalState>((set) => ({
     confirmEvent: undefined,
     className: undefined,
     showButton: true,
+    onlyConfirmButton: false,
   },
   setModalState: (state: ModalProps) => set({ modalState: state }),
 }));

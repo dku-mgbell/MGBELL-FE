@@ -1,24 +1,30 @@
 import { useRouter } from 'next/navigation';
-import { useAuthStore } from './stores/useAuthStore';
 
 export const useAuth = () => {
-  const { setIsLoggedIn, setUserRole, setOAuthState } = useAuthStore();
   const route = useRouter();
+
+  const setTokenResponse = ({
+    accessToken,
+    refreshToken,
+  }: {
+    accessToken: string;
+    refreshToken: string;
+  }) => {
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
+  };
 
   const isLoggedIn =
     typeof window !== 'undefined'
       ? !!localStorage.getItem('accessToken')
-      : null;
+      : false;
 
   const logout = (option?: { withoutRedirect?: boolean }) => {
     if (typeof window !== 'undefined') {
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      setIsLoggedIn(false);
-      setUserRole(null);
-      setOAuthState({
-        isOAuth: false,
-        isNewUser: false,
+      Object.keys(localStorage).forEach((key) => {
+        if (key?.includes('accessToken') || key?.includes('refreshToken')) {
+          localStorage.removeItem(key);
+        }
       });
       if (!option?.withoutRedirect) {
         route.push('/login');
@@ -30,18 +36,10 @@ export const useAuth = () => {
     localStorage.setItem('accessToken', accessToken);
   };
 
-  const oAuthLogin = ({ accessToken }: { accessToken?: string }) => {
-    if (accessToken) setToken({ accessToken });
-    setIsLoggedIn(true);
-    route.push('/');
-    // localStorage.setItem('refreshToken', refreshToken);
-    // setUserRole(role);
-  };
-
   const redirectLoginPage = () => {
     // TODO 안내 매시지 토스트로 표시
     if (!isLoggedIn) route.push('/login');
   };
 
-  return { logout, oAuthLogin, redirectLoginPage, isLoggedIn, setToken };
+  return { logout, redirectLoginPage, isLoggedIn, setToken, setTokenResponse };
 };

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { GoogleAccessTokenResponse } from '@/types/login';
-import { BASE_URL } from '@/constant';
+import { OAuthAccessTokenResponse } from '@/types/oauth';
+import { BASE_URL, GOOGLE_OAUTH_CLIENT_ID } from '@/constant';
 
 export async function POST(request: Request) {
   const { code } = await request.json();
@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     },
     body: new URLSearchParams({
       code,
-      client_id: process.env.GOOGLE_OAUTH_CLIENT_ID!,
+      client_id: GOOGLE_OAUTH_CLIENT_ID!,
       client_secret: process.env.GOOGLE_OAUTH_CLIENT_SECRET!,
       redirect_uri: `${BASE_URL}/login/verify/GOOGLE`,
       grant_type: 'authorization_code',
@@ -26,6 +26,6 @@ export async function POST(request: Request) {
     );
   }
 
-  const tokenData = (await tokenRes.json()) as GoogleAccessTokenResponse;
+  const tokenData = (await tokenRes.json()) as OAuthAccessTokenResponse;
   return NextResponse.json(tokenData);
 }
