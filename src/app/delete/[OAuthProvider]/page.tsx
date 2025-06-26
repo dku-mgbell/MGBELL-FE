@@ -26,7 +26,7 @@ export default function Page({
           삭제
         </Button>
         <Suspense fallback={<div>로딩중...</div>}>
-          <DeleteContent OAuthProvider="KAKAO" />
+          <DeleteContent OAuthProvider={params.OAuthProvider} />
         </Suspense>
       </div>
     </HeaderLayout>
