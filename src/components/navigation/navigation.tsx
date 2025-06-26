@@ -43,6 +43,13 @@ export default function Navigation() {
                 className="flex flex-col items-center justify-center gap-[2px] clickable w-[25%]"
                 href={handleNavigationLink({ tabInfo })}
                 onClick={() => {
+                  if (tabInfo.readyToDeploy === 'false') {
+                    open({
+                      content: '준비 중입니다.',
+                    });
+                    return;
+                  }
+
                   if (!isLoggedIn && !tabInfo.forGuest)
                     open({
                       content: '로그인 이후 이용 가능합니다.',
