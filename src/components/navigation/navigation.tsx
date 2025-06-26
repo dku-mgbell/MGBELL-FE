@@ -17,10 +17,10 @@ export default function Navigation() {
   }: {
     tabInfo: (typeof navigationTabList)[0];
   }) => {
-    if (isLoggedIn) {
-      return tabInfo.route;
+    if (tabInfo.readyToDeploy === 'false') {
+      return '';
     }
-    if (tabInfo.forGuest) {
+    if (isLoggedIn || tabInfo.forGuest) {
       return tabInfo.route;
     }
     return '';
