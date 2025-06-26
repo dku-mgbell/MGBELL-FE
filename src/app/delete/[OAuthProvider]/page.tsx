@@ -3,12 +3,19 @@
 import { Suspense } from 'react';
 import HeaderLayout from '@/components/layout/header-layout';
 import { Button } from '@/components/ui/button';
+import { OAuthProviderType } from '@/types/oauth';
 import getOAuthLink from '@/utils/getOAuthLink';
 import DeleteContent from './content';
 
-export default function Page() {
+export default function Page({
+  params,
+}: {
+  params: { OAuthProvider: OAuthProviderType };
+}) {
   const handleDeleteOAuthAccount = () => {
-    window.location.href = getOAuthLink('KAKAO', { action: 'delete' });
+    window.location.href = getOAuthLink(params.OAuthProvider, {
+      action: 'delete',
+    });
   };
 
   return (
