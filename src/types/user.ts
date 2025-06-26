@@ -31,12 +31,10 @@ export interface CurrentOrder {
 }
 
 export interface AccountInfo {
-  status: string;
-  data: {
-    email: string;
-    userRole: 'CUSTOMER' | 'OWNER';
-    providerType: OAuthProviderType;
-    approved: 'APPROVED' | 'WAITING' | 'REJECTED';
-    goodsId: number | 'null';
-  };
+  email: string;
+  nickName: string;
+  userRole: 'CUSTOMER' | 'OWNER';
+  providerType: OAuthProviderType;
+  approved: 'APPROVED' | 'WAITING' | 'REJECTED';
+  goodsId: number | 'null';
 }

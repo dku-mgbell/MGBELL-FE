@@ -1,13 +1,15 @@
 import { create } from 'zustand';
-import { UserActivity } from '@/types/user';
+import { AccountInfo } from '@/types/user';
 
-interface UserInfo extends UserActivity {
-  email: string;
+interface UserAccountInfo extends Partial<AccountInfo> {
+  totalDiscount?: number;
+  carbonReduction?: number;
+  orderCount?: number;
 }
 
 interface UserAccountInfoStore {
-  userAccountInfo: UserInfo | null;
-  setUserAccountInfo: (userAccountInfo: UserInfo) => void;
+  userAccountInfo: UserAccountInfo | null;
+  setUserAccountInfo: (userAccountInfo: UserAccountInfo) => void;
 }
 
 export const useUserAccountInfoStore = create<UserAccountInfoStore>((set) => ({
