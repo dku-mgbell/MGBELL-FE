@@ -1,10 +1,9 @@
+import { LoginInfo, LoginResponse } from '@/types/login';
 import {
-  KakaoAccessTokenResponse,
-  LoginInfo,
-  LoginResponse,
   DeleteOAuthAccountRequest,
+  OAuthAccessTokenResponse,
   OAuthProviderType,
-} from '@/types/login';
+} from '@/types/oauth';
 import {
   OAuthLoginRequest,
   SignUpData,
@@ -114,7 +113,7 @@ export const User = {
         body: JSON.stringify(data),
       },
     );
-    const res = (await response.json()) as KakaoAccessTokenResponse;
+    const res = (await response.json()) as OAuthAccessTokenResponse;
     return res;
   },
   async getAccountInfo(): Promise<AccountInfo> {

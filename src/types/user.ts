@@ -1,4 +1,4 @@
-import { loginButtonConfig } from '@/app/login/components/login-button-config';
+import { OAuthProviderType } from './oauth';
 import { OrderState } from './order';
 
 export type UserRole = 'CUSTOMER' | 'OWNER';
@@ -35,7 +35,7 @@ export interface AccountInfo {
   data: {
     email: string;
     userRole: 'CUSTOMER' | 'OWNER';
-    providerType: keyof typeof loginButtonConfig;
+    providerType: OAuthProviderType;
     approved: 'APPROVED' | 'WAITING' | 'REJECTED';
     goodsId: number | 'null';
   };

@@ -2,3 +2,11 @@ export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 export const WIP_API_BASE_URL = process.env.NEXT_PUBLIC_WIP_API_URL;
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 export const READY_TO_DEPLOY = process.env.NEXT_PUBLIC_READY_TO_DEPLOY;
+export const KAKAO_OAUTH_REST_API_KEY =
+  process.env.NEXT_PUBLIC_KAKAO_OAUTH_REST_API_KEY;
+export const GOOGLE_OAUTH_CLIENT_ID =
+  process.env.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID;
+export const NAVER_OAUTH_CLIENT_ID =
+  process.env.NEXT_PUBLIC_NAVER_OAUTH_CLIENT_ID;
+export const APPLE_OAUTH_CLIENT_ID =
+  process.env.NEXT_PUBLIC_APPLE_OAUTH_CLIENT_ID;
