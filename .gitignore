@@ -48,3 +48,7 @@ next-env.d.ts
 .env
 *storybook.log
 storybook-static
+
+# env
+.env.dev
+.env.test
