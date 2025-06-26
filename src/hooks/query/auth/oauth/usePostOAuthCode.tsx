@@ -52,7 +52,7 @@ export const usePostOAuthCode = ({
       }),
     onSuccess: (data) => {
       if (action === 'delete') {
-        if (isLoggedIn) {
+        if (!isLoggedIn) {
           openNotLoggedInModal();
           return;
         }
