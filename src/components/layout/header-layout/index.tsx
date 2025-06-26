@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 import { padding } from '@/styles/constant';
 import PreviousButton from './previous-button';
 
@@ -9,6 +10,7 @@ interface HeaderLayoutProps {
   previousPage?: string;
   previousButtonClickEvent?: () => void;
   style?: React.CSSProperties;
+  className?: string;
 }
 
 export default function HeaderLayout(props: HeaderLayoutProps) {
@@ -34,7 +36,7 @@ export default function HeaderLayout(props: HeaderLayoutProps) {
           {props.title}
         </strong>
       </header>
-      <main className="pt-[38px]">{props.children}</main>
+      <main className={cn('pt-[38px]', props.className)}>{props.children}</main>
     </div>
   );
 }
