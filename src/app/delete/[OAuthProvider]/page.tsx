@@ -3,11 +3,12 @@
 import { Suspense } from 'react';
 import HeaderLayout from '@/components/layout/header-layout';
 import { Button } from '@/components/ui/button';
-import DeleteContent from './DeleteContent';
+import getOAuthLink from '@/utils/getOAuthLink';
+import DeleteContent from './content';
 
 export default function Page() {
   const handleDeleteOAuthAccount = () => {
-    window.location.href = process.env.NEXT_PUBLIC_KAKAO_OAUTH_DELETE!;
+    window.location.href = getOAuthLink('KAKAO', { action: 'delete' });
   };
 
   return (
@@ -18,7 +19,7 @@ export default function Page() {
           삭제
         </Button>
         <Suspense fallback={<div>로딩중...</div>}>
-          <DeleteContent />
+          <DeleteContent OAuthProvider="KAKAO" />
         </Suspense>
       </div>
     </HeaderLayout>

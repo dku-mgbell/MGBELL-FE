@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { User } from '@/hooks/api/user';
-import { DeleteOAuthAccountRequest } from '@/types/login';
+import { DeleteOAuthAccountRequest } from '@/types/oauth';
 
 export const useDeleteOAuthAccount = () => {
   const router = useRouter();

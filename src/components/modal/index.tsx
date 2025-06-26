@@ -11,6 +11,7 @@ export default function Modal({
   confirmEvent,
   className,
   showButton,
+  onlyConfirmButton,
 }: Omit<ModalProps, 'visible'>) {
   const { close } = useModal();
 
@@ -59,13 +60,15 @@ export default function Modal({
 
       {showButton !== false && (
         <div className="flex gap-[15px]">
-          <Button
-            onClick={close}
-            variant={confirmEvent ? 'primary-light' : 'primary'}
-            className="flex-1"
-          >
-            닫기
-          </Button>
+          {onlyConfirmButton || (
+            <Button
+              onClick={close}
+              variant={confirmEvent ? 'primary-light' : 'primary'}
+              className="flex-1"
+            >
+              닫기
+            </Button>
+          )}
           {confirmEvent && (
             <Button onClick={handleConfirmButtonClick} className="flex-1">
               확인

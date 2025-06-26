@@ -1,9 +1,9 @@
+import { LoginInfo, LoginResponse } from '@/types/login';
 import {
-  KakaoAccessTokenResponse,
-  LoginInfo,
-  LoginResponse,
   DeleteOAuthAccountRequest,
-} from '@/types/login';
+  OAuthAccessTokenResponse,
+  OAuthProviderType,
+} from '@/types/oauth';
 import {
   OAuthLoginRequest,
   SignUpData,
@@ -101,15 +101,19 @@ export const User = {
     const response = await API.post(`${WIP_API_BASE_URL}/verify/social`, data);
     return response.data;
   },
-  async postKakaoAccessToken(data: {
+  async postOAuthCode(data: {
+    provider: OAuthProviderType;
     code: string;
     action: 'login' | 'delete';
   }) {
-    const response = await fetch('/api/login/oauth/kakao', {
-      method: 'POST',
-      body: JSON.stringify(data),
-    });
-    const res = (await response.json()) as KakaoAccessTokenResponse;
+    const response = await fetch(
+      `/api/login/oauth/${data.provider.toLowerCase()}`,
+      {
+        method: 'POST',
+        body: JSON.stringify(data),
+      },
+    );
+    const res = (await response.json()) as OAuthAccessTokenResponse;
     return res;
   },
   async getAccountInfo(): Promise<AccountInfo> {

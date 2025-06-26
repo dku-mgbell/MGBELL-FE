@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import LogoIcon from '@/assets/svg/LogoIcon';
+import { READY_TO_DEPLOY } from '@/constant';
 import Navigation from './(components)/navigation/navigation';
 import * as styles from './styles.css';
 
@@ -15,7 +16,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <main className={styles.main}>
         <div className={styles.mainContent}>{children}</div>
       </main>
-      <Navigation />
+      {READY_TO_DEPLOY === 'true' && <Navigation />}
     </div>
   );
 }

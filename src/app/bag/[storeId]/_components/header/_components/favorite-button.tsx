@@ -2,7 +2,7 @@
 
 import HeartOutlineIcon from '@/assets/svg/HeartOutlineIcon';
 import { usePostFavorite } from '@/hooks/query/favorite/usePostFavorite';
-import { useAuthStore } from '@/hooks/stores/useAuthStore';
+import { useAuth } from '@/hooks/useAuth';
 import { useGetBagDetailStore } from '../../../_stores/useGetBagDetailStore';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 export default function FavoriteButton({ bagId }: Props) {
   const { bagDetail, isBagDetailFetched } = useGetBagDetailStore();
   const { mutate: postFavorite } = usePostFavorite();
-  const { isLoggedIn } = useAuthStore();
+  const { isLoggedIn } = useAuth();
   const isFavorite = bagDetail?.id !== bagId ? false : bagDetail.favorite;
 
   const handleFavoriteButtonClick = () => {

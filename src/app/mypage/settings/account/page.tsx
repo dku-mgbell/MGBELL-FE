@@ -5,13 +5,11 @@ import Input from '@/components/input/input';
 import HeaderLayout from '@/components/layout/header-layout/header-layout';
 import QuestionContainer from '@/components/question-container/question-container';
 import { useGetUserInfo } from '@/hooks/query/user/useGetUserInfo';
-import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import * as styles from './styles.css';
 
 export default function Page() {
   const { data: userInfo, isLoading } = useGetUserInfo();
   const route = useRouter();
-  const { OAuthState } = useAuthStore();
 
   if (isLoading) return <> </>;
 
@@ -26,21 +24,19 @@ export default function Page() {
           title="이메일"
           content={<Input placeholder={userInfo!.email} disabled />}
         />
-        {OAuthState.isOAuth || (
-          <QuestionContainer
-            title="비밀번호"
-            content={
-              <Input
-                type="password"
-                value="password"
-                readOnly
-                onClick={() => {
-                  route.push('/mypage/settings/account/password');
-                }}
-              />
-            }
-          />
-        )}
+        <QuestionContainer
+          title="비밀번호"
+          content={
+            <Input
+              type="password"
+              value="password"
+              readOnly
+              onClick={() => {
+                route.push('/mypage/settings/account/password');
+              }}
+            />
+          }
+        />
       </div>
     </HeaderLayout>
   );
