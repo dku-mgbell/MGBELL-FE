@@ -3,8 +3,8 @@ import GoogleIcon from '@/assets/svg/social/google';
 import KakaoIcon from '@/assets/svg/social/kakao';
 import NaverIcon from '@/assets/svg/social/naver';
 import { OAuthProviderType } from '@/types/login';
+import getOAuthLink from '@/utils/getOAuthLink';
 import { colors } from '@/styles/constant';
-import getOAuthLink from './getOAuthLink';
 
 interface LoginButtonConfig {
   icon: React.ReactNode;

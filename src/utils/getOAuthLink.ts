@@ -12,8 +12,19 @@ interface OAuthConfig {
   oauth_params: Record<OAuthProviderType, Record<string, string>>;
 }
 
-export default function getOAuthLink(provider: OAuthProviderType): string {
+export default function getOAuthLink(
+  provider: OAuthProviderType,
+  options?: {
+    action?: 'login' | 'delete';
+  },
+): string {
+  const action = options?.action || 'login';
   const REDIRECT_BASE_URI = BASE_URL;
+
+  const REDIRECT_URL_PATH = {
+    login: 'login/verify',
+    delete: 'delete',
+  };
 
   const config: OAuthConfig = {
     oauth_base_uri: {
@@ -41,7 +52,7 @@ export default function getOAuthLink(provider: OAuthProviderType): string {
 
   const COMMON_PARAMS = {
     response_type: 'code',
-    redirect_uri: `${REDIRECT_BASE_URI}/login/verify/${provider}`,
+    redirect_uri: `${REDIRECT_BASE_URI}/${REDIRECT_URL_PATH[action]}/${provider}`,
   };
 
   const BASE_URI = config.oauth_base_uri[provider as OAuthProviderType];
