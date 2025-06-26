@@ -2,28 +2,21 @@
 
 import { useEffect } from 'react';
 import Text from '@/components/ui/text';
-import { useGetUserActivity } from '@/hooks/query/user/useGetUserActivity';
-import { useGetUserInfo } from '@/hooks/query/user/useGetUserInfo';
+import { useGetUserAccountInfo } from '@/hooks/query/user/useGetUserAccountInfo';
 import { useUserAccountInfoStore } from '../../_stores/useUserAccountInfoStore';
 
 export default function UserProfileText() {
-  const { data: userActivity } = useGetUserActivity();
-  const { data: userInfo } = useGetUserInfo();
-  const { userAccountInfo, setUserAccountInfo } = useUserAccountInfoStore();
+  const { mutate: getUserAccountInfo } = useGetUserAccountInfo();
+  const { userAccountInfo } = useUserAccountInfoStore();
 
   useEffect(() => {
-    if (userActivity && userInfo) {
-      setUserAccountInfo({
-        ...userActivity,
-        email: userInfo?.email,
-      });
-    }
-  }, [userActivity, userInfo]);
+    getUserAccountInfo();
+  }, []);
 
   return (
     <>
       <Text
-        value={userAccountInfo?.name}
+        value={userAccountInfo?.nickName}
         height={30}
         className="font-bold text-h4"
       />
