@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useAuthStore } from '@/hooks/stores/useAuthStore';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
 import { navigationTabList } from './navigation-tab-list';
@@ -10,18 +9,15 @@ import { navigationTabList } from './navigation-tab-list';
 export default function Navigation() {
   const pathname = usePathname();
   const currentRoute = pathname.split('?')[0];
-  const { isLoggedIn } = useAuthStore();
-  const { logout } = useAuth();
+  const { logout, isLoggedIn } = useAuth();
   const { open } = useModal();
 
   const handleNavigationLink = ({
-    loggedIn,
     tabInfo,
   }: {
-    loggedIn?: boolean;
     tabInfo: (typeof navigationTabList)[0];
   }) => {
-    if (loggedIn) {
+    if (isLoggedIn) {
       return tabInfo.route;
     }
     if (tabInfo.forGuest) {
@@ -45,7 +41,7 @@ export default function Navigation() {
               <Link
                 key={tabInfo.id}
                 className="flex flex-col items-center justify-center gap-[2px] clickable w-[25%]"
-                href={handleNavigationLink({ loggedIn: isLoggedIn, tabInfo })}
+                href={handleNavigationLink({ tabInfo })}
                 onClick={() => {
                   if (!isLoggedIn && !tabInfo.forGuest)
                     open({
