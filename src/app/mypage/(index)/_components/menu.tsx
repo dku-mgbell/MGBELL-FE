@@ -1,15 +1,19 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import ChevronRightIcon from '@/assets/svg/ChevronRightIcon';
+import { useNotReadyModal } from '@/hooks/useModal/not-ready';
 
 export default function Menu() {
-  const router = useRouter();
+  // const router = useRouter();
+  const { openNotReadyModal } = useNotReadyModal();
+
   const menuList = [
     {
       title: '리뷰관리',
       onClick: () => {
-        router.push('/mypage/review');
+        openNotReadyModal();
+        // router.push('/mypage/review');
       },
     },
     {
