@@ -3,7 +3,12 @@ import { OAuthAccessTokenResponse } from '@/types/oauth';
 import { BASE_URL, GOOGLE_OAUTH_CLIENT_ID } from '@/constant';
 
 export async function POST(request: Request) {
-  const { code } = await request.json();
+  const { code, action } = await request.json();
+
+  const redirectUri =
+    action === 'login'
+      ? `${BASE_URL}/login/verify/GOOGLE`
+      : `${BASE_URL}/delete/GOOGLE`;
 
   const tokenRes = await fetch('https://oauth2.googleapis.com/token', {
     method: 'POST',
@@ -14,7 +19,7 @@ export async function POST(request: Request) {
       code,
       client_id: GOOGLE_OAUTH_CLIENT_ID!,
       client_secret: process.env.GOOGLE_OAUTH_CLIENT_SECRET!,
-      redirect_uri: `${BASE_URL}/login/verify/GOOGLE`,
+      redirect_uri: redirectUri,
       grant_type: 'authorization_code',
     }).toString(),
   });
