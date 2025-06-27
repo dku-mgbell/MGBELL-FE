@@ -3,32 +3,23 @@
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import LabeledField from '@/components/ui/labeled-field';
-import { useUserHistoryStore } from '@/hooks/stores/useUserHistoryStore';
-import RecentSearchKeywordChip from './_components/recent-search-keyword-chip';
+import PopularStoreList from './_components/popular-store-list';
+import RecentKeywordList from './_components/recent-keyword-list';
+import SearchResultStoreList from './_components/search-result-store-list';
 
 function Content() {
-  const { searchKeywordHistory, deleteSearchKeywordHistory } =
-    useUserHistoryStore();
   const searchParams = useSearchParams();
   const keyword = searchParams.get('keyword');
 
-  if (keyword) return <div> {keyword} 검색 결과 페이지 입니다.</div>;
+  if (keyword) return <SearchResultStoreList keyword={keyword} />;
 
   return (
     <div className="flex flex-col gap-[30px] mt-[10px]">
       <LabeledField label="최근 검색어">
-        <ul className="flex flex-wrap gap-[8px]">
-          {searchKeywordHistory.map((value) => (
-            <RecentSearchKeywordChip
-              key={value}
-              value={value}
-              onDelete={() => deleteSearchKeywordHistory(value)}
-            />
-          ))}
-        </ul>
+        <RecentKeywordList />
       </LabeledField>
       <LabeledField label="우리동네 인기 마감백">
-        우리동네 인기 마감백
+        <PopularStoreList />
       </LabeledField>
     </div>
   );
