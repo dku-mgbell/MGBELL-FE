@@ -1,9 +1,9 @@
 import { create } from 'zustand';
-import { BagInfoResponse as StoreInfoResponse } from '@/types/bag';
+import { StoreListItemResponse } from '@/types/store';
 
 export type MapStateStore = {
-  selectedStore: StoreInfoResponse | undefined;
-  setSelectedStore: (selectedStore: StoreInfoResponse | undefined) => void;
+  selectedStore: StoreListItemResponse | undefined;
+  setSelectedStore: (selectedStore: StoreListItemResponse | undefined) => void;
   isListSheetHidden: boolean;
   setIsListSheetHidden: (isListSheetHidden: boolean) => void;
 };

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { BagInfoResponse } from '@/types/bag';
+import { StoreListItemResponse } from '@/types/store';
 import { Store } from '.';
 
 export default function StoreContainer({
@@ -17,13 +17,11 @@ export default function StoreContainer({
   );
 }
 
-export type StoreListItemProps = BagInfoResponse & { storeId?: number };
-
 export function StoreListItem({
   data,
   onClick,
 }: {
-  data: StoreListItemProps;
+  data: StoreListItemResponse;
   onClick?: () => void;
 }) {
   return (
@@ -33,7 +31,7 @@ export function StoreListItem({
       onClick={onClick}
     >
       <Link
-        href={`/bag/${data.id}`}
+        href={`/store/${data.storeId}`}
         className={cn(
           'flex flex-col items-start gap-[8px] w-full',
           onClick && 'pointer-events-none',
@@ -41,16 +39,24 @@ export function StoreListItem({
       >
         <div className="flex flex-col items-start gap-[4px]">
           <Store.Title value={data.storeName} />
-          {/* <Store.OpenStatus
-            isOpen={data.onSale}
-            startAt={data.startAt}
-            endAt={data.endAt}
-            amount={data.amount}
-          /> */}
-          <Store.Address value={data.address} />
+          <Store.OpenStatus
+            saleStatus={data.saleStatus}
+            startTime={data.startTime}
+            endTime={data.endTime}
+            quantity={data.quantity}
+            isOpenTextVisible
+          />
+          <Store.Address value="경기도 용인시 수지구 죽전로 77 1층" />
+          {/* //TODO: 주소 추가 */}
         </div>
         <Store.HorizontalThumbnail
-          images={data.images ?? [data.image!, data.image!, data.image!]}
+          images={
+            data.ImageUrl ?? [
+              data.ImageUrl[0],
+              data.ImageUrl[0],
+              data.ImageUrl[0],
+            ]
+          }
         />
       </Link>
     </button>
