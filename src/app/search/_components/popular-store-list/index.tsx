@@ -3,7 +3,6 @@ import PopularStoreListItem from './list-item';
 
 export default function PopularStoreList() {
   const { data: storeList } = useGetStoreList({
-    page: 0,
     size: 4,
     sortType: 'RATING_DESC',
   });
