@@ -3,14 +3,20 @@ import Link from 'next/link';
 import ChevronRightIcon from '@/assets/svg/ChevronRightIcon';
 import StarIcon from '@/assets/svg/StarIcon';
 import TimeOutlineIcon from '@/assets/svg/TimeOutlineIcon';
+import { cn } from '@/lib/utils';
 import { StoreDetailWithBag } from '@/types/store';
 import { commaizeNumber } from '@/utils/commaizeNumber';
 import { format24HourTime } from '@/utils/format24HourTime';
 import { Skeleton } from '../ui/skeleton';
 
-function Title({ value }: { value?: string }) {
+function Title({ value, className }: { value?: string; className?: string }) {
   return (
-    <div className="text-b1 font-bold">
+    <div
+      className={cn(
+        'text-b1 font-bold whitespace-nowrap overflow-hidden text-ellipsis',
+        className,
+      )}
+    >
       {value || <Skeleton className="w-[100px] h-[24px]" />}
     </div>
   );
@@ -68,6 +74,7 @@ type OpenStatusProps = Pick<
   'saleStatus' | 'startTime' | 'endTime' | 'quantity'
 > & {
   isOpenTextVisible?: boolean;
+  textSize?: 'md' | 'sm';
 };
 
 function OpenStatus({
@@ -76,7 +83,13 @@ function OpenStatus({
   endTime,
   quantity,
   isOpenTextVisible,
+  textSize = 'md',
 }: Partial<OpenStatusProps>) {
+  const textSizeClass = {
+    md: 'text-b2',
+    sm: 'text-b3',
+  };
+
   if (startTime === undefined)
     return <Skeleton className="w-[250px] h-[21px]" />;
 
@@ -86,13 +99,13 @@ function OpenStatus({
   return (
     <div className="flex items-center gap-[10px]">
       {saleStatus !== undefined && isOpenTextVisible && (
-        <span className="text-b2 font-bold">
+        <span className={cn('font-bold', textSizeClass[textSize])}>
           {saleStatus === 'ON' ? '영업중' : '영업종료'}
         </span>
       )}
-      <p className="flex items-center gap-[4px] flex-row tracking-[-0.02em]">
+      <p className="flex items-center gap-[4px] flex-row tracking-[-0.02em] whitespace-nowrap overflow-hidden text-ellipsis">
         <TimeOutlineIcon />
-        <span className="text-b2 ">
+        <span className={cn('text-b2 ', textSizeClass[textSize])}>
           {isOpenTextVisible && '픽업 가능 시간: '} {startTimeString}~
           {endTimeString}
         </span>
@@ -100,7 +113,9 @@ function OpenStatus({
       {quantity && quantity > 0 ? (
         <>
           <hr className="w-[1px] h-[12px] bg-[#E9E9E9]" />
-          <span className="text-b2 font-bold text-[#EF444D]">
+          <span
+            className={cn('font-bold text-[#EF444D]', textSizeClass[textSize])}
+          >
             {quantity}개 남음
           </span>
         </>
@@ -120,7 +135,7 @@ function HorizontalThumbnail({ images }: { images: string[] }) {
           className="w-[33%] h-[70px] rounded-[8px] overflow-hidden"
         >
           <Image
-            src={image}
+            src={`https://${image}`}
             alt="thumbnail"
             width={200}
             height={70}
