@@ -35,10 +35,12 @@ function Content({ children }: { children: React.ReactNode }) {
     e: React.KeyboardEvent<HTMLInputElement>,
   ) => {
     const keyword = e.currentTarget.value;
-    addSearchKeywordHistory(keyword);
-    startTransition(() => {
-      router.push(`?keyword=${keyword}`);
-    });
+    if (keyword && keyword.length > 0) {
+      addSearchKeywordHistory(keyword);
+      startTransition(() => {
+        router.push(`?keyword=${keyword}`);
+      });
+    }
   };
 
   const handleSearchKeywordChange = (
@@ -52,8 +54,8 @@ function Content({ children }: { children: React.ReactNode }) {
       <HeaderLayoutGroup.Header className="py-[10px] h-[58px]">
         <PreviousButton
           onClick={handlePreviousButtonClick}
-          width={8}
-          height={14}
+          width={15}
+          height={17}
         />
         <SearchInput
           ref={searchInputRef}
@@ -62,6 +64,7 @@ function Content({ children }: { children: React.ReactNode }) {
           onEnter={handleSearchKeywordEnter}
           onChange={handleSearchKeywordChange}
           value={searchKeyword}
+          autoFocus
         />
       </HeaderLayoutGroup.Header>
       <HeaderLayoutGroup.Main className="pt-[58px]">
