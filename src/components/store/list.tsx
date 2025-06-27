@@ -31,7 +31,7 @@ export function StoreListItem({
       onClick={onClick}
     >
       <Link
-        href={`/store/${data.storeId}`}
+        href={`/bag/${data.storeId}`}
         className={cn(
           'flex flex-col items-start gap-[8px] w-full',
           onClick && 'pointer-events-none',
