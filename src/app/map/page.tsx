@@ -1,24 +1,25 @@
 'use client';
 
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-import { useGetBagList as useGetStoreList } from '@/hooks/query/bag/useGetBagList';
-import { BagInfoResponse as StoreInfoResponse } from '@/types/bag';
+import { useGetStoreList } from '@/hooks/query/store/useGetStoreList';
+import { StoreListItemResponse } from '@/types/store';
 import useModal from '@/hooks/useModal';
 import DetailBottomSheet from './_components/detail-bottom-sheet';
 import ListBottomSheet from './_components/list-bottom-sheet';
 import LocationButton from './_components/location-button';
+import { DEFAULT_COORD } from './_constant/map';
 import { useMapStore } from './_stores/useMapStore';
 import { generateMarker, getUserCurrentPosition } from './_utils/map';
 
 export default function Map() {
   const [userLocation, setUserLocation] = useState<[number, number]>();
   const mapRef = useRef<naver.maps.Map | null>(null);
-  const { data: storeList, isFetched: isStoreListFetched } = useGetStoreList({
-    page: 0,
-    size: 100,
-  });
-  const storeListOnMap = storeList?.pages[0];
-  const { setSelectedStore } = useMapStore();
+  const { data: storeListOnMap, isFetched: isStoreListFetched } =
+    useGetStoreList({
+      size: 100,
+      sortType: 'RECENT_DESC',
+    });
+  const { setSelectedStore, setIsListSheetHidden } = useMapStore();
   const [loadedMap, setLoadedMap] = useState<naver.maps.Map | null>(null);
 
   const { open } = useModal();
@@ -47,7 +48,7 @@ export default function Map() {
   }, [userLocation]);
 
   const handleStoreClick = (
-    store: StoreInfoResponse,
+    store: StoreListItemResponse,
     coord: [number, number],
   ) => {
     const [lat, lng] = coord;
@@ -61,8 +62,7 @@ export default function Map() {
   };
 
   const loadMap = () => {
-    const defaultCoord = [36.5, 127.8];
-    const coord = userLocation || defaultCoord;
+    const coord = userLocation || DEFAULT_COORD;
 
     const mapOptions = {
       center: new naver.maps.LatLng(coord[0] - 0.7, coord[1]),
@@ -86,17 +86,19 @@ export default function Map() {
 
     // 매장 위치 마커 표시
     if (storeListOnMap) {
-      storeListOnMap.forEach((store: StoreInfoResponse) => {
-        const [lat, lng] = [Number(store.latitude), Number(store.longitude)];
+      storeListOnMap.forEach((store: StoreListItemResponse) => {
+        // const [lat, lng] = [Number(store.latitude), Number(store.longitude)];
+        const [lat, lng] = [33 + Math.random() * 5, 126 + Math.random() * 3]; // TODO: 매장 좌표 추가
         const marker = generateMarker({
           name: store.storeName,
-          address: store.address,
+          address: '경기도 용인시 수지구 죽전로 77 1층', // TODO: 매장 주소 추가
           lat,
           lng,
           map,
         });
         naver.maps.Event.addListener(marker, 'click', () => {
           handleStoreClick(store, [lat, lng]);
+          setIsListSheetHidden(true);
         });
       });
     }
@@ -123,7 +125,7 @@ export default function Map() {
     <div id="map" className="w-full h-[100dvh]">
       <LocationButton onClick={morphToCurrentPosition} />
       <ListBottomSheet map={loadedMap!} />
-      <DetailBottomSheet />
+      <DetailBottomSheet map={loadedMap!} />
     </div>
   );
 }
