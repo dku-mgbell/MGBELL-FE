@@ -44,7 +44,6 @@ export const navigationTabList = [
     name: 'MY',
     route: '/mypage',
     icon: (active: boolean) => <PersonIcon active={active} />,
-    readyToDeploy: READY_TO_DEPLOY,
   },
 ];
 

@@ -1,13 +1,15 @@
 'use client';
 
-import { useDeleteAccount } from '@/hooks/query/user/useDeleteAccount';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
+import { useUserAccountInfoStore } from '../_stores/useUserAccountInfoStore';
 
 export default function Footer() {
   const { logout } = useAuth();
-  const { mutate: deleteAccount } = useDeleteAccount();
   const { open } = useModal();
+  const router = useRouter();
+  const { userAccountInfo } = useUserAccountInfoStore();
 
   const handleLogout = () => {
     open({
@@ -19,12 +21,7 @@ export default function Footer() {
   };
 
   const handleWithdraw = () => {
-    open({
-      content: '탈퇴하시겠습니까?',
-      confirmEvent: () => {
-        deleteAccount();
-      },
-    });
+    router.push(`/delete/${userAccountInfo?.providerType}`);
   };
 
   return (

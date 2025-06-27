@@ -1,17 +1,21 @@
 import ChevronLeftIcon from '@/assets/svg/ChevronLeftIcon';
 
 export default function PreviousButton({
-  previousButtonClickEvent,
+  onClick,
+  width,
+  height,
 }: {
-  previousButtonClickEvent?: () => void;
+  onClick?: () => void;
+  width?: number;
+  height?: number;
 }) {
   return (
     <button
       type="button"
-      onClick={previousButtonClickEvent}
+      onClick={onClick}
       className="cursor-pointer flex items-center"
     >
-      <ChevronLeftIcon />
+      <ChevronLeftIcon width={width} height={height} />
     </button>
   );
 }

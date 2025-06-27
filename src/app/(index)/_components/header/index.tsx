@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import SearchInput from '@/components/input/search';
 import { StoreListSortType } from '@/types/store';
 import SortNav from '../sort-nav';
@@ -12,7 +13,9 @@ export default function MainHeader({
   return (
     <HeaderContainer>
       <AddressEnterLink />
-      <SearchInput placeholder="가게의 이름을 검색해보세요!" />
+      <Link href="/search">
+        <SearchInput placeholder="가게의 이름을 검색해보세요!" />
+      </Link>
       <SortNav sortValue={sortValue} />
     </HeaderContainer>
   );

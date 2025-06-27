@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { User } from '@/hooks/api/user';
+import { useGetUserAccountInfo } from '@/hooks/query/user/useGetUserAccountInfo';
 import { ErrorResponse } from '@/types/api';
 import { OAuthLoginRequest, SignUpData } from '@/types/sign-up';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
-import { useGetUserAccountInfo } from '../../user/useGetUserAccountInfo';
 
 type LoginErrorCode = 'INVALID_PHONE_NUMBER' | 'DUPLICATE_NICKNAME';
 

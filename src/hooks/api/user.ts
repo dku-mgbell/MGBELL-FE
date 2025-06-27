@@ -118,7 +118,7 @@ export const User = {
   },
   async getAccountInfo(): Promise<AccountInfo> {
     const response = await API.post(`${WIP_API_BASE_URL}/user/me`);
-    return response.data;
+    return response.data.data;
   },
   async deleteOAuthAccount(data: DeleteOAuthAccountRequest) {
     const response = await API.delete(`${WIP_API_BASE_URL}/auth/withdraw`, {
