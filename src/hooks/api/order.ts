@@ -7,6 +7,7 @@ import {
   UserOrderDetail,
   UserOrderDetailPreview,
 } from '@/types/order';
+import { PaymentCompleteResponse } from '@/types/payment';
 import { WIP_API_BASE_URL } from '@/constant';
 import { API } from '.';
 
@@ -32,6 +33,14 @@ export const Order = {
   async getDetailByUser(id: number): Promise<UserOrderDetail> {
     const response = await API.get(`/order/user/${id}`);
     return response.data;
+  },
+  Payment: {
+    async complete(paymentId: string): Promise<PaymentCompleteResponse> {
+      const response = await API.post(`${WIP_API_BASE_URL}/payment/complete`, {
+        paymentId,
+      });
+      return response.data;
+    },
   },
   Owner: {
     async getInfiniteList(
