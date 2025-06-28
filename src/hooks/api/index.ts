@@ -66,6 +66,12 @@ API.interceptors.response.use(
     ) {
       logout();
     }
+
+    // TODO: 토큰 재발급 API 완성시 삭제
+    if (error.status === 500 && currentPath === '/') {
+      alert('토큰 유효 시간이 만료되었습니다. 다시 로그인해주세요.');
+      logout();
+    }
     return Promise.reject(error);
   },
 );

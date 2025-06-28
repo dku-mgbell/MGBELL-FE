@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import AddressInput from '@/components/input/address/address-input';
-import HeaderLayout from '@/components/layout/header-layout/header-layout';
+import HeaderLayout from '@/components/layout/header-layout';
 import StepsLayout from '@/components/layout/steps-layout/steps-layout';
 import { useAddressStateStore } from '@/hooks/stores/useAddressStore';
 import { UserAddressState } from '@/types/address';
