@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useUserPaymentStore } from '@/app/bag/order/_stores/useUserPaymentStore';
@@ -15,12 +14,6 @@ export const usePostBagOrder = () => {
   const { openLoading, closeLoading } = useLoadingModal();
   const { userPaymentStore, setUserPaymentStore } = useUserPaymentStore();
 
-  useEffect(() => {
-    if (userPaymentStore.merchantUid) {
-      route.push(`/bag/order/pay?merchantUid=${userPaymentStore.merchantUid}`);
-    }
-  }, [userPaymentStore]);
-
   return useMutation({
     mutationFn: (data: UserOrderRequest) => Order.register(data),
     onSuccess: (res) => {
@@ -31,6 +24,7 @@ export const usePostBagOrder = () => {
         amount: res.totalAmount,
       });
       closeLoading();
+      route.push(`/bag/order/pay?merchantUid=${res.merchantUid}`);
     },
     onMutate: () => {
       openLoading();
