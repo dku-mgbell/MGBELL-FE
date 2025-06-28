@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { AnimatePresence } from 'framer-motion';
 import BagImage from '@/assets/images/store/bag-confetti.png';
 import EarthImage from '@/assets/images/store/save-earth.png';
-import { Container, Content } from './components';
+import { Container, Content } from '../components';
 
 export default function Page() {
   const [transition, setTransition] = useState(false);
