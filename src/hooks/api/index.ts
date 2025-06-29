@@ -71,6 +71,7 @@ API.interceptors.response.use(
     if (error.status === 500 && currentPath === '/') {
       alert('토큰 유효 시간이 만료되었습니다. 다시 로그인해주세요.');
       logout();
+      return;
     }
     return Promise.reject(error);
   },
