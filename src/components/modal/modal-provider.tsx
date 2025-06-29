@@ -20,12 +20,7 @@ export default function ModalProvider({ children }: { children: ReactNode }) {
       {children}
       {portalElement &&
         visible &&
-        createPortal(
-          <div className="w-full h-full fixed top-0 left-0 bg-black/20 flex justify-center items-center z-[99999]">
-            <Modal {...props} />
-          </div>,
-          portalElement!,
-        )}
+        createPortal(<Modal {...props} />, portalElement)}
     </>
   );
 }
