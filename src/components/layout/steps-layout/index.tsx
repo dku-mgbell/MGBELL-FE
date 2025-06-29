@@ -35,7 +35,7 @@ export default function StepsLayout(props: StepsLayoutProps) {
           props.className,
         )}
       >
-        <strong className="text-b1">{props.title}</strong>
+        {props.title && <strong className="text-b1">{props.title}</strong>}
         {props.children}
       </div>
       <footer className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[450px] px-[20px] py-[16px] bg-white">
