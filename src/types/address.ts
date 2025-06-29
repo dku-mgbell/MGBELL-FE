@@ -37,6 +37,7 @@ export interface Address {
 }
 
 export interface UserAddressState {
+  addressName?: string;
   address?: string;
   detail?: string;
   latitude?: string;
