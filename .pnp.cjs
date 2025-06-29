@@ -29,6 +29,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@chromatic-com/storybook", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:4.0.0"],\
           ["@hookform/resolvers", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:5.1.0"],\
+          ["@portone/browser-sdk", "npm:0.0.23"],\
           ["@radix-ui/react-label", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:2.1.7"],\
           ["@radix-ui/react-radio-group", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:1.3.7"],\
           ["@radix-ui/react-select", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:2.2.5"],\
@@ -9867,6 +9868,15 @@ const RAW_RUNTIME_STATE =
           "webpack-hot-middleware",\
           "webpack-plugin-serve",\
           "webpack"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@portone/browser-sdk", [\
+      ["npm:0.0.23", {\
+        "packageLocation": "../../../.yarn/berry/cache/@portone-browser-sdk-npm-0.0.23-a72caed273-10c0.zip/node_modules/@portone/browser-sdk/",\
+        "packageDependencies": [\
+          ["@portone/browser-sdk", "npm:0.0.23"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -21418,6 +21428,7 @@ const RAW_RUNTIME_STATE =
           ["mgbell", "workspace:."],\
           ["@chromatic-com/storybook", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:4.0.0"],\
           ["@hookform/resolvers", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:5.1.0"],\
+          ["@portone/browser-sdk", "npm:0.0.23"],\
           ["@radix-ui/react-label", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:2.1.7"],\
           ["@radix-ui/react-radio-group", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:1.3.7"],\
           ["@radix-ui/react-select", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:2.2.5"],\
