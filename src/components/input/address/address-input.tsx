@@ -1,26 +1,32 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
-import Input from '@/components/input/input';
 import Loader from '@/components/loader/loader';
+import TextField from '@/components/ui/text-field';
 import { useGetCoord } from '@/hooks/query/map/useGetCoord';
 import { useAddressStateStore } from '@/hooks/stores/useAddressStore';
 import { Address, UserAddressState } from '@/types/address';
-import { common } from '@/styles/common.css';
 import useModal from '@/hooks/useModal';
+
+type AddressInputProps = {
+  updateAddress: Dispatch<SetStateAction<UserAddressState | undefined>>;
+  showDetailInput?: boolean;
+  hiddenPreviousAddress?: boolean;
+  placeholder?: string;
+};
 
 export default function AddressInput({
   updateAddress,
   showDetailInput,
-}: {
-  updateAddress: Dispatch<SetStateAction<UserAddressState | undefined>>;
-  showDetailInput?: boolean;
-}) {
+  hiddenPreviousAddress,
+  placeholder,
+}: AddressInputProps) {
   const { open, close } = useModal();
   const [address, setAddress] = useState('');
-  // const [detailAddress, setDetailAddress] = useState('');
   const [addressError] = useState(false);
-  const { addressState } = useAddressStateStore();
+  const { userAddress } = useAddressStateStore();
   const { data, isLoading } = useGetCoord(address);
+
+  const inputValue = address.length > 0 ? address : userAddress.address;
 
   const handleInputClick = () => {
     open({
@@ -50,24 +56,26 @@ export default function AddressInput({
 
   return (
     <>
-      <Input
-        placeholder="클릭하여 주소를 입력해주세요."
+      <TextField
+        placeholder={placeholder || '클릭하여 주소를 입력해주세요.'}
         onClick={handleInputClick}
         onFocus={handleInputClick}
-        className={common.pointer}
-        value={address.length > 0 ? address : addressState.address}
-        theme={addressError ? 'error' : 'default'}
+        className=""
+        value={hiddenPreviousAddress ? undefined : inputValue}
+        variant={addressError ? 'error' : 'default'}
         readOnly
       />
-      <div style={{ height: 10 }} />
       {showDetailInput && (
-        <Input
-          name="address"
-          placeholder="세부 주소 입력"
-          onChange={(e) => {
-            updateAddress((prev) => ({ ...prev, detail: e.target.value }));
-          }}
-        />
+        <>
+          <div style={{ height: 10 }} />
+          <TextField
+            name="address"
+            placeholder="세부 주소 입력"
+            onChange={(e) => {
+              updateAddress((prev) => ({ ...prev, detail: e.target.value }));
+            }}
+          />
+        </>
       )}
     </>
   );
