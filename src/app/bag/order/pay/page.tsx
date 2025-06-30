@@ -53,7 +53,7 @@ export default function Page() {
         openLoading('결제 처리 중...');
         completePayment(userPaymentStore.merchantUid!, {
           onSuccess: (res) => {
-            const isSuccess = res.status === 200;
+            const isSuccess = res.data === 'success';
             setPaymentStatus({
               status: isSuccess ? 'PAID' : 'FAILED',
             });

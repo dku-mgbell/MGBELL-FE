@@ -1,4 +1,4 @@
 export interface PaymentCompleteResponse {
-  status: number;
-  result: number;
+  status: string;
+  data: string;
 }
