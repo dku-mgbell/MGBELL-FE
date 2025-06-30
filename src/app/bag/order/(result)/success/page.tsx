@@ -15,7 +15,7 @@ function Content() {
   const handleLastStepComplete = () => {
     router.push(`/order`);
   };
-  const { handleNextButtonClick, currentContentIndex } = useGuideLayout({
+  const { handleNextButtonClick, currentStep } = useGuideLayout({
     totalSteps: 2,
     onComplete: handleLastStepComplete,
   });
@@ -26,7 +26,7 @@ function Content() {
       onNextButtonClick={handleNextButtonClick}
       nextButtonText="확인"
     >
-      <Guide.Layout currentIndex={currentContentIndex}>
+      <Guide.Layout currentStep={currentStep}>
         <Steps.Success />
         <Steps.SavingEarth price={price} />
       </Guide.Layout>

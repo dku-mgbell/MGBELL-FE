@@ -64,14 +64,12 @@ function Description({
 
 export default function Layout({
   children,
-  currentIndex,
+  currentStep,
 }: {
   children: React.ReactNode[];
-  currentIndex: number;
+  currentStep: number;
 }) {
-  return (
-    <AnimatePresence mode="wait">{children[currentIndex]}</AnimatePresence>
-  );
+  return <AnimatePresence mode="wait">{children[currentStep]}</AnimatePresence>;
 }
 
 export const Guide = {

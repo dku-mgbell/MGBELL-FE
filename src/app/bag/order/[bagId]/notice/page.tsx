@@ -21,7 +21,7 @@ export default function Page({ params }: PageProps) {
   const handleLastStepComplete = () => {
     router.push(`/bag/order/${params.bagId}?storeId=${storeId}`);
   };
-  const { handleNextButtonClick, currentContentIndex } = useGuideLayout({
+  const { handleNextButtonClick, currentStep } = useGuideLayout({
     totalSteps: 2,
     onComplete: handleLastStepComplete,
   });
@@ -29,7 +29,7 @@ export default function Page({ params }: PageProps) {
   return (
     <Suspense>
       <StepsLayout onNextButtonClick={handleNextButtonClick}>
-        <Guide.Layout currentIndex={currentContentIndex}>
+        <Guide.Layout currentIndex={currentStep}>
           <Steps.RandomBread />
           <Steps.ConfirmOrder />
         </Guide.Layout>
