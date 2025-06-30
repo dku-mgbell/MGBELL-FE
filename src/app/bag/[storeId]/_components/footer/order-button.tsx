@@ -28,7 +28,7 @@ export default function OrderButton() {
     }
     if (bagAmount > 0) {
       route.push(
-        `order/${storeDetail!.goodsId}?storeId=${storeDetail!.storeId}`,
+        `order/${storeDetail!.goodsId}/notice?storeId=${storeDetail!.storeId}`,
       );
     } else {
       open({ content: '수량을 선택해주세요' });
