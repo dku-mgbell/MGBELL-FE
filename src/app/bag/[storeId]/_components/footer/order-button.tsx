@@ -7,7 +7,7 @@ import { useStoreDetailStore } from '../../_stores/useStoreDetailStore';
 
 export default function OrderButton() {
   const { isLoggedIn } = useAuth();
-  const { logout } = useAuth();
+  const { openRequireLoginModal } = useAuth();
   const route = useRouter();
   const { open } = useModal();
   const { storeDetail } = useStoreDetailStore();
@@ -18,12 +18,7 @@ export default function OrderButton() {
 
   const handleOrderButtonClick = () => {
     if (!isLoggedIn) {
-      open({
-        content: '로그인 이후 이용 가능합니다.',
-        confirmEvent: () => {
-          logout();
-        },
-      });
+      openRequireLoginModal();
       return;
     }
     if (bagAmount > 0) {
@@ -31,7 +26,10 @@ export default function OrderButton() {
         `order/${storeDetail!.goodsId}/notice?storeId=${storeDetail!.storeId}`,
       );
     } else {
-      open({ content: '수량을 선택해주세요' });
+      open({
+        title: '수량을 선택해주세요',
+        description: '주문하실 상품의 수량을 선택해주세요.',
+      });
     }
   };
 

@@ -1,7 +1,6 @@
 import { useRouter } from 'next/navigation';
 import ChevronRightIcon from '@/assets/svg/ChevronRightIcon';
 import { useAuth } from '@/hooks/useAuth';
-import useModal from '@/hooks/useModal';
 import * as styles from './styles.css';
 
 export default function ReviewButton({
@@ -14,8 +13,7 @@ export default function ReviewButton({
   reviewCnt: number;
 }) {
   const route = useRouter();
-  const { isLoggedIn, logout } = useAuth();
-  const { open } = useModal();
+  const { isLoggedIn, openRequireLoginModal } = useAuth();
 
   return (
     <button
@@ -25,12 +23,7 @@ export default function ReviewButton({
         if (storeId && isLoggedIn)
           route.push(`/bag/review?storeId=${storeId}&bagId=${bagId}`);
         if (!isLoggedIn) {
-          open({
-            content: '로그인 이후 이용 가능합니다.',
-            confirmEvent: () => {
-              logout();
-            },
-          });
+          openRequireLoginModal();
         }
       }}
     >
