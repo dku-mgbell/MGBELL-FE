@@ -1,22 +1,39 @@
-import Image from 'next/image';
-import ProfileImage from '@/assets/images/user/profile.webp';
-import UserProfileText from './user-profile-text';
+'use client';
 
-export default async function UserProfile() {
+import { useEffect } from 'react';
+import SocialIcon from '@/assets/svg/social';
+import Text from '@/components/ui/text';
+import { useGetUserAccountInfo } from '@/hooks/query/user/useGetUserAccountInfo';
+import { useUserAccountInfoStore } from '../../_stores/useUserAccountInfoStore';
+
+export default function UserProfile() {
+  const { data, isFetched } = useGetUserAccountInfo({ enabled: true });
+  const { userAccountInfo, setUserAccountInfo } = useUserAccountInfoStore();
+
+  useEffect(() => {
+    if (isFetched) {
+      setUserAccountInfo(data!);
+    }
+  }, [isFetched]);
+
   return (
-    <div className="flex flex-col justify-center items-center gap-[14px]">
-      <div className="w-[150px] h-[150px] rounded-full overflow-hidden bg-primary/20">
-        <Image
-          src={ProfileImage.src}
-          width={150}
-          height={150}
-          alt="profile"
-          className="rounded-full"
-        />
-      </div>
-      <div className="flex flex-col gap-[4px] items-center">
-        <UserProfileText />
-      </div>
+    <div className="flex flex-col gap-[6px]">
+      <Text
+        value={userAccountInfo?.nickName}
+        height={30}
+        className="font-bold text-h4 text-left"
+      />
+      <Text
+        value={
+          <span className="text-gray4 text-b2 flex items-center gap-[8px]">
+            <SocialIcon provider={userAccountInfo?.providerType} size={24} />
+            {userAccountInfo?.email}
+          </span>
+        }
+        height={21}
+        width={150}
+        className="text-gray4 text-b2"
+      />
     </div>
   );
 }
