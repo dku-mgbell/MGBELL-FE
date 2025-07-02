@@ -14,13 +14,15 @@ import { useVerifyAlreadySignedUp } from './useVerifyAlreadySignedUp';
 export const usePostOAuthCode = ({
   OAuthProvider,
   action = 'login',
+  state,
 }: {
   OAuthProvider: OAuthProviderType;
   action?: 'login' | 'delete';
+  state?: string | null;
 }) => {
   const { signUpInfo, updateSignUpInfo } = useSignUpStore();
   const { mutate: deleteOAuthAccount } = useDeleteOAuthAccount();
-  const { data: isAlreadySignedUp } = useVerifyAlreadySignedUp();
+  const { data: isAlreadySignedUp } = useVerifyAlreadySignedUp({ action });
   const { mutate: postOAuthLogin } = usePostOAuthLogin();
   const { open } = useModal();
   const route = useRouter();
@@ -48,6 +50,10 @@ export const usePostOAuthCode = ({
   };
 
   useEffect(() => {
+    if (action === 'delete') {
+      closeLoading();
+      return;
+    }
     const OAuthLoginRequest = {
       providerType: signUpInfo.providerType,
       authCode: signUpInfo.authCode,
@@ -73,6 +79,7 @@ export const usePostOAuthCode = ({
         provider: OAuthProvider,
         code,
         action,
+        state,
       }),
     onMutate: () => {
       openLoading();

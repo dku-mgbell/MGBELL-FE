@@ -1,5 +1,6 @@
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
+import { useSignUpStore } from '@/app/sign-up/_/sign-up-store';
 import { User } from '@/hooks/api/user';
 import { useGetUserAccountInfo } from '@/hooks/query/user/useGetUserAccountInfo';
 import useLoadingModal from '@/hooks/useModal/loading';
@@ -22,6 +23,7 @@ export const usePostOAuthLogin = (nextPage?: string) => {
   const { open } = useModal();
   const { setTokenResponse } = useAuth();
   const { closeLoading } = useLoadingModal();
+  const { resetSignUpInfo } = useSignUpStore();
 
   if (isAccountInfoFetched && accountInfo) {
     // OWNER 계정 리다이렉트 로직
@@ -86,6 +88,7 @@ export const usePostOAuthLogin = (nextPage?: string) => {
           }
         }
       }
+      resetSignUpInfo();
     },
     onError: (err: ErrorResponse<LoginErrorCode>) => {
       closeLoading();
