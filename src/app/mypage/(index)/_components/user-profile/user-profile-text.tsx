@@ -6,12 +6,14 @@ import { useGetUserAccountInfo } from '@/hooks/query/user/useGetUserAccountInfo'
 import { useUserAccountInfoStore } from '../../_stores/useUserAccountInfoStore';
 
 export default function UserProfileText() {
-  const { mutate: getUserAccountInfo } = useGetUserAccountInfo();
-  const { userAccountInfo } = useUserAccountInfoStore();
+  const { data, isFetched } = useGetUserAccountInfo({ enabled: true });
+  const { userAccountInfo, setUserAccountInfo } = useUserAccountInfoStore();
 
   useEffect(() => {
-    getUserAccountInfo();
-  }, []);
+    if (isFetched) {
+      setUserAccountInfo(data!);
+    }
+  }, [isFetched]);
 
   return (
     <>

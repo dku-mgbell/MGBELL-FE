@@ -97,9 +97,13 @@ export const User = {
     const response = await API.patch('/user/password/reset', data);
     return response.data;
   },
-  async verifyAlreadySignedUp(data: VerifyAlreadySignedUpRequest) {
-    const response = await API.post(`${WIP_API_BASE_URL}/verify/social`, data);
-    return response.data;
+  async verifyAlreadySignedUp(
+    data: VerifyAlreadySignedUpRequest,
+  ): Promise<boolean> {
+    const response = await API.get(
+      `${WIP_API_BASE_URL}/verify/social?providerType=${data.providerType}&authCode=${data.authCode}  `,
+    );
+    return response.data.data as boolean;
   },
   async postOAuthCode(data: {
     provider: OAuthProviderType;
@@ -117,7 +121,7 @@ export const User = {
     return res;
   },
   async getAccountInfo(): Promise<AccountInfo> {
-    const response = await API.post(`${WIP_API_BASE_URL}/user/me`);
+    const response = await API.get(`${WIP_API_BASE_URL}/user/me`);
     return response.data.data;
   },
   async deleteOAuthAccount(data: DeleteOAuthAccountRequest) {
