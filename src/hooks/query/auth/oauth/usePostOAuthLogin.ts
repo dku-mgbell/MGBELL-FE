@@ -1,4 +1,4 @@
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { useSignUpStore } from '@/app/sign-up/_/sign-up-store';
 import { User } from '@/hooks/api/user';
@@ -24,8 +24,11 @@ export const usePostOAuthLogin = (nextPage?: string) => {
   const { setTokenResponse } = useAuth();
   const { closeLoading } = useLoadingModal();
   const { resetSignUpInfo } = useSignUpStore();
+  const pathname = usePathname();
+  const isLoginPage = pathname.includes('/login');
 
-  if (isAccountInfoFetched && accountInfo) {
+  // 로그인 로직
+  if (isLoginPage && isAccountInfoFetched && accountInfo) {
     // OWNER 계정 리다이렉트 로직
     if (accountInfo.approved === 'APPROVED') {
       if (accountInfo.goodsId === 'null') {

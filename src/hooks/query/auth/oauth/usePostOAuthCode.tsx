@@ -28,6 +28,7 @@ export const usePostOAuthCode = ({
   const route = useRouter();
   const isLoggedIn = useAuth();
   const { openLoading, closeLoading } = useLoadingModal();
+
   const openOAuthErrorModal = () => {
     open({
       title: `${OAuthName[OAuthProvider]} 계정 인증 오류`,
