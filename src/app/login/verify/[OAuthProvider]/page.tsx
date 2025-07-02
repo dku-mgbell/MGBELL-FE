@@ -21,7 +21,11 @@ function VerifyContent({
   });
 
   useEffect(() => {
+    // 로그인 전 로그아웃 처리
     logout({ withoutRedirect: true });
+  }, []);
+
+  useEffect(() => {
     if (code && OAuthProvider) {
       postOAuthCode(code);
     }

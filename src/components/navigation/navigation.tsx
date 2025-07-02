@@ -2,15 +2,15 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useModalMessage } from '@/hooks/useModal/message';
 import { useAuth } from '@/hooks/useAuth';
-import useModal from '@/hooks/useModal';
 import { navigationTabList } from './navigation-tab-list';
 
 export default function Navigation() {
   const pathname = usePathname();
   const currentRoute = pathname.split('?')[0];
-  const { logout, isLoggedIn } = useAuth();
-  const { open } = useModal();
+  const { openRequireLoginModal, isLoggedIn } = useAuth();
+  const { openNotReadyModal } = useModalMessage();
 
   const handleNavigationLink = ({
     tabInfo,
@@ -44,19 +44,11 @@ export default function Navigation() {
                 href={handleNavigationLink({ tabInfo })}
                 onClick={() => {
                   if (tabInfo.readyToDeploy === 'false') {
-                    open({
-                      content: '준비 중입니다.',
-                    });
+                    openNotReadyModal();
                     return;
                   }
 
-                  if (!isLoggedIn && !tabInfo.forGuest)
-                    open({
-                      content: '로그인 이후 이용 가능합니다.',
-                      confirmEvent: () => {
-                        logout();
-                      },
-                    });
+                  if (!isLoggedIn && !tabInfo.forGuest) openRequireLoginModal();
                 }}
               >
                 <div>{tabInfo.icon(active)}</div>

@@ -86,7 +86,9 @@ export default function Page() {
     if (!data?.goodsId) return;
 
     open({
-      content: '주문하시겠습니까?',
+      title: '주문을 진행하시겠어요?',
+      description: '선택하신 상품으로 주문을 진행할게요.',
+      confirmButtonText: '주문하기',
       confirmEvent: () => {
         setUserPaymentStore({
           ...userPaymentStore,

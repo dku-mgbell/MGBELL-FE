@@ -25,7 +25,7 @@ export default function Page({
   const { open } = useModal();
 
   useEffect(() => {
-    if (code) {
+    if (code && code.length > 0) {
       postOAuthCode(code);
     }
   }, [code, postOAuthCode]);

@@ -3,6 +3,7 @@
 import StepsLayout from '@/components/layout/steps-layout';
 import TextField from '@/components/ui/text-field';
 import { usePostOAuthLogin } from '@/hooks/query/auth/oauth/usePostOAuthLogin';
+import useLoadingModal from '@/hooks/useModal/loading';
 import { isValidPhoneNumber } from '@/utils/regex';
 import { useSignUpStore } from '../../_/sign-up-store';
 
@@ -11,12 +12,14 @@ export default function Page() {
   const signUpRedirectPage =
     signUpInfo.userRole === 'CUSTOMER' ? '/sign-up/success' : '/register/store';
   const { mutate: postOAuthLogin } = usePostOAuthLogin(signUpRedirectPage);
+  const { openLoading } = useLoadingModal();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateSignUpInfo('phoneNumber', e.target.value);
   };
 
   const handleNextButtonClick = () => {
+    openLoading();
     postOAuthLogin(signUpInfo);
   };
 

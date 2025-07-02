@@ -1,32 +1,52 @@
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { User } from '@/hooks/api/user';
 import { useGetUserAccountInfo } from '@/hooks/query/user/useGetUserAccountInfo';
+import useLoadingModal from '@/hooks/useModal/loading';
 import { ErrorResponse } from '@/types/api';
 import { OAuthLoginRequest, SignUpData } from '@/types/sign-up';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
+import { READY_TO_DEPLOY } from '@/constant';
 
 type LoginErrorCode = 'INVALID_PHONE_NUMBER' | 'DUPLICATE_NICKNAME';
 
 export const usePostOAuthLogin = (nextPage?: string) => {
   const router = useRouter();
-  const [isTokenIssued, setIsTokenIssued] = useState(false);
-  const { mutate: getAccountInfo } = useGetUserAccountInfo({ redirect: true });
+
+  const {
+    refetch: getAccountInfo,
+    data: accountInfo,
+    isFetched: isAccountInfoFetched,
+  } = useGetUserAccountInfo();
   const { open } = useModal();
   const { setTokenResponse } = useAuth();
+  const { closeLoading } = useLoadingModal();
 
-  useEffect(() => {
-    // 토큰 발급시 정보 조회하여 userRole에 따라 리다이렉트
-    if (isTokenIssued) {
-      getAccountInfo();
+  if (isAccountInfoFetched && accountInfo) {
+    // OWNER 계정 리다이렉트 로직
+    if (accountInfo.approved === 'APPROVED') {
+      if (accountInfo.goodsId === 'null') {
+        router.push('/register/bag');
+      } else {
+        router.push(`/store/${READY_TO_DEPLOY === 'true' ? 'order' : 'temp'}`);
+      }
+    } else if (
+      accountInfo.approved === 'WAITING' ||
+      accountInfo.approved === 'REJECTED'
+    ) {
+      router.push('/register/store/pending');
     }
-  }, [isTokenIssued]);
+    // CUSTOMER 계정 리다이렉트 로직
+    else if (accountInfo.userRole === 'CUSTOMER') {
+      router.push('/');
+    }
+  }
 
   return useMutation({
     mutationFn: (data: SignUpData | OAuthLoginRequest) => User.oAuthLogin(data),
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
+      closeLoading();
       const {
         authorization: accessTokenResponse,
         refreshtoken: refreshTokenResponse,
@@ -55,14 +75,20 @@ export const usePostOAuthLogin = (nextPage?: string) => {
       if (nextPage) {
         // 명시한 회원가입 리다이렉 페이지로 이동
         router.push(nextPage);
-      }
-      // 기존 회원 로그인
-      else {
-        // 토큰 발급 여부 업데이트하여 정보 조회 로직 실행
-        setIsTokenIssued(true);
+      } else {
+        const accountInfoResponse = await getAccountInfo();
+        const error =
+          accountInfoResponse.error as unknown as ErrorResponse<string>;
+        if (error) {
+          const errorCode = error.response?.data.code;
+          if (errorCode === 'STORE_NOT_FOUND') {
+            router.push('/register/store');
+          }
+        }
       }
     },
     onError: (err: ErrorResponse<LoginErrorCode>) => {
+      closeLoading();
       const errorCode = err.response.data.code;
       if (errorCode === 'INVALID_PHONE_NUMBER') {
         router.push('/sign-up/info/phone-number');
