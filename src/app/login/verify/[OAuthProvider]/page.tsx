@@ -15,9 +15,11 @@ function VerifyContent({
   const searchParams = useSearchParams();
   const { logout } = useAuth();
   const code = searchParams.get('code');
+  const state = searchParams.get('state');
 
   const { mutate: postOAuthCode } = usePostOAuthCode({
     OAuthProvider,
+    state,
   });
 
   useEffect(() => {

@@ -43,6 +43,7 @@ export default function getOAuthLink(
       },
       NAVER: {
         client_id: NAVER_OAUTH_CLIENT_ID!,
+        state: crypto.randomUUID(),
       },
       APPLE: {
         client_id: APPLE_OAUTH_CLIENT_ID!,
