@@ -109,12 +109,18 @@ export const User = {
     provider: OAuthProviderType;
     code: string;
     action: 'login' | 'delete';
+    state?: string | null;
   }) {
+    const requestData = { ...data };
+    if (requestData.provider !== 'NAVER') {
+      delete requestData.state;
+    }
+
     const response = await fetch(
-      `/api/login/oauth/${data.provider.toLowerCase()}`,
+      `/api/login/oauth/${requestData.provider.toLowerCase()}`,
       {
         method: 'POST',
-        body: JSON.stringify(data),
+        body: JSON.stringify(requestData),
       },
     );
     const res = (await response.json()) as OAuthAccessTokenResponse;

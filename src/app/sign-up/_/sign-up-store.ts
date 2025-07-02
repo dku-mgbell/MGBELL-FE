@@ -5,6 +5,7 @@ type SignUpState = {
   signUpInfo: SignUpInfo;
   setSignUpInfo: (state: SignUpInfo) => void;
   updateSignUpInfo: (field: keyof SignUpInfo, value: string) => void;
+  resetSignUpInfo: () => void;
 };
 
 export const signUpInfoDefaultValue = {
@@ -21,4 +22,5 @@ export const useSignUpStore = create<SignUpState>((set) => ({
     set((state) => ({
       signUpInfo: { ...state.signUpInfo, [field]: value },
     })),
+  resetSignUpInfo: () => set({ signUpInfo: signUpInfoDefaultValue }),
 }));

@@ -16,12 +16,15 @@ export default function Page({
   params: { OAuthProvider: OAuthProviderType };
 }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const code = searchParams.get('code');
+  const state = searchParams.get('state');
   const { mutate: postOAuthCode } = usePostOAuthCode({
     action: 'delete',
     OAuthProvider: params.OAuthProvider,
+    state,
   });
-  const searchParams = useSearchParams();
-  const code = searchParams.get('code');
+
   const { open } = useModal();
 
   useEffect(() => {
