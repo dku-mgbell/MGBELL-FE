@@ -1,11 +1,6 @@
-import Script from 'next/script';
 import localFont from 'next/font/local';
-import ModalProvider from '@/components/modal/modal-provider';
-import Navigation from '@/components/navigation/navigation';
 import { cn } from '@/lib/utils';
-import MSWProvider from './(index)/msw-provider/msw-provider';
-import Providers from './(index)/query-provider';
-import Container from './(layout)/container';
+import ClientLayout from './client-layout';
 import type { Metadata, Viewport } from 'next';
 import '../styles/index.css';
 import '../styles/global.css';
@@ -48,9 +43,9 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="ko">
       <head>
@@ -63,19 +58,7 @@ export default function RootLayout({
         />
       </head>
       <body className={cn(pretendard.variable, 'bg-[#f5f6f8]')}>
-        <Script
-          strategy="afterInteractive"
-          src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}
-        />
-        <Script src="https://cdn.iamport.kr/v1/iamport.js" />
-        <Providers>
-          <ModalProvider>
-            <MSWProvider />
-            <div id="modal-root" />
-            <Container>{children}</Container>
-            <Navigation />
-          </ModalProvider>
-        </Providers>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
