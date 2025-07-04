@@ -17,9 +17,7 @@ export default function PopularStoreListItem({
     >
       <div className="w-full h-[100px] overflow-hidden rounded-[10px]">
         <Image
-          src={
-            content ? `https://${content.ImageUrl[0]}` : DefaultThumbnail.src
-          }
+          src={content ? content.ImageUrl[0] : DefaultThumbnail.src}
           alt="마감백 판매 가게"
           width={500}
           height={500}

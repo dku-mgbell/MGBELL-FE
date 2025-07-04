@@ -15,11 +15,10 @@ function Container({ children }: { children: React.ReactNode }) {
 function Images({ isLoading }: { isLoading?: boolean }) {
   const { storeDetail } = useStoreDetailStore();
   const data = isLoading ? undefined : storeDetail;
-  const storeImages = data?.images.map((image) => `https://${image}`);
 
   return (
     <div className="flex h-[320px]">
-      <Carousel images={storeImages ?? []} />
+      <Carousel images={data?.images ?? []} />
     </div>
   );
 }

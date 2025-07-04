@@ -135,7 +135,7 @@ function HorizontalThumbnail({ images }: { images: string[] }) {
           className="w-[33%] h-[70px] rounded-[8px] overflow-hidden"
         >
           <Image
-            src={`https://${image}`}
+            src={image}
             alt="thumbnail"
             width={200}
             height={70}

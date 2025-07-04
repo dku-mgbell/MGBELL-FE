@@ -15,7 +15,7 @@ export default function StoreListItem(props: Partial<StoreListItemResponse>) {
                   key={imageId}
                   alt={imageId}
                   index={index}
-                  src={`https://${image}`}
+                  src={image}
                 />
               );
             })
