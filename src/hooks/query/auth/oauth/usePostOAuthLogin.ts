@@ -8,7 +8,6 @@ import { ErrorResponse } from '@/types/api';
 import { OAuthLoginRequest, SignUpData } from '@/types/sign-up';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
-import { READY_TO_DEPLOY } from '@/constant';
 
 type LoginErrorCode = 'INVALID_PHONE_NUMBER' | 'DUPLICATE_NICKNAME';
 
@@ -34,7 +33,7 @@ export const usePostOAuthLogin = (nextPage?: string) => {
       if (accountInfo.goodsId === 'null') {
         router.push('/register/bag');
       } else {
-        router.push(`/store/${READY_TO_DEPLOY === 'true' ? 'order' : 'temp'}`);
+        router.push('/store/order');
       }
     } else if (
       accountInfo.approved === 'WAITING' ||

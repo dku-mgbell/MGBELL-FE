@@ -22,6 +22,22 @@ function Title({ value, className }: { value?: string; className?: string }) {
   );
 }
 
+function Description({
+  value,
+  className,
+}: {
+  value?: string;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn('text-b2 text-gray4 h-[100px] overflow-auto', className)}
+    >
+      {value || <Skeleton className="w-full h-[100px]" />}
+    </div>
+  );
+}
+
 function Address({ value }: { value?: string }) {
   return (
     <div className="text-b2 text-gray4">
@@ -128,7 +144,7 @@ function OpenStatus({
 
 function HorizontalThumbnail({ images }: { images: string[] }) {
   return (
-    <div className="flex items-center gap-[6px] w-full">
+    <div className="flex items-center gap-[6px] w-full max-w-[450px]">
       {images.map((image) => (
         <div
           key={image}
@@ -154,4 +170,5 @@ export const Store = {
   OpenStatus,
   ReviewLink,
   HorizontalThumbnail,
+  Description,
 };
