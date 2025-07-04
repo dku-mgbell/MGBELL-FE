@@ -88,3 +88,24 @@ export const CancelReason = {
 };
 
 export type CancelReasonCode = keyof typeof CancelReason;
+
+export type OwnerTabOrderStatus = '' | 'PAID' | 'ACCEPTED' | 'COMPLETED';
+
+export type OrderStatus =
+  | 'PENDING'
+  | 'PAID'
+  | 'ACCEPTED'
+  | 'REJECTED'
+  | 'COMPLETED'
+  | 'CANCELED'
+  | 'FAILED';
+
+export const OrderStatusName: Record<OrderStatus, string> = {
+  PENDING: '주문대기',
+  PAID: '결제완료',
+  ACCEPTED: '픽업예정',
+  REJECTED: '주문거절',
+  COMPLETED: '픽업완료',
+  CANCELED: '주문취소',
+  FAILED: '결제실패',
+} as const;

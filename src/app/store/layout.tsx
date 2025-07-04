@@ -1,22 +1,13 @@
 import { ReactNode } from 'react';
-import LogoIcon from '@/assets/svg/LogoIcon';
-import { READY_TO_DEPLOY } from '@/constant';
-import Navigation from './(components)/navigation/navigation';
-import * as styles from './styles.css';
+import { Container, Header, Main } from './_components/layout';
+import Navigation from './_components/navigation';
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <LogoIcon />
-        <p className={styles.headerMessage}>
-          오늘도 마감벨과 함께 Zero Food Waste를 실천해주셔서 감사합니다.
-        </p>
-      </header>
-      <main className={styles.main}>
-        <div className={styles.mainContent}>{children}</div>
-      </main>
-      {READY_TO_DEPLOY === 'true' && <Navigation />}
-    </div>
+    <Container>
+      <Header />
+      <Main>{children}</Main>
+      <Navigation />
+    </Container>
   );
 }

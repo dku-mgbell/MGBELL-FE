@@ -1,8 +1,7 @@
-import Link from 'next/link';
-import { OrderState } from '@/types/order';
-import * as styles from './styles.css';
+import { OwnerTabOrderStatus } from '@/types/order';
+import { Container, TabLink } from './components';
 
-export default function Aside({ state }: { state?: OrderState | '' }) {
+export default function Aside({ status }: { status?: OwnerTabOrderStatus }) {
   const tabContent = {
     '': {
       name: '전체',
@@ -19,7 +18,7 @@ export default function Aside({ state }: { state?: OrderState | '' }) {
   };
 
   const handleTabActive = (
-    paramState: OrderState | '' | undefined,
+    paramState: OwnerTabOrderStatus | undefined,
     tabId: string,
   ) => {
     if (paramState) {
@@ -32,18 +31,16 @@ export default function Aside({ state }: { state?: OrderState | '' }) {
   };
 
   return (
-    <div className={styles.container}>
+    <Container>
       {Object.entries(tabContent).map(([tabId, tab]) => (
-        <Link
+        <TabLink
           key={tabId}
-          href={`/store/order?state=${tabId}`}
-          className={styles.tab({
-            active: handleTabActive(state, tabId),
-          })}
+          href={`/store/order?status=${tabId}`}
+          active={handleTabActive(status, tabId)}
         >
           {tab.name}
-        </Link>
+        </TabLink>
       ))}
-    </div>
+    </Container>
   );
 }
