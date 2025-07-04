@@ -19,3 +19,27 @@ export const OwnerOrderActionName: Record<OwnerOrderAction, string> = {
   completed: '완료',
   cancel: '취소',
 } as const;
+
+export interface OwnerStoreInfo {
+  data: {
+    data: {
+      storeId: string;
+      storeName: string;
+      storeImageUrls: string[];
+      goodsList: [
+        {
+          goodsId: string;
+          goodsName: string;
+          originPrice: number;
+          discount: number;
+          salePrice: number;
+          description: string;
+          startTime: string;
+          endTime: string;
+          saleStatus: 'ON' | 'FALSE';
+          stockQuantity: number;
+        },
+      ];
+    };
+  };
+}
