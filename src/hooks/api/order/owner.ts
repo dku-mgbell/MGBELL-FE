@@ -1,5 +1,5 @@
 import { PageParams } from '@/types/api';
-import { OwnerOrderListItem } from '@/types/owner';
+import { OwnerOrderAction, OwnerOrderListItem } from '@/types/owner';
 import { WIP_API_BASE_URL } from '@/constant';
 import { API } from '..';
 
@@ -15,5 +15,11 @@ export const Owner = {
     const list = (await response.data.data
       .orderStoreList) as OwnerOrderListItem[];
     return list;
+  },
+  async patchOrderStatus(orderId: string, action: OwnerOrderAction) {
+    const response = await API.patch(
+      `${WIP_API_BASE_URL}/order/${action}/${orderId}`,
+    );
+    return response.data;
   },
 };

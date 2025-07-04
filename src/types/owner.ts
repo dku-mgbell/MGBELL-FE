@@ -10,3 +10,12 @@ export interface OwnerOrderListItem {
   phoneNumber: string;
   goodsName: string;
 }
+
+export type OwnerOrderAction = 'approve' | 'reject' | 'completed' | 'cancel';
+
+export const OwnerOrderActionName: Record<OwnerOrderAction, string> = {
+  approve: '수락',
+  reject: '거절',
+  completed: '완료',
+  cancel: '취소',
+} as const;

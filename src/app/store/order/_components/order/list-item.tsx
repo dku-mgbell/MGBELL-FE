@@ -3,7 +3,7 @@ import { OrderStatusName } from '@/types/order';
 import { OwnerOrderListItem } from '@/types/owner';
 import { format24HourTime } from '@/utils/format24HourTime';
 import { formatDateTime } from '@/utils/formatDateTime';
-import { OwnerOrderButtons } from './owner-order-buttons';
+import { OwnerOrderButtons } from './owner-order-buttons/index';
 
 function Container({ children }: { children: React.ReactNode }) {
   return (
@@ -81,7 +81,10 @@ export default function OrderListItem({
       <Header>
         <HeaderInfo content={content} />
         <ButtonContainer>
-          <OwnerOrderButtons status={content.orderStatus} />
+          <OwnerOrderButtons
+            status={content.orderStatus}
+            orderId={content.orderId}
+          />
         </ButtonContainer>
       </Header>
       <Body>
