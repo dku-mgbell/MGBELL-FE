@@ -1,7 +1,7 @@
 'use client';
 
 import { Intersection } from '@/components/intersection/intersection';
-import { useGetOrderListByOwner } from '@/hooks/query/order/owner/useGetOrderListByOwner';
+import { useGetOrderListByOwner } from '@/hooks/query/owner/useGetOrderListByOwner';
 import { OwnerTabOrderStatus } from '@/types/order';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import OrderListItem from './list-item';
