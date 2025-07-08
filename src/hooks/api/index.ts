@@ -12,6 +12,9 @@ export const API = axios.create({
 API.interceptors.request.use((config) => {
   const accessToken =
     typeof window !== 'undefined' ? localStorage.getItem('accessToken') : null;
+  if (config.url?.includes('/auth/token/reissue')) {
+    return config;
+  }
   // eslint-disable-next-line no-param-reassign
   config.headers.Authorization = accessToken ? `Bearer ${accessToken}` : null;
   return config;
@@ -76,8 +79,6 @@ API.interceptors.response.use(
         ];
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshtoken);
-        originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-        return API(originalRequest);
       });
       return;
     }

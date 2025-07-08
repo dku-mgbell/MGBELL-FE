@@ -1,20 +1,22 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Favorite } from '@/hooks/api/favorite';
-import { FavoriteRegistration } from '@/types/favorite';
 
-export const usePostFavorite = () => {
+export const usePatchStoreFavorite = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: FavoriteRegistration) => Favorite.register(data),
+    mutationFn: ({
+      storeId,
+      type,
+    }: {
+      storeId: string;
+      type: 'post' | 'delete';
+    }) => Favorite.handleStatus({ type, storeId }),
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['bag-detail'],
-      });
-      await queryClient.invalidateQueries({
-        queryKey: ['bag-list'],
-      });
-      await queryClient.invalidateQueries({
         queryKey: ['user-favorite-list'],
+      });
+      await queryClient.invalidateQueries({
+        queryKey: ['store-favorite'],
       });
     },
   });

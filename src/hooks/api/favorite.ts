@@ -21,4 +21,14 @@ export const Favorite = {
       .favoriteStoreListDTOResponseList) as StoreListItemResponse[];
     return list;
   },
+  async handleStatus({
+    type,
+    storeId,
+  }: {
+    type: 'get' | 'post' | 'delete';
+    storeId: string;
+  }) {
+    const response = await API[type](`${WIP_API_BASE_URL}/favorite/${storeId}`);
+    return response.data.data;
+  },
 };
