@@ -50,8 +50,6 @@ export const OrderStatusColor: Record<OrderStatus, string> = {
   FAILED: 'text-error',
 } as const;
 
-export type OwnerTabOrderStatus = '' | 'PAID' | 'ACCEPTED' | 'COMPLETED';
-
 export type OrderStatus =
   | 'PENDING'
   | 'PAID'

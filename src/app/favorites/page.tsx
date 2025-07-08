@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { ClipLoader } from 'react-spinners';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Intersection } from '@/components/intersection/intersection';
@@ -8,6 +9,7 @@ import { StoreList } from '@/components/store/list';
 import { useGetUserFavoriteList } from '@/hooks/query/favorite/useGetUserFavoriteList';
 import { useUserHistoryStore } from '@/hooks/stores/useUserHistoryStore';
 import { StoreListItemResponse } from '@/types/store';
+import { colors } from '@/styles/constant';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -20,6 +22,7 @@ export default function Page() {
     list: favoriteList,
     intersection,
     isFetched,
+    isLoading,
   } = useInfiniteScroll<StoreListItemResponse>(bagListState);
   const { recentViewedStoreList } = useUserHistoryStore();
 
@@ -34,6 +37,11 @@ export default function Page() {
     >
       <SwiperSlide>
         <Favorite.SlideContainer>
+          {isLoading && (
+            <div className="absolute-center">
+              <ClipLoader color={colors.primary} />
+            </div>
+          )}
           {isFetched &&
             (favoriteList!.length === 0 ? (
               <Favorite.Empty />

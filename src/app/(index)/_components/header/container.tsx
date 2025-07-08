@@ -32,9 +32,9 @@ export default function HeaderContainer({ children }: { children: ReactNode }) {
       <div className="w-full h-[env(safe-area-inset-top)] bg-white fixed top-0 left-1/2 transform -translate-x-1/2 max-w-[450px] z-[999]" />
       <header
         className={cn(
-          'w-full flex flex-col gap-[8px] ',
+          'w-full flex flex-col',
           'bg-primary fixed top-0 left-1/2 transform -translate-x-1/2 max-w-[450px] z-[9999]',
-          'px-[20px] py-[16px] pt-[calc(env(safe-area-inset-top)+16px)]',
+          'pt-[calc(env(safe-area-inset-top)+16px)]',
           'transition-transform duration-300 ease-in-out',
           isVisible
             ? 'translate-y-0'
