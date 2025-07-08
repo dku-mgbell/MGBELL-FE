@@ -25,7 +25,7 @@ export const Account = {
     return response.data;
   },
   async getActivity(): Promise<UserActivity> {
-    const response = await API.get('/user/myPage');
-    return response.data;
+    const response = await API.get(`${WIP_API_BASE_URL}/mypage`);
+    return response.data.data;
   },
 };

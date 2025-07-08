@@ -3,10 +3,9 @@ import { OAuthProviderType } from './oauth';
 export type UserRole = 'CUSTOMER' | 'OWNER';
 
 export interface UserActivity {
-  name: string;
-  orderCount: number;
-  carbonReduction: number;
-  totalDiscount: number;
+  purchaseCount: number;
+  savedKg: number;
+  savedPrice: number;
 }
 
 export interface AccountInfo {
