@@ -6,6 +6,5 @@ export const useGetUserAccountInfo = (options?: { enabled?: boolean }) => {
     queryKey: ['user-account-info', options?.enabled],
     queryFn: () => User.getAccountInfo(),
     enabled: options?.enabled ?? false,
-    retry: false,
   });
 };

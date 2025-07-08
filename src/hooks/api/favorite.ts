@@ -1,6 +1,7 @@
 import { PageParams } from '@/types/api';
-import { BagInfoResponse } from '@/types/bag';
 import { FavoriteRegistration } from '@/types/favorite';
+import { StoreListItemResponse } from '@/types/store';
+import { WIP_API_BASE_URL } from '@/constant';
 import { API } from '.';
 
 export const Favorite = {
@@ -11,11 +12,13 @@ export const Favorite = {
   async getInfiniteList({
     page,
     size,
-  }: PageParams): Promise<BagInfoResponse[]> {
+  }: PageParams): Promise<StoreListItemResponse[]> {
     const response = await API.get(
-      `/favorite?page=${page}&size=${size}&sort=createdAt,desc`,
+      `${WIP_API_BASE_URL}/favorite?page=${page + 1}&size=${size}`,
     );
-    const list = (await response.data.content) as BagInfoResponse[];
+
+    const list = (await response.data.data
+      .favoriteStoreListDTOResponseList) as StoreListItemResponse[];
     return list;
   },
 };
