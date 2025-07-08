@@ -4,17 +4,24 @@ import { useEffect } from 'react';
 import SocialIcon from '@/assets/svg/social';
 import Text from '@/components/ui/text';
 import { useGetUserAccountInfo } from '@/hooks/query/user/useGetUserAccountInfo';
+import { useGetUserActivity } from '@/hooks/query/user/useGetUserActivity';
 import { useUserAccountInfoStore } from '../../_stores/useUserAccountInfoStore';
 
 export default function UserProfile() {
-  const { data, isFetched } = useGetUserAccountInfo({ enabled: true });
+  const { data: accountData, isFetched: isAccountDataFetched } =
+    useGetUserAccountInfo({ enabled: true });
+  const { data: activityData, isFetched: isActivityDataFetched } =
+    useGetUserActivity();
   const { userAccountInfo, setUserAccountInfo } = useUserAccountInfoStore();
 
   useEffect(() => {
-    if (isFetched) {
-      setUserAccountInfo(data!);
+    if (isAccountDataFetched && isActivityDataFetched) {
+      setUserAccountInfo({
+        ...accountData!,
+        ...activityData!,
+      });
     }
-  }, [isFetched]);
+  }, [isAccountDataFetched, isActivityDataFetched]);
 
   return (
     <div className="flex flex-col gap-[6px]">

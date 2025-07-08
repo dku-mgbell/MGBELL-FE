@@ -1,5 +1,7 @@
 import { OrderStatus } from './order';
 
+export type OwnerTabOrderStatus = '' | 'PAID' | 'ACCEPTED' | 'COMPLETED';
+
 export interface OwnerOrderListItem {
   orderId: string;
   orderStatus: OrderStatus;

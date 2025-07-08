@@ -1,4 +1,4 @@
-import { OwnerTabOrderStatus } from '@/types/order';
+import { OwnerTabOrderStatus } from '@/types/owner';
 import { Container, TabLink } from './components';
 
 export default function Aside({ status }: { status?: OwnerTabOrderStatus }) {

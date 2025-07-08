@@ -1,19 +1,18 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import ChevronRightIcon from '@/assets/svg/ChevronRightIcon';
-import { Button } from '@/components/ui/button';
-import { useCancelOrderByUser } from '@/hooks/query/order/useCancelOrderByUser';
 import { cn } from '@/lib/utils';
 import {
-  OrderState,
-  OrderStateColor,
-  OrderStateName,
+  OrderStatus,
   UserOrderDetail,
   UserOrderDetailPreview,
 } from '@/types/order';
 import { commaizeNumber } from '@/utils/commaizeNumber';
-import { formatDateTime } from '@/utils/formatDateTime';
-import useModal from '@/hooks/useModal';
+import { getFullDateTime } from '@/utils/getFullDateTime';
+import { ButtonContainer } from './button';
+import { useRenderActionButton } from './button/useRenderActionButton';
+import { OrderInfo } from './text/order-info';
+import { OrderStatusText } from './text/order-status-text';
 
 function Container({ children }: { children: React.ReactNode }) {
   return (
@@ -31,10 +30,11 @@ function Header({ children }: { children: React.ReactNode }) {
   return <div className="flex justify-between">{children}</div>;
 }
 
-function OrderDetailButton({ orderId }: { orderId: number }) {
+function OrderDetailButton({ orderId }: { orderId: string }) {
   return (
     <Link
       href={`/order/${orderId}`}
+      scroll={false}
       className="flex items-center gap-[6px] text-b3 font-[600] text-gray5"
     >
       주문상세 <ChevronRightIcon color="#8F8F8F" width={6} height={10} />
@@ -42,38 +42,18 @@ function OrderDetailButton({ orderId }: { orderId: number }) {
   );
 }
 
-function OpenStatusText({
-  orderState,
-  className,
-}: {
-  orderState: OrderState;
-  className?: string;
-}) {
-  return (
-    <p
-      className={cn(
-        'text-b2 font-bold',
-        className,
-        OrderStateColor[orderState],
-      )}
-    >
-      {OrderStateName[orderState]}
-    </p>
-  );
-}
-
 function HeaderOrderInfo({
   orderDateTime,
-  orderState,
+  orderStatus,
 }: {
   orderDateTime: string;
-  orderState: OrderState;
+  orderStatus: OrderStatus;
 }) {
   return (
     <div className="flex gap-[6px] items-center">
-      <OpenStatusText orderState={orderState} />
+      <OrderStatusText orderStatus={orderStatus} />
       <span className="text-b3 text-gray5">
-        {formatDateTime(orderDateTime)}
+        {getFullDateTime(orderDateTime)}
       </span>
     </div>
   );
@@ -84,25 +64,21 @@ function Body({ children }: { children: React.ReactNode }) {
 }
 
 function Thumbnail({
-  images,
+  imageUrl,
   className,
 }: {
-  images: string;
+  imageUrl: string;
   className?: string;
 }) {
   return (
-    <div
-      className={cn(
-        'w-[83px] h-[72px] rounded-[10px] bg-cover bg-center',
-        className,
-      )}
-      style={{ backgroundImage: `url('${images}')` }}
+    <Image
+      src={imageUrl}
+      alt="thumbnail"
+      width={83}
+      height={72}
+      className={cn('rounded-[10px]', className)}
     />
   );
-}
-
-function ButtonContainer({ children }: { children: React.ReactNode }) {
-  return <div className="flex justify-end">{children}</div>;
 }
 
 function BodyOrderInfo({
@@ -110,15 +86,15 @@ function BodyOrderInfo({
   storeName,
   amount,
   subTotal,
-  openStatus,
   textStyle = 'medium',
+  orderStatus,
 }: {
-  id: number;
+  id: string;
   storeName: string;
   amount: number;
   subTotal?: number;
-  openStatus?: OrderState;
   textStyle?: 'medium' | 'large';
+  orderStatus?: OrderStatus;
 }) {
   const style = {
     storeName: {
@@ -133,12 +109,12 @@ function BodyOrderInfo({
 
   return (
     <div className="flex flex-col gap-[2px] flex-1">
-      {openStatus && (
-        <OpenStatusText orderState={openStatus} className="text-b1" />
+      {orderStatus && (
+        <OrderStatusText orderStatus={orderStatus} className="text-b1" />
       )}
       <Link
         href={`/bag/${id}`}
-        className={cn(style.storeName[textStyle], 'font-bold')}
+        className={cn(style.storeName[textStyle], 'font-bold w-fit')}
       >
         {storeName}
       </Link>
@@ -152,135 +128,76 @@ function BodyOrderInfo({
   );
 }
 
-function ReviewButton({ orderId }: { orderId: number }) {
-  const route = useRouter();
-
-  return (
-    <Button
-      variant="secondary-outline"
-      className="h-[40px] text-b3 text-secondary tracking-[-0.5px]"
-      onClick={() => {
-        route.push(`/bag/review/post?orderId=${orderId}`);
-      }}
-    >
-      리뷰 작성
-    </Button>
-  );
-}
-
-function CancelButtons({ orderId }: { orderId: number }) {
-  const { open } = useModal();
-  const { mutate: cancelOrder } = useCancelOrderByUser();
-
-  const handleCancelButtonClick = () => {
-    open({
-      content: '주문을 취소하시겠습니까?',
-      confirmEvent: () => cancelOrder(orderId),
-    });
-  };
-  return (
-    <div className="w-full flex justify-between h-[40px] border-[1px] border-gray6 rounded-[10px] items-center">
-      <button
-        type="button"
-        className="cursor-pointer text-b3 text-gray3 flex-1 font-bold"
-        onClick={handleCancelButtonClick}
-      >
-        주문 취소
-      </button>
-      <div className="w-[1px] h-[22px] bg-gray6" />
-      <button
-        type="button"
-        className="cursor-pointer text-b3 text-gray3 flex-1 font-bold"
-        onClick={() => {
-          window.open('https://pf.kakao.com/_UmqJn', '_blank');
-        }}
-      >
-        문의하기
-      </button>
-    </div>
-  );
-}
-
 export function OrderListItem({
   data: {
     orderId,
-    id,
-    orderDateTime,
+    storeId,
+    createdAt,
     storeName,
-    orderState,
-    amount,
-    subTotal,
-    images,
+    orderStatus,
+    goodsList,
+    imageUrls,
+    reviewIds,
   },
 }: {
   data: UserOrderDetailPreview;
 }) {
+  const actionButton = useRenderActionButton(orderStatus, orderId, reviewIds);
   return (
     <Container>
       <OrderInfoContainer>
         <Header>
           <HeaderOrderInfo
-            orderDateTime={orderDateTime}
-            orderState={orderState}
+            orderDateTime={createdAt}
+            orderStatus={orderStatus}
           />
           <OrderDetailButton orderId={orderId} />
         </Header>
         <Body>
-          <Thumbnail images={images} />
+          <Thumbnail imageUrl={imageUrls[0]} />
           <BodyOrderInfo
-            id={id}
+            id={storeId}
             storeName={storeName}
-            amount={amount}
-            subTotal={subTotal}
+            amount={goodsList[0].quantity}
+            subTotal={goodsList[0].salePrice * goodsList[0].quantity}
           />
         </Body>
       </OrderInfoContainer>
-      <ButtonContainer>
-        {orderState === 'REQUESTED' && <CancelButtons orderId={orderId} />}
-        {orderState === 'COMPLETED' && <ReviewButton orderId={orderId} />}
-      </ButtonContainer>
+      <ButtonContainer>{actionButton}</ButtonContainer>
     </Container>
   );
 }
 
-export function OrderDateAndNumberInfo({
-  orderId,
-  orderDateTime,
-}: {
-  orderId: number;
-  orderDateTime: string;
-}) {
-  return (
-    <p className="text-b2 text-gray5">
-      주문일시: {formatDateTime(orderDateTime)}
-      <br />
-      주문번호: {orderId}
-    </p>
-  );
-}
-
 export function OrderDetailItem({
-  data: { orderId, id, orderDateTime, storeName, orderState, amount, images },
+  data: {
+    orderId,
+    storeId,
+    createdAt,
+    storeName,
+    orderStatus,
+    quantity,
+    reviewId,
+    imageUrl,
+  },
 }: {
   data: UserOrderDetail;
 }) {
+  const actionButton = useRenderActionButton(orderStatus, orderId, [reviewId]);
+
   return (
     <Container>
       <Body>
         <BodyOrderInfo
-          id={id}
+          id={storeId}
           storeName={storeName}
-          amount={amount}
-          openStatus={orderState}
+          amount={quantity}
           textStyle="large"
+          orderStatus={orderStatus}
         />
-        <Thumbnail images={images} className="w-[110px] h-[86px]" />
+        <Thumbnail imageUrl={imageUrl} className="w-[110px] h-[86px]" />
       </Body>
-      <OrderDateAndNumberInfo orderId={orderId} orderDateTime={orderDateTime} />
-      <ButtonContainer>
-        {orderState === 'REQUESTED' && <CancelButtons orderId={orderId} />}
-        {orderState === 'COMPLETED' && <ReviewButton orderId={orderId} />}
-      </ButtonContainer>
+      <OrderInfo orderId={orderId} orderDateTime={createdAt} />
+      <ButtonContainer>{actionButton}</ButtonContainer>
     </Container>
   );
 }

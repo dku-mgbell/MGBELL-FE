@@ -1,19 +1,5 @@
-import { OAuthProviderType } from './login';
+import { OAuthProviderType } from './oauth';
 import { UserRole } from './user';
-
-export interface CodeVerificationResponse {
-  valid: boolean;
-  signupToken: string;
-}
-
-export interface SignUpInfo {
-  name: string;
-  phoneNumber: string;
-  email?: string;
-  userRole: UserRole | null;
-  password: string;
-  nickname?: string;
-}
 
 export interface SignUpData {
   providerType: null | OAuthProviderType;

@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { Owner } from '@/hooks/api/order/owner';
-import { OwnerTabOrderStatus } from '@/types/order';
+import { OwnerTabOrderStatus } from '@/types/owner';
 
 export const useGetOrderListByOwner = ({
   size,

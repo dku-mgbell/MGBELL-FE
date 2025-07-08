@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { OAuthProviderType } from '@/types/login';
+import { OAuthProviderType } from '@/types/oauth';
 import { loginButtonConfig } from './login-button-config';
 
 export default function LoginButton({ type }: { type: OAuthProviderType }) {

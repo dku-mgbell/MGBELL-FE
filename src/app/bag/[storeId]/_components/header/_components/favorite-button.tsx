@@ -1,29 +1,26 @@
 'use client';
 
 import HeartOutlineIcon from '@/assets/svg/HeartOutlineIcon';
-import { usePostFavorite } from '@/hooks/query/favorite/usePostFavorite';
+import { useGetStoreFavorite } from '@/hooks/query/favorite/useGetStoreFavorite';
+import { usePatchStoreFavorite } from '@/hooks/query/favorite/usePatchStoreFavorite';
 import { useAuth } from '@/hooks/useAuth';
-import { useGetBagDetailStore } from '../../../_stores/useGetBagDetailStore';
+import { useStoreDetailStore } from '../../../_stores/useStoreDetailStore';
 
-interface Props {
-  bagId: number;
-}
-
-export default function FavoriteButton({ bagId }: Props) {
-  const { bagDetail, isBagDetailFetched } = useGetBagDetailStore();
-  const { mutate: postFavorite } = usePostFavorite();
+export default function FavoriteButton() {
+  const { storeId, isStoreDetailFetched } = useStoreDetailStore();
+  const { mutate: patchFavorite } = usePatchStoreFavorite();
   const { isLoggedIn } = useAuth();
-  const isFavorite = bagDetail?.id !== bagId ? false : bagDetail.favorite;
+  const { data: isFavorite } = useGetStoreFavorite(storeId!);
 
   const handleFavoriteButtonClick = () => {
-    postFavorite({
-      storeId: bagDetail!.storeId,
-      status: !bagDetail!.favorite,
+    patchFavorite({
+      storeId: storeId!,
+      type: isFavorite ? 'delete' : 'post',
     });
   };
 
   return (
-    isBagDetailFetched &&
+    isStoreDetailFetched &&
     isLoggedIn && (
       <button
         type="button"

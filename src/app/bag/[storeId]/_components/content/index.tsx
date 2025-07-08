@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { useGetStoreDetailWithBag } from '@/hooks/query/store/useGetStoreDetailWithBag';
+import { useUserHistoryStore } from '@/hooks/stores/useUserHistoryStore';
 import { useStoreDetailStore } from '../../_stores/useStoreDetailStore';
 import Footer from '../footer';
 import SkeletonContent from '../skeleton-content';
@@ -16,6 +17,7 @@ export default function BagDetailContent({ storeId }: Props) {
     useGetStoreDetailWithBag(storeId);
   const { setStoreId, setIsStoreDetailFetched, setStoreDetail } =
     useStoreDetailStore();
+  const { addRecentViewedStoreList } = useUserHistoryStore();
 
   useEffect(() => {
     setStoreId(storeId);
@@ -25,6 +27,7 @@ export default function BagDetailContent({ storeId }: Props) {
     setIsStoreDetailFetched(isStoreDetailFetched);
     if (storeDetail) {
       setStoreDetail(storeDetail);
+      addRecentViewedStoreList(storeDetail);
     }
   }, [isStoreDetailFetched]);
 

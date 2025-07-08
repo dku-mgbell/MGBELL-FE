@@ -1,15 +1,14 @@
 import { usePathname, useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { useSignUpStore } from '@/app/sign-up/_/sign-up-store';
-import { User } from '@/hooks/api/user';
+import { OAuth } from '@/hooks/api/auth/OAuth';
 import { useGetUserAccountInfo } from '@/hooks/query/user/useGetUserAccountInfo';
 import useLoadingModal from '@/hooks/useModal/loading';
 import { ErrorResponse } from '@/types/api';
+import { OAuthSignUpErrorCode } from '@/types/oauth';
 import { OAuthLoginRequest, SignUpData } from '@/types/sign-up';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
-
-type LoginErrorCode = 'INVALID_PHONE_NUMBER' | 'DUPLICATE_NICKNAME';
 
 export const usePostOAuthLogin = (nextPage?: string) => {
   const router = useRouter();
@@ -48,7 +47,7 @@ export const usePostOAuthLogin = (nextPage?: string) => {
   }
 
   return useMutation({
-    mutationFn: (data: SignUpData | OAuthLoginRequest) => User.oAuthLogin(data),
+    mutationFn: (data: SignUpData | OAuthLoginRequest) => OAuth.login(data),
     onSuccess: async (res) => {
       closeLoading();
       const {
@@ -92,7 +91,7 @@ export const usePostOAuthLogin = (nextPage?: string) => {
       }
       resetSignUpInfo();
     },
-    onError: (err: ErrorResponse<LoginErrorCode>) => {
+    onError: (err: ErrorResponse<OAuthSignUpErrorCode>) => {
       closeLoading();
       const errorCode = err.response.data.code;
       if (errorCode === 'INVALID_PHONE_NUMBER') {

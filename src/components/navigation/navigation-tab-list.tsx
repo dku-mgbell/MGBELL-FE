@@ -19,8 +19,6 @@ export const navigationTabList = [
     name: '즐겨찾기',
     route: '/favorites',
     icon: (active: boolean) => <HeartIcon active={active} />,
-    margin: { marginLeft: '-70px' },
-    readyToDeploy: READY_TO_DEPLOY,
   },
   {
     id: 'map',
@@ -36,7 +34,6 @@ export const navigationTabList = [
     name: '주문내역',
     route: '/order',
     icon: (active: boolean) => <OrderHistoryIcon active={active} />,
-    readyToDeploy: READY_TO_DEPLOY,
   },
   {
     id: 'mypage',

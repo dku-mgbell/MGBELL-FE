@@ -4,7 +4,7 @@ import { Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Loader from '@/components/loader/loader';
 import { usePostOAuthCode } from '@/hooks/query/auth/oauth/usePostOAuthCode';
-import { OAuthProviderType } from '@/types/login';
+import { OAuthProviderType } from '@/types/oauth';
 import { useAuth } from '@/hooks/useAuth';
 
 function VerifyContent({

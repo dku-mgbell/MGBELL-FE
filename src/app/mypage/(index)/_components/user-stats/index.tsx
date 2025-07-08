@@ -6,11 +6,11 @@ import { useUserAccountInfoStore } from '../../_stores/useUserAccountInfoStore';
 export default function UserStats() {
   const { userAccountInfo } = useUserAccountInfoStore();
   const data = {
-    orderCount: userAccountInfo?.orderCount
-      ? `${userAccountInfo?.orderCount}회`
+    purchaseCount: userAccountInfo?.purchaseCount
+      ? `${userAccountInfo?.purchaseCount}회`
       : undefined,
-    carbonReduction: userAccountInfo?.carbonReduction
-      ? `${userAccountInfo?.carbonReduction.toFixed(2)}kg`
+    savedKg: userAccountInfo?.savedKg
+      ? `${userAccountInfo?.savedKg.toFixed(2)}kg`
       : undefined,
   };
 
@@ -19,7 +19,7 @@ export default function UserStats() {
       <div className="flex flex-1 flex-col gap-[4px] items-center">
         <p className="text-b2 text-gray4">이용 횟수</p>
         <Text
-          value={data.orderCount}
+          value={data.purchaseCount}
           height={21}
           className="font-bold text-b1"
           width={80}
@@ -29,7 +29,7 @@ export default function UserStats() {
       <div className="flex flex-1 flex-col gap-[4px] items-center">
         <p className="text-b2 text-gray4">탄소 절감량</p>
         <Text
-          value={data.carbonReduction}
+          value={data.savedKg}
           height={21}
           className="font-bold text-b1"
           width={80}

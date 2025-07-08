@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { API_BASE_URL } from '@/constant';
 // eslint-disable-next-line import/no-cycle
-import { Account } from './auth';
+import { Account } from './auth/account';
 
 export const API = axios.create({
   baseURL: API_BASE_URL,
@@ -12,6 +12,9 @@ export const API = axios.create({
 API.interceptors.request.use((config) => {
   const accessToken =
     typeof window !== 'undefined' ? localStorage.getItem('accessToken') : null;
+  if (config.url?.includes('/auth/token/reissue')) {
+    return config;
+  }
   // eslint-disable-next-line no-param-reassign
   config.headers.Authorization = accessToken ? `Bearer ${accessToken}` : null;
   return config;
@@ -22,17 +25,22 @@ API.interceptors.response.use(
     return response;
   },
   function async(error) {
+    const originalRequest = error.config;
+
     const refreshToken =
       typeof window !== 'undefined'
         ? localStorage.getItem('refreshToken')
         : null;
-    const currentPath = window.location.pathname;
+    const currentPath =
+      typeof window !== 'undefined' ? window.location.pathname : '';
 
     const logout = () => {
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      if (currentPath !== '/login') {
-        window.location.href = '/login';
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        if (currentPath !== '/login') {
+          window.location.href = '/login';
+        }
       }
     };
 
@@ -44,7 +52,11 @@ API.interceptors.response.use(
     }
 
     // AccessToken 만료
-    if (error.status === 401) {
+    // eslint-disable-next-line no-underscore-dangle
+    if (error.status === 401 && !originalRequest._retry) {
+      // eslint-disable-next-line no-underscore-dangle
+      originalRequest._retry = true;
+
       // 유효하지 않은 AccessToken
       if (error.response.data.code === 'JWT_VALIDATE_ERROR') {
         alert('유효하지 않은 인증 정보입니다. 다시 로그인해주세요.');

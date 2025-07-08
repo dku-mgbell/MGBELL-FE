@@ -1,11 +1,7 @@
 import { create } from 'zustand';
-import { AccountInfo } from '@/types/user';
+import { AccountInfo, UserActivity } from '@/types/user';
 
-interface UserAccountInfo extends Partial<AccountInfo> {
-  totalDiscount?: number;
-  carbonReduction?: number;
-  orderCount?: number;
-}
+type UserAccountInfo = AccountInfo & UserActivity;
 
 interface UserAccountInfoStore {
   userAccountInfo: UserAccountInfo | null;
