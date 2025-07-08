@@ -2,7 +2,7 @@ import TimeIcon from '@/assets/svg/TimeIcon';
 import { OrderStatusName } from '@/types/order';
 import { OwnerOrderListItem } from '@/types/owner';
 import { format24HourTime } from '@/utils/format24HourTime';
-import { formatDateTime } from '@/utils/formatDateTime';
+import { getFullDateTime } from '@/utils/getFullDateTime';
 import { OwnerOrderButtons } from './owner-order-buttons/index';
 
 function Container({ children }: { children: React.ReactNode }) {
@@ -50,7 +50,7 @@ function ButtonContainer({ children }: { children: React.ReactNode }) {
 function OrderDetail({ content }: { content: OwnerOrderListItem }) {
   const data = {
     주문상태: OrderStatusName[content.orderStatus],
-    주문일시: formatDateTime(content.createdAt),
+    주문일시: getFullDateTime(content.createdAt),
     연락처: content.phoneNumber,
     요청사항: '', // TODO: 요청사항 추가
   };

@@ -1,4 +1,4 @@
-import { OAuthProviderType } from '@/types/login';
+import { OAuthProviderType } from '@/types/oauth';
 import {
   APPLE_OAUTH_CLIENT_ID,
   BASE_URL,

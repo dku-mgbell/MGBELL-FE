@@ -1,4 +1,4 @@
-export default function formatTimeDifference(timestamp: string): string {
+export default function getTimeDifference(timestamp: string): string {
   const postDate = new Date(timestamp);
   const now = new Date();
 

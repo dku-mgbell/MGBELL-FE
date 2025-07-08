@@ -2,7 +2,7 @@
 
 import { Intersection } from '@/components/intersection/intersection';
 import { useGetOrderListByOwner } from '@/hooks/query/owner/useGetOrderListByOwner';
-import { OwnerTabOrderStatus } from '@/types/order';
+import { OwnerTabOrderStatus } from '@/types/owner';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import OrderListItem from './list-item';
 

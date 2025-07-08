@@ -1,4 +1,4 @@
-import { OwnerTabOrderStatus } from '@/types/order';
+import { OwnerTabOrderStatus } from '@/types/owner';
 import Aside from './_components/aside';
 import OrderList from './_components/order/list';
 

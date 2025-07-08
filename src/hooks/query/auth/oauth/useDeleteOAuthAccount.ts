@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { User } from '@/hooks/api/user';
+import { Account } from '@/hooks/api/auth/account';
 import useLoadingModal from '@/hooks/useModal/loading';
 import { DeleteOAuthAccountRequest } from '@/types/oauth';
 import { useAuth } from '@/hooks/useAuth';
@@ -29,8 +29,7 @@ export const useDeleteOAuthAccount = () => {
   };
 
   return useMutation({
-    mutationFn: (data: DeleteOAuthAccountRequest) =>
-      User.deleteOAuthAccount(data),
+    mutationFn: (data: DeleteOAuthAccountRequest) => Account.delete(data),
     onSuccess: () => {
       openSuccessModal();
     },

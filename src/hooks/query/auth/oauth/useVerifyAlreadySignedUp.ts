@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useSignUpStore } from '@/app/sign-up/_/sign-up-store';
-import { User } from '@/hooks/api/user';
+import { OAuth } from '@/hooks/api/auth/OAuth';
 
 export const useVerifyAlreadySignedUp = (options?: {
   action?: 'login' | 'delete';
@@ -14,7 +14,7 @@ export const useVerifyAlreadySignedUp = (options?: {
       options?.action,
     ],
     queryFn: () =>
-      User.verifyAlreadySignedUp({
+      OAuth.verifyAlreadySignedUp({
         providerType: signUpInfo.providerType,
         authCode: signUpInfo.authCode,
       }),

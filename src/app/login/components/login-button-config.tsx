@@ -2,7 +2,7 @@ import AppleIcon from '@/assets/svg/social/apple';
 import GoogleIcon from '@/assets/svg/social/google';
 import KakaoIcon from '@/assets/svg/social/kakao';
 import NaverIcon from '@/assets/svg/social/naver';
-import { OAuthProviderType } from '@/types/login';
+import { OAuthProviderType } from '@/types/oauth';
 import getOAuthLink from '@/utils/getOAuthLink';
 import { colors } from '@/styles/constant';
 

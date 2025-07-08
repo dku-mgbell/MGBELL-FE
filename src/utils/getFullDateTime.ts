@@ -1,4 +1,4 @@
-export const formatDateTime = (dateString: string) => {
+export const getFullDateTime = (dateString: string) => {
   const date = new Date(dateString);
 
   const year = date.getFullYear().toString().slice(-2);

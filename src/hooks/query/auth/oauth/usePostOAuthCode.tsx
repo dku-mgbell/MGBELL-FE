@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { useSignUpStore } from '@/app/sign-up/_/sign-up-store';
-import { User } from '@/hooks/api/user';
+import { OAuth } from '@/hooks/api/auth/OAuth';
 import useLoadingModal from '@/hooks/useModal/loading';
 import { OAuthName, OAuthProviderType } from '@/types/oauth';
 import { useAuth } from '@/hooks/useAuth';
@@ -76,7 +76,7 @@ export const usePostOAuthCode = ({
 
   return useMutation({
     mutationFn: (code: string) =>
-      User.postOAuthCode({
+      OAuth.postOAuthCode({
         provider: OAuthProvider,
         code,
         action,

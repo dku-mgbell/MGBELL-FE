@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { User } from '@/hooks/api/user';
+import { Account } from '@/hooks/api/auth/account';
 
 export const useGetUserAccountInfo = (options?: { enabled?: boolean }) => {
   return useQuery({
     queryKey: ['user-account-info', options?.enabled],
-    queryFn: () => User.getAccountInfo(),
+    queryFn: () => Account.getUserInfo(),
     enabled: options?.enabled ?? false,
   });
 };

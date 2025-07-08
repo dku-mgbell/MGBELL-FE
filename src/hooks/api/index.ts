@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { API_BASE_URL } from '@/constant';
 // eslint-disable-next-line import/no-cycle
-import { Account } from './auth';
+import { Account } from './auth/account';
 
 export const API = axios.create({
   baseURL: API_BASE_URL,
@@ -26,13 +26,16 @@ API.interceptors.response.use(
       typeof window !== 'undefined'
         ? localStorage.getItem('refreshToken')
         : null;
-    const currentPath = window.location.pathname;
+    const currentPath =
+      typeof window !== 'undefined' ? window.location.pathname : '';
 
     const logout = () => {
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      if (currentPath !== '/login') {
-        window.location.href = '/login';
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        if (currentPath !== '/login') {
+          window.location.href = '/login';
+        }
       }
     };
 
