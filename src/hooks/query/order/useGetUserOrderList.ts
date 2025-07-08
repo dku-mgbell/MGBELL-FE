@@ -1,8 +1,8 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { Order } from '@/hooks/api/order';
 
-export const useGetUserOrderList = ({ size }: { size: number }) =>
-  useInfiniteQuery({
+export const useGetUserOrderList = ({ size }: { size: number }) => {
+  return useInfiniteQuery({
     queryKey: ['user-order-list'],
     queryFn: ({ pageParam: pageNum }) =>
       Order.getInfiniteList({ page: pageNum, size }),
@@ -10,3 +10,4 @@ export const useGetUserOrderList = ({ size }: { size: number }) =>
     getNextPageParam: (lastPage, allPages) =>
       lastPage.length ? allPages.length : undefined,
   });
+};
