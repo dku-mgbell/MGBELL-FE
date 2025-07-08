@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Intersection } from '@/components/intersection/intersection';
 import { StoreList } from '@/components/store/list';
 import { useGetUserFavoriteList } from '@/hooks/query/favorite/useGetUserFavoriteList';
-import { useBagHistoryStore } from '@/hooks/stores/useBagHistoryStore';
+import { useUserHistoryStore } from '@/hooks/stores/useUserHistoryStore';
 import { StoreListItemResponse } from '@/types/store';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import 'swiper/css';
@@ -19,11 +19,10 @@ export default function Page() {
   const {
     list: favoriteList,
     intersection,
-    isLoading,
+    isFetched,
   } = useInfiniteScroll<StoreListItemResponse>(bagListState);
-  const { bagHistory } = useBagHistoryStore();
+  const { recentViewedStoreList } = useUserHistoryStore();
 
-  if (isLoading) return <> </>;
   return (
     <Swiper
       className="screen-swiper"
@@ -35,14 +34,35 @@ export default function Page() {
     >
       <SwiperSlide>
         <Favorite.SlideContainer>
-          {favoriteList!.length === 0 ? (
+          {isFetched &&
+            (favoriteList!.length === 0 ? (
+              <Favorite.Empty />
+            ) : (
+              <div>
+                <StoreList.Container>
+                  {favoriteList?.map((item) => (
+                    <StoreList.Item
+                      key={`favorite-${item.storeId}`}
+                      data={item}
+                    />
+                  ))}
+                </StoreList.Container>
+                <Intersection ref={intersection} />
+              </div>
+            ))}
+        </Favorite.SlideContainer>
+        <Intersection ref={intersection} />
+      </SwiperSlide>
+      <SwiperSlide>
+        <Favorite.SlideContainer>
+          {recentViewedStoreList!.length === 0 ? (
             <Favorite.Empty />
           ) : (
             <div>
               <StoreList.Container>
-                {favoriteList?.map((item) => (
+                {recentViewedStoreList?.map((item) => (
                   <StoreList.Item
-                    key={`favorite-${item.storeId}`}
+                    key={`recent-viewed-${item.storeId}`}
                     data={item}
                   />
                 ))}
@@ -50,20 +70,6 @@ export default function Page() {
               <Intersection ref={intersection} />
             </div>
           )}
-        </Favorite.SlideContainer>
-        <Intersection ref={intersection} />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Favorite.SlideContainer>
-          {!bagHistory.length && <Favorite.Empty />}
-          <div>
-            {/* <StoreList.Container>
-              {bagHistory?.map((item) => (
-                <StoreList.Item key={`bag-history-${item.id}`} data={item} />
-              ))}
-            </StoreList.Container>
-            <Intersection ref={intersection} /> */}
-          </div>
         </Favorite.SlideContainer>
       </SwiperSlide>
     </Swiper>
