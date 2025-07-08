@@ -22,6 +22,8 @@ API.interceptors.response.use(
     return response;
   },
   function async(error) {
+    const originalRequest = error.config;
+
     const refreshToken =
       typeof window !== 'undefined'
         ? localStorage.getItem('refreshToken')
@@ -47,7 +49,11 @@ API.interceptors.response.use(
     }
 
     // AccessToken 만료
-    if (error.status === 401) {
+    // eslint-disable-next-line no-underscore-dangle
+    if (error.status === 401 && !originalRequest._retry) {
+      // eslint-disable-next-line no-underscore-dangle
+      originalRequest._retry = true;
+
       // 유효하지 않은 AccessToken
       if (error.response.data.code === 'JWT_VALIDATE_ERROR') {
         alert('유효하지 않은 인증 정보입니다. 다시 로그인해주세요.');
@@ -70,6 +76,8 @@ API.interceptors.response.use(
         ];
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshtoken);
+        originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+        return API(originalRequest);
       });
       return;
     }
