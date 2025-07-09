@@ -6,12 +6,14 @@ import { useUserAccountInfoStore } from '../../_stores/useUserAccountInfoStore';
 export default function UserStats() {
   const { userAccountInfo } = useUserAccountInfoStore();
   const data = {
-    purchaseCount: userAccountInfo?.purchaseCount
-      ? `${userAccountInfo?.purchaseCount}회`
-      : undefined,
-    savedKg: userAccountInfo?.savedKg
-      ? `${userAccountInfo?.savedKg.toFixed(2)}kg`
-      : undefined,
+    purchaseCount:
+      userAccountInfo?.purchaseCount !== undefined
+        ? `${userAccountInfo?.purchaseCount}회`
+        : undefined,
+    savedKg:
+      userAccountInfo?.savedKg !== undefined
+        ? `${userAccountInfo?.savedKg.toFixed(2)}kg`
+        : undefined,
   };
 
   return (
