@@ -3,39 +3,14 @@ import {
   MyReviewResponse,
   ReviewResponse,
   ReviewStatistic,
-  UserReviewUpload,
+  UserReviewUploadRequest,
 } from '@/types/review';
+import { WIP_API_BASE_URL } from '@/constant';
 import { API } from '.';
 
 export const Review = {
-  async postByUser({
-    orderId,
-    reviewScore,
-    content,
-    satisfiedReasons,
-    file,
-  }: UserReviewUpload) {
-    const formData = new FormData();
-    formData.append(
-      'request',
-      JSON.stringify({
-        orderId,
-        reviewScore,
-        content,
-        satisfiedReasons,
-      }),
-    );
-    if (file) {
-      file.forEach((f) => {
-        formData.append('file', f);
-      });
-    }
-    const response = await API.post('/review/user', formData, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+  async postByUser(data: Omit<UserReviewUploadRequest, 'images'>) {
+    const response = await API.post(`${WIP_API_BASE_URL}/review`, data);
     return response.data;
   },
   async getStatistic({
