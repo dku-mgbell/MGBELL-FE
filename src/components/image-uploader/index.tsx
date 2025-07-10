@@ -4,9 +4,7 @@ import { useEffect, useState } from 'react';
 import CameraOutlineIcon from '@/assets/svg/CameraOutlineIcon';
 import CrossIcon from '@/assets/svg/CrossIcon';
 import { cn } from '@/lib/utils';
-import { common } from '@/styles/common.css';
 import useModal from '@/hooks/useModal';
-import { styles } from './styles.css';
 
 export default function ImageUploader({
   setFiles,
@@ -43,7 +41,7 @@ export default function ImageUploader({
   }, [imageFiles]);
 
   return (
-    <ul className={styles.imageList}>
+    <ul className="flex-wrap w-full flex gap-[10px]">
       {images.length < 3 && (
         <label
           className={cn(
@@ -55,7 +53,7 @@ export default function ImageUploader({
           <input
             multiple
             type="file"
-            className={common.hidden}
+            className="hidden"
             accept="image/png, image/jpeg"
             onChange={handleImageUploaded}
           />
