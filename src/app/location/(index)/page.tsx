@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import AddressInput from '@/components/input/address/address-input';
 import StepsLayout from '@/components/layout/steps-layout';
-import { RadioGroup } from '@/components/ui/radio-group';
+import { RadioGroup } from '@/components/ui/radio-group/index';
 import TextField from '@/components/ui/text-field';
 import { useAddressStateStore } from '@/hooks/stores/useAddressStore';
 import { UserAddressState } from '@/types/address';

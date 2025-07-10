@@ -142,7 +142,12 @@ export function OrderListItem({
 }: {
   data: UserOrderDetailPreview;
 }) {
-  const actionButton = useRenderActionButton(orderStatus, orderId, reviewIds);
+  const actionButton = useRenderActionButton({
+    orderStatus,
+    orderId,
+    reviewIds,
+    orderGoodsId: goodsList[0].orderGoodsId,
+  });
   return (
     <Container>
       <OrderInfoContainer>
@@ -178,11 +183,17 @@ export function OrderDetailItem({
     quantity,
     reviewId,
     imageUrl,
+    orderGoodsId,
   },
 }: {
   data: UserOrderDetail;
 }) {
-  const actionButton = useRenderActionButton(orderStatus, orderId, [reviewId]);
+  const actionButton = useRenderActionButton({
+    orderStatus,
+    orderId,
+    reviewId,
+    orderGoodsId,
+  });
 
   return (
     <Container>

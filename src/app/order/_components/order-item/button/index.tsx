@@ -51,7 +51,7 @@ export function CancelButtons({ orderId }: { orderId: string }) {
   );
 }
 
-export function ReviewButton({ orderId }: { orderId: string }) {
+export function ReviewButton({ orderGoodsId }: { orderGoodsId: string }) {
   const route = useRouter();
 
   return (
@@ -59,7 +59,7 @@ export function ReviewButton({ orderId }: { orderId: string }) {
       variant="secondary-outline"
       className="h-[40px] text-b3 text-secondary tracking-[-0.5px]"
       onClick={() => {
-        route.push(`/bag/review/post?orderId=${orderId}`);
+        route.push(`/bag/review/post/${orderGoodsId}`);
       }}
     >
       리뷰쓰기
