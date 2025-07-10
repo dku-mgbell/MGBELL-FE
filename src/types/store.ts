@@ -1,6 +1,6 @@
 import { PageParams } from './api';
 import { BagRegistrationRequest } from './bag';
-import { ImageRequest } from './image';
+import { ImageRequest, ImageResponse } from './image';
 
 export type StoreListSortType =
   | 'RECENT_DESC'
@@ -54,10 +54,7 @@ export type StoreRegistrationRequest = Omit<
 
 export interface StoreRegistrationResponse {
   data: {
-    storePreSignedUrlImages: {
-      id: number;
-      url: string;
-    }[];
+    storePreSignedUrlImages: ImageResponse[];
   };
 }
 export interface StoreDetailWithBag extends BagRegistrationRequest {
