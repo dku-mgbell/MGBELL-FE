@@ -16,6 +16,7 @@ export const textAreaVariants = cva(
       variant: {
         default: '',
         error: 'border-[1px] border-error',
+        outline: 'bg-white border-gray7',
       },
     },
     defaultVariants: {

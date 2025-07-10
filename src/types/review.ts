@@ -1,32 +1,38 @@
-export type ReviewScore = 'BEST' | 'GOOD' | 'NOTBAD' | 'NOTGOOD' | 'NONE';
+import { ImageRequest, ImageResponse } from './image';
 
 export const ReviewScoreName = {
-  NOTGOOD: '아쉬워요',
-  NOTBAD: '적당했어요',
-  GOOD: '좋았어요',
-  BEST: '최고였어요',
-  NONE: '평가가 없어요',
+  2: '아쉬워요',
+  3: '적당했어요',
+  4: '좋았어요',
+  5: '최고였어요',
 };
 
-export type SatisfiedReason =
-  | 'KIND_OWNER'
-  | 'LOW_PRICE'
-  | 'ZERO_WASTE'
-  | 'VARIOUS_KINDS';
+export type ReviewScore = keyof typeof ReviewScoreName;
 
 export const SatisfiedReasonName = {
-  VARIOUS_KINDS: '다양한 구성의 마감백',
-  LOW_PRICE: '저렴한 가격',
-  KIND_OWNER: '친절한 사장님',
-  ZERO_WASTE: 'Zero Food Waste 기여',
+  VARIETY: '다양한 구성의 마감백',
+  AFFORDABLE: '저렴한 가격',
+  FRIENDLY: '친절한 사장님',
+  ZERO: 'Zero Food Waste 기여',
 };
 
-export interface UserReviewUpload {
-  orderId: number;
-  reviewScore?: ReviewScore;
-  content?: string;
-  satisfiedReasons?: SatisfiedReason[];
-  file?: File[];
+export type SatisFactionReason = keyof typeof SatisfiedReasonName;
+
+export interface UserReviewForm {
+  rating: ReviewScore;
+  satisfactionReasons: SatisFactionReason[];
+  description: string;
+}
+
+export interface UserReviewUploadRequest extends UserReviewForm {
+  orderGoodsId: number;
+  reviewImageRegisters: ImageRequest[];
+  images: File[];
+}
+
+export interface UserReviewUploadResponse {
+  id: number;
+  reviewPreSignedUrlImages: ImageResponse[];
 }
 
 export type ReviewStatistic = {
@@ -45,7 +51,7 @@ export type ReviewResponse = {
   createdAt: string;
   reviewScore: ReviewScore;
   content: string;
-  satisfiedReasons: SatisfiedReason[];
+  satisfiedReasons: SatisFactionReason[];
   images: string[];
   ownerComment?: string;
   ownerCommentDate?: string;

@@ -5076,14 +5076,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hookform/resolvers@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "@hookform/resolvers@npm:5.1.0"
+"@hookform/resolvers@npm:^5.1.1":
+  version: 5.1.1
+  resolution: "@hookform/resolvers@npm:5.1.1"
   dependencies:
     "@standard-schema/utils": "npm:^0.3.0"
   peerDependencies:
     react-hook-form: ^7.55.0
-  checksum: 10c0/5bd28ef58a182102f40b7fa2bc73a5e423c8bcf9cb25fee91cb8933026e7efba6f9adfda1ee637294de59c5467c938f4fb99c77a73bbb8c6180482c69d31cbbd
+  checksum: 10c0/74601ba4abb3159bbaa25175af9459a2c0337a28d8c0a5be95c7ae7b0a76ddafcf63c03eea8561fd099fe80b226194ad09e3824c53b9beda38393ff9fd264a03
   languageName: node
   linkType: hard
 
@@ -5969,6 +5969,32 @@ __metadata:
     "@types/react-dom":
       optional: true
   checksum: 10c0/c3b46766238b3ee2a394d8806a5141432361bf1425110c9f0dcf480bda4ebd304453a53f294b5399c6ee3ccfcae6fd544921fd01ddc379cf5942acdd7168664b
+  languageName: node
+  linkType: hard
+
+"@radix-ui/react-checkbox@npm:^1.3.2":
+  version: 1.3.2
+  resolution: "@radix-ui/react-checkbox@npm:1.3.2"
+  dependencies:
+    "@radix-ui/primitive": "npm:1.1.2"
+    "@radix-ui/react-compose-refs": "npm:1.1.2"
+    "@radix-ui/react-context": "npm:1.1.2"
+    "@radix-ui/react-presence": "npm:1.1.4"
+    "@radix-ui/react-primitive": "npm:2.1.3"
+    "@radix-ui/react-use-controllable-state": "npm:1.2.2"
+    "@radix-ui/react-use-previous": "npm:1.1.1"
+    "@radix-ui/react-use-size": "npm:1.1.1"
+  peerDependencies:
+    "@types/react": "*"
+    "@types/react-dom": "*"
+    react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    "@types/react-dom":
+      optional: true
+  checksum: 10c0/8be7c06b3a7d3cff099cca1ccaf65258d65d9f10b5bb3a78ff6fc024799ac78befb3dfbb2965900c409a3dcbb99458bd3a9925392299f9f150a4f35eef040c59
   languageName: node
   linkType: hard
 
@@ -15065,8 +15091,9 @@ __metadata:
   resolution: "mgbell@workspace:."
   dependencies:
     "@chromatic-com/storybook": "npm:^4.0.0-0"
-    "@hookform/resolvers": "npm:^5.1.0"
+    "@hookform/resolvers": "npm:^5.1.1"
     "@portone/browser-sdk": "npm:^0.0.23"
+    "@radix-ui/react-checkbox": "npm:^1.3.2"
     "@radix-ui/react-label": "npm:^2.1.7"
     "@radix-ui/react-radio-group": "npm:^1.3.7"
     "@radix-ui/react-select": "npm:^2.2.5"
@@ -15124,7 +15151,7 @@ __metadata:
     react: "npm:^18"
     react-daum-postcode: "npm:^3.1.3"
     react-dom: "npm:^18"
-    react-hook-form: "npm:^7.57.0"
+    react-hook-form: "npm:^7.60.0"
     react-modal-sheet: "npm:^3.1.0"
     react-spinners: "npm:^0.14.1"
     storybook: "npm:^9.0.2"
@@ -15135,7 +15162,7 @@ __metadata:
     tw-animate-css: "npm:^1.3.3"
     typescript: "npm:5.2.2"
     webpack: "npm:^5.95.0"
-    zod: "npm:^3.25.56"
+    zod: "npm:^4.0.2"
     zustand: "npm:^5.0.0-rc.2"
   languageName: unknown
   linkType: soft
@@ -16779,12 +16806,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:^7.57.0":
-  version: 7.57.0
-  resolution: "react-hook-form@npm:7.57.0"
+"react-hook-form@npm:^7.60.0":
+  version: 7.60.0
+  resolution: "react-hook-form@npm:7.60.0"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18 || ^19
-  checksum: 10c0/6db0b44b2e88d4db541514e96557723e39381ce9f71b3787bf041635f829143dbd0ae46a1f6c16dee23afe3413fd25539484ba02bf2a35d90aaa1b7483193ea9
+  checksum: 10c0/eb8518d42a074d9e115d4b414bac18ae72708b2d047a9453dcc7588b00df300b32cebf6ecb7f2c8aa534808b3dc54bde4124af95c1e432b6691f9aba07c93b11
   languageName: node
   linkType: hard
 
@@ -19982,10 +20009,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.25.56":
-  version: 3.25.56
-  resolution: "zod@npm:3.25.56"
-  checksum: 10c0/3800f01d4b1df932b91354eb1e648f69cc7e5561549e6d2bf83827d930a5f33bbf92926099445f6fc1ebb64ca9c6513ef9ae5e5409cfef6325f354bcf6fc9a24
+"zod@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "zod@npm:4.0.2"
+  checksum: 10c0/31d82196d5be1c8290a860e79b469c64934979a95533d6c7802cb164562a1584d03bc19fa349747f7c54e45fa85c10b2f731a2805626f96f8908bc94bccd38b8
   languageName: node
   linkType: hard
 

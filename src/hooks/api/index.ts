@@ -67,7 +67,7 @@ API.interceptors.response.use(
     if (error.config.url.includes('/auth/token/reissue')) {
       alert('인증 정보가 만료되었습니다. 다시 로그인해주세요.');
       logout();
-      return;
+      return Promise.reject(error);
     }
 
     // AccessToken 만료
@@ -94,12 +94,12 @@ API.interceptors.response.use(
       if (error.response.data.code === 'JWT_VALIDATE_ERROR') {
         alert('유효하지 않은 인증 정보입니다. 다시 로그인해주세요.');
         logout();
-        return;
+        return Promise.reject(error);
       }
 
       if (!refreshToken) {
         logout();
-        return;
+        return Promise.reject(error);
       }
 
       isRefreshing = true;
@@ -123,7 +123,7 @@ API.interceptors.response.use(
         processQueue(null, accessToken);
 
         originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-        return;
+        return await API(originalRequest);
       } catch (refreshError) {
         isRefreshing = false;
         processQueue(refreshError, null);

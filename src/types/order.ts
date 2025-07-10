@@ -19,11 +19,12 @@ export interface UserOrderDetailPreview {
   storeName: string;
   imageUrls: string[];
   goodsList: {
+    orderGoodsId: string;
     goodsName: string;
     quantity: number;
     salePrice: number;
   }[];
-  reviewIds: number[];
+  reviewIds: string[];
 }
 
 export interface UserOrderDetail
@@ -36,8 +37,9 @@ export interface UserOrderDetail
   totalPrice: number;
   pickupTime: string;
   memo: string;
-  reviewId: number;
+  reviewId: string;
   quantity: number;
+  orderGoodsId: string;
 }
 
 export const OrderStatusColor: Record<OrderStatus, string> = {
