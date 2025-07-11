@@ -10,6 +10,8 @@ export default function LoginButton({ type }: { type: OAuthProviderType }) {
     window.location.href = config.link;
   };
 
+  if (config.hidden) return null;
+
   return (
     <Button
       className="relative flex border-[1px]"

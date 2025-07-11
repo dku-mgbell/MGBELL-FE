@@ -13,6 +13,7 @@ interface LoginButtonConfig {
   textColor: string;
   bgColor: string;
   link: string;
+  hidden?: boolean;
 }
 
 export const loginButtonConfig: Record<OAuthProviderType, LoginButtonConfig> = {
@@ -31,6 +32,7 @@ export const loginButtonConfig: Record<OAuthProviderType, LoginButtonConfig> = {
     textColor: '#000000',
     bgColor: '#FFFFFF',
     link: getOAuthLink('GOOGLE'),
+    hidden: true,
   },
   APPLE: {
     icon: <AppleIcon />,
