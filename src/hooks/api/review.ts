@@ -11,7 +11,7 @@ import { API } from '.';
 export const Review = {
   async postByUser(data: Omit<UserReviewUploadRequest, 'images'>) {
     const response = await API.post(`${WIP_API_BASE_URL}/review`, data);
-    return response.data;
+    return response.data.data;
   },
   async getStatistic({
     storeId,

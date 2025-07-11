@@ -17,14 +17,17 @@ export const usePostReview = () => {
   const { mutate: postImages } = usePostImages();
 
   return useMutation({
-    mutationFn: async (data: UserReviewUploadRequest) => {
+    mutationFn: (data: UserReviewUploadRequest) => {
       const { images, ...request } = data;
       return Review.postByUser(request).then(
         (res: UserReviewUploadResponse) => {
-          return postImages({
-            files: images,
-            urls: res.reviewPreSignedUrlImages.map((image) => image.url),
-          });
+          if (images.length > 0) {
+            return postImages({
+              files: images,
+              urls: res.reviewPreSignedUrlImages.map((image) => image.url),
+            });
+          }
+          return res;
         },
       );
     },
@@ -33,7 +36,7 @@ export const usePostReview = () => {
     },
     onSuccess: () => {
       closeLoading();
-      router.push(`/bag/mypage/review`);
+      router.replace('/mypage/review');
     },
     onError: (error: ErrorResponse<string>) => {
       closeLoading();
@@ -42,5 +45,6 @@ export const usePostReview = () => {
         description: error.response?.data.message as string,
       });
     },
+    retry: false,
   });
 };
