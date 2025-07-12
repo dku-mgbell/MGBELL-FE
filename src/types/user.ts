@@ -14,5 +14,5 @@ export interface AccountInfo {
   userRole: 'CUSTOMER' | 'OWNER';
   providerType: OAuthProviderType;
   approved: 'APPROVED' | 'WAITING' | 'REJECTED';
-  goodsId: number | 'null';
+  goodsId: string | 'null';
 }

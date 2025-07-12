@@ -46,6 +46,7 @@ export const Primary: Story = {
 
       return (
         <Counter
+          defaultValue={args.defaultValue}
           setValue={setValue}
           maxCount={args.maxCount}
           minCount={args.minCount}

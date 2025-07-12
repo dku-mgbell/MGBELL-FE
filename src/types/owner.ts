@@ -39,7 +39,7 @@ export interface OwnerStoreInfo {
           description: string;
           startTime: string;
           endTime: string;
-          saleStatus: 'ON' | 'FALSE';
+          saleStatus: 'ON' | 'OFF';
           stockQuantity: number;
         },
       ];
