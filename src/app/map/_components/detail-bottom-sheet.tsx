@@ -2,23 +2,16 @@ import { useEffect, useState } from 'react';
 import BottomSheet from '@/components/bottom-sheet/index';
 import BackButton from '@/components/button/back-button';
 import { StoreList } from '@/components/store/list';
-import { DEFAULT_COORD } from '../_constant/map';
 import { useMapStore } from '../_stores/useMapStore';
 
-export default function DetailBottomSheet({ map }: { map: naver.maps.Map }) {
+export default function DetailBottomSheet() {
   const [isDetailBottomSheetOpen, setIsDetailBottomSheetOpen] = useState(false);
   const { selectedStore, setSelectedStore, setIsListSheetHidden } =
     useMapStore();
 
-  const resetMapView = () => {
-    const position = new naver.maps.LatLng(DEFAULT_COORD[0], DEFAULT_COORD[1]);
-    map.morph(position, 7);
-  };
-
   const handleBackButtonClick = () => {
     setIsDetailBottomSheetOpen(false);
     setIsListSheetHidden(false);
-    resetMapView();
   };
 
   useEffect(() => {

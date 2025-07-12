@@ -45,6 +45,9 @@ export const useUserHistoryStore = create<UserHistoryStore>()(
             quantity: storeDetail.quantity,
             distance: null,
             saleStatus: storeDetail.saleStatus,
+            address: storeDetail.address,
+            latitude: 0,
+            longitude: 0,
           };
           return {
             recentViewedStoreList: [

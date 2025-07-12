@@ -12,6 +12,7 @@ export function StoreInfo({ storeInfo }: { storeInfo?: OwnerStoreInfo }) {
     salePrice: storeInfo?.data.data.goodsList[0].salePrice,
     discount: storeInfo?.data.data.goodsList[0].discount,
     description: storeInfo?.data.data.goodsList[0].description,
+    address: storeInfo?.data.data.storeAddress,
   };
 
   return (
@@ -26,8 +27,7 @@ export function StoreInfo({ storeInfo }: { storeInfo?: OwnerStoreInfo }) {
             quantity={data.quantity}
             isOpenTextVisible
           />
-          {/* <Store.Address value={data.address} /> TODO 주소 API */}
-          <Store.Address value="경기도 용인시 수지구 죽전로 14번길 7" />
+          <Store.Address value={data.address} />
         </div>
         <div className="flex flex-col items-end gap-[10px] h-[107px]">
           <Store.HorizontalThumbnail images={data.storeImageUrls ?? []} />

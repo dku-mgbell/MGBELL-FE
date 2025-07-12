@@ -1,18 +1,38 @@
 export default function LocationIcon() {
   return (
     <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
+      <circle cx="10" cy="10" r="9.4" stroke="black" strokeWidth="1.2" />
       <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1ZM13 6C13 6.55228 12.5523 7 12 7C11.4477 7 11 6.55228 11 6V3.05664C6.82853 3.51786 3.51786 6.82853 3.05664 11H6C6.55228 11 7 11.4477 7 12C7 12.5523 6.55228 13 6 13H3.05664C3.51786 17.1714 6.82858 20.4811 11 20.9424V18C11 17.4477 11.4477 17 12 17C12.5523 17 13 17.4477 13 18V20.9424C17.1714 20.4811 20.4821 17.1714 20.9434 13H18C17.4477 13 17 12.5523 17 12C17 11.4477 17.4477 11 18 11H20.9434C20.4821 6.82853 17.1715 3.51786 13 3.05664V6Z"
-        fill="black"
+        d="M10 1V3"
+        stroke="black"
+        strokeWidth="1.2"
+        strokeLinecap="round"
       />
+      <path
+        d="M10 17V19"
+        stroke="black"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M19 10L17 10"
+        stroke="black"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M3 10L1 10"
+        stroke="black"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
+      <circle cx="10" cy="10" r="2" fill="#1D1B20" />
     </svg>
   );
 }

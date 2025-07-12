@@ -9,19 +9,19 @@ export const generateMarker = ({
   isUserLocation,
   map,
 }: MapMarker) => {
-  let [markerWidth, markerHeight] = [32, 32];
-  markerWidth = isUserLocation ? 32 : 32;
-  markerHeight = isUserLocation ? 42 : 32;
+  const [markerWidth, markerHeight] = [32, 32];
   const markerImage = isUserLocation
     ? UserPositionMarkerImage.src
     : StoreMarkerImage.src;
+
+  const zIndex = isUserLocation ? 9999 : 999;
 
   return new naver.maps.Marker({
     position: new naver.maps.LatLng(lat, lng),
     map,
     title: name,
     icon: {
-      content: `<img src="${markerImage}" alt="" style="z-index: 9999; margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: ${markerWidth}px; height: ${markerHeight}px; left: 0px; top: 0px;">`,
+      content: `<img src="${markerImage}" alt="" style="z-index: ${zIndex}; margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: ${markerWidth}px; height: ${markerHeight}px; left: 0px; top: 0px;">`,
       size: new naver.maps.Size(markerWidth, markerHeight),
     },
   });

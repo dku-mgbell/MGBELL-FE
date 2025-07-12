@@ -54,8 +54,8 @@ export default function Page() {
     postStoreRegistration({
       ...request,
       address: fullAddress,
-      latitude: Number(coordData?.addresses[0].x ?? 0),
-      longitude: Number(coordData?.addresses[0].y ?? 0),
+      latitude: Number(coordData?.addresses[0].y ?? 0),
+      longitude: Number(coordData?.addresses[0].x ?? 0),
       storeImagesRegisters: data.images.map((image, index) => ({
         id: index + 1,
         key: image.name,

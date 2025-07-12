@@ -17,7 +17,7 @@ export default function Navigation() {
   }: {
     tabInfo: (typeof navigationTabList)[0];
   }) => {
-    if (tabInfo.readyToDeploy === 'false') {
+    if (!tabInfo.readyToDeploy) {
       return '';
     }
     if (isLoggedIn || tabInfo.forGuest) {
@@ -43,7 +43,7 @@ export default function Navigation() {
                 className="flex flex-col items-center justify-center gap-[2px] clickable w-[25%]"
                 href={handleNavigationLink({ tabInfo })}
                 onClick={() => {
-                  if (tabInfo.readyToDeploy === 'false') {
+                  if (!tabInfo.readyToDeploy) {
                     openNotReadyModal();
                     return;
                   }

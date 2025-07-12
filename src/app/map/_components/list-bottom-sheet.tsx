@@ -10,7 +10,13 @@ import { useSuspenseInfiniteScroll } from '@/hooks/useSuspenseInfiniteScroll';
 import { useMapStore } from '../_stores/useMapStore';
 import ListShowButton from './list-show-button';
 
-export default function ListBottomSheet({ map }: { map: naver.maps.Map }) {
+export default function ListBottomSheet({
+  map,
+  locationButton,
+}: {
+  map: naver.maps.Map;
+  locationButton: React.ReactNode;
+}) {
   const [isListSheetOpen, setIsListSheetOpen] = useState(true);
   const [initialSnap, setInitialSnap] = useState(1);
   const storeListState = useGetStoreInfiniteList({
@@ -40,7 +46,7 @@ export default function ListBottomSheet({ map }: { map: naver.maps.Map }) {
 
   const handleStoreItemClick = useCallback(
     (store: StoreListItemResponse) => {
-      const [lat, lng] = [33 + Math.random() * 5, 126 + Math.random() * 3]; // TODO: 매장 좌표 추가
+      const [lat, lng] = [store.latitude, store.longitude];
       const position = new naver.maps.LatLng(lat - 0.0005, lng);
       map.morph(position, 18);
       setSelectedStore(store);
@@ -62,6 +68,7 @@ export default function ListBottomSheet({ map }: { map: naver.maps.Map }) {
           onClose={() => {
             setInitialSnap(1);
           }}
+          preHeaderContent={locationButton}
         >
           <div className="flex flex-col gap-[15px] px-[23px]">
             <StoreList.Container className="pb-[50px]">

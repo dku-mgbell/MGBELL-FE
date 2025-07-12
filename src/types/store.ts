@@ -30,6 +30,9 @@ export interface StoreListItemResponse {
   quantity: number;
   distance: number | null;
   saleStatus: 'ON' | 'OFF';
+  longitude: number;
+  latitude: number;
+  address: string;
 }
 
 export interface StoreRegistrationFormRequest {

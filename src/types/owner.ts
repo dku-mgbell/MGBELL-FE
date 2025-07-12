@@ -28,6 +28,7 @@ export interface OwnerStoreInfo {
       storeId: string;
       storeName: string;
       storeImageUrls: string[];
+      storeAddress: string;
       goodsList: [
         {
           goodsId: string;

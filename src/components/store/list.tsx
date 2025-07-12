@@ -46,8 +46,7 @@ export function StoreListItem({
             quantity={data.quantity}
             isOpenTextVisible
           />
-          <Store.Address value="경기도 용인시 수지구 죽전로 77 1층" />
-          {/* //TODO: 주소 추가 */}
+          <Store.Address value={data.address} />
         </div>
         <Store.HorizontalThumbnail
           images={
