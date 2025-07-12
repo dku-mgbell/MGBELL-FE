@@ -10,6 +10,10 @@ export interface BagRegistrationRequest {
   salePrice: number;
 }
 
+export interface BagPatchRequest extends BagRegistrationRequest {
+  goodsId: string;
+}
+
 export interface BagInfo {
   bagName: string | null;
   description: string | null;
