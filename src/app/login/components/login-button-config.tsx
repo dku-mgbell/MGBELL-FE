@@ -34,14 +34,6 @@ export const loginButtonConfig: Record<OAuthProviderType, LoginButtonConfig> = {
     link: getOAuthLink('GOOGLE'),
     hidden: true,
   },
-  APPLE: {
-    icon: <AppleIcon />,
-    text: '애플로 로그인하기',
-    borderColor: '#000000',
-    textColor: '#FFFFFF',
-    bgColor: '#000000',
-    link: getOAuthLink('APPLE'),
-  },
   NAVER: {
     icon: <NaverIcon />,
     text: '네이버로 로그인하기',
@@ -49,5 +41,13 @@ export const loginButtonConfig: Record<OAuthProviderType, LoginButtonConfig> = {
     textColor: '#FFFFFF',
     bgColor: '#36AE3C',
     link: getOAuthLink('NAVER'),
+  },
+  APPLE: {
+    icon: <AppleIcon />,
+    text: '애플로 로그인하기',
+    borderColor: '#000000',
+    textColor: '#FFFFFF',
+    bgColor: '#000000',
+    link: getOAuthLink('APPLE'),
   },
 };
