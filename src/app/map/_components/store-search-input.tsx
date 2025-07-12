@@ -13,8 +13,9 @@ export default function StoreSearchInput() {
     <div className="w-full max-w-[450px] absolute -translate-x-1/2 left-1/2 top-[20px]  z-[999] px-[20px]">
       <Link href="/search" className="w-full">
         <SearchInput
-          placeholder="가게의 이름을 검색해보세요!"
+          placeholder="마감백 운영 가게 검색"
           className="border-[1px] border-gray7"
+          readOnly
         />
       </Link>
     </div>

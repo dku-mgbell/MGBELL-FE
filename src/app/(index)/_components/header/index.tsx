@@ -15,7 +15,7 @@ export default function MainHeader({
       <div className="px-[20px] pb-[16px] gap-[8px] flex flex-col">
         <AddressEnterLink />
         <Link href="/search">
-          <SearchInput placeholder="가게의 이름을 검색해보세요!" />
+          <SearchInput placeholder="가게의 이름을 검색해보세요!" readOnly />
         </Link>
       </div>
       <SortNav sortValue={sortValue} />
