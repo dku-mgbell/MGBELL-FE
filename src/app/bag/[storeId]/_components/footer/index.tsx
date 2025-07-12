@@ -16,6 +16,7 @@ export default function Footer() {
   return (
     <Container>
       <Counter
+        defaultValue={0}
         setValue={setBagAmount}
         maxCount={storeDetail ? storeDetail.quantity : 0}
         className="w-[170px]"
