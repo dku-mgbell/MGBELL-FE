@@ -1,8 +1,6 @@
 export function Container({ children }: { children: React.ReactNode }) {
   return (
-    <div className="absolute w-full left-0 flex flex-col h-screen">
-      {children}
-    </div>
+    <div className="full w-full left-0 flex flex-col h-screen ">{children}</div>
   );
 }
 
