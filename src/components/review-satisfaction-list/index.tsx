@@ -10,7 +10,7 @@ export default function ReviewSatisfactionList({
   return (
     <div className="flex flex-wrap gap-[10px]">
       {satisfactions.map((satisfaction) => (
-        <Chip key={satisfaction} className="flex gap-[4px]">
+        <Chip key={satisfaction} className="flex gap-[4px] font-medium">
           <ThumbsUpIcon />
           {SatisfiedReasonName[satisfaction]}
         </Chip>

@@ -30,12 +30,11 @@ function StoreInfo({ isLoading }: { isLoading?: boolean }) {
   return (
     <div className="flex flex-col gap-[4px] px-[20px]">
       <Store.Title value={data?.storeName} />
-      {/* <Store.ReviewLink
-        bagId={data?.id}
-        storeId={data?.storeId}
-        count={data?.reviewCnt}
-        score={4}
-      /> TODO: 리뷰 API 연동 */}
+      <Store.ReviewLink
+        goodsId={data?.goodsId}
+        count={data?.reviewCount}
+        score={data?.averageRating}
+      />
       <Store.OpenStatus
         startTime={data?.startTime}
         endTime={data?.endTime}
