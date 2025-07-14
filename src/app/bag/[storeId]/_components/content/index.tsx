@@ -5,6 +5,7 @@ import { useGetStoreDetailWithBag } from '@/hooks/query/store/useGetStoreDetailW
 import { useUserHistoryStore } from '@/hooks/stores/useUserHistoryStore';
 import { useStoreDetailStore } from '../../_stores/useStoreDetailStore';
 import Footer from '../footer';
+import ReviewList from '../review-list';
 import SkeletonContent from '../skeleton-content';
 import { BagContent } from './components';
 
@@ -39,6 +40,7 @@ export default function BagDetailContent({ storeId }: Props) {
         <BagContent.Images />
         <BagContent.StoreInfo />
         <BagContent.Divider />
+        <ReviewList />
         <BagContent.Description />
       </BagContent.Container>
       <Footer />

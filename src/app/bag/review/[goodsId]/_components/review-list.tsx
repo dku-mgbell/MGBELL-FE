@@ -1,5 +1,5 @@
 import { Intersection } from '@/components/intersection/intersection';
-import { useGetBagReviewList } from '@/hooks/query/bag/useGetBagReviewList';
+import { useGetBagReviewInfiniteList } from '@/hooks/query/bag/useGetBagReviewInfiniteList';
 import getTimeDifference from '@/utils/getTimeDifference';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import HorizontalImageContainer from '@/components/horizontal-image-container';
@@ -12,7 +12,7 @@ export default function ReviewList({
   goodsId: string;
   imageCheck: boolean;
 }) {
-  const reviewState = useGetBagReviewList({
+  const reviewState = useGetBagReviewInfiniteList({
     goodsId,
     imageCheck,
     size: 10,

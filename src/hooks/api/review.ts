@@ -22,14 +22,14 @@ export const Review = {
     const response = await API.get(`/review/preview/${storeId}`);
     return response.data;
   },
-  async getInfiniteList({
+  async getList({
     goodsId,
-    imageCheck,
+    imageCheck = false,
     page,
     size,
   }: {
     goodsId: string;
-    imageCheck: boolean;
+    imageCheck?: boolean;
   } & PageParams): Promise<ReviewResponse[]> {
     const response = await API.get(
       `${WIP_API_BASE_URL}/review?goodsId=${goodsId}&page=${page + 1}&size=${size}&imageCheck=${imageCheck}`,

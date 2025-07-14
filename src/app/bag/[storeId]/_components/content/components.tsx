@@ -71,10 +71,7 @@ function Description({ isLoading }: { isLoading?: boolean }) {
           </div>
         </>
       ) : (
-        <>
-          <Skeleton className="w-[100px] h-[21px]" />
-          <Skeleton className="w-[full] h-[100px]" />
-        </>
+        <Skeleton className="w-[full] h-[100px]" />
       )}
     </div>
   );

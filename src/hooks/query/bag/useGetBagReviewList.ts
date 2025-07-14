@@ -1,27 +1,27 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { Review } from '@/hooks/api/review';
 
 export const useGetBagReviewList = ({
   goodsId,
   imageCheck,
   size,
+  page,
+  enabled = true,
 }: {
   goodsId: string;
   imageCheck: boolean;
   size: number;
+  page?: number;
+  enabled?: boolean;
 }) =>
-  useInfiniteQuery({
-    queryKey: ['bag-review-list', goodsId, imageCheck],
-    queryFn: ({ pageParam: pageNum }) =>
-      Review.getInfiniteList({
+  useQuery({
+    queryKey: ['bag-review-list', goodsId, enabled],
+    queryFn: () =>
+      Review.getList({
         goodsId,
-        imageCheck,
-        page: pageNum,
+        page: page ?? 1,
         size,
+        imageCheck,
       }),
-    initialPageParam: 0,
-    getNextPageParam: (lastPage, allPages) =>
-      lastPage.length ? allPages.length : undefined,
-    gcTime: 0,
-    staleTime: 0,
+    enabled,
   });
