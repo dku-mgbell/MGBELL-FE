@@ -35,9 +35,10 @@ export const Review = {
   },
   async getMyList({ page, size }: PageParams): Promise<MyReviewResponse[]> {
     const response = await API.get(
-      `/review/user/list?page=${page}&size=${size}&sort=createdAt,desc`,
+      `${WIP_API_BASE_URL}/review/me?page=${page + 1}&size=${size}`,
     );
-    const list = (await response.data.content) as MyReviewResponse[];
+    const list = (await response.data.data
+      .reviewListDTOList) as MyReviewResponse[];
     return list;
   },
   async deletePost(reviewId: number) {

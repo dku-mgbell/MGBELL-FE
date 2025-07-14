@@ -58,8 +58,13 @@ export type ReviewResponse = {
 };
 
 export type MyReviewResponse = {
-  id?: number;
-  storeId?: number;
-  storeName?: string;
-  reviewId?: number;
-} & ReviewResponse;
+  reviewId: string;
+  rating: number;
+  satisfactionReasons: SatisFactionReason[];
+  description: string;
+  createdAt: string;
+  imageUrls: string[];
+  nickName: string;
+  goodsId: string;
+  storeId: string;
+};
