@@ -2,9 +2,9 @@ import { ImageRequest, ImageResponse } from './image';
 
 export const ReviewScoreName = {
   2: '아쉬워요',
-  3: '적당했어요',
-  4: '좋았어요',
-  5: '최고였어요',
+  3: '적당해요',
+  4: '좋아요',
+  5: '최고예요',
 };
 
 export type ReviewScore = keyof typeof ReviewScoreName;
@@ -47,17 +47,6 @@ export type ReviewScoreStatistic = {
 };
 
 export type ReviewResponse = {
-  userName: string;
-  createdAt: string;
-  reviewScore: ReviewScore;
-  content: string;
-  satisfiedReasons: SatisFactionReason[];
-  images: string[];
-  ownerComment?: string;
-  ownerCommentDate?: string;
-};
-
-export type MyReviewResponse = {
   reviewId: string;
   rating: number;
   satisfactionReasons: SatisFactionReason[];
@@ -67,4 +56,15 @@ export type MyReviewResponse = {
   nickName: string;
   goodsId: string;
   storeId: string;
+};
+
+export type MyReviewResponse = ReviewResponse;
+
+export type ReviewRatingResponse = {
+  averageRating: 0;
+  totalCount: 0;
+  rating2Count: 0;
+  rating3Count: 0;
+  rating4Count: 0;
+  rating5Count: 0;
 };

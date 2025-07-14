@@ -67,4 +67,6 @@ export interface StoreDetailWithBag extends BagRegistrationRequest {
   address: string;
   images: string[];
   saleStatus: 'ON' | 'OFF';
+  reviewCount: number;
+  averageRating: number;
 }
