@@ -11,6 +11,7 @@ export interface OwnerOrderListItem {
   totalPrice: number;
   phoneNumber: string;
   goodsName: string;
+  memo: string;
 }
 
 export type OwnerOrderAction = 'approve' | 'reject' | 'completed' | 'cancel';

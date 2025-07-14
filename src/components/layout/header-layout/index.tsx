@@ -33,7 +33,7 @@ function Header({
   return (
     <header
       className={cn(
-        'fixed h-[48px] w-full px-[20px] py-[10px] bg-white max-w-[450px] left-1/2 -translate-x-1/2 flex items-center top-[env(safe-area-inset-top)]',
+        'z-10 fixed h-[48px] w-full px-[20px] py-[10px] bg-white max-w-[450px] left-1/2 -translate-x-1/2 flex items-center top-[env(safe-area-inset-top)]',
         className,
       )}
     >

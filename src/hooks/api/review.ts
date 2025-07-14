@@ -3,6 +3,7 @@ import {
   MyReviewResponse,
   ReviewResponse,
   ReviewStatistic,
+  ReviewRatingResponse,
   UserReviewUploadRequest,
 } from '@/types/review';
 import { WIP_API_BASE_URL } from '@/constant';
@@ -21,27 +22,42 @@ export const Review = {
     const response = await API.get(`/review/preview/${storeId}`);
     return response.data;
   },
-  async getInfiniteList(
-    storeId: number,
-    sortedByRecentDate: boolean,
-    isOnlyPhoto: boolean,
-    { page, size }: PageParams,
-  ): Promise<ReviewResponse[]> {
+  async getList({
+    goodsId,
+    imageCheck = false,
+    page,
+    size,
+  }: {
+    goodsId: string;
+    imageCheck?: boolean;
+  } & PageParams): Promise<ReviewResponse[]> {
     const response = await API.get(
-      `/review/list/${storeId}?page=${page}&size=${size}&sort=createdAt,${sortedByRecentDate ? 'desc' : 'asc'}${isOnlyPhoto ? '&onlyPhotos=true' : ''}`,
+      `${WIP_API_BASE_URL}/review?goodsId=${goodsId}&page=${page + 1}&size=${size}&imageCheck=${imageCheck}`,
     );
-    const list = (await response.data.content) as ReviewResponse[];
+    const list = (await response.data.data
+      .reviewListDTOList) as ReviewResponse[];
     return list;
   },
   async getMyList({ page, size }: PageParams): Promise<MyReviewResponse[]> {
     const response = await API.get(
-      `/review/user/list?page=${page}&size=${size}&sort=createdAt,desc`,
+      `${WIP_API_BASE_URL}/review/me?page=${page + 1}&size=${size}`,
     );
-    const list = (await response.data.content) as MyReviewResponse[];
+    const list = (await response.data.data
+      .reviewListDTOList) as MyReviewResponse[];
     return list;
   },
   async deletePost(reviewId: number) {
     const response = await API.delete(`/review/user/${reviewId}`);
     return response.data;
+  },
+  async getRating({
+    goodsId,
+  }: {
+    goodsId: string;
+  }): Promise<ReviewRatingResponse> {
+    const response = await API.get(
+      `${WIP_API_BASE_URL}/review/rating?goodsId=${goodsId}&imageCheck=false  `,
+    );
+    return response.data.data;
   },
 };

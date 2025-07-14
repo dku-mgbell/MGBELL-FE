@@ -58,13 +58,11 @@ function Price({ price, discount }: { price?: number; discount?: number }) {
 }
 
 function ReviewLink({
-  bagId,
-  storeId,
+  goodsId,
   count,
   score,
 }: {
-  bagId?: number;
-  storeId?: number;
+  goodsId?: string;
   count?: number;
   score?: number;
 }) {
@@ -72,7 +70,7 @@ function ReviewLink({
 
   return (
     <Link
-      href={`/bag/review?bagId=${bagId}&storeId=${storeId}`}
+      href={`/bag/review/${goodsId}`}
       className="flex gap-[4px] items-center"
     >
       <StarIcon />
