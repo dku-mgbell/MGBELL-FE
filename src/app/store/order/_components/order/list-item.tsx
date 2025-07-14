@@ -52,7 +52,7 @@ function OrderDetail({ content }: { content: OwnerOrderListItem }) {
     주문상태: OrderStatusName[content.orderStatus],
     주문일시: getFullDateTime(content.createdAt),
     연락처: content.phoneNumber,
-    요청사항: '', // TODO: 요청사항 추가
+    요청사항: content.memo,
   };
 
   return (
