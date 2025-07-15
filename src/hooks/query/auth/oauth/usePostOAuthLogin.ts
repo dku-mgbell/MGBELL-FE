@@ -20,7 +20,7 @@ export const usePostOAuthLogin = (nextPage?: string) => {
   } = useGetUserAccountInfo();
   const { open } = useModal();
   const { setTokenResponse } = useAuth();
-  const { closeLoading } = useLoadingModal();
+  const { openLoading, closeLoading } = useLoadingModal();
   const { resetSignUpInfo } = useSignUpStore();
   const pathname = usePathname();
   const isLoginPage = pathname.includes('/login');
@@ -91,13 +91,11 @@ export const usePostOAuthLogin = (nextPage?: string) => {
       }
       resetSignUpInfo();
     },
+    onMutate: () => {
+      openLoading();
+    },
     onError: (err: ErrorResponse<OAuthSignUpErrorCode>) => {
       closeLoading();
-      const errorCode = err.response.data.code;
-      if (errorCode === 'INVALID_PHONE_NUMBER') {
-        router.push('/sign-up/info/phone-number');
-        return;
-      }
       open({
         content: err.response.data.message,
       });

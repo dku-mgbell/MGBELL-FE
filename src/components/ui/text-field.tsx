@@ -31,6 +31,7 @@ export interface TextFieldProps
   register?: UseFormRegister<any>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   errors?: FieldErrors<any>;
+  showError?: boolean;
 }
 
 export default function TextField({
@@ -39,6 +40,7 @@ export default function TextField({
   className,
   register,
   errors,
+  showError = false,
   ...props
 }: TextFieldProps) {
   const isError = errors && errors[props.name ?? ''];
@@ -59,7 +61,7 @@ export default function TextField({
         {...(register && register(props.name ?? ''))}
         {...props}
       />
-      {isErrorMessage && (
+      {isErrorMessage && showError && (
         <p className="text-error text-b2 px-[14px]">{errorMessage}</p>
       )}
     </>
