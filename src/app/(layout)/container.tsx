@@ -9,7 +9,7 @@ export default function Container({ children }: { children: React.ReactNode }) {
       }}
     >
       <InstallationBar />
-      <div className="flex flex-col relative">{children}</div>
+      {children}
     </div>
   );
 }
