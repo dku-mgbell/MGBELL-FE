@@ -26,6 +26,8 @@ export default function getOAuthLink(
     delete: 'delete',
   };
 
+  const redirectUri = `${REDIRECT_BASE_URI}/${REDIRECT_URL_PATH[action]}/${provider}`;
+
   const config: OAuthConfig = {
     oauth_base_uri: {
       KAKAO: 'https://kauth.kakao.com/oauth/authorize?',
@@ -36,27 +38,30 @@ export default function getOAuthLink(
     oauth_params: {
       KAKAO: {
         client_id: KAKAO_OAUTH_REST_API_KEY!,
+        redirect_uri: redirectUri,
       },
       GOOGLE: {
         client_id: GOOGLE_OAUTH_CLIENT_ID!,
         scope: `${encodeURIComponent('openid email profile')}`,
+        redirect_uri: redirectUri,
       },
       NAVER: {
         client_id: NAVER_OAUTH_CLIENT_ID!,
         state: crypto.randomUUID(),
+        redirect_uri: redirectUri,
       },
       APPLE: {
         client_id: APPLE_OAUTH_CLIENT_ID!,
         scope: `${encodeURIComponent('name email')}`,
         state: crypto.randomUUID(),
         response_mode: 'form_post',
+        redirect_uri: `${REDIRECT_BASE_URI}/api/${action}/oauth/apple/callback`,
       },
     },
   };
 
   const COMMON_PARAMS = {
     response_type: 'code',
-    redirect_uri: `${REDIRECT_BASE_URI}/${REDIRECT_URL_PATH[action]}/${provider}`,
   };
 
   const BASE_URI = config.oauth_base_uri[provider as OAuthProviderType];
