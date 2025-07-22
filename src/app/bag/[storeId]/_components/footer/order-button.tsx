@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { useSubscribeStoreOpen } from '@/hooks/query/notification/useSubscribeStoreOpen';
@@ -14,7 +15,23 @@ export default function OrderButton({ isOrderable }: { isOrderable: boolean }) {
   const { storeDetail } = useStoreDetailStore();
   const { bagAmount } = useBagOrderState();
   const { mutate: subscribeStoreOpen } = useSubscribeStoreOpen();
+  const [isStoreReservationEnabled, setIsStoreReservationEnabled] =
+    useState(false);
   const fcmToken = localStorage.getItem('fcmToken');
+
+  useEffect(() => {
+    if (storeDetail) {
+      const currentTime = new Date();
+      const storeStartTime = new Date(storeDetail!.startTime);
+      const storeEndTime = new Date(storeDetail!.endTime);
+      setIsStoreReservationEnabled(
+        storeDetail &&
+          storeDetail.saleStatus === 'ON' &&
+          (storeStartTime.getTime() > currentTime.getTime() ||
+            storeEndTime.getTime() < currentTime.getTime()),
+      );
+    }
+  }, [storeDetail]);
 
   const handleOrderButtonClick = () => {
     if (!isLoggedIn) {
@@ -53,7 +70,7 @@ export default function OrderButton({ isOrderable }: { isOrderable: boolean }) {
   if (isOrderable)
     return (
       <Button onClick={handleOrderButtonClick} className="flex-1">
-        주문하기
+        {isStoreReservationEnabled ? '예약하기' : '주문하기'}
       </Button>
     );
 
