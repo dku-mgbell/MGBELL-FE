@@ -1,34 +1,25 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import logo from '@/assets/images/logo/index.png';
 import CrossIcon from '@/assets/svg/CrossIcon';
 import { Button } from '@/components/ui/button';
+import { useInstallGuideStore } from '@/hooks/stores/useInstallGuideStore';
 import { cn } from '@/lib/utils';
-import logo from '../../../../public/logo192.png';
+import { handleInstallButtonClick } from '@/utils/handleInstallButtonClick';
 
 export default function InstallationBar() {
-  const [isOpen, setIsOpen] = useState(true);
+  const { isBarShown, setIsBarShown, isModalOpen } = useInstallGuideStore();
+  const pathname = usePathname();
 
   const handleCloseButtonClick = () => {
-    setIsOpen(false);
+    setIsBarShown(false);
   };
 
-  const handleInstallButtonClick = () => {
-    const iosLink = 'https://apps.apple.com/app/id6746954675';
-    const androidLink =
-      'https://play.google.com/store/apps/details?id=com.trendflow.magambell.app';
+  if (!isBarShown) return null;
 
-    const userAgent = navigator.userAgent || navigator.vendor;
-
-    if (/iPad|iPhone|iPod/.test(userAgent) || /Mac|Macintosh/.test(userAgent)) {
-      window.open(iosLink, '_blank');
-    } else {
-      window.open(androidLink, '_blank');
-    }
-  };
-
-  if (!isOpen) return null;
+  if (pathname === '/' && isModalOpen) return null;
 
   return (
     <div
