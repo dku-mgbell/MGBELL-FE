@@ -1,20 +1,20 @@
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
+import { useSubscribeStoreOpen } from '@/hooks/query/notification/useSubscribeStoreOpen';
 import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
 import { useStoreDetailStore } from '../../_stores/useStoreDetailStore';
 
-export default function OrderButton() {
+export default function OrderButton({ isOrderable }: { isOrderable: boolean }) {
   const { isLoggedIn } = useAuth();
   const { openRequireLoginModal } = useAuth();
   const route = useRouter();
   const { open } = useModal();
   const { storeDetail } = useStoreDetailStore();
   const { bagAmount } = useBagOrderState();
-
-  const isOrderable =
-    storeDetail && storeDetail.quantity > 0 && storeDetail.saleStatus === 'ON';
+  const { mutate: subscribeStoreOpen } = useSubscribeStoreOpen();
+  const fcmToken = localStorage.getItem('fcmToken');
 
   const handleOrderButtonClick = () => {
     if (!isLoggedIn) {
@@ -33,14 +33,33 @@ export default function OrderButton() {
     }
   };
 
+  const handleSubscribeStoreButtonClick = () => {
+    if (!isLoggedIn) {
+      openRequireLoginModal();
+      return;
+    }
+
+    if (!fcmToken) {
+      open({
+        title: '알림 설정이 필요해요.',
+        description: '알림 권한을 허용해주세요.',
+      });
+      return;
+    }
+
+    subscribeStoreOpen({ storeId: storeDetail!.storeId, fcmToken });
+  };
+
+  if (isOrderable)
+    return (
+      <Button onClick={handleOrderButtonClick} className="flex-1">
+        주문하기
+      </Button>
+    );
+
   return (
-    <Button
-      variant={isOrderable ? 'primary' : 'primary-inactive'}
-      onClick={handleOrderButtonClick}
-      className="flex-1"
-      disabled={!isOrderable}
-    >
-      {isOrderable ? '주문하기' : '주문불가'}
+    <Button onClick={handleSubscribeStoreButtonClick} className="flex-1">
+      오픈 알림받기
     </Button>
   );
 }

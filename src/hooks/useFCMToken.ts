@@ -42,6 +42,8 @@ const useFcmToken = () => {
     isLoading.current = true;
     const fcmToken = await getNotificationPermissionAndToken();
 
+    localStorage.setItem('fcmToken', fcmToken ?? '');
+
     if (Notification.permission === 'denied') {
       setNotificationPermissionStatus('denied');
       console.info(
