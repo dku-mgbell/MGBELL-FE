@@ -17,7 +17,9 @@ export default function InstallationBar() {
     setIsBarShown(false);
   };
 
-  if (!isBarShown) return null;
+  const shownList = ['/', '/map'];
+
+  if (!isBarShown || !shownList.includes(pathname)) return null;
 
   if (pathname === '/' && isModalOpen) return null;
 
