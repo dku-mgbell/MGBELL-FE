@@ -34,6 +34,7 @@ export default function HeaderContainer({ children }: { children: ReactNode }) {
         className={cn(
           'w-full flex flex-col',
           'bg-primary fixed top-0 left-1/2 transform -translate-x-1/2 max-w-[450px] z-[9999]',
+          'has-[.full]:max-w-[100dvw]',
           'pt-[calc(env(safe-area-inset-top)+16px)]',
           'transition-transform duration-300 ease-in-out',
           isVisible
