@@ -47,6 +47,9 @@ export default function getOAuthLink(
       },
       APPLE: {
         client_id: APPLE_OAUTH_CLIENT_ID!,
+        scope: `${encodeURIComponent('name email')}`,
+        state: crypto.randomUUID(),
+        response_mode: 'form_post',
       },
     },
   };
