@@ -17,14 +17,16 @@ export default function InstallationBar() {
     setIsBarShown(false);
   };
 
-  if (!isBarShown) return null;
+  const shownList = ['/', '/map'];
+
+  if (!isBarShown || !shownList.includes(pathname)) return null;
 
   if (pathname === '/' && isModalOpen) return null;
 
   return (
     <div
       className={cn(
-        'fixed top-0 z-[99999] w-full bg-white h-[70px] max-w-[450px] right-1/2 translate-x-1/2',
+        'fixed top-[env(safe-area-inset-top)] z-[99999] w-full bg-white h-[70px] max-w-[450px] right-1/2 translate-x-1/2',
         'px-[12px] py-[15px] flex items-center justify-between',
         'flex justify-between',
       )}
