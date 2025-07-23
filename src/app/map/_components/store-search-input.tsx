@@ -10,7 +10,7 @@ export default function StoreSearchInput() {
   }
 
   return (
-    <div className="w-full max-w-[450px] absolute -translate-x-1/2 left-1/2 top-[20px]  z-[999] px-[20px]">
+    <div className="w-full max-w-[450px] absolute -translate-x-1/2 left-1/2 top-[calc(env(safe-area-inset-top)+20px)] z-[999] px-[20px]">
       <Link href="/search" className="w-full">
         <SearchInput
           placeholder="마감백 운영 가게 검색"
