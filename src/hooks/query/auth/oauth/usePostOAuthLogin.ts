@@ -9,9 +9,11 @@ import { OAuthSignUpErrorCode } from '@/types/oauth';
 import { OAuthLoginRequest, SignUpData } from '@/types/sign-up';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
+import { useRegisterFCMToken } from '../../notification/useRegisterFCMToken';
 
 export const usePostOAuthLogin = (nextPage?: string) => {
   const router = useRouter();
+  const { mutate: registerFCMToken } = useRegisterFCMToken();
 
   const {
     refetch: getAccountInfo,
@@ -27,6 +29,7 @@ export const usePostOAuthLogin = (nextPage?: string) => {
 
   // 로그인 로직
   if (isLoginPage && isAccountInfoFetched && accountInfo) {
+    registerFCMToken();
     // OWNER 계정 리다이렉트 로직
     if (accountInfo.approved === 'APPROVED') {
       if (accountInfo.goodsId === 'null') {
