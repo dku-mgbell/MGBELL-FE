@@ -55,7 +55,7 @@ export const financialInstitutionIcon = {
   },
   IbkBank: {
     icon: IbkBank,
-    name: 'IBK 기업',
+    name: 'IBK기업',
   },
   WooriBank: {
     icon: WooriBank,
@@ -71,7 +71,7 @@ export const financialInstitutionIcon = {
   },
   KdbIndustrialBank: {
     icon: KdbIndustrialBank,
-    name: 'KDB 산업',
+    name: 'KDB산업',
   },
   ShinhyupBank: {
     icon: ShinhyupBank,
