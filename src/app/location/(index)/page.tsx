@@ -9,6 +9,7 @@ import { RadioGroup } from '@/components/ui/radio-group/index';
 import TextField from '@/components/ui/text-field';
 import { useAddressStateStore } from '@/hooks/stores/useAddressStore';
 import { UserAddressState } from '@/types/address';
+import useModal from '@/hooks/useModal';
 import Modal from '@/components/modal';
 import AddressListItem from '../_components/address-list-item';
 
@@ -22,15 +23,26 @@ export default function Page() {
   const [selectedAddress, setSelectedAddress] = useState<
     UserAddressState | undefined
   >(userAddress);
+  const { open } = useModal();
 
   const handleConfirmButtonClick = () => {
-    if (selectedAddress) {
+    if (selectedAddress?.address) {
       route.push('/');
       setUserAddress(selectedAddress);
+    } else {
+      open({
+        title: '위치를 선택해주세요!',
+        description: '주소 등록 후 위치를 선택해주세요.',
+      });
     }
   };
 
   const handleRegisterButtonClick = () => {
+    if (userAddressList.find((v) => v.addressName === address?.addressName)) {
+      alert('이미 등록된   이름입니다.');
+      return;
+    }
+
     if (address?.addressName) {
       addUserAddress(address);
       setIsAddressRegisterModalOpen(false);

@@ -17,7 +17,7 @@ export async function GET(
   }
 
   const res = await fetch(
-    `https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=${encodeURIComponent(address)}`,
+    `https://maps.apigw.ntruss.com/map-geocode/v2/geocode?query=${encodeURIComponent(address)}`,
     {
       headers: {
         Accept: 'application/json',
