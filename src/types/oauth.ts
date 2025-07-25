@@ -1,5 +1,9 @@
 export type OAuthProviderType = 'KAKAO' | 'GOOGLE' | 'NAVER' | 'APPLE';
 
+export type OAuthSignUpErrorCode =
+  | 'INVALID_PHONE_NUMBER'
+  | 'DUPLICATE_NICKNAME';
+
 export const OAuthName: Record<OAuthProviderType, string> = {
   KAKAO: '카카오',
   GOOGLE: '구글',

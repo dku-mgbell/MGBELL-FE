@@ -9,7 +9,8 @@ import { AddressItem } from '../_components/address-list-item';
 
 export default function Page() {
   const router = useRouter();
-  const { userAddressList, deleteUserAddress } = useAddressStateStore();
+  const { userAddress, setUserAddress, userAddressList, deleteUserAddress } =
+    useAddressStateStore();
   const { open } = useModal();
 
   const handleDeleteButtonClick = (addressName: string) => {
@@ -17,6 +18,9 @@ export default function Page() {
       content: '주소를 삭제하시겠습니까?',
       confirmEvent: () => {
         deleteUserAddress(addressName);
+        if (userAddress.addressName === addressName) {
+          setUserAddress({});
+        }
       },
     });
   };

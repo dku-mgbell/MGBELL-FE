@@ -11,15 +11,16 @@ import { Selector } from '@/components/ui/select';
 import TextField from '@/components/ui/text-field';
 import TextArea from '@/components/ui/textarea';
 import usePostBagRegistration from '@/hooks/query/bag/usePostBagRegistration';
+import { calculateSalePrice } from '@/utils/calculateSalePrice';
 import { commaizeNumber } from '@/utils/commaizeNumber';
-import { format24HourTimeToFullDate } from '@/utils/format24HourTimeToFullDate';
+import { getOrderFullDateByTime } from '@/utils/getOrderFullDateByTime';
 import { returnTimeOptions } from '@/utils/returnTimeOptions';
 
 const schema = z.object({
   description: z.string().min(1, { message: '' }),
   startTime: z.string().min(1, { message: '' }),
   endTime: z.string().min(1, { message: '' }),
-  quantity: z.string().min(1, { message: '' }),
+  quantity: z.string().min(0, { message: '' }),
   originalPrice: z.string().min(1, { message: '' }),
   discount: z.string().min(1, { message: '' }),
 });
@@ -43,19 +44,11 @@ export default function Page() {
   const [originalPrice, discount] = watch(['originalPrice', 'discount']);
   const { mutate: postBagRegistration } = usePostBagRegistration();
 
-  const calculatePrice = (price?: number, discountPercentage?: string) => {
-    if (!price || !discountPercentage) return 0;
-    const discountNumber = Number(discountPercentage?.replace('%', ''));
-    const result = Math.floor(((100 - discountNumber) / 100) * price - 100);
-    if (result < 0) return 0;
-    return result;
-  };
-
   const onSubmit: SubmitHandler<RegisterBagFormFields> = (data) => {
     postBagRegistration({
       ...data,
-      startTime: format24HourTimeToFullDate(data.startTime),
-      endTime: format24HourTimeToFullDate(data.endTime),
+      startTime: getOrderFullDateByTime({ time: data.startTime }),
+      endTime: getOrderFullDateByTime({ time: data.endTime }),
       originalPrice: Number(data.originalPrice),
       discount: Number(data.discount.replace('%', '')),
       quantity: Number(data.quantity),
@@ -64,7 +57,7 @@ export default function Page() {
   };
 
   useEffect(() => {
-    setFinalPrice(calculatePrice(Number(originalPrice), discount));
+    setFinalPrice(calculateSalePrice(Number(originalPrice), discount));
   }, [originalPrice, discount]);
 
   return (
@@ -106,6 +99,7 @@ export default function Page() {
       </LabeledField>
       <LabeledField label="판매 개수 설정">
         <Counter
+          defaultValue={0}
           setValue={(value) => {
             setValue('quantity', value.toString());
           }}

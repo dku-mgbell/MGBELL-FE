@@ -22,6 +22,22 @@ function Title({ value, className }: { value?: string; className?: string }) {
   );
 }
 
+function Description({
+  value,
+  className,
+}: {
+  value?: string;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn('text-b2 text-gray4 h-[100px] overflow-auto', className)}
+    >
+      {value || <Skeleton className="w-full h-[100px]" />}
+    </div>
+  );
+}
+
 function Address({ value }: { value?: string }) {
   return (
     <div className="text-b2 text-gray4">
@@ -42,13 +58,11 @@ function Price({ price, discount }: { price?: number; discount?: number }) {
 }
 
 function ReviewLink({
-  bagId,
-  storeId,
+  goodsId,
   count,
   score,
 }: {
-  bagId?: number;
-  storeId?: number;
+  goodsId?: string;
   count?: number;
   score?: number;
 }) {
@@ -56,7 +70,7 @@ function ReviewLink({
 
   return (
     <Link
-      href={`/bag/review?bagId=${bagId}&storeId=${storeId}`}
+      href={`/bag/review/${goodsId}`}
       className="flex gap-[4px] items-center"
     >
       <StarIcon />
@@ -128,14 +142,14 @@ function OpenStatus({
 
 function HorizontalThumbnail({ images }: { images: string[] }) {
   return (
-    <div className="flex items-center gap-[6px] w-full">
+    <div className="flex items-center gap-[6px] w-full max-w-[450px]">
       {images.map((image) => (
         <div
           key={image}
           className="w-[33%] h-[70px] rounded-[8px] overflow-hidden"
         >
           <Image
-            src={`https://${image}`}
+            src={image}
             alt="thumbnail"
             width={200}
             height={70}
@@ -154,4 +168,5 @@ export const Store = {
   OpenStatus,
   ReviewLink,
   HorizontalThumbnail,
+  Description,
 };

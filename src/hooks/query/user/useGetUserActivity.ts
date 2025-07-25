@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { User } from '@/hooks/api/user';
+import { Account } from '@/hooks/api/auth/account';
 
 export const useGetUserActivity = () =>
   useQuery({
-    queryFn: () => User.getActivity(),
+    queryFn: () => Account.getActivity(),
     queryKey: ['user-activity'],
     gcTime: 0,
     staleTime: 0,

@@ -52,3 +52,4 @@ storybook-static
 # env
 .env.dev
 .env.test
+certificates

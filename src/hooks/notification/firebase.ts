@@ -7,13 +7,13 @@ import {
 } from 'firebase/messaging';
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FCM_API_KEY,
-  authDomain: 'magambell-88230.firebaseapp.com',
-  projectId: 'magambell-88230',
-  storageBucket: 'magambell-88230.firebasestorage.app',
-  messagingSenderId: '459965392168',
-  appId: '1:459965392168:web:0109921de31a2caa7e9c1d',
-  measurementId: 'G-WBEKHDM6YF',
+  apiKey: 'AIzaSyD7w_zS1SR5ema9t65Df7gOxdU_PEhM1Uc',
+  authDomain: 'magambell-93320.firebaseapp.com',
+  projectId: 'magambell-93320',
+  storageBucket: 'magambell-93320.firebasestorage.app',
+  messagingSenderId: '766230300795',
+  appId: '1:766230300795:web:357e334241b7c58743fade',
+  measurementId: 'G-QNTGWEQ65E',
 };
 
 const firebaseApp = initializeApp(firebaseConfig);

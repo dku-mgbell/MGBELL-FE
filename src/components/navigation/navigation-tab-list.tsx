@@ -3,7 +3,6 @@ import HomeIcon from '@/assets/svg/HomeIcon';
 import OrderHistoryIcon from '@/assets/svg/OrderHistoryIcon';
 import PersonIcon from '@/assets/svg/PersonIcon';
 import PinIcon from '@/assets/svg/PinIcon';
-import { READY_TO_DEPLOY } from '@/constant';
 
 export const navigationTabList = [
   {
@@ -12,6 +11,7 @@ export const navigationTabList = [
     name: '메인',
     route: '/',
     icon: (active: boolean) => <HomeIcon active={active} />,
+    readyToDeploy: true,
   },
   {
     id: 'favorites',
@@ -19,8 +19,7 @@ export const navigationTabList = [
     name: '즐겨찾기',
     route: '/favorites',
     icon: (active: boolean) => <HeartIcon active={active} />,
-    margin: { marginLeft: '-70px' },
-    readyToDeploy: READY_TO_DEPLOY,
+    readyToDeploy: true,
   },
   {
     id: 'map',
@@ -28,7 +27,7 @@ export const navigationTabList = [
     name: '내주변',
     route: '/map',
     icon: (active: boolean) => <PinIcon active={active} />,
-    readyToDeploy: READY_TO_DEPLOY,
+    readyToDeploy: true,
   },
   {
     id: 'order',
@@ -36,7 +35,7 @@ export const navigationTabList = [
     name: '주문내역',
     route: '/order',
     icon: (active: boolean) => <OrderHistoryIcon active={active} />,
-    readyToDeploy: READY_TO_DEPLOY,
+    readyToDeploy: true,
   },
   {
     id: 'mypage',
@@ -44,6 +43,7 @@ export const navigationTabList = [
     name: 'MY',
     route: '/mypage',
     icon: (active: boolean) => <PersonIcon active={active} />,
+    readyToDeploy: true,
   },
 ];
 
@@ -51,4 +51,5 @@ export const mapButtonInfo = {
   id: 'map',
   route: '/map',
   icon: <PinIcon />,
+  readyToDeploy: true,
 };

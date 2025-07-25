@@ -1,4 +1,4 @@
-import { OAuthProviderType } from '@/types/login';
+import { OAuthProviderType } from '@/types/oauth';
 import LoginButton from './login-button';
 import { loginButtonConfig } from './login-button-config';
 

@@ -1,4 +1,4 @@
-import { OAuthProviderType } from '@/types/login';
+import { OAuthProviderType } from '@/types/oauth';
 import {
   APPLE_OAUTH_CLIENT_ID,
   BASE_URL,
@@ -43,6 +43,7 @@ export default function getOAuthLink(
       },
       NAVER: {
         client_id: NAVER_OAUTH_CLIENT_ID!,
+        state: crypto.randomUUID(),
       },
       APPLE: {
         client_id: APPLE_OAUTH_CLIENT_ID!,

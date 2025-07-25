@@ -7,19 +7,24 @@ import useModal from '@/hooks/useModal';
 import DetailBottomSheet from './_components/detail-bottom-sheet';
 import ListBottomSheet from './_components/list-bottom-sheet';
 import LocationButton from './_components/location-button';
+import StoreSearchInput from './_components/store-search-input';
 import { DEFAULT_COORD } from './_constant/map';
 import { useMapStore } from './_stores/useMapStore';
 import { generateMarker, getUserCurrentPosition } from './_utils/map';
 
 export default function Map() {
-  const [userLocation, setUserLocation] = useState<[number, number]>();
   const mapRef = useRef<naver.maps.Map | null>(null);
   const { data: storeListOnMap, isFetched: isStoreListFetched } =
     useGetStoreList({
       size: 100,
       sortType: 'RECENT_DESC',
     });
-  const { setSelectedStore, setIsListSheetHidden } = useMapStore();
+  const {
+    setSelectedStore,
+    setIsListSheetHidden,
+    userLocation,
+    setUserLocation,
+  } = useMapStore();
   const [loadedMap, setLoadedMap] = useState<naver.maps.Map | null>(null);
 
   const { open } = useModal();
@@ -38,7 +43,6 @@ export default function Map() {
     if (userLocation) {
       mapRef.current?.morph(
         new naver.maps.LatLng(userLocation[0], userLocation[1]),
-        18,
       );
     } else {
       open({
@@ -87,11 +91,10 @@ export default function Map() {
     // 매장 위치 마커 표시
     if (storeListOnMap) {
       storeListOnMap.forEach((store: StoreListItemResponse) => {
-        // const [lat, lng] = [Number(store.latitude), Number(store.longitude)];
-        const [lat, lng] = [33 + Math.random() * 5, 126 + Math.random() * 3]; // TODO: 매장 좌표 추가
+        const [lat, lng] = [Number(store.latitude), Number(store.longitude)];
         const marker = generateMarker({
           name: store.storeName,
-          address: '경기도 용인시 수지구 죽전로 77 1층', // TODO: 매장 주소 추가
+          address: store.address,
           lat,
           lng,
           map,
@@ -116,16 +119,19 @@ export default function Map() {
     } else {
       const mapScript = document.createElement('script');
       mapScript.onload = () => loadMap();
-      mapScript.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`;
+      mapScript.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`;
       document.head.appendChild(mapScript);
     }
   }, [isStoreListFetched, userLocation]);
 
   return (
     <div id="map" className="w-full h-[100dvh]">
-      <LocationButton onClick={morphToCurrentPosition} />
-      <ListBottomSheet map={loadedMap!} />
-      <DetailBottomSheet map={loadedMap!} />
+      <StoreSearchInput />
+      <ListBottomSheet
+        map={loadedMap!}
+        locationButton={<LocationButton onClick={morphToCurrentPosition} />}
+      />
+      <DetailBottomSheet />
     </div>
   );
 }

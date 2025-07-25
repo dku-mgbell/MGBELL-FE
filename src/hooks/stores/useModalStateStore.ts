@@ -16,6 +16,7 @@ export type ModalProps = {
   showButton?: boolean;
   onlyConfirmButton?: boolean;
   confirmButtonText?: string;
+  cancelButtonText?: string;
   setOpen?: (open: boolean) => void;
   autoCloseOnConfirm?: boolean;
 };
@@ -31,6 +32,7 @@ export const useModalStateStore = create<ModalState>((set) => ({
     showButton: true,
     onlyConfirmButton: false,
     confirmButtonText: undefined,
+    cancelButtonText: undefined,
   },
   setModalState: (state: ModalProps) => set({ modalState: state }),
 }));

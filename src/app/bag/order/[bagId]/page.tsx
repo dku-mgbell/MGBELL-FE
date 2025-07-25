@@ -15,7 +15,7 @@ import { useGetStoreDetailWithBag } from '@/hooks/query/store/useGetStoreDetailW
 import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
 import { commaizeNumber } from '@/utils/commaizeNumber';
 import { format24HourTime } from '@/utils/format24HourTime';
-import { format24HourTimeToFullDate } from '@/utils/format24HourTimeToFullDate';
+import { getOrderFullDateByTime } from '@/utils/getOrderFullDateByTime';
 import { returnTimeOptions } from '@/utils/returnTimeOptions';
 import useModal from '@/hooks/useModal';
 import OrderDetailTable, { OrderData } from '@/components/order-detail-table';
@@ -86,7 +86,9 @@ export default function Page() {
     if (!data?.goodsId) return;
 
     open({
-      content: '주문하시겠습니까?',
+      title: '주문을 진행하시겠어요?',
+      description: '선택하신 상품으로 주문을 진행할게요.',
+      confirmButtonText: '주문하기',
       confirmEvent: () => {
         setUserPaymentStore({
           ...userPaymentStore,
@@ -96,7 +98,10 @@ export default function Page() {
 
         postOrder({
           goodsId: data.goodsId,
-          pickupTime: format24HourTimeToFullDate(form.pickupTime),
+          pickupTime: getOrderFullDateByTime({
+            time: form.pickupTime,
+            isUser: true,
+          }),
           memo: form.memo,
           quantity: bagAmount,
           totalPrice,

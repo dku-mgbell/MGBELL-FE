@@ -7,6 +7,7 @@ interface BottomSheetProps
   height?: number;
   isHidden?: boolean;
   onClose?: () => void;
+  preHeaderContent?: React.ReactNode;
 }
 
 export default function BottomSheet({
@@ -17,6 +18,7 @@ export default function BottomSheet({
   initialSnap,
   children,
   onClose,
+  preHeaderContent,
   ...props
 }: BottomSheetProps) {
   return (
@@ -45,6 +47,9 @@ export default function BottomSheet({
       />
       <div className="max-w-[450px] w-full relative h-full mx-auto z-[9999]">
         <Sheet.Container>
+          <div className="left-[20px] absolute top-[-60px]">
+            {preHeaderContent}
+          </div>
           <Sheet.Header />
           <Sheet.Content disableDrag>
             <div style={{ height: '100%', overflow: 'auto' }}>{children}</div>

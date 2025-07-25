@@ -1,9 +1,6 @@
 import { PageParams } from './api';
 import { BagRegistrationRequest } from './bag';
-import { ImageRequest } from './image';
-import { Coordinate } from './map';
-
-export type StoreID = 'BAKERY' | 'DESERT' | 'ETC';
+import { ImageRequest, ImageResponse } from './image';
 
 export type StoreListSortType =
   | 'RECENT_DESC'
@@ -33,22 +30,9 @@ export interface StoreListItemResponse {
   quantity: number;
   distance: number | null;
   saleStatus: 'ON' | 'OFF';
-}
-
-export const StoreName = {
-  BAKERY: '베이커리',
-  DESSERT: '디저트',
-  ETC: '기타',
-} as const;
-
-export interface StoreRegistration extends Coordinate {
-  ownerName: string;
-  storeName: string;
-  contact: string;
-  businessRegiNum: string;
+  longitude: number;
+  latitude: number;
   address: string;
-  storeType: StoreID | null;
-  images: File[];
 }
 
 export interface StoreRegistrationFormRequest {
@@ -73,39 +57,9 @@ export type StoreRegistrationRequest = Omit<
 
 export interface StoreRegistrationResponse {
   data: {
-    storePreSignedUrlImages: {
-      id: number;
-      url: string;
-    }[];
+    storePreSignedUrlImages: ImageResponse[];
   };
 }
-
-export interface MyStoreInfo {
-  id: 0;
-  storeName: string;
-  businessRegiNum: string;
-  address: string;
-  longitude: string;
-  latitude: string;
-  storeType: StoreID;
-  status: 'ACTIVE' | 'INACTIVE';
-  onSale: boolean;
-  originalFileDir: string[];
-}
-
-export interface StorePatch {
-  request: {
-    storeName: string;
-    ownerName: string;
-    contact: string;
-    address: string;
-    longitude: string;
-    latitude: string;
-    storeType: StoreID;
-  };
-  images: string[];
-}
-
 export interface StoreDetailWithBag extends BagRegistrationRequest {
   storeId: string;
   goodsId: string;
@@ -113,4 +67,6 @@ export interface StoreDetailWithBag extends BagRegistrationRequest {
   address: string;
   images: string[];
   saleStatus: 'ON' | 'OFF';
+  reviewCount: number;
+  averageRating: number;
 }

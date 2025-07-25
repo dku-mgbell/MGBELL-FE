@@ -1,26 +1,33 @@
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { useSignUpStore } from '@/app/sign-up/_/sign-up-store';
-import { User } from '@/hooks/api/user';
+import { OAuth } from '@/hooks/api/auth/OAuth';
+import useLoadingModal from '@/hooks/useModal/loading';
 import { OAuthName, OAuthProviderType } from '@/types/oauth';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
 import { useDeleteOAuthAccount } from './useDeleteOAuthAccount';
+import { usePostOAuthLogin } from './usePostOAuthLogin';
 import { useVerifyAlreadySignedUp } from './useVerifyAlreadySignedUp';
 
 export const usePostOAuthCode = ({
   OAuthProvider,
   action = 'login',
+  state,
 }: {
   OAuthProvider: OAuthProviderType;
   action?: 'login' | 'delete';
+  state?: string | null;
 }) => {
-  const { updateSignUpInfo } = useSignUpStore();
+  const { signUpInfo, updateSignUpInfo } = useSignUpStore();
   const { mutate: deleteOAuthAccount } = useDeleteOAuthAccount();
-  const { mutate: verifyAlreadySignedUp } = useVerifyAlreadySignedUp();
+  const { data: isAlreadySignedUp } = useVerifyAlreadySignedUp({ action });
+  const { mutate: postOAuthLogin } = usePostOAuthLogin();
   const { open } = useModal();
   const route = useRouter();
   const isLoggedIn = useAuth();
+  const { openLoading, closeLoading } = useLoadingModal();
 
   const openOAuthErrorModal = () => {
     open({
@@ -43,13 +50,41 @@ export const usePostOAuthCode = ({
     });
   };
 
+  useEffect(() => {
+    if (action === 'delete') {
+      closeLoading();
+      return;
+    }
+    const OAuthLoginRequest = {
+      providerType: signUpInfo.providerType,
+      authCode: signUpInfo.authCode,
+    };
+    if (isAlreadySignedUp) {
+      postOAuthLogin(OAuthLoginRequest, {
+        onSuccess: () => {
+          closeLoading();
+        },
+        onError: () => {
+          closeLoading();
+        },
+      });
+    } else if (isAlreadySignedUp === false) {
+      route.push('/sign-up');
+      closeLoading();
+    }
+  }, [isAlreadySignedUp]);
+
   return useMutation({
     mutationFn: (code: string) =>
-      User.postOAuthCode({
+      OAuth.postOAuthCode({
         provider: OAuthProvider,
         code,
         action,
+        state,
       }),
+    onMutate: () => {
+      openLoading();
+    },
     onSuccess: (data) => {
       if (action === 'delete') {
         if (!isLoggedIn) {
@@ -73,14 +108,9 @@ export const usePostOAuthCode = ({
         return;
       }
 
-      updateSignUpInfo('providerType', OAuthProvider);
-      updateSignUpInfo('authCode', data.access_token);
-
       if (data.access_token) {
-        verifyAlreadySignedUp({
-          providerType: OAuthProvider,
-          authCode: data.access_token,
-        });
+        updateSignUpInfo('providerType', OAuthProvider);
+        updateSignUpInfo('authCode', data.access_token);
       }
     },
   });

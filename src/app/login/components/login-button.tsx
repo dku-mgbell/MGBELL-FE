@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { OAuthProviderType } from '@/types/login';
+import { OAuthProviderType } from '@/types/oauth';
 import { loginButtonConfig } from './login-button-config';
 
 export default function LoginButton({ type }: { type: OAuthProviderType }) {
@@ -9,6 +9,8 @@ export default function LoginButton({ type }: { type: OAuthProviderType }) {
   const handleButtonClick = () => {
     window.location.href = config.link;
   };
+
+  if (config.hidden) return null;
 
   return (
     <Button

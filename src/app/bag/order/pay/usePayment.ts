@@ -29,7 +29,7 @@ export const usePayment = () => {
       // @ts-expect-error currency type is defined as string in IMP types but we're using 'KRW' as a valid value
       currency: 'KRW',
       payMethod: 'CARD',
-      redirectUrl: `${BASE_URL}/bag/order/success`,
+      redirectUrl: `${BASE_URL}/bag/order/pay/mobile?price=${userPaymentStore.amount}`,
     });
 
   return {

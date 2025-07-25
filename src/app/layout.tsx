@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   title: '마감벨',
   description: '오늘도 어김없이 마감벨이 울립니다🔔',
   icons: {
-    icon: '/logo192.png',
-    apple: '/logo192.png',
+    icon: 'https://magambell.com/logo192.png',
+    apple: 'https://magambell.com/logo192.png',
   },
   openGraph: {
     siteName: 'magambell',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     url: 'https://magambell.com',
     images: [
       {
-        url: '/og-img.png',
+        url: 'https://magambell.com/og-img.png',
         alt: '마감벨 대표 이미지',
       },
     ],
@@ -55,7 +55,7 @@ export default function RootLayout({
     <html lang="ko">
       <head>
         <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="https://magambell.com/favicon.ico" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
           name="apple-mobile-web-app-status-bar-style"
@@ -65,7 +65,7 @@ export default function RootLayout({
       <body className={cn(pretendard.variable, 'bg-[#f5f6f8]')}>
         <Script
           strategy="afterInteractive"
-          src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}
+          src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}
         />
         <Script src="https://cdn.iamport.kr/v1/iamport.js" />
         <Providers>

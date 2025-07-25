@@ -1,53 +1,36 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import MenuButton from '@/components/button/menu-button/menu-button';
-import ProductInfoThumbContainer from '@/components/product/product-info-thumb-container/product-info-thumb-container';
-import ToggleSwitch from '@/components/toggle-switch/toggle-switch';
-import { useGetBagInfoByOwner } from '@/hooks/query/bag/useGetBagInfoByOwner';
-import { usePatchOnSale } from '@/hooks/query/bag/usePatchOnSale';
-import { BagInfoResponse } from '@/types/bag';
-import { common } from '@/styles/common.css';
-import * as styles from './styles.css';
+import Link from 'next/link';
+import ChevronRightIcon from '@/assets/svg/ChevronRightIcon';
+import { useGetOwnerStoreInfo } from '@/hooks/query/owner/useGetOwnerStoreInfo';
+import { MenuItem } from '../_components/menu-item';
+import { SaleOpenSwitch } from './_components/sale-open-switch';
+import { StoreInfo } from './_components/store-info';
 
 export default function Page() {
-  const { mutate: patchOnSale } = usePatchOnSale();
-  const { data: bagInfo, isLoading } = useGetBagInfoByOwner();
-  const route = useRouter();
+  const { data: storeInfo } = useGetOwnerStoreInfo();
 
-  if (isLoading) return <> </>;
+  const goodsInfo = storeInfo?.data.data.goodsList
+    ? storeInfo.data.data.goodsList[0]
+    : undefined;
 
-  const handleOnSaleToggleClick = () => {
-    patchOnSale(!bagInfo!.onSale);
-  };
   return (
-    <>
-      <div className={common.box}>
-        <ProductInfoThumbContainer info={bagInfo as BagInfoResponse} />
-        <strong className={styles.description}>{bagInfo!.bagName}</strong>
-        <p className={styles.description}>{bagInfo!.description}</p>
-      </div>
-      <MenuButton
-        name="판매 중"
-        shadow
-        style={{ backgroundColor: '#fff' }}
-        button={
-          <div>
-            <ToggleSwitch
-              value={bagInfo!.onSale}
-              onChange={handleOnSaleToggleClick}
-            />
-          </div>
-        }
-      />
-      <MenuButton
-        name="마감백 정보 수정"
-        shadow
-        style={{ backgroundColor: '#fff' }}
-        event={() => {
-          route.push('/store/sale/edit');
-        }}
-      />
-    </>
+    <div className="flex flex-col gap-[20px] p-[20px]">
+      <StoreInfo storeInfo={storeInfo} />
+      <MenuItem name="판매 시작하기">
+        <SaleOpenSwitch
+          goodsId={goodsInfo?.goodsId}
+          defaultValue={goodsInfo?.saleStatus === 'ON'}
+        />
+      </MenuItem>
+      <MenuItem name="마감백 정보 수정">
+        <Link
+          href="/store/sale/edit"
+          className="clickable w-[100px] flex justify-end"
+        >
+          <ChevronRightIcon width={20} height={20} />
+        </Link>
+      </MenuItem>
+    </div>
   );
 }

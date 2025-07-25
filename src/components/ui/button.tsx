@@ -9,7 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-primary text-gray11',
+        primary: 'bg-primary text-gray1',
         'primary-inactive':
           'bg-[#F6F6F6] border-[1px] border-primary text-primary',
         secondary: 'bg-secondary text-white',
@@ -19,6 +19,7 @@ const buttonVariants = cva(
         'primary-light-outline':
           'bg-[#FFF0D1] text-gray12 border-[1px] border-primary [&:has(input:not(:checked))]:bg-white [&:has(input:not(:checked))]:border-[#D9D9D9]',
         'primary-light': 'bg-[#FFF8EB] text-gray4 border-primary',
+        red: 'bg-red text-white ',
       },
       size: {
         full: 'w-full',

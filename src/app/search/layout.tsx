@@ -59,7 +59,7 @@ function Content({ children }: { children: React.ReactNode }) {
         />
         <SearchInput
           ref={searchInputRef}
-          placeholder="마감백 판매 가게를 검색해보세요!"
+          placeholder="마감백 운영 가게 검색"
           className="bg-gray10 rounded-[10px] ml-[10px]"
           onEnter={handleSearchKeywordEnter}
           onChange={handleSearchKeywordChange}

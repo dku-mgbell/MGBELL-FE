@@ -10,6 +10,10 @@ export interface BagRegistrationRequest {
   salePrice: number;
 }
 
+export interface BagPatchRequest extends BagRegistrationRequest {
+  goodsId: string;
+}
+
 export interface BagInfo {
   bagName: string | null;
   description: string | null;
@@ -34,42 +38,4 @@ export interface BagInfoResponse extends BagInfo, Coordinate {
 export interface BagDetail extends BagInfoResponse {
   storeId: number;
   description: string;
-}
-
-export interface ProductInfoContainerProps
-  extends Omit<
-    BagInfoResponse,
-    | 'bagName'
-    | 'description'
-    | 'latitude'
-    | 'longitude'
-    | 'favorite'
-    | 'id'
-    | 'reviewCnt'
-    | 'images'
-  > {
-  reviewCnt?: number;
-}
-
-export interface BagInfoPageResponse {
-  pageParams: number[];
-  pages: BagInfoResponse[][];
-}
-
-export interface MyBagInfoResponse {
-  id: number;
-  storeName: string;
-  bagName: string;
-  description: string;
-  reviewCnt: number;
-  address: string;
-  longitude: string;
-  latitude: string;
-  onSale: true;
-  amount: number;
-  startAt: string;
-  endAt: string;
-  costPrice: number;
-  salePrice: number;
-  images: string[];
 }

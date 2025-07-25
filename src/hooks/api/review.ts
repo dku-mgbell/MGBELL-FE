@@ -3,40 +3,16 @@ import {
   MyReviewResponse,
   ReviewResponse,
   ReviewStatistic,
-  UserReviewUpload,
+  ReviewRatingResponse,
+  UserReviewUploadRequest,
 } from '@/types/review';
+import { WIP_API_BASE_URL } from '@/constant';
 import { API } from '.';
 
 export const Review = {
-  async postByUser({
-    orderId,
-    reviewScore,
-    content,
-    satisfiedReasons,
-    file,
-  }: UserReviewUpload) {
-    const formData = new FormData();
-    formData.append(
-      'request',
-      JSON.stringify({
-        orderId,
-        reviewScore,
-        content,
-        satisfiedReasons,
-      }),
-    );
-    if (file) {
-      file.forEach((f) => {
-        formData.append('file', f);
-      });
-    }
-    const response = await API.post('/review/user', formData, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-    return response.data;
+  async postByUser(data: Omit<UserReviewUploadRequest, 'images'>) {
+    const response = await API.post(`${WIP_API_BASE_URL}/review`, data);
+    return response.data.data;
   },
   async getStatistic({
     storeId,
@@ -46,27 +22,42 @@ export const Review = {
     const response = await API.get(`/review/preview/${storeId}`);
     return response.data;
   },
-  async getInfiniteList(
-    storeId: number,
-    sortedByRecentDate: boolean,
-    isOnlyPhoto: boolean,
-    { page, size }: PageParams,
-  ): Promise<ReviewResponse[]> {
+  async getList({
+    goodsId,
+    imageCheck = false,
+    page,
+    size,
+  }: {
+    goodsId: string;
+    imageCheck?: boolean;
+  } & PageParams): Promise<ReviewResponse[]> {
     const response = await API.get(
-      `/review/list/${storeId}?page=${page}&size=${size}&sort=createdAt,${sortedByRecentDate ? 'desc' : 'asc'}${isOnlyPhoto ? '&onlyPhotos=true' : ''}`,
+      `${WIP_API_BASE_URL}/review?goodsId=${goodsId}&page=${page + 1}&size=${size}&imageCheck=${imageCheck}`,
     );
-    const list = (await response.data.content) as ReviewResponse[];
+    const list = (await response.data.data
+      .reviewListDTOList) as ReviewResponse[];
     return list;
   },
   async getMyList({ page, size }: PageParams): Promise<MyReviewResponse[]> {
     const response = await API.get(
-      `/review/user/list?page=${page}&size=${size}&sort=createdAt,desc`,
+      `${WIP_API_BASE_URL}/review/me?page=${page + 1}&size=${size}`,
     );
-    const list = (await response.data.content) as MyReviewResponse[];
+    const list = (await response.data.data
+      .reviewListDTOList) as MyReviewResponse[];
     return list;
   },
-  async deletePost(reviewId: number) {
-    const response = await API.delete(`/review/user/${reviewId}`);
+  async deletePost(reviewId: string) {
+    const response = await API.delete(`${WIP_API_BASE_URL}/review/${reviewId}`);
     return response.data;
+  },
+  async getRating({
+    goodsId,
+  }: {
+    goodsId: string;
+  }): Promise<ReviewRatingResponse> {
+    const response = await API.get(
+      `${WIP_API_BASE_URL}/review/rating?goodsId=${goodsId}&imageCheck=false  `,
+    );
+    return response.data.data;
   },
 };

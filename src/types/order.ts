@@ -12,79 +12,71 @@ export interface UserOrderResponse {
 }
 
 export interface UserOrderDetailPreview {
-  id: number;
-  orderId: number;
-  orderDateTime: string;
+  orderId: string;
+  orderStatus: OrderStatus;
+  createdAt: string;
+  storeId: string;
   storeName: string;
-  bagName: string;
-  orderState: OrderState;
-  amount: number;
-  subTotal: number;
-  images: string;
-  storeId: number;
-  reviewed: boolean;
+  imageUrls: string[];
+  goodsList: {
+    orderGoodsId: string;
+    goodsName: string;
+    quantity: number;
+    salePrice: number;
+  }[];
+  reviewIds: string[];
 }
 
-export interface OwnerOrderDetail {
-  orderId: number;
-  orderState: OrderState;
-  orderedTime: string;
+export interface UserOrderDetail
+  extends Omit<
+    UserOrderDetailPreview,
+    'imageUrls' | 'goodsList' | 'reviewIds'
+  > {
+  storeAddress: string;
+  imageUrl: string;
+  totalPrice: number;
   pickupTime: string;
-  request: string;
-  amount: number;
-  subTotal: number;
-  payment: Payment;
-  phoneNumber: string;
+  memo: string;
+  reviewId: string;
+  quantity: number;
+  orderGoodsId: string;
 }
 
-export type Payment = 'SPOT';
-export const PaymentName = {
-  SPOT: '현장결제',
-} as const;
-
-export interface UserOrderDetail extends UserOrderDetailPreview {
-  storeId: number;
-  address: string;
-  payment: string;
-  pickupTime: string;
-  request: string;
-  cancelReason: string;
-}
-
-export type OrderState =
-  | 'REQUESTED'
-  | 'ACCEPTED'
-  | 'COMPLETED'
-  | 'USER_CANCELED'
-  | 'OWNER_REFUSED';
-
-export const OrderStateName: Record<OrderState, string> = {
-  REQUESTED: '주문대기',
-  ACCEPTED: '픽업예정',
-  COMPLETED: '픽업완료',
-  USER_CANCELED: '본인취소',
-  OWNER_REFUSED: '매장취소',
-} as const;
-
-export const OrderStateColor: Record<OrderState, string> = {
-  REQUESTED: 'text-primary',
+export const OrderStatusColor: Record<OrderStatus, string> = {
+  PAID: 'text-primary',
   ACCEPTED: 'text-secondary',
   COMPLETED: 'text-gray5',
-  USER_CANCELED: 'text-error',
-  OWNER_REFUSED: 'text-error',
+  CANCELED: 'text-error',
+  REJECTED: 'text-error',
+  PENDING: 'text-error',
+  FAILED: 'text-error',
 } as const;
 
-export const OrderStateNameByOwner = {
-  REQUESTED: '주문요청',
-  ACCEPTED: '진행중',
-  COMPLETED: '완료',
-  USER_CANCELED: '고객취소',
-  OWNER_REFUSED: '매장취소',
+export type OrderStatus =
+  | 'PENDING'
+  | 'PAID'
+  | 'ACCEPTED'
+  | 'REJECTED'
+  | 'COMPLETED'
+  | 'CANCELED'
+  | 'FAILED';
+
+export const OrderStatusName: Record<OrderStatus, string> = {
+  PENDING: '주문대기',
+  PAID: '결제완료',
+  ACCEPTED: '픽업예정',
+  REJECTED: '주문거절',
+  COMPLETED: '픽업완료',
+  CANCELED: '주문취소',
+  FAILED: '결제실패',
 } as const;
 
-export const CancelReason = {
-  SOLDOUT: '재고 소진',
-  ETC: '가게 사정',
-};
-
-export type CancelReasonCode = keyof typeof CancelReason;
+export const UserOrderStatusName: Record<OrderStatus, string> = {
+  PAID: '주문대기중',
+  ACCEPTED: '픽업대기중',
+  COMPLETED: '픽업완료',
+  CANCELED: '본인취소',
+  REJECTED: '매장취소',
+  PENDING: '결제요청',
+  FAILED: '결제실패',
+} as const;

@@ -25,7 +25,7 @@ export const counterVariants = cva(
 export interface CounterProps
   extends React.ComponentProps<'input'>,
     VariantProps<typeof counterVariants> {
-  defaultValue?: number;
+  defaultValue: number;
   setValue: (value: number) => void;
   maxCount?: number;
   minCount?: number;
@@ -65,7 +65,7 @@ export default function Counter({
   theme,
   className,
 }: CounterProps) {
-  const [count, setCount] = useState(defaultValue ?? 0);
+  const [count, setCount] = useState(defaultValue);
 
   const handleButtonClick = (type: 'minus' | 'plus') => {
     if (type === 'minus') {
@@ -74,6 +74,10 @@ export default function Counter({
       setCount((prev) => prev + 1);
     }
   };
+
+  useEffect(() => {
+    setCount(defaultValue);
+  }, [defaultValue]);
 
   useEffect(() => {
     setValue(count);

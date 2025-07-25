@@ -1,10 +1,13 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { StoreDetailWithBag, StoreListItemResponse } from '@/types/store';
 
 interface UserHistoryStore {
   searchKeywordHistory: string[];
   addSearchKeywordHistory: (value: string) => void;
   deleteSearchKeywordHistory: (value: string) => void;
+  recentViewedStoreList: StoreListItemResponse[];
+  addRecentViewedStoreList: (value: StoreDetailWithBag) => void;
 }
 
 export const useUserHistoryStore = create<UserHistoryStore>()(
@@ -26,9 +29,38 @@ export const useUserHistoryStore = create<UserHistoryStore>()(
             (v) => v !== value,
           ),
         })),
+      recentViewedStoreList: [],
+      addRecentViewedStoreList: (storeDetail) =>
+        set((state) => {
+          const data: StoreListItemResponse = {
+            storeId: storeDetail.storeId,
+            storeName: storeDetail.storeName,
+            ImageUrl: storeDetail.images,
+            goodsName: storeDetail.goodsId,
+            startTime: storeDetail.startTime,
+            endTime: storeDetail.endTime,
+            originPrice: storeDetail.originalPrice,
+            discount: storeDetail.discount,
+            salePrice: storeDetail.salePrice,
+            quantity: storeDetail.quantity,
+            distance: null,
+            saleStatus: storeDetail.saleStatus,
+            address: storeDetail.address,
+            latitude: 0,
+            longitude: 0,
+          };
+          return {
+            recentViewedStoreList: [
+              data,
+              ...state.recentViewedStoreList.filter(
+                (v) => v.storeId !== data.storeId,
+              ),
+            ],
+          };
+        }),
     }),
     {
-      name: 'search-history-storage',
+      name: 'user-history-storage',
     },
   ),
 );

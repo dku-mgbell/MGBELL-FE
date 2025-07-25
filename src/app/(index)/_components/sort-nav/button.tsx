@@ -27,7 +27,7 @@ export default function SortNavButton({
       className={cn(
         'clickable text-center border-[1px] border-gray7',
         'rounded-[20px] px-2.5 py-[8px] font-bold text-gray4',
-        'has-[input:checked]:border-primary has-[input:checked]:bg-primary has-[input:checked]:text-white',
+        'has-[input:checked]:border-primary has-[input:checked]:bg-primary has-[input:checked]:text-gray1',
         'text-xs whitespace-nowrap',
         'transition-all duration-300',
         'inline-block w-fit',

@@ -13,6 +13,7 @@ export default function Modal({
   showButton,
   onlyConfirmButton,
   confirmButtonText,
+  cancelButtonText,
   setOpen,
   autoCloseOnConfirm = true,
 }: Omit<ModalProps, 'visible'>) {
@@ -32,7 +33,7 @@ export default function Modal({
   };
 
   return (
-    <div className="w-full h-full fixed top-0 left-0 bg-black/20 flex justify-center items-center z-[99999]">
+    <div className="w-full h-full fixed top-0 left-0 bg-black/20 flex justify-center items-center z-[999999]">
       <motion.div
         initial={{
           opacity: 0,
@@ -80,7 +81,7 @@ export default function Modal({
                 variant={confirmEvent ? 'primary-light' : 'primary'}
                 className="flex-1"
               >
-                닫기
+                {cancelButtonText || '닫기'}
               </Button>
             )}
             {confirmEvent && (

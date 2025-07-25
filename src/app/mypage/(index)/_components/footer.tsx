@@ -13,7 +13,9 @@ export default function Footer() {
 
   const handleLogout = () => {
     open({
-      content: '로그아웃하시겠습니까?',
+      title: '로그아웃하시겠어요?',
+      description: '지금 사용 중인 계정에서 로그아웃돼요.',
+      confirmButtonText: '로그아웃',
       confirmEvent: () => {
         logout();
       },

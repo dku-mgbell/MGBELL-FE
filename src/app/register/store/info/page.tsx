@@ -12,7 +12,7 @@ import TextField from '@/components/ui/text-field';
 import { usePostStoreRegistration } from '@/hooks/query/store/usePostStoreRegistration';
 import { phoneRegex } from '@/utils/regex';
 import useSearchAddress from '@/hooks/useSearchAddress';
-import ImageUploader from '../(components)/image-uploader';
+import ImageUploader from '@/components/image-uploader';
 import BankSelectSheet from './_components/bank-select-sheet';
 
 type StoreForm = z.infer<typeof schema>;
@@ -54,8 +54,8 @@ export default function Page() {
     postStoreRegistration({
       ...request,
       address: fullAddress,
-      latitude: Number(coordData?.addresses[0].x ?? 0),
-      longitude: Number(coordData?.addresses[0].y ?? 0),
+      latitude: Number(coordData?.addresses[0].y ?? 0),
+      longitude: Number(coordData?.addresses[0].x ?? 0),
       storeImagesRegisters: data.images.map((image, index) => ({
         id: index + 1,
         key: image.name,

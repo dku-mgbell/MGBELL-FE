@@ -26,7 +26,7 @@ export default function Page() {
 
   const redirectPath = {
     FAILED: '/bag/order/fail',
-    PAID: '/bag/order/success',
+    PAID: `/bag/order/success?price=${userPaymentStore.amount}`,
   };
 
   useEffect(() => {

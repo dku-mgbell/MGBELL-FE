@@ -2,7 +2,7 @@ import AppleIcon from '@/assets/svg/social/apple';
 import GoogleIcon from '@/assets/svg/social/google';
 import KakaoIcon from '@/assets/svg/social/kakao';
 import NaverIcon from '@/assets/svg/social/naver';
-import { OAuthProviderType } from '@/types/login';
+import { OAuthProviderType } from '@/types/oauth';
 import getOAuthLink from '@/utils/getOAuthLink';
 import { colors } from '@/styles/constant';
 
@@ -13,6 +13,7 @@ interface LoginButtonConfig {
   textColor: string;
   bgColor: string;
   link: string;
+  hidden?: boolean;
 }
 
 export const loginButtonConfig: Record<OAuthProviderType, LoginButtonConfig> = {
@@ -31,14 +32,7 @@ export const loginButtonConfig: Record<OAuthProviderType, LoginButtonConfig> = {
     textColor: '#000000',
     bgColor: '#FFFFFF',
     link: getOAuthLink('GOOGLE'),
-  },
-  APPLE: {
-    icon: <AppleIcon />,
-    text: '애플로 로그인하기',
-    borderColor: '#000000',
-    textColor: '#FFFFFF',
-    bgColor: '#000000',
-    link: getOAuthLink('APPLE'),
+    hidden: true,
   },
   NAVER: {
     icon: <NaverIcon />,
@@ -47,5 +41,13 @@ export const loginButtonConfig: Record<OAuthProviderType, LoginButtonConfig> = {
     textColor: '#FFFFFF',
     bgColor: '#36AE3C',
     link: getOAuthLink('NAVER'),
+  },
+  APPLE: {
+    icon: <AppleIcon />,
+    text: '애플로 로그인하기',
+    borderColor: '#000000',
+    textColor: '#FFFFFF',
+    bgColor: '#000000',
+    link: getOAuthLink('APPLE'),
   },
 };

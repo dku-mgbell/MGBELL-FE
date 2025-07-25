@@ -4,5 +4,3 @@ export const Order = {
   ListItem: OrderListItem,
   DetailItem: OrderDetailItem,
 };
-
-export default Order;

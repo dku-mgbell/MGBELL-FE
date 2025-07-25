@@ -1,7 +1,9 @@
 import { useRouter } from 'next/navigation';
+import useModal from './useModal';
 
 export const useAuth = () => {
   const route = useRouter();
+  const { open } = useModal();
 
   const setTokenResponse = ({
     accessToken,
@@ -41,5 +43,23 @@ export const useAuth = () => {
     if (!isLoggedIn) route.push('/login');
   };
 
-  return { logout, redirectLoginPage, isLoggedIn, setToken, setTokenResponse };
+  const openRequireLoginModal = () => {
+    open({
+      title: '로그인이 필요해요!',
+      description: '서비스 이용을 위해 로그인이 필요해요.',
+      confirmEvent: () => {
+        route.push('/login');
+      },
+      confirmButtonText: '로그인',
+    });
+  };
+
+  return {
+    logout,
+    redirectLoginPage,
+    isLoggedIn,
+    setToken,
+    setTokenResponse,
+    openRequireLoginModal,
+  };
 };
