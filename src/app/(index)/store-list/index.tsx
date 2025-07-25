@@ -1,13 +1,16 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Intersection } from '@/components/intersection/intersection';
 import { useGetStoreInfiniteList } from '@/hooks/query/user/useGetStoreInfiniteList';
+import { useGetUserAccountInfo } from '@/hooks/query/user/useGetUserAccountInfo';
 import { StoreListItemResponse, StoreListSortType } from '@/types/store';
+import { useAuth } from '@/hooks/useAuth';
 import { useSuspenseInfiniteScroll } from '@/hooks/useSuspenseInfiniteScroll';
 import StoreListItem from './item';
 
 export default function StoreList() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const sortType = searchParams.get('sort') ?? 'RECENT_DESC';
   const searchKeyword = searchParams.get('search');
@@ -18,7 +21,10 @@ export default function StoreList() {
     ? Number(searchParams.get('longitude'))
     : null;
   const onlyAvailable = searchParams.get('available') === 'true' ? true : null;
-
+  const { isLoggedIn } = useAuth();
+  const { data: userAccountInfo } = useGetUserAccountInfo({
+    enabled: isLoggedIn,
+  });
   const bagListState = useGetStoreInfiniteList({
     size: 5,
     sortType: sortType as StoreListSortType,
@@ -29,6 +35,10 @@ export default function StoreList() {
   });
   const { list, intersection } =
     useSuspenseInfiniteScroll<StoreListItemResponse>(bagListState);
+
+  if (isLoggedIn && userAccountInfo?.userRole === 'OWNER') {
+    router.push('/store/order');
+  }
 
   return (
     <>
