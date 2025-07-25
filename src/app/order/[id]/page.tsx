@@ -15,7 +15,6 @@ export default function Page({ params }: { params: { id: string } }) {
   const orderData = {
     매장: data!.storeName,
     픽업장소: data!.storeAddress,
-    결제수단: '현장결제',
     주문수량: data!.quantity,
     픽업시간: getFullDateTime(data!.pickupTime),
     결제금액: `${data!.totalPrice ? data!.totalPrice.toLocaleString() : '0'}원`,
