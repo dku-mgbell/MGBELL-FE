@@ -54,4 +54,10 @@ export const Store = {
     const response = await API.get(`${WIP_API_BASE_URL}/store/${id}`);
     return response.data.data;
   },
+  async getSubscriptionStatus(storeId: string): Promise<boolean> {
+    const response = await API.get(
+      `${WIP_API_BASE_URL}/notification/store/${storeId}`,
+    );
+    return response.data.data.subscribed;
+  },
 };

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { useSubscribeStoreOpen } from '@/hooks/query/notification/useSubscribeStoreOpen';
+import { useGetStoreSubscriptionStatus } from '@/hooks/query/store/useGetStoreSubscriptionStatus';
 import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
 import { useAuth } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
@@ -14,10 +15,15 @@ export default function OrderButton({ isOrderable }: { isOrderable: boolean }) {
   const { open } = useModal();
   const { storeDetail } = useStoreDetailStore();
   const { bagAmount } = useBagOrderState();
-  const { mutate: subscribeStoreOpen } = useSubscribeStoreOpen();
+  const { mutate: subscribeStoreOpen } = useSubscribeStoreOpen({
+    storeId: storeDetail ? storeDetail.storeId : '',
+  });
   const [isStoreReservationEnabled, setIsStoreReservationEnabled] =
     useState(false);
   const fcmToken = localStorage.getItem('fcmToken');
+  const { data: isSubscribed } = useGetStoreSubscriptionStatus(
+    storeDetail ? storeDetail.storeId : '',
+  );
 
   useEffect(() => {
     if (storeDetail) {
@@ -50,13 +56,13 @@ export default function OrderButton({ isOrderable }: { isOrderable: boolean }) {
     }
   };
 
-  const handleSubscribeStoreButtonClick = () => {
+  const handleSubscribeStoreButtonClick = (subscribeStatus: boolean) => {
     if (!isLoggedIn) {
       openRequireLoginModal();
       return;
     }
 
-    if (!fcmToken) {
+    if (!fcmToken && !subscribeStatus) {
       open({
         title: '알림 설정이 필요해요.',
         description: '알림 권한을 허용해주세요.',
@@ -64,7 +70,10 @@ export default function OrderButton({ isOrderable }: { isOrderable: boolean }) {
       return;
     }
 
-    subscribeStoreOpen({ storeId: storeDetail!.storeId, fcmToken });
+    subscribeStoreOpen({
+      fcmToken,
+      subscribe: !subscribeStatus,
+    });
   };
 
   if (isOrderable)
@@ -75,8 +84,11 @@ export default function OrderButton({ isOrderable }: { isOrderable: boolean }) {
     );
 
   return (
-    <Button onClick={handleSubscribeStoreButtonClick} className="flex-1">
-      오픈 알림받기
+    <Button
+      onClick={() => handleSubscribeStoreButtonClick(isSubscribed ?? false)}
+      className="flex-1"
+    >
+      {isSubscribed ? '알림 취소하기' : '오픈 알림받기'}
     </Button>
   );
 }

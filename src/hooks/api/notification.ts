@@ -20,6 +20,18 @@ export const Notification = {
       storeId,
       fcmToken,
     });
-    return response.data;
+    return {
+      subscriptionStatus: 'SUBSCRIBED',
+      ...response.data,
+    };
+  },
+  async unsubscribeStoreOpen({ storeId }: { storeId: string }) {
+    const response = await API.delete(
+      `${WIP_API_BASE_URL}/notification/store/${storeId}`,
+    );
+    return {
+      subscriptionStatus: 'UNSUBSCRIBED',
+      ...response.data,
+    };
   },
 };
