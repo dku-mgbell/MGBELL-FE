@@ -56,6 +56,7 @@ export type ReviewResponse = {
   nickName: string;
   goodsId: string;
   storeId: string;
+  storeName: string;
 };
 
 export type MyReviewResponse = ReviewResponse;

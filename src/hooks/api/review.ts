@@ -46,8 +46,8 @@ export const Review = {
       .reviewListDTOList) as MyReviewResponse[];
     return list;
   },
-  async deletePost(reviewId: number) {
-    const response = await API.delete(`/review/user/${reviewId}`);
+  async deletePost(reviewId: string) {
+    const response = await API.delete(`${WIP_API_BASE_URL}/review/${reviewId}`);
     return response.data;
   },
   async getRating({
