@@ -14,9 +14,7 @@ export default function InstallationModal() {
 
   return (
     <>
-      <div className="z-[99999] fixed top-0 left-1/2 transform -translate-x-1/2 max-w-[450px] w-full h-[100dvh] bg-gray1 opacity-20 z-[9999]">
-        InstallationModal
-      </div>
+      <div className="z-[99999] fixed top-0 left-1/2 transform -translate-x-1/2 max-w-[450px] w-full h-[100dvh] bg-gray1 opacity-20 z-[9999]" />
       <div className="z-[999999] w-full max-w-[450px] h-[230px] rounded-[16px] p-[20px] bg-white fixed bottom-[env(safe-area-inset-bottom)] left-1/2 transform -translate-x-1/2 flex flex-col items-center">
         <button
           type="button"

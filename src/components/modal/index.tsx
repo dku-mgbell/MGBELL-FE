@@ -33,7 +33,7 @@ export default function Modal({
   };
 
   return (
-    <div className="w-full h-full fixed top-0 left-0 bg-black/20 flex justify-center items-center z-[999999]">
+    <div className="w-full h-full fixed top-0 left-0 bg-black/20 flex justify-center items-center z-[99999]">
       <motion.div
         initial={{
           opacity: 0,

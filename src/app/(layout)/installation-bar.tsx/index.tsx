@@ -26,7 +26,7 @@ export default function InstallationBar() {
   return (
     <div
       className={cn(
-        'fixed top-[env(safe-area-inset-top)] z-[99999] w-full bg-white h-[70px] max-w-[450px] right-1/2 translate-x-1/2',
+        'fixed top-[env(safe-area-inset-top)] z-[9999] w-full bg-white h-[70px] max-w-[450px] right-1/2 translate-x-1/2',
         'px-[12px] py-[15px] flex items-center justify-between',
         'flex justify-between',
       )}
