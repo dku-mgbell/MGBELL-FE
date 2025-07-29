@@ -1,3 +1,4 @@
+import { PageParams } from '@/types/api';
 import {
   StoreDetailWithBag,
   StoreListItemResponse,
@@ -11,6 +12,17 @@ export const Store = {
   async postRegistration(data: StoreRegistrationRequest) {
     const response = await API.post(`${WIP_API_BASE_URL}/store`, data);
     return response.data;
+  },
+  async getPendingList({
+    page,
+    size,
+  }: PageParams): Promise<StoreListItemResponse[]> {
+    const response = await API.get(
+      `${WIP_API_BASE_URL}/store/waiting?page=${page + 1}&size=${size}`,
+    );
+    const list = (await response.data.data
+      .storeListDTOResponses) as StoreListItemResponse[];
+    return list;
   },
   async getInfiniteList(
     queryParams: StoreListRequestParams,
@@ -44,7 +56,7 @@ export const Store = {
       .storeListDTOResponses) as StoreListItemResponse[];
     return list;
   },
-  async approve(id: number) {
+  async approve(id: string) {
     const response = await API.patch(`${WIP_API_BASE_URL}/store/approve`, {
       id,
     });

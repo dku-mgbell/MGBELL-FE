@@ -20,15 +20,19 @@ export default function StoreContainer({
 export function StoreListItem({
   data,
   onClick,
+  className,
 }: {
   data: StoreListItemResponse;
   onClick?: () => void;
+  className?: string;
 }) {
   return (
     <button
       type="button"
-      className="clickable w-full pb-[30px] [&:not(:last-child)]:border-b border-gray7"
-      onClick={onClick}
+      className={cn(
+        'clickable w-full pb-[30px] [&:not(:last-child)]:border-b-[1px] border-gray7',
+        className,
+      )}
     >
       <Link
         href={`/bag/${data.storeId}`}
