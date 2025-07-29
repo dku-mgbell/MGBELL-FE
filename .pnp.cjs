@@ -51,6 +51,7 @@ const RAW_RUNTIME_STATE =
           ["@testing-library/react", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:16.3.0"],\
           ["@types/eslint-plugin-jsx-a11y", "npm:6.9.0"],\
           ["@types/jest", "npm:29.5.14"],\
+          ["@types/jsonwebtoken", "npm:9.0.10"],\
           ["@types/navermaps", "npm:3.7.8"],\
           ["@types/next-pwa", "npm:5.6.9"],\
           ["@types/node", "npm:20.16.5"],\
@@ -81,6 +82,7 @@ const RAW_RUNTIME_STATE =
           ["husky", "npm:9.1.6"],\
           ["jest", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:29.7.0"],\
           ["jest-environment-jsdom", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:30.0.0-beta.3"],\
+          ["jsonwebtoken", "npm:9.0.2"],\
           ["lint-staged", "npm:15.2.10"],\
           ["lucide-react", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:0.511.0"],\
           ["msw", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:2.0.0"],\
@@ -22396,6 +22398,7 @@ const RAW_RUNTIME_STATE =
           ["@testing-library/react", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:16.3.0"],\
           ["@types/eslint-plugin-jsx-a11y", "npm:6.9.0"],\
           ["@types/jest", "npm:29.5.14"],\
+          ["@types/jsonwebtoken", "npm:9.0.10"],\
           ["@types/navermaps", "npm:3.7.8"],\
           ["@types/next-pwa", "npm:5.6.9"],\
           ["@types/node", "npm:20.16.5"],\
@@ -22426,6 +22429,7 @@ const RAW_RUNTIME_STATE =
           ["husky", "npm:9.1.6"],\
           ["jest", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:29.7.0"],\
           ["jest-environment-jsdom", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:30.0.0-beta.3"],\
+          ["jsonwebtoken", "npm:9.0.2"],\
           ["lint-staged", "npm:15.2.10"],\
           ["lucide-react", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:0.511.0"],\
           ["msw", "virtual:df45f35603672abaf560d29318c18c9ff472922c73147c03bf281a188f619b26e7d6443351db5b89d9f904211064d5ae2ef6ca5ac9211e2d92ea79f96c45a8f4#npm:2.0.0"],\
