@@ -55,7 +55,7 @@ export default function getOAuthLink(
         scope: `${encodeURIComponent('name email')}`,
         state: crypto.randomUUID(),
         response_mode: 'form_post',
-        redirect_uri: `${REDIRECT_BASE_URI}/api/${action}/oauth/apple/callback`,
+        redirect_uri: `${REDIRECT_BASE_URI}/api/login/oauth/apple/callback/${action}`,
       },
     },
   };

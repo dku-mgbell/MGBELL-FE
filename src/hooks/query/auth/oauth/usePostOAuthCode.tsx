@@ -95,7 +95,8 @@ export const usePostOAuthCode = ({
         if (data.access_token) {
           deleteOAuthAccount({
             providerType: OAuthProvider,
-            authCode: data.access_token,
+            authCode:
+              OAuthProvider === 'APPLE' ? data.id_token! : data.access_token,
           });
         } else {
           openOAuthErrorModal();
@@ -110,7 +111,10 @@ export const usePostOAuthCode = ({
 
       if (data.access_token) {
         updateSignUpInfo('providerType', OAuthProvider);
-        updateSignUpInfo('authCode', data.access_token);
+        updateSignUpInfo(
+          'authCode',
+          OAuthProvider === 'APPLE' ? data.id_token! : data.access_token,
+        );
       }
     },
   });
