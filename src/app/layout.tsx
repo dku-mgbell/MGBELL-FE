@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import ModalProvider from '@/components/modal/modal-provider';
 import Navigation from '@/components/navigation/navigation';
 import { cn } from '@/lib/utils';
+import { Analytics } from '@vercel/analytics/react';
 import MSWProvider from './(index)/msw-provider/msw-provider';
 import Providers from './(index)/query-provider';
 import Container from './(layout)/container';
@@ -76,6 +77,7 @@ export default function RootLayout({
             <Navigation />
           </ModalProvider>
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
