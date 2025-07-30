@@ -1,5 +1,6 @@
 import Script from 'next/script';
 import localFont from 'next/font/local';
+import { Analytics } from '@vercel/analytics/react';
 import ModalProvider from '@/components/modal/modal-provider';
 import Navigation from '@/components/navigation/navigation';
 import { cn } from '@/lib/utils';
@@ -76,6 +77,7 @@ export default function RootLayout({
             <Navigation />
           </ModalProvider>
         </Providers>
+        <Analytics />
       </body>
     </html>
   );

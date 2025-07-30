@@ -68,6 +68,11 @@ module.exports = {
             position: 'before',
           },
           {
+            pattern: '@vercel/analytics/react',
+            group: 'external',
+            position: 'before',
+          },
+          {
             pattern: '@hookform/resolvers/zod',
             group: 'external',
             position: 'before',
@@ -164,6 +169,7 @@ module.exports = {
           'zustand/middleware',
           'msw',
           'next/font/local',
+          '@vercel/analytics/react',
           'framer-motion',
           'lucide-react',
           '@hookform/resolvers/zod',
