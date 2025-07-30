@@ -7,9 +7,11 @@ import NaverIcon from './naver';
 export default function SocialIcon({
   size = 30,
   provider,
+  color,
 }: {
   size?: number;
   provider?: OAuthProviderType;
+  color?: string;
 }) {
   if (!provider) return <span />;
 
@@ -20,5 +22,5 @@ export default function SocialIcon({
     NAVER: NaverIcon,
   }[provider];
 
-  return <Component size={size} />;
+  return <Component size={size} color={color} />;
 }

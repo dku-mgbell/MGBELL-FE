@@ -33,7 +33,13 @@ export default function UserProfile() {
       <Text
         value={
           <span className="text-gray4 text-b2 flex items-center gap-[8px]">
-            <SocialIcon provider={userAccountInfo?.providerType} size={24} />
+            <SocialIcon
+              provider={userAccountInfo?.providerType}
+              size={24}
+              color={
+                userAccountInfo?.providerType === 'APPLE' ? '#000' : '#fff'
+              }
+            />
             {userAccountInfo?.email}
           </span>
         }
