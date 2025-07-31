@@ -33,6 +33,7 @@ export function StoreListItem({
         'clickable w-full pb-[30px] [&:not(:last-child)]:border-b-[1px] border-gray7',
         className,
       )}
+      onClick={onClick}
     >
       <Link
         href={`/bag/${data.storeId}`}
