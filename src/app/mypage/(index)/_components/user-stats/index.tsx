@@ -2,12 +2,15 @@
 
 import InformationIcon from '@/assets/svg/InformationIcon';
 import Text from '@/components/ui/text';
-import useModal from '@/hooks/useModal';
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip';
 import { useUserAccountInfoStore } from '../../_stores/useUserAccountInfoStore';
 
 export default function UserStats() {
   const { userAccountInfo } = useUserAccountInfoStore();
-  const { open } = useModal();
 
   const data = {
     purchaseCount:
@@ -18,12 +21,6 @@ export default function UserStats() {
       userAccountInfo?.savedKg !== undefined
         ? `${userAccountInfo?.savedKg.toFixed(2)}kg`
         : undefined,
-  };
-
-  const handleInformationButtonClick = () => {
-    open({
-      content: '표시된 탄소절감량은 추정치입니다.',
-    });
   };
 
   return (
@@ -41,13 +38,22 @@ export default function UserStats() {
       <div className="flex flex-1 flex-col gap-[4px] items-center">
         <div className="flex  flex-1 gap-[2px] justify-center items-center">
           <p className="text-b2 text-gray4">탄소 절감량</p>
-          <button
-            className="clickable"
-            onClick={handleInformationButtonClick}
-            type="button"
-          >
-            <InformationIcon />
-          </button>
+          <Tooltip>
+            <TooltipTrigger>
+              <button className="clickable" type="button">
+                <InformationIcon />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p className="text-b3 font-bold mb-[8px]">탄소 절감량이란?</p>
+              <p className="text-b3">
+                탄소 절감량이란, 버려질 뻔한 마감 재고를 구매함으로써 <br />
+                폐기 과정에서 발생했을 탄소를 얼마나 줄였는지를 대략적으로
+                <br />
+                추정한 지표입니다.
+              </p>
+            </TooltipContent>
+          </Tooltip>
         </div>
         <Text
           value={data.savedKg}
