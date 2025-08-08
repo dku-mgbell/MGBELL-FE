@@ -139,7 +139,22 @@ const useFcmToken = () => {
     return () => unsubscribe?.();
   }, [token, router]);
 
-  return { token, notificationPermissionStatus };
+  const requestNotificationPermission = async () => {
+    const permission = await Notification.requestPermission();
+    if (permission === 'granted') {
+      loadToken();
+      return true;
+    }
+    alert('알림 권한 허용 후 사용 가능합니다.');
+    return false;
+  };
+
+  return {
+    token,
+    notificationPermissionStatus,
+    loadToken,
+    requestNotificationPermission,
+  };
 };
 
 export default useFcmToken;
