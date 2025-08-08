@@ -29,7 +29,7 @@ export interface OwnerStoreInfo {
       storeId: string;
       storeName: string;
       storeImageUrls: string[];
-      storeAddress: string;
+      address: string;
       goodsList: [
         {
           goodsId: string;

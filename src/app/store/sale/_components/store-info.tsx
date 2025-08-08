@@ -12,7 +12,7 @@ export function StoreInfo({ storeInfo }: { storeInfo?: OwnerStoreInfo }) {
     salePrice: storeInfo?.data.data.goodsList[0].salePrice,
     discount: storeInfo?.data.data.goodsList[0].discount,
     description: storeInfo?.data.data.goodsList[0].description,
-    address: storeInfo?.data.data.storeAddress,
+    address: storeInfo?.data.data.address,
   };
 
   return (
