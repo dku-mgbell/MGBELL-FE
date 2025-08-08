@@ -114,6 +114,11 @@ const useFcmToken = () => {
           },
         );
 
+        if (payload.notification?.title === '새 주문이 들어왔어요!') {
+          const audio = new Audio('/notification-sound.mp3');
+          audio.play();
+        }
+
         n.onclick = (event) => {
           event.preventDefault();
           const redirectLink = (event.target as any)?.data?.url;
