@@ -69,8 +69,8 @@ export default function Map() {
     const coord = userLocation || DEFAULT_COORD;
 
     const mapOptions = {
-      center: new naver.maps.LatLng(coord[0] - 0.7, coord[1]),
-      zoom: 7,
+      center: new naver.maps.LatLng(coord[0], coord[1]),
+      zoom: 15,
     };
     const map = new naver.maps.Map('map', mapOptions);
     mapRef.current = map;
