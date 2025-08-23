@@ -35,7 +35,7 @@ export function CancelButtons({ orderId }: { orderId: string }) {
         className="cursor-pointer text-b3 text-gray3 flex-1 font-bold"
         onClick={handleCancelButtonClick}
       >
-        주문 취소
+        취소하기
       </button>
       <div className="w-[1px] h-[22px] bg-gray6" />
       <button

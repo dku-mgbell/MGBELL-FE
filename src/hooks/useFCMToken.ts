@@ -117,6 +117,8 @@ const useFcmToken = () => {
         if (payload.notification?.title === '새 주문이 들어왔어요!') {
           const audio = new Audio('/notification-sound.mp3');
           audio.play();
+
+          console.log('audio played');
         }
 
         n.onclick = (event) => {
