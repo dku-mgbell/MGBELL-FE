@@ -3,6 +3,7 @@ import {
   OwnerOrderAction,
   OwnerOrderListItem,
   OwnerStoreInfo,
+  OwnerTabOrderStatus,
 } from '@/types/owner';
 import { WIP_API_BASE_URL } from '@/constant';
 import { API } from '..';
@@ -11,9 +12,12 @@ export const Owner = {
   async getOrderList({
     page,
     size,
-  }: PageParams): Promise<OwnerOrderListItem[]> {
+    orderStatus,
+  }: PageParams & { orderStatus?: OwnerTabOrderStatus | '' }): Promise<
+    OwnerOrderListItem[]
+  > {
     const response = await API.get(
-      `${WIP_API_BASE_URL}/order/store?page=${page + 1}&size=${size}`,
+      `${WIP_API_BASE_URL}/order/store?page=${page + 1}&size=${size}${orderStatus === '' ? '' : `&orderStatus=${orderStatus}`}`,
     );
 
     const list = (await response.data.data

@@ -12,7 +12,7 @@ export const useGetOrderListByOwner = ({
   useInfiniteQuery({
     queryKey: ['owner-order-list', status],
     queryFn: ({ pageParam: pageNum }) =>
-      Owner.getOrderList({ page: pageNum, size }),
+      Owner.getOrderList({ page: pageNum, size, orderStatus: status }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) =>
       lastPage.length ? allPages.length : undefined,

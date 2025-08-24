@@ -6,7 +6,7 @@ export default function Aside({ status }: { status?: OwnerTabOrderStatus }) {
     '': {
       name: '전체',
     },
-    REQUESTED: {
+    PAID: {
       name: '대기',
     },
     ACCEPTED: {
