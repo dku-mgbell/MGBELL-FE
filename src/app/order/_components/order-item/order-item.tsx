@@ -45,15 +45,19 @@ function OrderDetailButton({ orderId }: { orderId: string }) {
 function HeaderOrderInfo({
   orderDateTime,
   orderStatus,
+  isListItem = false,
 }: {
   orderDateTime: string;
   orderStatus: OrderStatus;
+  isListItem?: boolean;
 }) {
   return (
     <div className="flex gap-[6px] items-center">
       <OrderStatusText orderStatus={orderStatus} />
       <span className="text-b3 text-gray5">
-        {getFullDateTime(orderDateTime)}
+        {isListItem
+          ? getFullDateTime(orderDateTime, { onlyDate: true })
+          : getFullDateTime(orderDateTime)}
       </span>
     </div>
   );
@@ -155,6 +159,7 @@ export function OrderListItem({
           <HeaderOrderInfo
             orderDateTime={createdAt}
             orderStatus={orderStatus}
+            isListItem
           />
           <OrderDetailButton orderId={orderId} />
         </Header>

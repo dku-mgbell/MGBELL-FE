@@ -1,4 +1,7 @@
-export const getFullDateTime = (dateString: string) => {
+export const getFullDateTime = (
+  dateString: string,
+  options?: { onlyDate: boolean },
+) => {
   const date = new Date(dateString);
 
   const year = date.getFullYear().toString().slice(-2);
@@ -11,6 +14,10 @@ export const getFullDateTime = (dateString: string) => {
   const minutes = String(date.getMinutes()).padStart(2, '0');
   const ampm = hours >= 12 ? '오후' : '오전';
   const formattedHours = String(hours % 12 || 12).padStart(2, '0');
+
+  if (options?.onlyDate) {
+    return `${year}.${month}.${day}`;
+  }
 
   return `${year}.${month}.${day}(${weekDay}) ${ampm} ${formattedHours}:${minutes}`;
 };
