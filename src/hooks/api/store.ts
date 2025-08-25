@@ -21,7 +21,7 @@ export const Store = {
       `${WIP_API_BASE_URL}/store/waiting?page=${page + 1}&size=${size}`,
     );
     const list = (await response.data.data
-      .storeListDTOResponses) as StoreListItemResponse[];
+      .storeAdminListDTOs) as StoreListItemResponse[];
     return list;
   },
   async getInfiniteList(
