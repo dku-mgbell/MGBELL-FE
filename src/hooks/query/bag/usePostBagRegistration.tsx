@@ -17,7 +17,7 @@ export default function usePostBagRegistration() {
     },
     onSuccess: () => {
       closeLoading();
-      router.push('/register/bag/success');
+      router.push('/register/store/info/success');
     },
     onError: () => {
       closeLoading();

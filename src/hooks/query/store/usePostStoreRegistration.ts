@@ -30,7 +30,7 @@ export const usePostStoreRegistration = () => {
     },
     onSuccess: () => {
       closeLoading();
-      router.push('/register/store/info/success');
+      router.push('/register/bag');
     },
   });
 };

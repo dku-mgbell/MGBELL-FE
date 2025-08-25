@@ -31,12 +31,10 @@ export const usePostOAuthLogin = (nextPage?: string) => {
   if (isLoginPage && isAccountInfoFetched && accountInfo) {
     registerFCMToken();
     // OWNER 계정 리다이렉트 로직
-    if (accountInfo.approved === 'APPROVED') {
-      if (accountInfo.goodsId === 'null') {
-        router.push('/register/bag');
-      } else {
-        router.push('/store/order');
-      }
+    if (accountInfo.userRole === 'OWNER' && accountInfo.goodsId === 'null') {
+      router.push('/register/bag');
+    } else if (accountInfo.approved === 'APPROVED') {
+      router.push('/store/order');
     } else if (
       accountInfo.approved === 'WAITING' ||
       accountInfo.approved === 'REJECTED'
