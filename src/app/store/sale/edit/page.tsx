@@ -12,13 +12,14 @@ import LabeledField from '@/components/ui/labeled-field';
 import { Selector } from '@/components/ui/select';
 import TextField from '@/components/ui/text-field';
 import TextArea from '@/components/ui/textarea';
+import TimePicker from '@/components/ui/time-picker';
 import usePatchBag from '@/hooks/query/bag/usePatchBag';
 import { useGetOwnerStoreInfo } from '@/hooks/query/owner/useGetOwnerStoreInfo';
 import { calculateSalePrice } from '@/utils/calculateSalePrice';
 import { getOrderFullDateByTime } from '@/utils/getOrderFullDateByTime';
-import { returnTimeOptions } from '@/utils/returnTimeOptions';
-import { colors } from '@/styles/constant';
+import { getPickUpTimeofToday } from '@/utils/getPickUpTimeofToday';
 import useModal from '@/hooks/useModal';
+import { colors } from '@/styles/constant';
 
 const formSchema = z.object({
   description: z.string().min(1, { message: '' }),
@@ -65,11 +66,11 @@ export default function Page() {
           salePrice: finalPrice,
           startTime: getOrderFullDateByTime({
             time: values.startTime,
-            isUser: false,
+            isStore: true,
           }),
           endTime: getOrderFullDateByTime({
             time: values.endTime,
-            isUser: false,
+            isStore: true,
           }),
         });
       },
@@ -83,6 +84,8 @@ export default function Page() {
       form.setValue('quantity', goodsInfo.stockQuantity);
       form.setValue('originalPrice', goodsInfo.originPrice);
       form.setValue('discount', goodsInfo.discount);
+      form.setValue('startTime', goodsInfo.startTime);
+      form.setValue('endTime', goodsInfo.endTime);
     }
   }, [data]);
 
@@ -123,18 +126,17 @@ export default function Page() {
               control={form.control}
               name="startTime"
               render={({ field }) => (
-                <Selector
+                <TimePicker
                   placeholder="시작 시간"
-                  options={returnTimeOptions(
-                    'open',
-                    '16:00',
-                    form.getValues('endTime'),
-                  )}
-                  setValue={(value) => {
-                    field.onChange(value);
-                    form.trigger('endTime');
+                  minTime={getPickUpTimeofToday({ type: 'open' })}
+                  maxTime={getPickUpTimeofToday({ type: 'close' })}
+                  value={field.value}
+                  onChange={(value) => {
+                    if (value) {
+                      field.onChange(value);
+                      form.trigger('endTime');
+                    }
                   }}
-                  isError={!!form.formState.errors.startTime}
                 />
               )}
             />
@@ -142,18 +144,17 @@ export default function Page() {
               control={form.control}
               name="endTime"
               render={({ field }) => (
-                <Selector
-                  placeholder="마감 시간"
-                  options={returnTimeOptions(
-                    'close',
-                    form.getValues('startTime'),
-                    '24:00',
-                  )}
-                  setValue={(value) => {
-                    field.onChange(value);
-                    form.trigger('startTime');
+                <TimePicker
+                  placeholder="종료 시간"
+                  minTime={form.getValues('startTime')}
+                  maxTime={getPickUpTimeofToday({ type: 'close' })}
+                  value={field.value}
+                  onChange={(value) => {
+                    if (value) {
+                      field.onChange(value);
+                      form.trigger('startTime');
+                    }
                   }}
-                  isError={!!form.formState.errors.endTime}
                 />
               )}
             />

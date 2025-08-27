@@ -4,8 +4,8 @@ import { ClipLoader } from 'react-spinners';
 import { Intersection } from '@/components/intersection/intersection';
 import { useGetUserOrderList } from '@/hooks/query/order/useGetUserOrderList';
 import { UserOrderDetailPreview } from '@/types/order';
-import { colors } from '@/styles/constant';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
+import { colors } from '@/styles/constant';
 import { Order } from '../_components/order-item';
 
 export default function Page() {

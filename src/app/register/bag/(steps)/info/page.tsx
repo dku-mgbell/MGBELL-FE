@@ -10,11 +10,12 @@ import LabeledField from '@/components/ui/labeled-field';
 import { Selector } from '@/components/ui/select';
 import TextField from '@/components/ui/text-field';
 import TextArea from '@/components/ui/textarea';
+import TimePicker from '@/components/ui/time-picker';
 import usePostBagRegistration from '@/hooks/query/bag/usePostBagRegistration';
 import { calculateSalePrice } from '@/utils/calculateSalePrice';
 import { commaizeNumber } from '@/utils/commaizeNumber';
 import { getOrderFullDateByTime } from '@/utils/getOrderFullDateByTime';
-import { returnTimeOptions } from '@/utils/returnTimeOptions';
+import { getPickUpTimeofToday } from '@/utils/getPickUpTimeofToday';
 
 const schema = z.object({
   description: z.string().min(1, { message: '' }),
@@ -47,8 +48,14 @@ export default function Page() {
   const onSubmit: SubmitHandler<RegisterBagFormFields> = (data) => {
     postBagRegistration({
       ...data,
-      startTime: getOrderFullDateByTime({ time: data.startTime }),
-      endTime: getOrderFullDateByTime({ time: data.endTime }),
+      startTime: getOrderFullDateByTime({
+        time: data.startTime,
+        isStore: true,
+      }),
+      endTime: getOrderFullDateByTime({
+        time: data.endTime,
+        isStore: true,
+      }),
       originalPrice: Number(data.originalPrice),
       discount: Number(data.discount.replace('%', '')),
       quantity: Number(data.quantity),
@@ -75,15 +82,33 @@ export default function Page() {
       </LabeledField>
       <LabeledField label="판매 시간 설정">
         <div className="flex gap-[10px]">
-          <Selector
+          <TimePicker
+            placeholder="시작 시간"
+            minTime={getPickUpTimeofToday({ type: 'open' })}
+            maxTime={getPickUpTimeofToday({ type: 'close' })}
+            value={getValues('startTime')}
+            onChange={(value) => {
+              setValue('startTime', value, { shouldValidate: !!value });
+            }}
+          />
+          <TimePicker
+            placeholder="종료 시간"
+            minTime={getValues('startTime')}
+            maxTime={getPickUpTimeofToday({ type: 'close' })}
+            value={getValues('endTime')}
+            onChange={(value) => {
+              setValue('endTime', value, { shouldValidate: !!value });
+            }}
+          />
+          {/*  <Selector
             placeholder="시작 시간"
             options={returnTimeOptions('open', '16:00', getValues('endTime'))}
             setValue={(value) => {
               setValue('startTime', value, { shouldValidate: !!value });
             }}
             isError={!!errors.startTime}
-          />
-          <Selector
+          /> */}
+          {/* <Selector
             placeholder="마감 시간"
             options={returnTimeOptions(
               'close',
@@ -94,7 +119,7 @@ export default function Page() {
               setValue('endTime', value, { shouldValidate: !!value });
             }}
             isError={!!errors.endTime}
-          />
+          /> */}
         </div>
       </LabeledField>
       <LabeledField label="판매 개수 설정">

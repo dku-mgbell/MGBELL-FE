@@ -9,8 +9,8 @@ import { RadioGroup } from '@/components/ui/radio-group/index';
 import TextField from '@/components/ui/text-field';
 import { useAddressStateStore } from '@/hooks/stores/useAddressStore';
 import { UserAddressState } from '@/types/address';
-import useModal from '@/hooks/useModal';
 import Modal from '@/components/modal';
+import useModal from '@/hooks/useModal';
 import AddressListItem from '../_components/address-list-item';
 
 export default function Page() {

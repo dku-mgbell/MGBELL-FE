@@ -2,6 +2,7 @@ import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { Bag } from '@/hooks/api/bag';
 import useLoadingModal from '@/hooks/useModal/loading';
+import { ErrorResponse } from '@/types/api';
 import { BagRegistrationRequest } from '@/types/bag';
 import useModal from '@/hooks/useModal';
 
@@ -19,10 +20,11 @@ export default function usePostBagRegistration() {
       closeLoading();
       router.push('/register/store/info/success');
     },
-    onError: () => {
+    onError: (error: ErrorResponse<string>) => {
       closeLoading();
       open({
-        content: '마감백 등록을 실패했습니다.',
+        title: '등록 실패',
+        description: error.response.data.message as string,
       });
     },
   });

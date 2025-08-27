@@ -1,9 +1,9 @@
 import { Intersection } from '@/components/intersection/intersection';
 import { useGetBagReviewInfiniteList } from '@/hooks/query/bag/useGetBagReviewInfiniteList';
 import getTimeDifference from '@/utils/getTimeDifference';
-import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import HorizontalImageContainer from '@/components/horizontal-image-container';
 import ReviewSatisfactionList from '@/components/review-satisfaction-list';
+import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 
 export default function ReviewList({
   goodsId,

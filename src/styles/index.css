@@ -68,6 +68,11 @@ textarea {
   }
 }
 
+.MuiPickerPopper-root {
+  max-width: 410px;
+  width: calc(100% - 40px);
+}
+
 @media all and (display-mode: standalone) {
   .pwa-layout {
     height: '100vh!important';

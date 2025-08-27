@@ -1,30 +1,25 @@
 export const getOrderFullDateByTime = ({
   time,
-  isUser,
+  isStore,
 }: {
   time: string;
-  isUser?: boolean;
+  isStore?: boolean;
 }) => {
   const now = new Date();
   const kstDate = new Date(now.getTime() + 9 * 60 * 60 * 1000);
-  const orderHour = Number(time.split(':')[0]);
-  const orderMinute = Number(time.split(':')[1]);
+  const orderHour = time.split('T')[1].split(':')[0];
+  const orderMinute = time.split(':')[1];
 
-  // 매장 영업 시간
-  if (!isUser) {
-    const year = kstDate.getUTCFullYear();
-    const month = String(kstDate.getUTCMonth() + 1).padStart(2, '0');
-    const date = String(kstDate.getUTCDate()).padStart(2, '0');
-    return `${year}-${month}-${date}T${time}:00.000Z`;
+  if (isStore) {
+    return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}T${orderHour}:${orderMinute}:00.000Z`;
   }
 
-  // 사용자 주문 시간 (예약의 경우 고려)
   const targetKST = new Date(
     kstDate.getFullYear(),
     kstDate.getMonth(),
     kstDate.getDate(),
-    orderHour,
-    orderMinute,
+    Number(orderHour),
+    Number(orderMinute),
     0,
     0,
   );
@@ -39,5 +34,5 @@ export const getOrderFullDateByTime = ({
   const month = String(reservationDate.getUTCMonth() + 1).padStart(2, '0');
   const date = String(reservationDate.getUTCDate()).padStart(2, '0');
 
-  return `${year}-${month}-${date}T${time}:00.000Z`;
+  return `${year}-${month}-${date}T${orderHour}:${orderMinute}:00.000Z`;
 };

@@ -1,9 +1,13 @@
 import Script from 'next/script';
 import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/react';
+
+import { ThemeProvider } from '@mui/material/styles';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import ModalProvider from '@/components/modal/modal-provider';
 import Navigation from '@/components/navigation/navigation';
 import { cn } from '@/lib/utils';
+import theme from '@/styles/theme';
 import MSWProvider from './(index)/msw-provider/msw-provider';
 import Providers from './(index)/query-provider';
 import Container from './(layout)/container';
@@ -69,14 +73,18 @@ export default function RootLayout({
           src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}
         />
         <Script src="https://cdn.iamport.kr/v1/iamport.js" />
-        <Providers>
-          <ModalProvider>
-            <MSWProvider />
-            <div id="modal-root" />
-            <Container>{children}</Container>
-            <Navigation />
-          </ModalProvider>
-        </Providers>
+        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+          <ThemeProvider theme={theme}>
+            <Providers>
+              <ModalProvider>
+                <MSWProvider />
+                <div id="modal-root" />
+                <Container>{children}</Container>
+                <Navigation />
+              </ModalProvider>
+            </Providers>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
         <Analytics />
       </body>
     </html>

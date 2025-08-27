@@ -15,11 +15,11 @@ import {
 import { useDeleteReview } from '@/hooks/query/user/review/useDeleteReview';
 import { useGetMyReviewList } from '@/hooks/query/user/review/useGetMyReviewList';
 import { MyReviewResponse } from '@/types/review';
-import { colors } from '@/styles/constant';
-import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
-import useModal from '@/hooks/useModal';
 import HorizontalImageContainer from '@/components/horizontal-image-container';
 import ReviewSatisfactionList from '@/components/review-satisfaction-list';
+import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
+import useModal from '@/hooks/useModal';
+import { colors } from '@/styles/constant';
 
 export default function Page() {
   const ReviewState = useGetMyReviewList({ size: 10 });

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSearchParams } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -8,17 +8,17 @@ import { z } from 'zod';
 import FormLayout from '@/components/layout/form-layout';
 import Loader from '@/components/loader/loader';
 import LabeledField from '@/components/ui/labeled-field';
-import { Selector } from '@/components/ui/select';
 import TextArea from '@/components/ui/textarea';
+import TimePicker from '@/components/ui/time-picker';
 import { usePostBagOrder } from '@/hooks/query/order/usePostBagOrder';
 import { useGetStoreDetailWithBag } from '@/hooks/query/store/useGetStoreDetailWithBag';
 import { useBagOrderState } from '@/hooks/stores/useBagOrderStateStore';
 import { commaizeNumber } from '@/utils/commaizeNumber';
-import { format24HourTime } from '@/utils/format24HourTime';
+import { getMinPickUpTime } from '@/utils/getMinPickUpTime';
 import { getOrderFullDateByTime } from '@/utils/getOrderFullDateByTime';
-import { returnTimeOptions } from '@/utils/returnTimeOptions';
-import useModal from '@/hooks/useModal';
+import { getPickUpTimeofToday } from '@/utils/getPickUpTimeofToday';
 import OrderDetailTable, { OrderData } from '@/components/order-detail-table';
+import useModal from '@/hooks/useModal';
 import { useUserPaymentStore } from '../_stores/useUserPaymentStore';
 
 const schema = z.object({
@@ -42,6 +42,7 @@ export default function Page() {
   const [price, setPrice] = useState(0);
   const [orderData, setOrderData] = useState<OrderData>();
   const { userPaymentStore, setUserPaymentStore } = useUserPaymentStore();
+  const minTime = getMinPickUpTime(data?.startTime);
   const {
     register,
     handleSubmit,
@@ -55,10 +56,6 @@ export default function Page() {
 
   const pickupTime = watch('pickupTime');
   const memo = watch('memo');
-  const [formattedStartTime, formattedEndTime] = useMemo(() => {
-    if (!data) return [];
-    return [data.startTime, data.endTime].map((time) => format24HourTime(time));
-  }, [data]);
 
   useEffect(() => {
     if (data?.salePrice) {
@@ -77,7 +74,7 @@ export default function Page() {
   useEffect(() => {
     setOrderData((prev) => ({
       ...prev,
-      픽업시간: pickupTime,
+      픽업시간: pickupTime ? pickupTime.split('+')[0].replace('T', ' ') : '',
       요청사항: memo,
     }));
   }, [pickupTime, memo]);
@@ -100,7 +97,6 @@ export default function Page() {
           goodsId: data.goodsId,
           pickupTime: getOrderFullDateByTime({
             time: form.pickupTime,
-            isUser: true,
           }),
           memo: form.memo,
           quantity: bagAmount,
@@ -118,17 +114,18 @@ export default function Page() {
       submitButtonText={`${commaizeNumber(price)}원 · 주문하기`}
     >
       <LabeledField label="픽업시간 설정">
-        <Selector
-          placeholder={pickupTime || '픽업시간을 선택해주세요'}
-          options={returnTimeOptions(
-            'pickUp',
-            formattedStartTime,
-            formattedEndTime,
-          )}
-          setValue={(value) =>
-            setValue('pickupTime', value, { shouldValidate: true })
-          }
-          isError={!!errors.pickupTime}
+        <TimePicker
+          placeholder="픽업시간을 선택해주세요"
+          minTime={minTime}
+          maxTime={data?.endTime ?? getPickUpTimeofToday({ type: 'close' })}
+          value={pickupTime}
+          onChange={(value) => {
+            if (value) {
+              setValue('pickupTime', value, {
+                shouldValidate: true,
+              });
+            }
+          }}
         />
       </LabeledField>
       <LabeledField label="요청사항">

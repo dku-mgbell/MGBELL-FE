@@ -24,6 +24,7 @@ const nextConfig = {
     domains: [
       'mgbell-s3.s3.ap-northeast-2.amazonaws.com',
       'd8l60k7no0sr8.cloudfront.net',
+      'd1xe26zpyg8fzv.cloudfront.net',
     ],
   },
 };

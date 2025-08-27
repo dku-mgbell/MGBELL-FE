@@ -78,9 +78,9 @@ module.exports = {
             position: 'before',
           },
           {
-            pattern: 'zod',
+            pattern: '@mui/**',
             group: 'external',
-            position: 'after',
+            position: 'before',
           },
           {
             pattern: 'storybook/*',
@@ -138,7 +138,17 @@ module.exports = {
             position: 'before',
           },
           {
-            pattern: '@/styles/*',
+            pattern: 'dayjs',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'zod',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '@/components/*',
             group: 'internal',
             position: 'after',
           },
@@ -148,7 +158,7 @@ module.exports = {
             position: 'after',
           },
           {
-            pattern: '@/components/*',
+            pattern: '@/styles/*',
             group: 'internal',
             position: 'after',
           },
@@ -165,6 +175,8 @@ module.exports = {
           'class-variance-authority',
           '@tanstack/*',
           '@vanilla-extract/*',
+          '@mui/**',
+          'dayjs',
           'zustand',
           'zustand/middleware',
           'msw',

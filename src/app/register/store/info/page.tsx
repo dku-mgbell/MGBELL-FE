@@ -11,8 +11,8 @@ import { Selector } from '@/components/ui/select';
 import TextField from '@/components/ui/text-field';
 import { usePostStoreRegistration } from '@/hooks/query/store/usePostStoreRegistration';
 import { phoneRegex } from '@/utils/regex';
-import useSearchAddress from '@/hooks/useSearchAddress';
 import ImageUploader from '@/components/image-uploader';
+import useSearchAddress from '@/hooks/useSearchAddress';
 import BankSelectSheet from './_components/bank-select-sheet';
 
 type StoreForm = z.infer<typeof schema>;
