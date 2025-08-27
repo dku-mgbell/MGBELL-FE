@@ -42,7 +42,6 @@ export default function Page() {
   const [price, setPrice] = useState(0);
   const [orderData, setOrderData] = useState<OrderData>();
   const { userPaymentStore, setUserPaymentStore } = useUserPaymentStore();
-  const minTime = getMinPickUpTime(data?.startTime);
   const {
     register,
     handleSubmit,
@@ -116,12 +115,19 @@ export default function Page() {
       <LabeledField label="픽업시간 설정">
         <TimePicker
           placeholder="픽업시간을 선택해주세요"
-          minTime={minTime}
+          minTime={getMinPickUpTime(data!.startTime, data!.endTime)}
           maxTime={data?.endTime ?? getPickUpTimeofToday({ type: 'close' })}
           value={pickupTime}
           onChange={(value) => {
             if (value) {
-              setValue('pickupTime', value, {
+              const selectedDate = new Date(value);
+              let dueDate = selectedDate;
+              if (selectedDate < new Date()) {
+                dueDate = new Date(dueDate);
+                dueDate.setDate(dueDate.getDate() + 1);
+              }
+              const duePickUpTime = `${dueDate.getFullYear()}-${String(dueDate.getMonth() + 1).padStart(2, '0')}-${String(dueDate.getDate()).padStart(2, '0')}T${value.split('T')[1]}`;
+              setValue('pickupTime', duePickUpTime, {
                 shouldValidate: true,
               });
             }
