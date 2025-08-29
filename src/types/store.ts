@@ -60,6 +60,20 @@ export interface StoreRegistrationResponse {
     storePreSignedUrlImages: ImageResponse[];
   };
 }
+
+export interface StorePatchImagesRequest {
+  storeId: string;
+  images: ImageRequest[];
+  files: File[];
+}
+
+export interface StorePatchImagesResponse {
+  data: {
+    id: string;
+    storePreSignedUrlImages: ImageResponse[];
+  };
+}
+
 export interface StoreDetailWithBag extends BagRegistrationRequest {
   storeId: string;
   goodsId: string;

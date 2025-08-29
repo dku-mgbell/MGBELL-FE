@@ -6,6 +6,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import ModalProvider from '@/components/modal/modal-provider';
 import Navigation from '@/components/navigation/navigation';
+import { navigationTabList } from '@/components/navigation/navigation-tab-list';
 import { cn } from '@/lib/utils';
 import theme from '@/styles/theme';
 import MSWProvider from './(index)/msw-provider/msw-provider';
@@ -80,7 +81,7 @@ export default function RootLayout({
                 <MSWProvider />
                 <div id="modal-root" />
                 <Container>{children}</Container>
-                <Navigation />
+                <Navigation navigationTabList={navigationTabList} />
               </ModalProvider>
             </Providers>
           </ThemeProvider>

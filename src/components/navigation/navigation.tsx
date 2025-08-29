@@ -4,9 +4,21 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useModalMessage } from '@/hooks/useModal/message';
 import { useAuth } from '@/hooks/useAuth';
-import { navigationTabList } from './navigation-tab-list';
 
-export default function Navigation() {
+export type NavigationTab = {
+  id: string;
+  forGuest: boolean;
+  name: string;
+  route: string;
+  icon: (active: boolean) => React.ReactNode;
+  readyToDeploy?: boolean;
+};
+
+export default function Navigation({
+  navigationTabList,
+}: {
+  navigationTabList: NavigationTab[];
+}) {
   const pathname = usePathname();
   const currentRoute = pathname.split('?')[0];
   const { openRequireLoginModal, isLoggedIn } = useAuth();
