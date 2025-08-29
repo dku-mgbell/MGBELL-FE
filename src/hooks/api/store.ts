@@ -1,4 +1,5 @@
 import { PageParams } from '@/types/api';
+import { ImageRequest } from '@/types/image';
 import {
   StoreDetailWithBag,
   StoreListItemResponse,
@@ -11,6 +12,13 @@ import { API } from '.';
 export const Store = {
   async postRegistration(data: StoreRegistrationRequest) {
     const response = await API.post(`${WIP_API_BASE_URL}/store`, data);
+    return response.data;
+  },
+  async patchImages(data: {
+    storeId: string;
+    storeImagesRegisters: ImageRequest[];
+  }) {
+    const response = await API.patch(`${WIP_API_BASE_URL}/store`, data);
     return response.data;
   },
   async getPendingList({

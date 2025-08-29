@@ -1,3 +1,5 @@
+'use client';
+
 import HeartIcon from '@/assets/svg/HeartIcon';
 import HomeIcon from '@/assets/svg/HomeIcon';
 import OrderHistoryIcon from '@/assets/svg/OrderHistoryIcon';
@@ -42,6 +44,33 @@ export const navigationTabList = [
     forGuest: false,
     name: 'MY',
     route: '/mypage',
+    icon: (active: boolean) => <PersonIcon active={active} />,
+    readyToDeploy: true,
+  },
+];
+
+export const adminNavigationTabList = [
+  {
+    id: 'list',
+    forGuest: false,
+    name: '가게 목록',
+    route: '/admin/store/list',
+    icon: (active: boolean) => <HomeIcon active={active} />,
+    readyToDeploy: true,
+  },
+  {
+    id: 'approve',
+    forGuest: false,
+    name: '가게 승인',
+    route: '/admin/store/approve',
+    icon: (active: boolean) => <OrderHistoryIcon active={active} />,
+    readyToDeploy: true,
+  },
+  {
+    id: 'settings',
+    forGuest: false,
+    name: '설정',
+    route: '/admin/settings',
     icon: (active: boolean) => <PersonIcon active={active} />,
     readyToDeploy: true,
   },

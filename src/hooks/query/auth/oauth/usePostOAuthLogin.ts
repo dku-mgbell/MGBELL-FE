@@ -35,6 +35,8 @@ export const usePostOAuthLogin = (nextPage?: string) => {
       router.push('/register/bag');
     } else if (accountInfo.approved === 'APPROVED') {
       router.push('/store/order');
+    } else if (accountInfo.userRole === 'ADMIN') {
+      router.push('/admin/store/list');
     } else if (
       accountInfo.approved === 'WAITING' ||
       accountInfo.approved === 'REJECTED'

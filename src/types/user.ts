@@ -11,7 +11,7 @@ export interface UserActivity {
 export interface AccountInfo {
   email: string;
   nickName: string;
-  userRole: 'CUSTOMER' | 'OWNER';
+  userRole: 'CUSTOMER' | 'OWNER' | 'ADMIN';
   providerType: OAuthProviderType;
   approved: 'APPROVED' | 'WAITING' | 'REJECTED';
   goodsId: string | 'null';
