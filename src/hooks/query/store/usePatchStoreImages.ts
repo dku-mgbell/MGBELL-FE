@@ -44,6 +44,9 @@ export const usePatchStoreImages = (storeId: string) => {
           await queryClient.refetchQueries({
             queryKey: ['store-list'],
           });
+          await queryClient.refetchQueries({
+            queryKey: ['owner-store-info'],
+          });
           router.back();
         },
       });
