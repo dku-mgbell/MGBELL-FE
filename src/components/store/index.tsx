@@ -142,7 +142,7 @@ function OpenStatus({
 
 function HorizontalThumbnail({ images }: { images: string[] }) {
   return (
-    <div className="flex items-center gap-[6px] w-full max-w-[450px]">
+    <div className="flex items-center gap-[6px] min-w-[250px] max-w-[450px]">
       {images.map((image) => (
         <div
           key={image}

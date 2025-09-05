@@ -35,6 +35,14 @@ export default function Page() {
           <ChevronRightIcon width={20} height={20} />
         </Link>
       </MenuItem>
+      <MenuItem name="마감백 이미지 변경">
+        <Link
+          href={`/store/sale/image/${storeInfo?.data.data.storeId}`}
+          className="clickable w-[100px] flex justify-end"
+        >
+          <ChevronRightIcon width={20} height={20} />
+        </Link>
+      </MenuItem>
     </div>
   );
 }
