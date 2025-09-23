@@ -32,7 +32,7 @@ export const loginButtonConfig: Record<OAuthProviderType, LoginButtonConfig> = {
     textColor: '#000000',
     bgColor: '#FFFFFF',
     link: getOAuthLink('GOOGLE'),
-    hidden: true,
+    // hidden: true,
   },
   NAVER: {
     icon: <NaverIcon />,
